@@ -6,22 +6,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var app_component_1 = require("./app.component");
-var index_component_1 = require("./index.component");
-var AppModule = (function () {
-    function AppModule() {
+var IndexComponent = (function () {
+    function IndexComponent() {
     }
-    return AppModule;
+    return IndexComponent;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule],
-        declarations: [app_component_1.AppComponent,
-            index_component_1.IndexComponent],
-        bootstrap: [app_component_1.AppComponent,
-            index_component_1.IndexComponent]
+IndexComponent = __decorate([
+    core_1.Component({
+        selector: 'my-index',
+        template: "./html/index.component.html"
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], IndexComponent);
+exports.IndexComponent = IndexComponent;
+//# sourceMappingURL=index.component.js.map
