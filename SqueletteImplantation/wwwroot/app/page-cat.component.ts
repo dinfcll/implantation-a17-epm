@@ -7,8 +7,8 @@ import { Critere } from './critere';
 
 //Importation des services 
 import { TraceService } from './trace.service';
-import { CatService } from './cat.service';
-import { CritService } from './crit.service';
+import { CategorieService } from './categorie.service';
+import { CritereService } from './critere.service';
 
 
 
@@ -26,14 +26,18 @@ export class PageCatComponent implements OnInit
     Inject the TraceService in the constructor and hold it in a private heroService field.
     Call the service to get traces inside the Angular ngOnInit() lifecycle hook.
 */
-    traces:Trace[] = [];
+    m_TabTrace: Trace[] = [];
+    m_TabCat: Categorie[] = [];
+    m_TabCrit: Critere[] = [];
 
-    constructor(private traceService:TraceService){}
+
+    constructor(private traceService:TraceService, private catService:CategorieService, private critService:CritereService){}
 
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après la création dudit composant.
     ngOnInit(): void 
     {
-        this.TraceService.getTraces()
+        //this.catService.getCategories()
+        this.traceService.getTraces()
         //.then(heroes => this.heroes = heroes.slice(1, 5));
     }
 }

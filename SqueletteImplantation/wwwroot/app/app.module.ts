@@ -11,4 +11,5 @@ import {PageCatComponent} from './page-cat.component';
   declarations: [ AppComponent, PageCatComponent ],  // Déclaration des "components" de l'application
   bootstrap:    [ AppComponent ]
 })
+
 export class AppModule { }
