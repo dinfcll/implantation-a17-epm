@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SqueletteImplantation.DbEntities.Models;
 
 namespace SqueletteImplantation.DbEntities.Mappers
@@ -7,9 +8,9 @@ namespace SqueletteImplantation.DbEntities.Mappers
     {
         public CategorieMap(EntityTypeBuilder<Categorie> entityBuilder)
         {
-            entityBuilder.HasKey(m => m.CatId);
-            entityBuilder.Property(m => m.CatNom).IsRequired();
-            //entityBuilder.HasAlternateKey(m => m.DomId)();
+            entityBuilder.HasKey(ca => ca.CatId);
+            entityBuilder.Property(ca => ca.CatNom).IsRequired();
+            entityBuilder.Property(ca => ca.DomId).IsRequired();
         }
     }
 }

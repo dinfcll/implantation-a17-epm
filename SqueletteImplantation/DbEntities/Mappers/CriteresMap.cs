@@ -8,7 +8,9 @@ namespace SqueletteImplantation.DbEntities.Mappers
         public CriteresMap(EntityTypeBuilder<Criteres> entityBuilder)
         {
             
-            //entityBuilder.Property(m => m.CatNom).IsRequired();
+            entityBuilder.HasKey(cr => cr.CritId);
+            entityBuilder.Property(cr => cr.CritNom).IsRequired();
+            entityBuilder.Property(cr => cr.CatId).IsRequired();
 
         }
     }

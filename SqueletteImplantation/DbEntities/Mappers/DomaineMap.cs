@@ -8,7 +8,8 @@ namespace SqueletteImplantation.DbEntities.Mappers
         public DomaineMap(EntityTypeBuilder<Domaine> entityBuilder)
         {
 
-            //entityBuilder.Property(m => m.CatNom).IsRequired();
+            entityBuilder.HasKey(d => d.DomId);
+            entityBuilder.Property(d => d.DomNom).IsRequired();
 
         }
     }

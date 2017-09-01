@@ -1,4 +1,8 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace SqueletteImplantation.DbEntities.Models
 {
     public class Categorie
@@ -6,6 +10,9 @@ namespace SqueletteImplantation.DbEntities.Models
         public int CatId { get; set; }
         public string CatNom { get; set; }
         public int DomId { get; set; }
+        public Domaine domaine { get; set; }
+
+        public List<Criteres> criteres { get; set; }
     }
 }
 

@@ -9,5 +9,8 @@ namespace SqueletteImplantation.DbEntities.Models
     {
         public int DomId { get; set; }
         public string DomNom { get; set; }
+
+        public List<Categorie> categories { get; set; }
+
     }
 }
