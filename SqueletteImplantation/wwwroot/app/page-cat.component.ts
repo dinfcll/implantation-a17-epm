@@ -31,13 +31,14 @@ export class PageCatComponent implements OnInit
     m_TabCrit: Critere[] = [];
 
 
-    constructor(private traceService:TraceService, private catService:CategorieService, private critService:CritereService){}
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService){}
 
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après la création dudit composant.
     ngOnInit(): void 
     {
-        //this.catService.getCategories()
-        this.traceService.getTraces()
+        this.critService.getCriteres();
+        this.catService.getCategories();
+        this.traceService.getTraces(); // Je dois trouver une façon de récupérer le retour !
         //.then(heroes => this.heroes = heroes.slice(1, 5));
     }
 }
