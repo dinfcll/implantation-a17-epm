@@ -9,9 +9,9 @@ namespace SqueletteImplantation.Controllers
 {
     public class MachinController : Controller
     {
-        private readonly MaBd _maBd;
+        private readonly BD_EPM _maBd;
 
-        public MachinController(MaBd maBd)
+        public MachinController(BD_EPM maBd)
         {
             _maBd = maBd;
         }
@@ -21,6 +21,13 @@ namespace SqueletteImplantation.Controllers
         public IEnumerable Index()
         {
             return _maBd.Machin.ToList();
+        }
+
+        [HttpGet]
+        [Route("api/Domaine")]
+        public IEnumerable Domaine()
+        {
+            return _maBd.Domaine.ToList();
         }
 
         [HttpPost]
@@ -36,17 +43,17 @@ namespace SqueletteImplantation.Controllers
         }
 
         [HttpGet]
-        [Route("api/machins/{id}")]
+        [Route("api/Domaine/{id}")]
         public IActionResult GetMachin(int id)
         {
-            var machin = _maBd.Machin.FirstOrDefault(m => m.Id == id);
+            var Domaine = _maBd.Domaine.FirstOrDefault(m => m.DomId == id);
 
-            if (machin == null)
+            if (Domaine == null)
             {
                 return NotFound();
             }
 
-            return new OkObjectResult(machin);
+            return new OkObjectResult(Domaine);
         }
 
         [HttpPut]

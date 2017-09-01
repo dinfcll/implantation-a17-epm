@@ -5,7 +5,7 @@ namespace SqueletteImplantation.DbEntities.Mappers
 {
     public class CriteresMap
     {
-        public CriteresMap(EntityTypeBuilder<Criteres> entityBuilder)
+        public CriteresMap(EntityTypeBuilder<Critere> entityBuilder)
         {
             
             entityBuilder.HasKey(cr => cr.CritId);
