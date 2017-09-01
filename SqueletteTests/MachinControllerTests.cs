@@ -11,6 +11,7 @@ namespace SqueletteTests
 {
     public class MachinControllerTests
     {
+        /*
         //un commentaire
         private const int UnNombreMagique = 42;
         private const string UnTruc = "truc";
@@ -82,5 +83,6 @@ namespace SqueletteTests
 
             Assert.Equal(404, ((NotFoundResult)entityNotFound).StatusCode);
         }
+        */
     }
 }
