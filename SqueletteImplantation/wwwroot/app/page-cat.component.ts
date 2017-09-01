@@ -36,7 +36,7 @@ export class PageCatComponent implements OnInit
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après la création dudit composant.
     ngOnInit(): void 
     {
-        this.critService.getCriteres();
+        this.critService.getCriteres().then(m_TabTrace => this.m_TabTrace); // Incertain !!
         this.catService.getCategories();
         this.traceService.getTraces(); // Je dois trouver une façon de récupérer le retour !
         //.then(heroes => this.heroes = heroes.slice(1, 5));
