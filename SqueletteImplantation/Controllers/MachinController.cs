@@ -9,9 +9,9 @@ namespace SqueletteImplantation.Controllers
 {
     public class MachinController : Controller
     {
-        private readonly MaBd _maBd;
+        private readonly BD_EPM _maBd;
 
-        public MachinController(MaBd maBd)
+        public MachinController(BD_EPM maBd)
         {
             _maBd = maBd;
         }

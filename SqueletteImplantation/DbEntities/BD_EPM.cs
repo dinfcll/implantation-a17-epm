@@ -4,17 +4,17 @@ using SqueletteImplantation.DbEntities.Models;
 
 namespace SqueletteImplantation.DbEntities
 {
-    public class MaBd : DbContext
+    public class BD_EPM : DbContext
     {
         public virtual DbSet<Machin> Machin { get; set; }
         public virtual DbSet<Categorie> Categorie { get; set; }
         public virtual DbSet<Domaine> Domaine { get; set; }
-        public virtual DbSet<Critere> Criteres { get; set; }
+        public virtual DbSet<Critere> Critere { get; set; }
         public virtual DbSet<Trace> Trace { get; set; }
         public virtual DbSet<RelTracCrit> RelTracCrit { get; set; }
 
 
-        public MaBd(DbContextOptions options) : base(options)
+        public BD_EPM(DbContextOptions options) : base(options)
         {
         }
 

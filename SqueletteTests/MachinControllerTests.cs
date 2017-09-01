@@ -21,11 +21,11 @@ namespace SqueletteTests
 
         public MachinControllerTests()
         {
-            var options = new DbContextOptionsBuilder<MaBd>()
+            var options = new DbContextOptionsBuilder<BD_EPM>()
                 .UseInMemoryDatabase("DatabaseMachins-" + $"{Guid.NewGuid()}")
                 .Options;
 
-            var bdEnMemoire = new MaBd(options);
+            var bdEnMemoire = new BD_EPM(options);
 
             _machinController = new MachinController(bdEnMemoire);
         }

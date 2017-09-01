@@ -7,8 +7,8 @@ using SqueletteImplantation.DbEntities;
 
 namespace squeletteimplantation.Migrations
 {
-    [DbContext(typeof(MaBd))]
-    partial class MaBdModelSnapshot : ModelSnapshot
+    [DbContext(typeof(BD_EPM))]
+    partial class BD_EPMModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -47,7 +47,7 @@ namespace squeletteimplantation.Migrations
 
                     b.HasIndex("CatId");
 
-                    b.ToTable("Criteres");
+                    b.ToTable("Critere");
                 });
 
             modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.Domaine", b =>
