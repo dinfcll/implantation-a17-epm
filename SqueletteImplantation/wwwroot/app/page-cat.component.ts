@@ -1,16 +1,25 @@
 import { Component, OnInit} from '@angular/core';
+
+//Importation des classes
 import { Trace } from './trace';
+import { Categorie } from './categorie';
+import { Critere } from './critere';
+
+//Importation des services 
 import { TraceService } from './trace.service';
+import { CatService } from './cat.service';
+import { CritService } from './crit.service';
 
 
 
 
 @Component({
   selector: 'page-cat',
-  templateUrl: './html/page-cat.component.html',
+  templateUrl: './html/page-cat.component.html',  //Template de Étienne doit aller ici !
   styleUrls: [ './css/page-cat.component.css' ]
 })
 
+//À compléter
 export class PageCatComponent implements OnInit
 {
 /*  Define a traces array property.
