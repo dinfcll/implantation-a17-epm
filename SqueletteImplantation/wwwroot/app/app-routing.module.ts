@@ -1,13 +1,13 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageCatComponent} from './page-cat.component';
+
 
 
 const routes: Routes = 
 [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
- /* { path: 'dashboard',  component: DashboardComponent },
-  { path: 'detail/:id', component: HeroDetailComponent },
-  { path: 'heroes',     component: HeroesComponent }*/
+  { path: '', redirectTo: '/', pathMatch: 'full' },  // Incertain
+  { path: 'categorie', component: PageCatComponent },
 ];
  
 @NgModule({

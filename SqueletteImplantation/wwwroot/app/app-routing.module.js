@@ -5,24 +5,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-//Modules
 var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var app_routing_module_1 = require("./app-routing.module");
-//Components
-var app_component_1 = require("./app.component");
+var router_1 = require("@angular/router");
 var page_cat_component_1 = require("./page-cat.component");
-var AppModule = (function () {
-    function AppModule() {
+var routes = [
+    { path: '', redirectTo: '/', pathMatch: 'full' },
+    { path: 'categorie', component: page_cat_component_1.PageCatComponent },
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
     }
-    return AppModule;
+    return AppRoutingModule;
 }());
-AppModule = __decorate([
+AppRoutingModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule],
-        declarations: [app_component_1.AppComponent, page_cat_component_1.PageCatComponent],
-        bootstrap: [app_component_1.AppComponent]
+        imports: [router_1.RouterModule.forRoot(routes)],
+        exports: [router_1.RouterModule]
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], AppRoutingModule);
+exports.AppRoutingModule = AppRoutingModule;
+//# sourceMappingURL=app-routing.module.js.map
