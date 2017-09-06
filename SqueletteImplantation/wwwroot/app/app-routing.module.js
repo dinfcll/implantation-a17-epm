@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var page_cat_component_1 = require("./page-cat.component");
-var routes = [
+exports.routes = [
     { path: '', redirectTo: '/', pathMatch: 'full' },
     { path: 'categorie', component: page_cat_component_1.PageCatComponent },
 ];
@@ -19,7 +19,7 @@ var AppRoutingModule = (function () {
 }());
 AppRoutingModule = __decorate([
     core_1.NgModule({
-        imports: [router_1.RouterModule.forRoot(routes)],
+        imports: [router_1.RouterModule.forRoot(exports.routes)],
         exports: [router_1.RouterModule]
     })
 ], AppRoutingModule);

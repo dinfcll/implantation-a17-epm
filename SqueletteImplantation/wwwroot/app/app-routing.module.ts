@@ -4,7 +4,7 @@ import { PageCatComponent} from './page-cat.component';
 
 
 
-const routes: Routes = 
+export const routes: Routes = 
 [
   { path: '', redirectTo: '/', pathMatch: 'full' },  // Incertain
   { path: 'categorie', component: PageCatComponent },
