@@ -15,6 +15,7 @@ namespace SqueletteImplantation.DbEntities.Mappers
             entityBuilder.HasKey(tr => tr.TracId);
             entityBuilder.Property(tr => tr.TraceNom).IsRequired();
             entityBuilder.Property(tr => tr.TracUrl).IsRequired();
+
         }
 
 
