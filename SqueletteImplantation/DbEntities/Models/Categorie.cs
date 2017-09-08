@@ -12,7 +12,7 @@ namespace SqueletteImplantation.DbEntities.Models
         public int DomId { get; set; }
         public Domaine domaine { get; set; }
 
-        public List<Criteres> criteres { get; set; }
+        public List<Critere> criteres { get; set; }
     }
 }
 

@@ -11,6 +11,7 @@ namespace SqueletteTests
 {
     public class MachinControllerTests
     {
+        /*
         //un commentaire
         private const int UnNombreMagique = 42;
         private const string UnTruc = "truc";
@@ -21,11 +22,11 @@ namespace SqueletteTests
 
         public MachinControllerTests()
         {
-            var options = new DbContextOptionsBuilder<MaBd>()
+            var options = new DbContextOptionsBuilder<BD_EPM>()
                 .UseInMemoryDatabase("DatabaseMachins-" + $"{Guid.NewGuid()}")
                 .Options;
 
-            var bdEnMemoire = new MaBd(options);
+            var bdEnMemoire = new BD_EPM(options);
 
             _machinController = new MachinController(bdEnMemoire);
         }
@@ -82,5 +83,6 @@ namespace SqueletteTests
 
             Assert.Equal(404, ((NotFoundResult)entityNotFound).StatusCode);
         }
+        */
     }
 }

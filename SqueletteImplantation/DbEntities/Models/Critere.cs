@@ -1,7 +1,8 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace SqueletteImplantation.DbEntities.Models
 {
-    public class Criteres
+    public class Critere
     {
 
         public int CritId { get; set; }
@@ -9,5 +10,7 @@ namespace SqueletteImplantation.DbEntities.Models
         public int CatId { get; set; }
 
         public Categorie categorie { get; set; }
+
+        public List<RelTracCrit> reltraccrit { get; set; }
     }
 }

@@ -32,8 +32,8 @@ namespace SqueletteImplantation
 
             services.AddSingleton<IConfiguration>(Configuration);
 
-            services.AddDbContext<MaBd>(
-                options => options.UseNpgsql(@"Host=localhost;Database=mabd;Username=postgres;Password=admin123"));
+            services.AddDbContext<BD_EPM>(
+                options => options.UseNpgsql(@"Host=10.2.3.67;Database=BD_EPM;Username=postgres;Password=admin123"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

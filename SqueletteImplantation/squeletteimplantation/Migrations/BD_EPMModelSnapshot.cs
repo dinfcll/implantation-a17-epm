@@ -7,8 +7,8 @@ using SqueletteImplantation.DbEntities;
 
 namespace squeletteimplantation.Migrations
 {
-    [DbContext(typeof(MaBd))]
-    partial class MaBdModelSnapshot : ModelSnapshot
+    [DbContext(typeof(BD_EPM))]
+    partial class BD_EPMModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace squeletteimplantation.Migrations
                     b.ToTable("Categorie");
                 });
 
-            modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.Criteres", b =>
+            modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.Critere", b =>
                 {
                     b.Property<int>("CritId")
                         .ValueGeneratedOnAdd();
@@ -47,7 +47,7 @@ namespace squeletteimplantation.Migrations
 
                     b.HasIndex("CatId");
 
-                    b.ToTable("Criteres");
+                    b.ToTable("Critere");
                 });
 
             modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.Domaine", b =>
@@ -78,6 +78,35 @@ namespace squeletteimplantation.Migrations
                     b.ToTable("Machin");
                 });
 
+            modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.RelTracCrit", b =>
+                {
+                    b.Property<int>("CritId");
+
+                    b.Property<int>("TracId");
+
+                    b.HasKey("CritId", "TracId");
+
+                    b.HasIndex("TracId");
+
+                    b.ToTable("RelTracCrit");
+                });
+
+            modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.Trace", b =>
+                {
+                    b.Property<int>("TracId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("TracUrl")
+                        .IsRequired();
+
+                    b.Property<string>("TraceNom")
+                        .IsRequired();
+
+                    b.HasKey("TracId");
+
+                    b.ToTable("Trace");
+                });
+
             modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.Categorie", b =>
                 {
                     b.HasOne("SqueletteImplantation.DbEntities.Models.Domaine", "domaine")
@@ -87,12 +116,27 @@ namespace squeletteimplantation.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.Criteres", b =>
+            modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.Critere", b =>
                 {
                     b.HasOne("SqueletteImplantation.DbEntities.Models.Categorie", "categorie")
                         .WithMany("criteres")
                         .HasForeignKey("CatId")
                         .HasConstraintName("fk_crit_cat")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.RelTracCrit", b =>
+                {
+                    b.HasOne("SqueletteImplantation.DbEntities.Models.Critere", "criteres")
+                        .WithMany("reltraccrit")
+                        .HasForeignKey("CritId")
+                        .HasConstraintName("fk_Critere_relTracCrit")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SqueletteImplantation.DbEntities.Models.Trace", "trace")
+                        .WithMany("reltraccrit")
+                        .HasForeignKey("TracId")
+                        .HasConstraintName("fk_Trace_relTracCrit")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
