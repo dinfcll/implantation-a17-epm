@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	<link rel="stylesheet" href="/../css/index.component.css">
-	<script type="text/javascript" src="index.js"> </script>
-	<title> EPM </title>
-	
-	
-	
-	</head>
-
-	<body>
-		
 
 		<table class="TableComplete" border>
             <tr>
 				<td id="EspaceLogo" rowspan="2">
-				    	
+					
+				<router-outlet></router-outlet>
+  				<ul>
+   					 <li>
+     					 <a routerLink="index">index</a>
+    				</li>
+   					 <li>
+      					<a routerLink="categorie">Categorie</a>
+   					 </li>
+  			   </ul>
+
 				</td>
                 <td id="Navigation" colspan="1">
                     
@@ -30,6 +29,4 @@
 					
 		</table>
 	
-	</body>
-
 </html>

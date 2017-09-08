@@ -1,7 +1,5 @@
 //Selon la BD
 export class Trace
 {
-    ID: number;
-    Nom: String;
-    URL: String;
+    constructor(public ID: number,public Nom: String, public URL: String){} 
 }

@@ -20,19 +20,20 @@ var PageCatComponent = (function () {
         this.catService = catService;
         this.critService = critService;
         /*  Define a traces array property.
-            Inject the TraceService in the constructor and hold it in a private heroService field.
+            Inject the TraceService in the constructor and hold it in a private TraceService field.
             Call the service to get traces inside the Angular ngOnInit() lifecycle hook.
         */
         this.m_TabTrace = [];
         this.m_TabCat = [];
         this.m_TabCrit = [];
     }
-    //ngOnInit est une méthode du "Framework"" Angular qui est appelée après la création dudit composant.
+    //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     PageCatComponent.prototype.ngOnInit = function () {
-        /*this.critService.getCriteres().then(m_TabTrace => this.m_TabTrace); // Incertain !!
-        this.catService.getCategories();
-        this.traceService.getTraces(); // Je dois trouver une façon de récupérer le retour !*/
-        //.then(heroes => this.heroes = heroes.slice(1, 5));
+        var _this = this;
+        //Remplit les objets des données de la BD
+        this.critService.getCriteres().then(function (retourFonction) { return _this.m_TabCrit = retourFonction; });
+        this.catService.getCategories().then(function (retourFonction) { return _this.m_TabCat = retourFonction; });
+        this.traceService.getTraces().then(function (retourFonction) { return _this.m_TabTrace = retourFonction; });
     };
     return PageCatComponent;
 }());
@@ -40,7 +41,8 @@ PageCatComponent = __decorate([
     core_1.Component({
         selector: 'page-cat',
         templateUrl: 'app/html/page-cat.component.html',
-        styleUrls: ['app/css/page-cat.component.css']
+        styleUrls: ['app/css/page-cat.component.css'],
+        providers: [trace_service_1.TraceService, critere_service_1.CritereService, categorie_service_1.CategorieService]
     })
     //À compléter
     ,
