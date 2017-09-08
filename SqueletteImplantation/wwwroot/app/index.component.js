@@ -15,8 +15,8 @@ var IndexComponent = (function () {
 IndexComponent = __decorate([
     core_1.Component({
         selector: 'my-index',
-        templateUrl: './../html/index.component.html',
-        styleUrls: ['./../css/index.component.css']
+        templateUrl: 'app/html/index.component.html',
+        styleUrls: ['app/css/index.component.css']
     })
 ], IndexComponent);
 exports.IndexComponent = IndexComponent;

@@ -9,11 +9,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //Modules
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
-var app_routing_module_1 = require("./app-routing.module");
+//import {routes} from './app-routing.module';
 //Components
-var app_component_1 = require("./app.component");
-var page_cat_component_1 = require("./page-cat.component"); //Probablement mon prob
 var index_component_1 = require("./index.component");
+var page_cat_component_1 = require("./page-cat.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -21,8 +20,8 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, app_routing_module_1.routes],
-        declarations: [app_component_1.AppComponent, page_cat_component_1.PageCatComponent, index_component_1.IndexComponent],
+        imports: [platform_browser_1.BrowserModule],
+        declarations: [index_component_1.IndexComponent, page_cat_component_1.PageCatComponent],
         bootstrap: [index_component_1.IndexComponent]
     })
 ], AppModule);
