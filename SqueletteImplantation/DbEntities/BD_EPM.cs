@@ -34,6 +34,23 @@ namespace SqueletteImplantation.DbEntities
 
             new RelTracCritMap(modelBuilder.Entity<RelTracCrit>());
 
+            //Auto incréments
+            modelBuilder.Entity<Domaine>()
+                .Property(d => d.DomId)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Categorie>()
+                .Property(ca => ca.CatId)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Critere>()
+                .Property(cr => cr.CritId)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Trace>()
+                .Property(t => t.TracId)
+                .ValueGeneratedOnAdd();
+            
             //Foreign key de la table catégorie
             modelBuilder.Entity<Categorie>()
                 .HasOne(ca => ca.domaine)

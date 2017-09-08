@@ -23,13 +23,7 @@ namespace SqueletteImplantation.Controllers
             return _maBd.Machin.ToList();
         }
 
-        [HttpGet]
-        [Route("api/Domaine")]
-        public IEnumerable Domaine()
-        {
-            return _maBd.Domaine.ToList();
-        }
-
+     
         [HttpPost]
         [Route("api/machins")]
         public IActionResult CreateMachin(MachinDto machinDto)
@@ -42,19 +36,7 @@ namespace SqueletteImplantation.Controllers
             return new OkObjectResult(machin);
         }
 
-        [HttpGet]
-        [Route("api/Domaine/{id}")]
-        public IActionResult GetMachin(int id)
-        {
-            var Domaine = _maBd.Domaine.FirstOrDefault(m => m.DomId == id);
-
-            if (Domaine == null)
-            {
-                return NotFound();
-            }
-
-            return new OkObjectResult(Domaine);
-        }
+       
 
         [HttpPut]
         [Route("api/machins/{id}")]
