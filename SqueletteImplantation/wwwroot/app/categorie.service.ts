@@ -32,7 +32,7 @@ export class CategorieService
     }
 
     //Permet d'envoyer une requête HTTP d'ajout d'une catégorie'.
-    addCategorie(trace: Categorie): Promise<void>
+    addCategorie(trace: Categorie): Promise<Categorie>
     {
        return this.http.post(this.CategoriesURL, JSON.stringify({trace: trace}), {headers: this.headers})
       .toPromise()

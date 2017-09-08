@@ -17,10 +17,10 @@ namespace SqueletteImplantation.Controllers
 
         //obtenir la liste de toutes les critères
         [HttpGet]
-        [Route("api/Critere")]
-        public IEnumerable Critere()
+        [Route("api/Critere/{CatId}")]
+        public IEnumerable Critere(int catId)
         {
-            return _maBd.Critere.ToList();
+            return _maBd.Critere.Where(cr => cr.CatId == catId).ToList();
         }
 
 
