@@ -32,7 +32,7 @@ export class TraceService
     }
 
     //Permet d'envoyer une requête HTTP d'ajout de Tracé.
-    addTrace(trace: Trace): Promise<void>
+    addTrace(trace: Trace): Promise<Trace>
     {
        return this.http.post(this.TracesURL, JSON.stringify({trace: trace}), {headers: this.headers})
       .toPromise()
