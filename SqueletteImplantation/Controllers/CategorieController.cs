@@ -41,12 +41,18 @@ namespace SqueletteImplantation.Controllers
             return new OkObjectResult(categorie);
         }
 
+        //obtenir une catégorie selon l'id de son domaine
+        [HttpGet]
+        [Route("api/CategorieDomaine/{DomId}")]
+        public IEnumerable GetCategorieDomaine(int domId)
+        {
+            return _maBd.Categorie.Where(ca => ca.DomId == domId).ToList();
+        }
 
 
         //modifier une catégorie
-
         [HttpPut]
-        [Route("api/Categorie/{id}")]
+        [Route("api/ModifCategorie/{id}")]
         public IActionResult ModifyCategorie(Categorie updatedCategorie)
         {
             var categorie = _maBd.Categorie.FirstOrDefault(ca => ca.CatId == updatedCategorie.CatId);
@@ -65,7 +71,7 @@ namespace SqueletteImplantation.Controllers
         //supprimer une catégorie
 
         [HttpDelete]
-        [Route("api/Categorie/{id}")]
+        [Route("api/DelCategorie/{id}")]
         public IActionResult DeleteCategorie(int id)
         {
             var categorie = _maBd.Categorie.FirstOrDefault(ca => ca.CatId== id);

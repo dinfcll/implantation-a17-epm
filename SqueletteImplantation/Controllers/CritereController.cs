@@ -17,7 +17,7 @@ namespace SqueletteImplantation.Controllers
 
         //obtenir la liste de toutes les critères
         [HttpGet]
-        [Route("api/Critere/{CatId}")]
+        [Route("api/CritereCat/{CatId}")]
         public IEnumerable Critere(int catId)
         {
             return _maBd.Critere.Where(cr => cr.CatId == catId).ToList();
@@ -27,7 +27,7 @@ namespace SqueletteImplantation.Controllers
         //obtenir une critère selon son id
 
         [HttpGet]
-        [Route("api/Categorie/{id}")]
+        [Route("api/Critere/{id}")]
         public IActionResult GetCritere(int id)
         {
             var critere = _maBd.Critere.FirstOrDefault(c => c.CritId == id);
@@ -45,7 +45,7 @@ namespace SqueletteImplantation.Controllers
         //modifier uen critère selon son id
 
         [HttpPut]
-        [Route("api/Critere/{id}")]
+        [Route("api/ModifCritere/{id}")]
         public IActionResult ModifyCritere(Critere updatedCritere)
         {
             var critere = _maBd.Critere.FirstOrDefault(c => c.CritId == updatedCritere.CritId);
@@ -63,7 +63,7 @@ namespace SqueletteImplantation.Controllers
         //supprimer une critère selon son id
 
         [HttpDelete]
-        [Route("api/Critere/{id}")]
+        [Route("api/DelCritere/{id}")]
         public IActionResult DeleteCritere(int id)
         {
             var critere = _maBd.Critere.FirstOrDefault(c => c.CritId== id);
