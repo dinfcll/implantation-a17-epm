@@ -60,14 +60,6 @@ namespace SqueletteImplantation.Controllers
             return new OkResult();
         }
 
-        /*[HttpPost]
-        [Route("api/Critere")]
-        public IActionResult CreateCritere(Critere crit)
-        {
-            var critere =Critere.
-            
-        }*/
-
         //supprimer une critère selon son id
 
         [HttpDelete]

@@ -18,7 +18,7 @@ namespace SqueletteImplantation.Controllers
         //obtenir la liste de toutes les catégories
         [HttpGet]
         [Route("api/Categorie")]
-        public IEnumerable Categorie()
+        public IEnumerable ListeCategorie()
         {
             return _maBd.Categorie.ToList();
         }
