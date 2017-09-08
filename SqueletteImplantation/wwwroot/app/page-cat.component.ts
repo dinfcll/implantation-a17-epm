@@ -15,8 +15,8 @@ import { CritereService } from './critere.service';
 
 @Component({
   selector: 'page-cat',
-  templateUrl: './html/page-cat.component.html',  //Template de Étienne doit aller ici !
-  styleUrls: [ './css/page-cat.component.css' ]
+  templateUrl: 'app/html/page-cat.component.html',  //Template de Étienne doit aller ici !
+  styleUrls: [ 'app/css/page-cat.component.css' ]
 })
 
 //À compléter
@@ -37,9 +37,9 @@ export class PageCatComponent implements OnInit
     ngOnInit(): void 
     {
         
-        this.critService.getCriteres().then(m_TabTrace => this.m_TabTrace); // Incertain !!
+        /*this.critService.getCriteres().then(m_TabTrace => this.m_TabTrace); // Incertain !!
         this.catService.getCategories();
-        this.traceService.getTraces(); // Je dois trouver une façon de récupérer le retour !
+        this.traceService.getTraces(); // Je dois trouver une façon de récupérer le retour !*/
         //.then(heroes => this.heroes = heroes.slice(1, 5));
         
     }

@@ -29,10 +29,9 @@ var PageCatComponent = (function () {
     }
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après la création dudit composant.
     PageCatComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.critService.getCriteres().then(function (m_TabTrace) { return _this.m_TabTrace; }); // Incertain !!
+        /*this.critService.getCriteres().then(m_TabTrace => this.m_TabTrace); // Incertain !!
         this.catService.getCategories();
-        this.traceService.getTraces(); // Je dois trouver une façon de récupérer le retour !
+        this.traceService.getTraces(); // Je dois trouver une façon de récupérer le retour !*/
         //.then(heroes => this.heroes = heroes.slice(1, 5));
     };
     return PageCatComponent;
@@ -40,8 +39,8 @@ var PageCatComponent = (function () {
 PageCatComponent = __decorate([
     core_1.Component({
         selector: 'page-cat',
-        templateUrl: './html/page-cat.component.html',
-        styleUrls: ['./css/page-cat.component.css']
+        templateUrl: 'app/html/page-cat.component.html',
+        styleUrls: ['app/css/page-cat.component.css']
     })
     //À compléter
     ,
