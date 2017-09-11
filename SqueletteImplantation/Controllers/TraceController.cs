@@ -42,15 +42,24 @@ namespace SqueletteImplantation.Controllers
             return new OkObjectResult(trace);
         }
 
+        //Obtenir une liste de tracés correspondants selon une liste de critères reçue
+
         [HttpGet]
         [Route("api/TraceListe")]
         public IActionResult ListeTrace(int[] id)
         {
-            var ListeTrace = RechercheTraceSelonCriteres(id);
+            var listeTrace = RechercheTraceSelonCriteres(id);
 
-            return new OkObjectResult(ListeTrace);
+            if (listeTrace == null)
+            {
+                return NotFound();
+            }
+
+            return new OkObjectResult(listeTrace);
         }
 
+
+        //Méthode qui cherche la liste de tracés selon un tableau d'id de critères
         private IQueryable<object> RechercheTraceSelonCriteres(int[] id)
         {
             return from tr in _maBd.Trace
@@ -65,7 +74,6 @@ namespace SqueletteImplantation.Controllers
 
 
         //modifier un trace selon son id
-
         [HttpPut]
         [Route("api/Trace/{id}")]
         public IActionResult ModifyTrace(Trace updatedTrace)
@@ -84,7 +92,6 @@ namespace SqueletteImplantation.Controllers
 
 
         //supprimer un tracé selon son id
-
         [HttpDelete]
         [Route("api/Trace/{id}")]
         public IActionResult DeleteTrace(int id)
