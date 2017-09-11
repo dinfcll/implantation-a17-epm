@@ -1,21 +1,21 @@
-import { NgModule }             from '@angular/core';
+
+import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+
 import { PageCatComponent} from './page-cat.component';
+import { IndexComponent } from './index.component';
 
 
 
-export const routes: Routes = 
+export const router: Routes = 
 [
-  { path: '', redirectTo: '/', pathMatch: 'full' },  // Incertain
-  { path: 'categorie', component: PageCatComponent },
+  { path: '', redirectTo: '/index', pathMatch: 'full' }, 
+  { path: 'categorie', component: PageCatComponent},
+  { path: 'index', component: IndexComponent },
+  { path: '**', component: IndexComponent}
 ];
  
-@NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
-})
+export const routes: ModuleWithProviders = RouterModule.forRoot(router);
 
-export class AppRoutingModule 
-{
 
-}
