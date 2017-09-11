@@ -46,8 +46,6 @@ namespace SqueletteImplantation.Controllers
         public IActionResult ListeTrace(int[] id)
         {
 
-            //_maBd.Critere.Where(cr => cr.CatId == catId).ToList();
-
             var ListeTrace = from tr in _maBd.Trace
                 join rl in _maBd.RelTracCrit on tr.TracId equals rl.TracId
                 join cr in _maBd.Critere on rl.CritId equals cr.CritId
