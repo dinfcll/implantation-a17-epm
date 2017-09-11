@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
     styleUrls: [ 'app/css/index.component.css' ]
 })
 export class IndexComponent { 
+    Connexion(): void {
+        console.log("test");
+    }
 }
