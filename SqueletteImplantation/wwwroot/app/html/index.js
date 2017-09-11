@@ -19,3 +19,8 @@ function OnClickCacheListeCritere()
 {
 	document.getElementById("ListeCritere").classList.toggle("showCritere");
 }
+
+function Connexion()
+{
+	
+}
