@@ -15,28 +15,31 @@
                 <td id="Navigation" colspan="2">
                 </td> 
             </tr>
+
 			<tr>
-				<td>  
-					
-				<td rowspan="2">
-					
-				</td>
-			</tr>
-			<tr>
-				<td id="Menu" rowspan="3">
-					
-				</td>
-				<td>					
-				</td>
-			</tr>
-			<tr id="EspacePrincipal" class="FormulaireConnexion">
-				<td>
+				<td colspan="2" rowspan="2" id="EspacePrincipal">
 					<router-outlet></router-outlet>
 				</td>
+
 			</tr>
-								
+			<tr>
+				<td id="Menu">
+					<ul id="ulMenu">
+                        <li id="ElementDansMenu">
+                            Administration
+                        </li>
+                        <li id="ElementDansMenu">
+                            Historique
+                        </li>
+                    
+                    </ul>
+				</td>
+			</tr>
+
 		</table>
 	
 	</body>
 
 </html>
+
+		

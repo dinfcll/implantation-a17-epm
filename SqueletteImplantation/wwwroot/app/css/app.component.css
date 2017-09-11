@@ -22,6 +22,20 @@ html,body{
     background-color: var(--CouleurTheme);
     box-shadow: 3px 4px 3px #8c8c8c;
     color: white;
+    position: relative;
+    height: 80vh;
+}
+
+#ulMenu{
+    position: absolute;
+    top: 0px;
+}
+
+#ElementDansMenu{
+    list-style: none;
+    font-size: 18px;
+    margin: 5px;
+    font-weight: 600;
 }
 
 #Navigation{
@@ -36,9 +50,7 @@ html,body{
     box-shadow: 3px 4px 3px #8c8c8c;
     background-image: url("app/images/LogoCegep.png");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position-x: center;
+    background-position-y: 25px;
 }
 
-#EspacePrincipal{
-    height: 64vh;   
-}
