@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.Models;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace SqueletteImplantation.Controllers
 {
@@ -24,7 +26,6 @@ namespace SqueletteImplantation.Controllers
             return _maBd.Trace.ToList();
         }
 
-
         //obtenir tracé selon son id
 
         [HttpGet]
@@ -41,6 +42,26 @@ namespace SqueletteImplantation.Controllers
             return new OkObjectResult(trace);
         }
 
+        [HttpGet]
+        [Route("api/TraceListe")]
+        public IActionResult ListeTrace(int[] id)
+        {
+            var ListeTrace = RechercheTraceSelonCriteres(id);
+
+            return new OkObjectResult(ListeTrace);
+        }
+
+        private IQueryable<object> RechercheTraceSelonCriteres(int[] id)
+        {
+            return from tr in _maBd.Trace
+                join rl in _maBd.RelTracCrit on tr.TracId equals rl.TracId
+                join cr in _maBd.Critere on rl.CritId equals cr.CritId
+                where id.Contains(cr.CritId)
+                group tr by new {tr.TracId, tr.TraceNom, tr.TracUrl,tr.TracLogi}
+                into grp
+                where grp.Count() == id.Length
+                select grp.Key;
+        }
 
 
         //modifier un trace selon son id
@@ -62,7 +83,7 @@ namespace SqueletteImplantation.Controllers
         }
 
 
-        //supprimer un tracé son id
+        //supprimer un tracé selon son id
 
         [HttpDelete]
         [Route("api/Trace/{id}")]
