@@ -32,7 +32,7 @@ export class CritereService
     }
 
     //Permet d'envoyer une requête HTTP d'ajout d'un critère'.
-    addCritere(trace: Critere): Promise<void>
+    addCritere(trace: Critere): Promise<Critere>
     {
        return this.http.post(this.CriteresURL, JSON.stringify({trace: trace}), {headers: this.headers})
       .toPromise()
