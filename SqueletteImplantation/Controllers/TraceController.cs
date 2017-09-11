@@ -26,7 +26,6 @@ namespace SqueletteImplantation.Controllers
             return _maBd.Trace.ToList();
         }
 
-
         //obtenir tracé selon son id
 
         [HttpGet]
