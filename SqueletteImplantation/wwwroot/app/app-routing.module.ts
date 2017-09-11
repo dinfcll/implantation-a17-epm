@@ -10,9 +10,10 @@ import { IndexComponent } from './index.component';
 
 export const router: Routes = 
 [
-    //{ path: '', redirectTo: '/index', pathMatch: 'full' }, Incertain
+  { path: '', redirectTo: '/index', pathMatch: 'full' }, 
   { path: 'categorie', component: PageCatComponent},
   { path: 'index', component: IndexComponent },
+  { path: '**', component: IndexComponent}
 ];
  
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);
