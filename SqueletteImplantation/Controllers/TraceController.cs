@@ -45,23 +45,20 @@ namespace SqueletteImplantation.Controllers
         [Route("api/TraceListe")]
         public IActionResult ListeTrace(int[] id)
         {
-            string Requete = "SELECT * FROM public.\"Trace\" WHERE \"TracId\" IN (" + id[0].ToString();
 
-            for(int i = 1; i < id.Length; i++)
-            {
-                Requete += "," + id[i].ToString();
-            }
+            //_maBd.Critere.Where(cr => cr.CatId == catId).ToList();
 
-            Requete += ");";
+            var ListeTrace = from tr in _maBd.Trace
+                join rl in _maBd.RelTracCrit on tr.TracId equals rl.TracId
+                join cr in _maBd.Critere on rl.CritId equals cr.CritId
+                where id.Contains(cr.CritId)
+                group tr by new {tr.TracId, tr.TraceNom, tr.TracUrl}
+                into grp
+                where grp.Count() == id.Length
+                select grp.Key;
 
-            var trace = _maBd.Trace.FromSql(Requete).ToList();
 
-            if (trace == null)
-            {
-                return NotFound();
-            }
-
-            return new OkObjectResult(trace);
+            return new OkObjectResult(ListeTrace);
         }
 
 
