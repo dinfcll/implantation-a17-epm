@@ -15,7 +15,7 @@ namespace SqueletteImplantation.Controllers
             _maBd = maBd;
         }
 
-        //obtenir la liste de toutes les critères
+        //obtenir la liste des critères selon la catégorie
         [HttpGet]
         [Route("api/CritereCat/{CatId}")]
         public IEnumerable Critere(int catId)

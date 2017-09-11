@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.Models;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace SqueletteImplantation.Controllers
 {
@@ -41,6 +41,28 @@ namespace SqueletteImplantation.Controllers
             return new OkObjectResult(trace);
         }
 
+        [HttpGet]
+        [Route("api/TraceListe")]
+        public IActionResult ListeTrace(int[] id)
+        {
+            string Requete = "SELECT * FROM public.\"Trace\" WHERE \"TracId\" IN (" + id[0].ToString();
+
+            for(int i = 1; i < id.Length; i++)
+            {
+                Requete += "," + id[i].ToString();
+            }
+
+            Requete += ");";
+
+            var trace = _maBd.Trace.FromSql(Requete).ToList();
+
+            if (trace == null)
+            {
+                return NotFound();
+            }
+
+            return new OkObjectResult(trace);
+        }
 
 
         //modifier un trace selon son id
