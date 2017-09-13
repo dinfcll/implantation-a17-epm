@@ -1,4 +1,4 @@
 export class Critere
 {
-    constructor(public ID: number,public Nom: String){} 
+    constructor(public critId: number,public critNom: String, public catId: number){} 
 }

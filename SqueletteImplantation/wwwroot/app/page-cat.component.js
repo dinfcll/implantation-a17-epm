@@ -24,15 +24,15 @@ var PageCatComponent = (function () {
             Call the service to get traces inside the Angular ngOnInit() lifecycle hook.
         */
         this.m_TabTrace = [];
-        this.m_TabCat = [];
         this.m_TabCrit = [];
     }
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     PageCatComponent.prototype.ngOnInit = function () {
-        var _this = this;
         //Remplit les objets des données de la BD
-        this.critService.getCriteres().then(function (retourFonction) { return _this.m_TabCrit = retourFonction; });
-        this.catService.getCategories().then(function (retourFonction) { return _this.m_TabCat = retourFonction; });
+        var _this = this;
+        this.catService.getCategories(1).subscribe(function (cat) { return _this.Affichage(cat); });
+        this.critService.getCriteres(1).subscribe(function (crit) { return console.log(crit.json()); });
+        //this.critService.getCriteres(1).then(retourFonction => {this.m_TabCrit = retourFonction}).then(x => console.log(JSON.stringify(this.m_TabCrit)));      
         this.traceService.getTraces().then(function (retourFonction) { return _this.m_TabTrace = retourFonction; });
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {

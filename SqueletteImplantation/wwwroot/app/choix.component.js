@@ -15,6 +15,12 @@ var ChoixComponent = (function () {
     function ChoixComponent(router) {
         this.router = router;
     }
+    ChoixComponent.prototype.NeuroClick = function () {
+        this.router.navigateByUrl('/categorie');
+    };
+    ChoixComponent.prototype.CardioClick = function () {
+        this.router.navigateByUrl('/categorie');
+    };
     return ChoixComponent;
 }());
 ChoixComponent = __decorate([

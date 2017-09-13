@@ -1,4 +1,4 @@
 export class Categorie
 {
-    constructor(public ID: number,public Nom: String){} 
+    constructor(public catID: number,public catNom: String, public domId: number, public domaine:String, public criteres:String ){} 
 }

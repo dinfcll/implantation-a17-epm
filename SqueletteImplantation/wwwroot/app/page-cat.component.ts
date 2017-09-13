@@ -28,7 +28,7 @@ export class PageCatComponent implements OnInit
     Call the service to get traces inside the Angular ngOnInit() lifecycle hook.
 */
     m_TabTrace: Trace[] = [];
-    m_TabCat: Categorie[] = [];
+    m_TabCat: Categorie[];
     m_TabCrit: Critere[] = [];
 
 
@@ -38,9 +38,20 @@ export class PageCatComponent implements OnInit
     ngOnInit(): void 
     {
         //Remplit les objets des données de la BD
-        this.critService.getCriteres().then(retourFonction => this.m_TabCrit = retourFonction);         
-        this.catService.getCategories().then(retourFonction => this.m_TabCat = retourFonction); 
+
+        this.catService.getCategories(1).subscribe(cat => this.Affichage(cat));
+        
+
+        this.critService.getCriteres(1).subscribe(crit => console.log(crit.json() as Critere[]));
+
+        //this.critService.getCriteres(1).then(retourFonction => {this.m_TabCrit = retourFonction}).then(x => console.log(JSON.stringify(this.m_TabCrit)));      
         this.traceService.getTraces().then(retourFonction => this.m_TabTrace = retourFonction); 
+    }
+
+    private Affichage(param: any) {
+        this.m_TabCat = (param.json() as Categorie[]);
+
+        console.log(this.m_TabCat);
     }
 
     OnClickListeDeroulanteCategorie()
@@ -48,11 +59,5 @@ export class PageCatComponent implements OnInit
 	    document.getElementById("ListeCategorie").classList.toggle("showCategorie");
     }
 
-
-
-    OnClickListeDeroulanteCritere()
-    {
-	document.getElementById("ListeCritere").classList.toggle("showCritere");
-    }
 
 }

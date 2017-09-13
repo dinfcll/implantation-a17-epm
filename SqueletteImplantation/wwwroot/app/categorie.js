@@ -1,9 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Categorie = (function () {
-    function Categorie(ID, Nom) {
-        this.ID = ID;
-        this.Nom = Nom;
+    function Categorie(catID, catNom, domId, domaine, criteres) {
+        this.catID = catID;
+        this.catNom = catNom;
+        this.domId = domId;
+        this.domaine = domaine;
+        this.criteres = criteres;
     }
     return Categorie;
 }());

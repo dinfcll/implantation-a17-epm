@@ -8,17 +8,15 @@ import 'rxjs/add/operator/toPromise'; // Pour accéder à la méthode .toPromise
 export class CategorieService 
 {
     private CategoriesURL = 'api/categorie';  // URL de l'API
+    private CatDomURL ='api/CategorieDomaine/';
     private headers = new Headers({ 'Content-Type': 'application/json' }); //Spécifie le type de données voulues
 
     constructor(private http: Http) { }
 
     //Envoie une requête d'obtention des catégories au "controller".
-    getCategories(): Promise<Categorie[]> 
+    getCategories(id: number) 
     {
-        return this.http.get(this.CategoriesURL)
-            .toPromise()
-            .then(response => response.json().data as Categorie[])
-            .catch(this.GestionErreur);
+        return this.http.get(this.CatDomURL + id);
     }
 
     //Permet d'envoyer une requête de suppression d'une certaine catégorie au "controller".
