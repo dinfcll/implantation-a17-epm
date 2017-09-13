@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var ChoixComponent = (function () {
@@ -20,15 +21,15 @@ var ChoixComponent = (function () {
     ChoixComponent.prototype.CardioClick = function () {
         this.router.navigateByUrl('/categorie');
     };
+    ChoixComponent = __decorate([
+        core_1.Component({
+            selector: 'my-choix',
+            templateUrl: 'app/html/choix.component.html',
+            styleUrls: ['app/css/choix.component.css']
+        }),
+        __metadata("design:paramtypes", [router_1.Router])
+    ], ChoixComponent);
     return ChoixComponent;
 }());
-ChoixComponent = __decorate([
-    core_1.Component({
-        selector: 'my-choix',
-        templateUrl: 'app/html/choix.component.html',
-        styleUrls: ['app/css/choix.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
-], ChoixComponent);
 exports.ChoixComponent = ChoixComponent;
 //# sourceMappingURL=choix.component.js.map

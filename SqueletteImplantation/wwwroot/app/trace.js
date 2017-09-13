@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 //Selon la BD
 var Trace = (function () {
     function Trace(ID, Nom, URL) {

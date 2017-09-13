@@ -65,12 +65,14 @@ export class PageCatComponent implements OnInit
     {
 	    document.getElementById("ListeCategorie").classList.toggle("showCategorie");
     }
-
+    
+    //Action lors de la sélection d'une catégorie
     OnClickCategorie(id: number)
     {
         this.critService.getCriteres(id).subscribe(crit => this.AffichageCrit(crit));
     } 
 
+    //Action lors de la sélection d'un critère
     OnClickCritere(id: number)
     {
         this.m_TabRecherche.push(id);
