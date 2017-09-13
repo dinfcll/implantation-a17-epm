@@ -48,7 +48,8 @@ var TraceService = (function () {
 }());
 TraceService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [typeof (_a = typeof http_1.Http !== "undefined" && http_1.Http) === "function" && _a || Object])
 ], TraceService);
 exports.TraceService = TraceService;
+var _a;
 //# sourceMappingURL=trace.service.js.map

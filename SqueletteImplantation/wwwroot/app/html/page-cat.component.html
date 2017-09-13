@@ -1,22 +1,38 @@
 
-
-				 
+		<table class="TableEspacePrincipalCat">
+			<tr>
+				<td id="ChoixCategorie">  
 					<div class="ListeDeroulanteCategorie">
 						<button onclick="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
-						<div id="ListeCategorie" class="ContenuListeDeroulanteCategorie" (click)="OnClickCacheListeCategorie()">
-						<!--	<a *ngFor ="let Categorie of m_TabCat ">{{m_TabCat}}</a><!code pour remplir la liste-->
-						<!--</div>-->
+						<div id="ListeCategorie" class="ContenuListeDeroulanteCategorie" onclick="OnClickCacheListeCategorie()">
+							<a>{{Categorie}}</a><!--code pour remplir la liste-->
+							
+						</div>
 					</div>
-				
-				
-				
+                </td>
+				<td id="EspaceCritereChoisi" rowspan="2">
+					<ul id="ListeCritereChoisi">
+                        <li id="CritereChoisi">
+                            <button id="btnSupprimerCritereChoisi">x</button>
+                            Fievre
+                        </li>
+                    
+                    </ul>
+				</td>
+			</tr>
+			<tr>
+				<td id="ChoixCritere">
 					<div class="ListeDeroulanteCritere">
 						<button onclick="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
-						<div id="ListeCritere" class="ContenuListeDeroulanteCritere" (click)="OnClickCacheListeCritere()">
-							<!--<a *ngfor ="let Critere of m_TabCrit">{{m_TabCrit}}</a><!code pour remplir la liste-->
-						<!--</div>-->
+						<div id="ListeCritere" class="ContenuListeDeroulanteCritere" onclick="OnClickCacheListeCritere()">
+							<!--<a *ngfor ="let Critere of m_TabCrit">{{Critere}}</a><!--code pour remplir la liste-->
+							
+						</div>
 					</div>
+				</td>
+			</tr>
+			<tr>
 				
-			
-
-			
+			</tr>
+					
+		</table>
