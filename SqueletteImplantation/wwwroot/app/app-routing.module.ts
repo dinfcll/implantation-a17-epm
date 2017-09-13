@@ -11,7 +11,7 @@ import {ChoixComponent} from './choix.component';
 
 export const router: Routes = 
 [
-  { path: '', redirectTo: '/categorie', pathMatch: 'full' }, 
+  { path: '', redirectTo: '/index', pathMatch: 'full' }, 
   { path: 'categorie', component: PageCatComponent},
   { path: 'index', component: IndexComponent },
   { path: 'choix', component: ChoixComponent},
