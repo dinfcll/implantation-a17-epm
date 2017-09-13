@@ -35,12 +35,11 @@ var PageCatComponent = (function () {
         //this.critService.getCriteres(1).then(retourFonction => {this.m_TabCrit = retourFonction}).then(x => console.log(JSON.stringify(this.m_TabCrit)));      
         this.traceService.getTraces().then(function (retourFonction) { return _this.m_TabTrace = retourFonction; });
     };
-    PageCatComponent.prototype.Affichage = function (param) {
-        this.m_TabCat = param.json();
-        console.log(this.m_TabCat);
-    };
     PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
         document.getElementById("ListeCategorie").classList.toggle("showCategorie");
+    };
+    PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
+        document.getElementById("ListeCritere").classList.toggle("showCritere");
     };
     return PageCatComponent;
 }());
