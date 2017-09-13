@@ -35,6 +35,12 @@ var PageCatComponent = (function () {
         this.catService.getCategories().then(function (retourFonction) { return _this.m_TabCat = retourFonction; });
         this.traceService.getTraces().then(function (retourFonction) { return _this.m_TabTrace = retourFonction; });
     };
+    PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
+        document.getElementById("ListeCategorie").classList.toggle("showCategorie");
+    };
+    PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
+        document.getElementById("ListeCritere").classList.toggle("showCritere");
+    };
     return PageCatComponent;
 }());
 PageCatComponent = __decorate([
