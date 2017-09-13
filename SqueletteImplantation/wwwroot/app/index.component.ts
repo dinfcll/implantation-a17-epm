@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+
+
 
 @Component ({
     selector: 'my-index',
@@ -6,8 +10,13 @@ import { Component } from '@angular/core';
     styleUrls: [ 'app/css/index.component.css' ]
 })
 
-export class IndexComponent { 
-    Connexion(): void {
+export class IndexComponent 
+{ 
+    constructor(private router: Router) { }
+
+    Connexion(): void 
+    {
+        this.router.navigateByUrl('/choix');
         console.log("test");
     }
 }
