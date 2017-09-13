@@ -15,15 +15,12 @@ require("rxjs/add/operator/toPromise"); // Pour accéder à la méthode .toPromi
 var CritereService = (function () {
     function CritereService(http) {
         this.http = http;
-        this.CriteresURL = 'api/critere'; // URL de l'API
+        this.CriteresURL = 'api/criterecat/'; // URL de l'API
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' }); //Spécifie le type de données voulues
     }
     //Envoie une requête d'obtention des critères au "controller".
-    CritereService.prototype.getCriteres = function () {
-        return this.http.get(this.CriteresURL)
-            .toPromise()
-            .then(function (response) { return response.json().data; })
-            .catch(this.GestionErreur);
+    CritereService.prototype.getCriteres = function (id) {
+        return this.http.get(this.CriteresURL + id);
     };
     //Permet d'envoyer une requête de suppression d'un certain critère au "controller".
     CritereService.prototype.deleteCritere = function (id) {
@@ -48,8 +45,7 @@ var CritereService = (function () {
 }());
 CritereService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [typeof (_a = typeof http_1.Http !== "undefined" && http_1.Http) === "function" && _a || Object])
+    __metadata("design:paramtypes", [http_1.Http])
 ], CritereService);
 exports.CritereService = CritereService;
-var _a;
 //# sourceMappingURL=critere.service.js.map

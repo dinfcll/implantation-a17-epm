@@ -14,9 +14,13 @@ export class ChoixComponent
 { 
     constructor(private router: Router) { }
 
-    /*Connexion(): void 
+    NeuroClick(): void 
     {
         this.router.navigateByUrl('/categorie');
-        console.log("test");
-    }*/
+    }
+
+    CardioClick(): void
+    {
+        this.router.navigateByUrl('/categorie');
+    }
 }

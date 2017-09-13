@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Critere = (function () {
-    function Critere(ID, Nom) {
-        this.ID = ID;
-        this.Nom = Nom;
+    function Critere(critId, critNom, catId) {
+        this.critId = critId;
+        this.critNom = critNom;
+        this.catId = catId;
     }
     return Critere;
 }());

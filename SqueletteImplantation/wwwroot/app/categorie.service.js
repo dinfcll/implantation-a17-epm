@@ -16,14 +16,12 @@ var CategorieService = (function () {
     function CategorieService(http) {
         this.http = http;
         this.CategoriesURL = 'api/categorie'; // URL de l'API
+        this.CatDomURL = 'api/CategorieDomaine/';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' }); //Spécifie le type de données voulues
     }
     //Envoie une requête d'obtention des catégories au "controller".
-    CategorieService.prototype.getCategories = function () {
-        return this.http.get(this.CategoriesURL)
-            .toPromise()
-            .then(function (response) { return response.json().data; })
-            .catch(this.GestionErreur);
+    CategorieService.prototype.getCategories = function (id) {
+        return this.http.get(this.CatDomURL + id);
     };
     //Permet d'envoyer une requête de suppression d'une certaine catégorie au "controller".
     CategorieService.prototype.deleteCategorie = function (id) {
@@ -48,8 +46,7 @@ var CategorieService = (function () {
 }());
 CategorieService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [typeof (_a = typeof http_1.Http !== "undefined" && http_1.Http) === "function" && _a || Object])
+    __metadata("design:paramtypes", [http_1.Http])
 ], CategorieService);
 exports.CategorieService = CategorieService;
-var _a;
 //# sourceMappingURL=categorie.service.js.map
