@@ -1,8 +1,7 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var Categorie = (function () {
-    function Categorie(catID, catNom, domId, domaine, criteres) {
-        this.catID = catID;
+    function Categorie(catId, catNom, domId, domaine, criteres) {
+        this.catId = catId;
         this.catNom = catNom;
         this.domId = domId;
         this.domaine = domaine;
