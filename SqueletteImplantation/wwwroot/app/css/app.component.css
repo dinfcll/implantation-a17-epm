@@ -54,3 +54,6 @@ html,body{
     background-position-y: 25px;
 }
 
+#EspacePrincipal{
+    position: relative;
+}
