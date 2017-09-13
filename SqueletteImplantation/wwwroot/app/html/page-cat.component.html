@@ -3,9 +3,9 @@
 			<tr>
 				<td id="ChoixCategorie">  
 					<div class="ListeDeroulanteCategorie">
-						<button onclick="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
-						<div id="ListeCategorie" class="ContenuListeDeroulanteCategorie" onclick="OnClickCacheListeCategorie()">
-							<a>{{Categorie}}</a><!--code pour remplir la liste-->
+						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
+						<div *ngFor ="let Categorie of m_TabCat" id="ListeCategorie" class="ContenuListeDeroulanteCategorie" (click)="OnClickListeDeroulanteCategorie()">
+							<a>{{Categorie.Nom}}</a><!--code pour remplir la liste-->
 							
 						</div>
 					</div>
@@ -23,9 +23,9 @@
 			<tr>
 				<td id="ChoixCritere">
 					<div class="ListeDeroulanteCritere">
-						<button onclick="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
-						<div id="ListeCritere" class="ContenuListeDeroulanteCritere" onclick="OnClickCacheListeCritere()">
-							<!--<a *ngfor ="let Critere of m_TabCrit">{{Critere}}</a><!--code pour remplir la liste-->
+						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
+						<div *ngFor ="let Critere of m_TabCrit" id="ListeCritere" class="ContenuListeDeroulanteCritere" (click)="OnClickListeDeroulanteCritere()">
+							<a>{{Critere.Nom}}</a><!--code pour remplir la liste-->
 							
 						</div>
 					</div>

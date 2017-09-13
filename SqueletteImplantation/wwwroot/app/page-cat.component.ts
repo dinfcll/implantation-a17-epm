@@ -42,4 +42,17 @@ export class PageCatComponent implements OnInit
         this.catService.getCategories().then(retourFonction => this.m_TabCat = retourFonction); 
         this.traceService.getTraces().then(retourFonction => this.m_TabTrace = retourFonction); 
     }
+
+    OnClickListeDeroulanteCategorie()
+    {
+	    document.getElementById("ListeCategorie").classList.toggle("showCategorie");
+    }
+
+
+
+    OnClickListeDeroulanteCritere()
+    {
+	document.getElementById("ListeCritere").classList.toggle("showCritere");
+    }
+
 }
