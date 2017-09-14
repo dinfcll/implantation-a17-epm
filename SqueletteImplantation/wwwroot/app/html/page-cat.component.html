@@ -11,9 +11,9 @@
                 </td>
 				<td id="EspaceCritereChoisi" rowspan="2">
 					<ul id="ListeCritereChoisi">
-                        <li id="CritereChoisi">
-                            <button id="btnSupprimerCritereChoisi">x</button>
-                            Fievre
+                        <li *ngFor="let choix of m_TabRecherche" id="CritereChoisi">
+                            <button  id="btnSupprimerCritereChoisi">X</button>
+                            <span (click)="OnClickSupprimer(choix)">{{choix.critNom}}</span>
                         </li>
                     
                     </ul>
@@ -24,13 +24,20 @@
 					<div class="ListeDeroulanteCritere">
 						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
 						<div id="ListeCritere"  (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
-							<a *ngFor ="let critere of m_TabCrit"><span (click)="OnClickCritere(critere.critId)">{{critere.critNom}}</span></a><!--code pour remplir la liste-->
+							<a *ngFor ="let critere of m_TabCrit"><span (click)="OnClickCritere(critere)">{{critere.critNom}}</span></a><!--code pour remplir la liste-->
 						</div>
 					</div>
 				</td>
 			</tr>
 			<tr>
-				
+				<br>
+				<button (click)="OnClickRechercher()"> Rechercher</button>
+				<br>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div *ngFor="let trace of m_TabTrace">{{trace.tracId}}  ||  {{trace.traceNom}}  ||  <a href="{{trace.tracUrl}}">{{trace.tracUrl}}</a></div>
+				</td>
 			</tr>
 					
 		</table>

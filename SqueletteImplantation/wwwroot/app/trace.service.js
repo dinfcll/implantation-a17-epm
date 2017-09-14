@@ -15,15 +15,12 @@ require("rxjs/add/operator/toPromise"); // Pour accéder à la méthode .toPromi
 var TraceService = (function () {
     function TraceService(http) {
         this.http = http;
-        this.TracesURL = 'api/trace'; // URL de l'API
+        this.TracesURL = 'api/TraceListe/'; // URL de l'API
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' }); //Spécifie le type de données voulues
     }
     //Envoie une requête d'obtention des Tracés au "controller".
-    TraceService.prototype.getTraces = function () {
-        return this.http.get(this.TracesURL)
-            .toPromise()
-            .then(function (response) { return response.json().data; })
-            .catch(this.GestionErreur);
+    TraceService.prototype.getTraces = function (ListeId) {
+        return this.http.get(this.TracesURL + ListeId);
     };
     //Permet d'envoyer une requête de suppression d'un certain Tracé au "controller".
     TraceService.prototype.deleteTrace = function (id) {

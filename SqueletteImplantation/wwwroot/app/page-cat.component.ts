@@ -30,7 +30,7 @@ export class PageCatComponent implements OnInit
     m_TabTrace: Trace[];
     m_TabCat: Categorie[];
     m_TabCrit: Critere[];
-    m_TabRecherche: number[] = [];
+    m_TabRecherche: Critere[] = [];
 
     constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService){}
 
@@ -42,8 +42,6 @@ export class PageCatComponent implements OnInit
         this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
         
         this.critService.getCriteres(1).subscribe(crit => this.AffichageCrit(crit));
-      
-        this.traceService.getTraces().then(retourFonction => this.m_TabTrace = retourFonction); 
     }
 
     private AffichageCat(param: any) {
@@ -54,6 +52,11 @@ export class PageCatComponent implements OnInit
     private AffichageCrit(param: any) {
         this.m_TabCrit = (param.json() as Critere[]);
         console.log(this.m_TabCrit);
+    }
+
+    private AffichageTrace(param: any) {
+        this.m_TabTrace = (param.json() as Trace[]);
+        console.log(this.m_TabTrace);
     }
 
     OnClickListeDeroulanteCritere()
@@ -73,9 +76,34 @@ export class PageCatComponent implements OnInit
     } 
 
     //Action lors de la sélection d'un critère
-    OnClickCritere(id: number)
+    OnClickCritere(crit: Critere)
     {
-        this.m_TabRecherche.push(id);
+        this.m_TabRecherche.push(crit);
         console.log(this.m_TabRecherche);
     }
+
+    //Action lors du clic sur supprimer
+    OnClickSupprimer(crit: Critere)
+    {
+        this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit),1);
+        console.log(this.m_TabRecherche);
+    }
+
+    //Action lors de l'appui sur le bouton recherche
+    OnClickRechercher()
+    {
+        let RequeteId: string;
+        
+        RequeteId = "?"
+
+        for (let crit of this.m_TabRecherche)
+        {
+            RequeteId += "Id=" + crit.critId + "&";
+        }
+        RequeteId = RequeteId.substr(0,RequeteId.length - 1);
+
+        this.traceService.getTraces(RequeteId).subscribe(trac => this.AffichageTrace(trac))
+    }
+
+
 }
