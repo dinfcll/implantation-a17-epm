@@ -12,10 +12,11 @@
 				<td id="EspaceCritereChoisi" rowspan="2">
 					<ul id="ListeCritereChoisi">
                         <li *ngFor="let choix of m_TabRecherche" id="CritereChoisi">
-                            <button  id="btnSupprimerCritereChoisi">X</button>
-                            <span (click)="OnClickSupprimer(choix)">{{choix.critNom}}</span>
+							<span (click)="OnClickSupprimer(choix)">
+								<button id="btnSupprimerCritereChoisi">X</button>
+								{{choix.critNom}}
+							</span>
                         </li>
-                    
                     </ul>
 				</td>
 			</tr>
