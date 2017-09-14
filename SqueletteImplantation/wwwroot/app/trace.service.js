@@ -44,11 +44,11 @@ var TraceService = (function () {
         console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"
         return Promise.reject(error.message || error);
     };
+    TraceService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], TraceService);
     return TraceService;
 }());
-TraceService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], TraceService);
 exports.TraceService = TraceService;
 //# sourceMappingURL=trace.service.js.map

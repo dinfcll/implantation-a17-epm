@@ -19,40 +19,52 @@ var PageCatComponent = (function () {
         this.traceService = traceService;
         this.catService = catService;
         this.critService = critService;
-        /*  Define a traces array property.
-            Inject the TraceService in the constructor and hold it in a private TraceService field.
-            Call the service to get traces inside the Angular ngOnInit() lifecycle hook.
-        */
-        this.m_TabTrace = [];
-        this.m_TabCrit = [];
+        this.m_TabRecherche = [];
     }
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     PageCatComponent.prototype.ngOnInit = function () {
         //Remplit les objets des données de la BD
         var _this = this;
-        this.catService.getCategories(1).subscribe(function (cat) { return _this.Affichage(cat); });
-        this.critService.getCriteres(1).subscribe(function (crit) { return console.log(crit.json()); });
-        //this.critService.getCriteres(1).then(retourFonction => {this.m_TabCrit = retourFonction}).then(x => console.log(JSON.stringify(this.m_TabCrit)));      
+        this.catService.getCategories(1).subscribe(function (cat) { return _this.AffichageCat(cat); });
+        this.critService.getCriteres(1).subscribe(function (crit) { return _this.AffichageCrit(crit); });
         this.traceService.getTraces().then(function (retourFonction) { return _this.m_TabTrace = retourFonction; });
     };
-    PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
-        document.getElementById("ListeCategorie").classList.toggle("showCategorie");
+    PageCatComponent.prototype.AffichageCat = function (param) {
+        this.m_TabCat = param.json();
+        console.log(this.m_TabCat);
+    };
+    PageCatComponent.prototype.AffichageCrit = function (param) {
+        this.m_TabCrit = param.json();
+        console.log(this.m_TabCrit);
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementById("ListeCritere").classList.toggle("showCritere");
     };
+    PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
+        document.getElementById("ListeCategorie").classList.toggle("showCategorie");
+    };
+    //Action lors de la sélection d'une catégorie
+    PageCatComponent.prototype.OnClickCategorie = function (id) {
+        var _this = this;
+        this.critService.getCriteres(id).subscribe(function (crit) { return _this.AffichageCrit(crit); });
+    };
+    //Action lors de la sélection d'un critère
+    PageCatComponent.prototype.OnClickCritere = function (id) {
+        this.m_TabRecherche.push(id);
+        console.log(this.m_TabRecherche);
+    };
+    PageCatComponent = __decorate([
+        core_1.Component({
+            selector: 'page-cat',
+            templateUrl: 'app/html/page-cat.component.html',
+            styleUrls: ['app/css/page-cat.component.css'],
+            providers: [trace_service_1.TraceService, critere_service_1.CritereService, categorie_service_1.CategorieService]
+        })
+        //À compléter
+        ,
+        __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService])
+    ], PageCatComponent);
     return PageCatComponent;
 }());
-PageCatComponent = __decorate([
-    core_1.Component({
-        selector: 'page-cat',
-        templateUrl: 'app/html/page-cat.component.html',
-        styleUrls: ['app/css/page-cat.component.css'],
-        providers: [trace_service_1.TraceService, critere_service_1.CritereService, categorie_service_1.CategorieService]
-    })
-    //À compléter
-    ,
-    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService])
-], PageCatComponent);
 exports.PageCatComponent = PageCatComponent;
 //# sourceMappingURL=page-cat.component.js.map

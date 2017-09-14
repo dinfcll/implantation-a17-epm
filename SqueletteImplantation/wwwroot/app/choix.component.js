@@ -21,15 +21,15 @@ var ChoixComponent = (function () {
     ChoixComponent.prototype.CardioClick = function () {
         this.router.navigateByUrl('/categorie');
     };
+    ChoixComponent = __decorate([
+        core_1.Component({
+            selector: 'my-choix',
+            templateUrl: 'app/html/choix.component.html',
+            styleUrls: ['app/css/choix.component.css']
+        }),
+        __metadata("design:paramtypes", [router_1.Router])
+    ], ChoixComponent);
     return ChoixComponent;
 }());
-ChoixComponent = __decorate([
-    core_1.Component({
-        selector: 'my-choix',
-        templateUrl: 'app/html/choix.component.html',
-        styleUrls: ['app/css/choix.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
-], ChoixComponent);
 exports.ChoixComponent = ChoixComponent;
 //# sourceMappingURL=choix.component.js.map

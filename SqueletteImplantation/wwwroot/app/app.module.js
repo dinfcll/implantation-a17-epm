@@ -19,14 +19,14 @@ var choix_component_1 = require("./choix.component");
 var AppModule = (function () {
     function AppModule() {
     }
+    AppModule = __decorate([
+        core_1.NgModule({
+            imports: [platform_browser_1.BrowserModule, app_routing_module_1.routes, http_1.HttpModule],
+            declarations: [index_component_1.IndexComponent, page_cat_component_1.PageCatComponent, app_component_1.AppComponent, choix_component_1.ChoixComponent],
+            bootstrap: [app_component_1.AppComponent]
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, app_routing_module_1.routes, http_1.HttpModule],
-        declarations: [index_component_1.IndexComponent, page_cat_component_1.PageCatComponent, app_component_1.AppComponent, choix_component_1.ChoixComponent],
-        bootstrap: [app_component_1.AppComponent]
-    })
-], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

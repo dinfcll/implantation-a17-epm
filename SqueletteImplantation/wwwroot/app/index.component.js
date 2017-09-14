@@ -19,15 +19,15 @@ var IndexComponent = (function () {
         this.router.navigateByUrl('/choix');
         console.log("test");
     };
+    IndexComponent = __decorate([
+        core_1.Component({
+            selector: 'my-index',
+            templateUrl: 'app/html/index.component.html',
+            styleUrls: ['app/css/index.component.css']
+        }),
+        __metadata("design:paramtypes", [router_1.Router])
+    ], IndexComponent);
     return IndexComponent;
 }());
-IndexComponent = __decorate([
-    core_1.Component({
-        selector: 'my-index',
-        templateUrl: 'app/html/index.component.html',
-        styleUrls: ['app/css/index.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
-], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map
