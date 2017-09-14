@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var IndexComponent = (function () {
@@ -19,15 +18,15 @@ var IndexComponent = (function () {
         this.router.navigateByUrl('/choix');
         console.log("test");
     };
-    IndexComponent = __decorate([
-        core_1.Component({
-            selector: 'my-index',
-            templateUrl: 'app/html/index.component.html',
-            styleUrls: ['app/css/index.component.css']
-        }),
-        __metadata("design:paramtypes", [router_1.Router])
-    ], IndexComponent);
     return IndexComponent;
 }());
+IndexComponent = __decorate([
+    core_1.Component({
+        selector: 'my-index',
+        templateUrl: 'app/html/index.component.html',
+        styleUrls: ['app/css/index.component.css']
+    }),
+    __metadata("design:paramtypes", [router_1.Router])
+], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map
