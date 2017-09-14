@@ -17,7 +17,8 @@
 								{{choix.critNom}}
 							</span>
                         </li>
-                    </ul>
+					</ul>
+					<button id="btnChercher" (click)="OnClickRechercher()"> Rechercher</button>					
 				</td>
 			</tr>
 			<tr>
@@ -31,13 +32,8 @@
 				</td>
 			</tr>
 			<tr>
-				<br>
-				<button (click)="OnClickRechercher()"> Rechercher</button>
-				<br>
-			</tr>
-			<tr>
 				<td colspan="2">
-					<div *ngFor="let trace of m_TabTrace">{{trace.tracId}}  ||  {{trace.traceNom}}  ||  <a href="{{trace.tracUrl}}">{{trace.tracUrl}}</a></div>
+					<div id="Trace" *ngFor="let trace of m_TabTrace">{{trace.tracId}}  ||  {{trace.traceNom}}  ||  <a href="{{trace.tracUrl}}">{{trace.tracUrl}}</a></div>
 				</td>
 			</tr>
 					
