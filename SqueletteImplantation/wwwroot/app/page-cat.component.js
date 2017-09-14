@@ -27,7 +27,6 @@ var PageCatComponent = (function () {
         var _this = this;
         this.catService.getCategories(1).subscribe(function (cat) { return _this.AffichageCat(cat); });
         this.critService.getCriteres(1).subscribe(function (crit) { return _this.AffichageCrit(crit); });
-        this.traceService.getTraces().then(function (retourFonction) { return _this.m_TabTrace = retourFonction; });
     };
     PageCatComponent.prototype.AffichageCat = function (param) {
         this.m_TabCat = param.json();
@@ -36,6 +35,10 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageCrit = function (param) {
         this.m_TabCrit = param.json();
         console.log(this.m_TabCrit);
+    };
+    PageCatComponent.prototype.AffichageTrace = function (param) {
+        this.m_TabTrace = param.json();
+        console.log(this.m_TabTrace);
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementById("ListeCritere").classList.toggle("showCritere");
@@ -49,9 +52,26 @@ var PageCatComponent = (function () {
         this.critService.getCriteres(id).subscribe(function (crit) { return _this.AffichageCrit(crit); });
     };
     //Action lors de la sélection d'un critère
-    PageCatComponent.prototype.OnClickCritere = function (id) {
-        this.m_TabRecherche.push(id);
+    PageCatComponent.prototype.OnClickCritere = function (crit) {
+        this.m_TabRecherche.push(crit);
         console.log(this.m_TabRecherche);
+    };
+    //Action lors du clic sur supprimer
+    PageCatComponent.prototype.OnClickSupprimer = function (crit) {
+        this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit), 1);
+        console.log(this.m_TabRecherche);
+    };
+    //Action lors de l'appui sur le bouton recherche
+    PageCatComponent.prototype.OnClickRechercher = function () {
+        var _this = this;
+        var RequeteId;
+        RequeteId = "?";
+        for (var _i = 0, _a = this.m_TabRecherche; _i < _a.length; _i++) {
+            var crit = _a[_i];
+            RequeteId += "Id=" + crit.critId + "&";
+        }
+        RequeteId = RequeteId.substr(0, RequeteId.length - 1);
+        this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
     };
     PageCatComponent = __decorate([
         core_1.Component({

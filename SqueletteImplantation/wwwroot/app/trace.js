@@ -2,10 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 //Selon la BD
 var Trace = (function () {
-    function Trace(ID, Nom, URL) {
-        this.ID = ID;
-        this.Nom = Nom;
-        this.URL = URL;
+    function Trace(tracId, traceNom, tracUrl, tracLogi, reltraccrit) {
+        this.tracId = tracId;
+        this.traceNom = traceNom;
+        this.tracUrl = tracUrl;
+        this.tracLogi = tracLogi;
+        this.reltraccrit = reltraccrit;
     }
     return Trace;
 }());
