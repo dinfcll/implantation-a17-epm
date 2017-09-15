@@ -11,23 +11,26 @@
                 </td>
 				<td id="EspaceCritereChoisi" rowspan="2">
 					<ul id="ListeCritereChoisi">
-                        <li *ngFor="let choix of m_TabRecherche" id="CritereChoisi">
-							<span (click)="OnClickSupprimer(choix)">
-								<button id="btnSupprimerCritereChoisi">X</button>
-								{{choix.critNom}}
-							</span>
-                        </li>
+					<table>
+						<tr>
+							<td *ngFor="let choix of m_TabRecherche"  id="CritereChoisi">
+								<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)"/> {{choix.critNom}}</span>
+							</td>
+						</tr>
+					</table>
 					</ul>
-					<button id="btnChercher" (click)="OnClickRechercher()"> Rechercher</button>					
+					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/> Rechercher</span></button>				
 				</td>
 			</tr>
 			<tr>
 				<td id="ChoixCritere">
 					<div class="ListeDeroulanteCritere">
-						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
-						<div id="ListeCritere"  (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
-							<a *ngFor ="let critere of m_TabCrit"><span (click)="OnClickCritere(critere)">{{critere.critNom}}</span></a><!--code pour remplir la liste-->
-						</div>
+					  <button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
+						<table id="ListeCritere" (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
+						    <tr *ngFor ="let critere of m_TabCrit">
+								<a (click)="OnClickCritere(critere)"> <img src="app/images/add.gif" alt=""/> {{critere.critNom}}</a>
+						    </tr>	
+						</table>	
 					</div>
 				</td>
 			</tr>
