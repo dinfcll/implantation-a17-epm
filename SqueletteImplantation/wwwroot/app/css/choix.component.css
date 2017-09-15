@@ -1,17 +1,22 @@
-.wrap {
-    width: 100%;
-}
-
-.floatleft {
+#floatleft {
     float:left; 
-    width: 50%;
-    background-size: cover;
-    height: 80vh;
+    width: 47%;
+    height: 60vh;
+    background-size: cover;    
+    border-radius: 25px;
+    margin-left: 2%;
 }
 
-.floatright {
+#floatright {
     float: right;
-    background-size: cover;
-    height: 80vh;
-    width: 50%;
+    width: 47%;
+    height: 60vh;
+    background-size: cover;    
+    border-radius: 25px;
+    margin-right: 2%;
+}
+
+#floatleft:hover, #floatright:hover {
+    opacity:0.75;
+    cursor: pointer;
 }
