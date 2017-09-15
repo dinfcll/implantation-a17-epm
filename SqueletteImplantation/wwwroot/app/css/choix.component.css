@@ -1,15 +1,21 @@
-.floatleft {
+#floatleft {
     float:left; 
-    width: 45%;
+    width: 47%;
     height: 60vh;
-    background-size: cover;
-    padding-left: 2.5%;
+    background-size: cover;    
+    border-radius: 25px;
+    margin-left: 2%;
 }
 
-.floatright {
+#floatright {
     float: right;
-    width: 45%;
+    width: 47%;
     height: 60vh;
-    background-size: cover;
-    padding-right: 2.5%;
+    background-size: cover;    
+    border-radius: 25px;
+    margin-right: 2%;
+}
+
+#floatleft:hover, #floatright:hover {
+    opacity:0.75;
 }
