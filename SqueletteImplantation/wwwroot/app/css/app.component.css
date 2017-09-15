@@ -9,6 +9,7 @@ html,body{
     height:100%;
     border:none;
     overflow-x: hidden;
+    
 }
 
 .TableComplete{
@@ -18,7 +19,6 @@ html,body{
 }
 
 #Menu{
-    width: 25vh;
     background-color: var(--CouleurTheme);
     box-shadow: 3px 4px 3px #8c8c8c;
     color: white;
@@ -52,6 +52,8 @@ html,body{
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: 25px;
+    min-width: 168px;
+    max-width: 3.8vw;
 }
 
 #EspacePrincipal{
