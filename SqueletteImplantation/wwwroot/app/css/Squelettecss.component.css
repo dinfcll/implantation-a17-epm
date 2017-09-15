@@ -34,7 +34,6 @@ html,body{
 #EspaceLogo{
     background-color: var(--CouleurTheme);
     box-shadow: 3px 4px 3px #8c8c8c;
-    background-image: url("app/images/LogoCegep.png");
     background-repeat: no-repeat;
     background-position: center;
 }
