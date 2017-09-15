@@ -29,14 +29,12 @@
 			<tr>
 				<td id="ChoixCritere">
 					<div class="ListeDeroulanteCritere">
-						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
-						<div id="ListeCritere"  (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
-							<div *ngFor ="let critere of m_TabCrit">
-								<a (click)="OnClickCritere(critere)">
-									{{critere.critNom}}
-								</a>
-							</div>
-						</div>
+					  <button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
+						<div id="ListeCritere" (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
+						    <span *ngFor ="let critere of m_TabCrit">
+								<a (click)="OnClickCritere(critere)"> <img src="app/images/add.gif" alt=""/> {{critere.critNom}}</a>
+						    </span>	
+						</div>	
 					</div>
 				</td>
 			</tr>

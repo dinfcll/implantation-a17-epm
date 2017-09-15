@@ -154,4 +154,8 @@
 	display: block;
 }
 
+#ListeCritere:hover{
+	cursor: pointer;
+}
+
 /*-------------------------Fin css pour liste déroulantes---------------------------*/
