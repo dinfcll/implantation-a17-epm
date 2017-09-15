@@ -50,7 +50,7 @@ html,body{
     box-shadow: 3px 4px 3px #8c8c8c;    
     text-align: center;
     min-width: 168px;
-    max-width: 3.8vw;
+    width: 12vw;
 }
 
 #EspacePrincipal{

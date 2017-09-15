@@ -21,3 +21,6 @@
 	display:inline-block;
 	text-align: right;	
 }
+input{
+	width: 10vw;
+}
