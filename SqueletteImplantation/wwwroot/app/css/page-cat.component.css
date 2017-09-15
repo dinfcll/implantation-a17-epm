@@ -9,8 +9,7 @@
     width: 100%;
     border-spacing: 0px;
 	position: absolute;
-	top: 0px;
-    
+	top: 0px;    
 }
 
 #ChoixCategorie{
@@ -28,7 +27,7 @@
 
 #EspaceCritereChoisi{
 	height: 0vh;
-	width: 138vh;
+	width: 138vw;
 	border-bottom-style: solid;
     border-bottom-color: black;
     border-left-color: black;
@@ -36,7 +35,6 @@
     box-shadow: 0px 5px 4px -2px #8c8c8c;
     position: relative;
 }
-
 
 #ListeCritereChoisi{
     list-style: none;
