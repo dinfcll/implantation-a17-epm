@@ -5,7 +5,11 @@
 					<div class="ListeDeroulanteCategorie">
 						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
 						<div id="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()" class="ContenuListeDeroulanteCategorie">
-							<a *ngFor ="let categ of m_TabCat"><span (click)="OnClickCategorie(categ.catId)">{{categ.catNom}}</span></a>
+							<div *ngFor ="let categ of m_TabCat">
+								<a (click)="OnClickCategorie(categ.catId)">
+									{{categ.catNom}}
+								</a>
+							</div>
 						</div>
 					</div>
                 </td>
@@ -25,18 +29,20 @@
 			<tr>
 				<td id="ChoixCritere">
 					<div class="ListeDeroulanteCritere">
-					  <button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
-						<table id="ListeCritere" (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
-						    <tr *ngFor ="let critere of m_TabCrit">
-								<a (click)="OnClickCritere(critere)"> <img src="app/images/add.gif" alt=""/> {{critere.critNom}}</a>
-						    </tr>	
-						</table>	
+						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
+						<div id="ListeCritere"  (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
+							<div *ngFor ="let critere of m_TabCrit">
+								<a (click)="OnClickCritere(critere)">
+									{{critere.critNom}}
+								</a>
+							</div>
+						</div>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<div id="Trace" *ngFor="let trace of m_TabTrace">{{trace.tracId}}  ||  {{trace.traceNom}}  ||  <a href="{{trace.tracUrl}}">{{trace.tracUrl}}</a></div>
+					<div id="Trace" *ngFor="let trace of m_TabTrace">{{trace.tracId}}  ||  {{trace.traceNom}}  ||  <a  href="{{trace.tracUrl}}" download>{{trace.tracUrl}}</a></div>
 				</td>
 			</tr>
 					
