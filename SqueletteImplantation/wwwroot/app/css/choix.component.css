@@ -1,17 +1,15 @@
-.wrap {
-    width: 100%;
-}
-
 .floatleft {
     float:left; 
-    width: 50%;
+    width: 45%;
+    height: 60vh;
     background-size: cover;
-    height: 80vh;
+    padding-left: 2.5%;
 }
 
 .floatright {
     float: right;
+    width: 45%;
+    height: 60vh;
     background-size: cover;
-    height: 80vh;
-    width: 50%;
+    padding-right: 2.5%;
 }
