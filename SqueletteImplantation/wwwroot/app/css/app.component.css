@@ -47,11 +47,8 @@ html,body{
 
 #EspaceLogo{
     background-color: var(--CouleurTheme);
-    box-shadow: 3px 4px 3px #8c8c8c;
-    background-image: url("app/images/LogoCegep.png");
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: 25px;
+    box-shadow: 3px 4px 3px #8c8c8c;    
+    text-align: center;
     min-width: 168px;
     max-width: 3.8vw;
 }
