@@ -2,3 +2,25 @@
 	position: relative;
 	text-align: center;
 }
+#btnConnexion {
+	border-radius:5px;	
+	border: none;
+	background-color: var(--CouleurTheme);
+	cursor: pointer;
+	color: white;
+	padding: 8px;
+	padding-left: 12px;
+	padding-right: 21px;
+	font-size: 20px;
+    width: 130px;
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+#divConnexion{
+	display:inline-block;
+	text-align: right;	
+}
+input{
+	width: 10vw;
+}
