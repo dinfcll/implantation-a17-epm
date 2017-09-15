@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 //Importation des services 
 var trace_service_1 = require("./trace.service");
@@ -80,7 +81,9 @@ PageCatComponent = __decorate([
         templateUrl: 'app/html/page-cat.component.html',
         styleUrls: ['app/css/page-cat.component.css'],
         providers: [trace_service_1.TraceService, critere_service_1.CritereService, categorie_service_1.CategorieService]
-    }),
+    })
+    //À compléter
+    ,
     __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService])
 ], PageCatComponent);
 exports.PageCatComponent = PageCatComponent;
