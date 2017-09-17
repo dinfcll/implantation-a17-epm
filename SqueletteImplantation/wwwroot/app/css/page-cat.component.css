@@ -50,7 +50,7 @@
 	padding: 3px;
 	border-radius:5px;	
 	border: none;
-	background-color: #F8F8FF;
+	background-color: #EAEDED;
 	font-size: 20px;
 }
 
@@ -71,6 +71,25 @@
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
 	background-position: right;
+}
+#tableTracé{
+	margin-top: 2%;
+	margin-left:auto;
+	margin-right:auto;
+	border-collapse:collapse;
+	border:3px solid var(--CouleurTheme);
+	width:70%;
+}
+
+#tableTracé td{
+	border:3px solid var(--CouleurTheme);
+}
+
+#tableTracé th{
+	border:3px solid var(--CouleurTheme);
+	background-color:#EAEDED;
+	color:#000000;
+	text-align:center;
 }
 
 	
@@ -155,6 +174,9 @@
 }
 
 #ListeCritere:hover{
+	cursor: pointer;
+}
+#ChoixCategorie:hover{
 	cursor: pointer;
 }
 

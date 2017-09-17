@@ -32,7 +32,7 @@
 					  <button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
 						<div id="ListeCritere" (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
 						    <span *ngFor ="let critere of m_TabCrit">
-								<a (click)="OnClickCritere(critere)"> <img src="app/images/add.gif" alt=""/> {{critere.critNom}}</a>
+								<a (click)="OnClickCritere(critere)"><img src="app/images/add.gif" alt=""/> {{critere.critNom}}</a>
 						    </span>	
 						</div>	
 					</div>
@@ -40,7 +40,16 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<div id="Trace" *ngFor="let trace of m_TabTrace">{{trace.tracId}}  ||  {{trace.traceNom}}  ||  <a  href="{{trace.tracUrl}}" download>{{trace.tracUrl}}</a></div>
+					<div>
+						<table border="2" id="tableTracé"> 
+							<tr>
+								<th>Nom</th><th>Logiciel</th><th>Lien</th>
+							</tr>
+							<tr *ngFor="let trace of m_TabTrace">
+								<td>{{trace.traceNom}}</td><td>Logiciel</td><td><a  href="{{trace.tracUrl}}" download>Lien</a></td>
+							</tr>
+						</table>
+			       </div>
 				</td>
 			</tr>
 					
