@@ -6,12 +6,14 @@ using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.DTOs;
 using SqueletteImplantation.DbEntities.Models;
 using Xunit;
+using Microsoft.AspNetCore.Http;
 
 namespace SqueletteTests
 {
 
     public class TraceControllerTest
     {
+        IFormFile fichier = new ;
         private readonly TraceController _traceController;
         private TraceDTO nouvTrac = new TraceDTO { fich = null, id = new int[] { 1, 2, 3, 4 }, nomfich = "Test.pdf" };
         
