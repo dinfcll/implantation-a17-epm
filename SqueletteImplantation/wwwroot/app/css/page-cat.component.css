@@ -115,7 +115,7 @@
 }
 
 .btnCategorie:hover, .btnCategorie:focus, .btnCritere:hover, .btnCritere:focus{
-	background-color: var(--CouleurThemeHover)
+	background-color: var(--CouleurThemeHover);
 }
 
 /*Liste deroulante Catégorie et Critère*/
