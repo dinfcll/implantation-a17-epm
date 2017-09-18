@@ -19,7 +19,7 @@
 						<table>
 							<tr>
 								<td *ngFor="let choix of m_TabRecherche"  id="CritereChoisi">
-									<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)"/> {{choix.critNom}}</span>
+									<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)" style="cursor:pointer;"/> {{choix.critNom}}</span>
 								</td>
 							</tr>
 						</table>
