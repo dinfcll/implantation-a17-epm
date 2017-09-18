@@ -1,6 +1,7 @@
-
-		<table class="TableEspacePrincipalCat">
-			<tr>
+ <body id="base">
+	<div>
+	   <table class="TableEspacePrincipalCat">
+			<tr id="PremiereLigne">
 				<td id="ChoixCategorie">  
 					<div class="ListeDeroulanteCategorie">
 						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
@@ -15,33 +16,43 @@
                 </td>
 				<td id="EspaceCritereChoisi" rowspan="2">
 					<ul id="ListeCritereChoisi">
-					<table>
-						<tr>
-							<td *ngFor="let choix of m_TabRecherche"  id="CritereChoisi">
-								<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)"/> {{choix.critNom}}</span>
-							</td>
-						</tr>
-					</table>
+						<table>
+							<tr>
+								<td *ngFor="let choix of m_TabRecherche"  id="CritereChoisi">
+									<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)"/> {{choix.critNom}}</span>
+								</td>
+							</tr>
+						</table>
 					</ul>
 					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/> Rechercher</span></button>				
 				</td>
 			</tr>
-			<tr>
+			<tr id="DeuxiemeLigne">
 				<td id="ChoixCritere">
 					<div class="ListeDeroulanteCritere">
 					  <button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
 						<div id="ListeCritere" (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
 						    <span *ngFor ="let critere of m_TabCrit">
-								<a (click)="OnClickCritere(critere)"> <img src="app/images/add.gif" alt=""/> {{critere.critNom}}</a>
+								<a (click)="OnClickCritere(critere)"><img src="app/images/add.gif" alt=""/> {{critere.critNom}}</a>
 						    </span>	
 						</div>	
 					</div>
 				</td>
 			</tr>
-			<tr>
+			<tr id="TroisiemeLigne">
 				<td colspan="2">
-					<div id="Trace" *ngFor="let trace of m_TabTrace">{{trace.tracId}}  ||  {{trace.traceNom}}  ||  <a  href="{{trace.tracUrl}}" download>{{trace.tracUrl}}</a></div>
+					<div>
+						<table border="2" id="tableTracé"> 
+							<tr>
+								<th>Nom</th><th>Logiciel</th><th>Lien</th>
+							</tr>
+							<tr *ngFor="let trace of m_TabTrace">
+								<td>{{trace.traceNom}}</td><td>Logiciel</td><td><a  href="{{trace.tracUrl}}" download>Lien</a></td>
+							</tr>
+						</table>
+			       </div>
 				</td>
-			</tr>
-					
+			</tr>			
 		</table>
+	</div>
+	</body>

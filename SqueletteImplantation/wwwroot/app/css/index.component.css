@@ -17,6 +17,9 @@
 	background-repeat: no-repeat;
 	background-position: right;
 }
+#btnConnexion:hover{
+	background:linear-gradient(white 7%,var(--CouleurThemeHover));
+}
 #divConnexion{
 	display:inline-block;
 	text-align: right;	
