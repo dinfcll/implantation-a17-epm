@@ -23,6 +23,8 @@
 						</tr>
 					</table>
 					</ul>
+					<input  id="parcourir" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
+					<button id="btnSupprimerTrace" (click)="OnClickDeleteTrace(0)"><span><img src="app/images/delete.gif" alt=""/>Supprimer le tracé</span></button> <!-- J'ai mit 0 par défaut (le premier)' -->
 					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/> Rechercher</span></button>				
 				</td>
 			</tr>

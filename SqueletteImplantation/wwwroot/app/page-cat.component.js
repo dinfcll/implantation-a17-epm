@@ -73,6 +73,38 @@ var PageCatComponent = (function () {
         RequeteId = RequeteId.substr(0, RequeteId.length - 1);
         this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
     };
+    /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
+    PageCatComponent.prototype.onClickDeleteTrace = function (id) {
+        var _this = this;
+        this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
+    };
+    PageCatComponent.prototype.AffichageRepDel = function (param) {
+        console.log(param);
+    };
+    PageCatComponent.prototype.fileChange = function (event) {
+        //let Envoietrace: TraceDTO = new TraceDTO();
+        var fileList = event.target.files;
+        if (fileList.length > 0) {
+            var file = fileList[0];
+            //Envoietrace.fich = file;
+            //Envoietrace.nomfich = file.name;
+            /*let formData:FormData = new FormData();
+            formData.append('uploadFile', file, file.name);  // Formulaire qui va contenir mon fichier*/
+            var headers = new Headers();
+            headers.append('Accept', 'application/json');
+            console.log(file.type);
+            //this.traceService.addTrace()
+            /* let options = new RequestOptions({ headers: headers });
+     
+             this.http.post(`${this.apiEndPoint}`, formData, options)
+                 .map(res => res.json())
+                 .catch(error => Observable.throw(error))
+                 .subscribe(
+                     data => console.log('success'),
+                     error => console.log(error)
+                 )*/
+        }
+    };
     return PageCatComponent;
 }());
 PageCatComponent = __decorate([
