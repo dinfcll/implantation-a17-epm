@@ -110,11 +110,12 @@
 	background-position: right;
 }
 #btnChercher:hover{
+
 	background:linear-gradient(white 7%,var(--CouleurThemeHover));
 }
 
 .btnCategorie:hover, .btnCategorie:focus, .btnCritere:hover, .btnCritere:focus{
-	background-image: linear-gradient(white 7%,var(--CouleurThemeHover));
+	background-color: var(--CouleurThemeHover)
 }
 
 /*Liste deroulante Catégorie et Critère*/
