@@ -1,9 +1,14 @@
 :root{
-	--CouleurTheme: #1976d2;
-	--CouleurThemeHover: #328ce7;
+	--CouleurTheme: rgba(62, 76, 127, 0.71);
+	--CouleurThemeHover: #5793CB;
 }
 
 html,body{
+    background-image:url('app/images/font8.jpg');
+    background-size:100%;
+    background-position:center;
+    background-attachment:fixed;
+    background-repeat: no-repeat;
     margin:0;
     padding:0;
     height:100%;
@@ -12,6 +17,7 @@ html,body{
 }
 
 .TableComplete{
+    background-image:url('app/images/font8.jpg');
     width: 100%;
     height: 100%;
     border-spacing: 0px;
@@ -26,13 +32,13 @@ html,body{
 
 #Navigation{
     height: 6vh;
-    background-color: var(--CouleurTheme);
+    background:linear-gradient(white 10%,var(--CouleurTheme) 90%);
     box-shadow: 0 3px 4px #8c8c8c;
     color: white;
 }
 
 #EspaceLogo{
-    background-color: var(--CouleurTheme);
+    background:linear-gradient(white 10%,var(--CouleurTheme) 90% );
     box-shadow: 3px 4px 3px #8c8c8c;
     background-repeat: no-repeat;
     background-position: center;

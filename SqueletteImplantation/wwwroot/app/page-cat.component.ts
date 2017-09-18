@@ -73,6 +73,7 @@ export class PageCatComponent implements OnInit
     OnClickCategorie(id: number)
     {
         this.critService.getCriteres(id).subscribe(crit => this.AffichageCrit(crit));
+        
     } 
 
     //Action lors de la sélection d'un critère
