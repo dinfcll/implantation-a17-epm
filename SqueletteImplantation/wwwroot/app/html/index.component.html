@@ -1,9 +1,11 @@
-<div class="FormulaireConnexion">
-	<div id="divConnexion">
-		<p><label>Nom d'utilisateur: </label>
-		<input type="text" [(ngModel)]="utilisateur" #ctrl="ngModel" required></p>
-		<p><label>Mot de passe: </label>
-		<input type="password" [(ngModel)]="motdepasse" #ctrl="ngModel" required></p>
+<form #f="ngForm" (ngSubmit)="Connexion(f)" novalidate>
+	<div class="FormulaireConnexion">
+		<div id="divConnexion">
+			<p><label>Nom d'utilisateur: </label>
+			<input type="text" name="utilisateur" #utilisateur="ngModel" required></p>
+			<p><label>Mot de passe: </label>
+			<input type="password" name="motdepasse" #motdepasse="ngModel" required></p>
+		</div>
+		<p> <button type="button" id="btnConnexion">Connexion</button></p>
 	</div>
-	<p> <button type="button" (click)="Connexion()" id="btnConnexion">Connexion</button></p>
-</div>
+</form>

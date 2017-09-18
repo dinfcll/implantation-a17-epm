@@ -11,18 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var utilisateur_1 = require("./utilisateur");
 var utilisateur_service_1 = require("./utilisateur.service");
 var IndexComponent = (function () {
     function IndexComponent(router, utilServ) {
         this.router = router;
         this.utilServ = utilServ;
     }
-    IndexComponent.prototype.Connexion = function () {
-        var _this = this;
-        var util = new utilisateur_1.Utilisateur(null, null, "admin123", "admin", null, null);
+    IndexComponent.prototype.Connexion = function (f) {
+        console.log(f);
+        /*let util: Utilisateur = new Utilisateur(null, null, f.value.motdepasse ,f.value.utilisateur, null, null);
         console.log(util.UtilPWD);
-        this.utilServ.postUtilisateur(util).subscribe(function (reponse) { return _this.ValidationConnexion(reponse); });
+
+       this.utilServ.postUtilisateur(util).subscribe(reponse => this.ValidationConnexion(reponse));*/
     };
     IndexComponent.prototype.ValidationConnexion = function (param) {
         this.router.navigateByUrl("/choix");

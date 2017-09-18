@@ -16,12 +16,13 @@ export class IndexComponent
 { 
     constructor(private router: Router, private utilServ: UtilisateurService) { }
 
-    public Connexion(): void 
-    {        
-        let util: Utilisateur = new Utilisateur(null,null,"admin123","admin",null,null);
+    public Connexion(f: NgForm): void 
+    {
+        console.log(f);
+        /*let util: Utilisateur = new Utilisateur(null, null, f.value.motdepasse ,f.value.utilisateur, null, null);
         console.log(util.UtilPWD);
 
-       this.utilServ.postUtilisateur(util).subscribe(reponse => this.ValidationConnexion(reponse));
+       this.utilServ.postUtilisateur(util).subscribe(reponse => this.ValidationConnexion(reponse));*/
     }
 
     private ValidationConnexion(param: any) 
