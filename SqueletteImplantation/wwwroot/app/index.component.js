@@ -8,15 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var utilisateur_1 = require("./utilisateur");
+var utilisateur_service_1 = require("./utilisateur.service");
 var IndexComponent = (function () {
-    function IndexComponent(router) {
+    function IndexComponent(router, utilServ) {
         this.router = router;
+        this.utilServ = utilServ;
     }
     IndexComponent.prototype.Connexion = function () {
-        this.router.navigateByUrl('/choix');
-        console.log("test");
+        var _this = this;
+        var util = new utilisateur_1.Utilisateur(null, null, "admin123", "admin", null, null);
+        console.log(util.UtilPWD);
+        this.utilServ.postUtilisateur(util).subscribe(function (reponse) { return _this.ValidationConnexion(reponse); });
+    };
+    IndexComponent.prototype.ValidationConnexion = function (param) {
+        this.router.navigateByUrl("/choix");
     };
     return IndexComponent;
 }());
@@ -24,9 +33,10 @@ IndexComponent = __decorate([
     core_1.Component({
         selector: 'my-index',
         templateUrl: 'app/html/index.component.html',
-        styleUrls: ['app/css/index.component.css']
+        styleUrls: ['app/css/index.component.css'],
+        providers: [utilisateur_service_1.UtilisateurService]
     }),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [router_1.Router, utilisateur_service_1.UtilisateurService])
 ], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map
