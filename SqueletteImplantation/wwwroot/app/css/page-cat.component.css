@@ -52,6 +52,28 @@
 	border: none;
 	background-color: #EAEDED;
 	font-size: 20px;
+    width: 140px;
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+#btnSupprimerTrace{
+position:absolute;
+	left:70%;
+	bottom:10%;
+	border-radius:5px;	
+	border: none;
+	background-color: var(--CouleurTheme);
+	cursor: pointer;
+	color: white;
+	padding: 8px;
+	padding-left: 0px;
+	font-size: 20px;
+    width: 140px;
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: right;
 }
 
 
