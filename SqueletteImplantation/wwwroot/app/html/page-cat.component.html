@@ -1,12 +1,12 @@
- <body id="base">
-	<div>
+
+	<div id="base">
 	   <table class="TableEspacePrincipalCat">
 			<tr id="PremiereLigne">
 				<td id="ChoixCategorie">  
 					<div class="ListeDeroulanteCategorie">
 						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
 						<div id="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()" class="ContenuListeDeroulanteCategorie">
-							<div *ngFor ="let categ of m_TabCat">
+							 <div *ngFor ="let categ of m_TabCat">
 								<a (click)="OnClickCategorie(categ.catId)">
 									{{categ.catNom}}
 								</a>
@@ -19,11 +19,13 @@
 						<table>
 							<tr>
 								<td *ngFor="let choix of m_TabRecherche"  id="CritereChoisi">
-									<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)" style="cursor:pointer;"/> {{choix.critNom}}</span>
+									<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)" (click)="OnClickRechercher()" style="cursor:pointer;"/> {{choix.critNom}}</span>
 								</td>
 							</tr>
 						</table>
 					</ul>
+					<input  id="parcourir" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
+					<button id="btnSupprimerTrace" (click)="OnClickDeleteTrace(0)"><span><img src="app/images/delete.gif" alt=""/>Supprimer le tracé</span></button> <!-- J'ai mit 0 par défaut (le premier)' -->
 					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/> Rechercher</span></button>				
 				</td>
 			</tr>
@@ -32,27 +34,28 @@
 					<div class="ListeDeroulanteCritere">
 					  <button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
 						<div id="ListeCritere" (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
-						    <span *ngFor ="let critere of m_TabCrit">
-								<a (click)="OnClickCritere(critere)"><img src="app/images/add.gif" alt=""/> {{critere.critNom}}</a>
-						    </span>	
+							<select id="ListBoxCrit" name="Criteres" size="8">
+								<option *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)">
+									<img src="app/images/add.gif" alt=""/> {{critere.critNom}}
+								</option>
+							</select>
 						</div>	
 					</div>
 				</td>
 			</tr>
 			<tr id="TroisiemeLigne">
 				<td colspan="2">
-					<div>
-						<table border="2" id="tableTracé"> 
-							<tr>
-								<th>Nom</th><th>Logiciel</th><th>Lien</th>
-							</tr>
-							<tr *ngFor="let trace of m_TabTrace">
-								<td>{{trace.traceNom}}</td><td>Logiciel</td><td><a  href="{{trace.tracUrl}}" download>Lien</a></td>
-							</tr>
-						</table>
+					<div *ngFor="let trace of m_TabTrace">
+						<section class="Trace">
+							Nom: {{trace.traceNom}}
+							&nbsp;
+							Logiciel à utiliser: {{trace.tracLogi}}
+
+							<a id="lientelechargement" href="{{trace.tracUrl}}" download>Télécharger</a>
+						</section>
+						
 			       </div>
 				</td>
 			</tr>			
 		</table>
 	</div>
-	</body>
