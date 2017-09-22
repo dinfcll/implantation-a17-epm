@@ -18,21 +18,30 @@ namespace SqueletteImplantation.DbEntities.DTOs
 
         public Trace CreateTrace()
         {
-            return new Trace { TraceNom = nomfich, TracLogi = IdentificationLogiciel(), TracUrl = TraceDTO.Chemin + fich.FileName};
+            string NomFich = "Bidon.txt";
+            if(fich != null)
+            {
+                NomFich = fich.FileName;
+            }
+            return new Trace { TraceNom = nomfich, TracLogi = IdentificationLogiciel(), TracUrl = TraceDTO.Chemin + NomFich};
         }
 
         private string IdentificationLogiciel()
         {
-            string extension = Path.GetExtension(fich.FileName);
+            string extension;
 
-            switch(extension)
+            if (fich == null || fich.FileName == "")
+            {
+                return "Aucun fichier";
+            }
+            extension = Path.GetExtension(fich.FileName);
+            switch (extension)
             {
                 case ".pdf":
                     return "Adobe Reader";
                 default:
                     return "Autre logiciel";
-            }
-                
+            }  
         }
     }
 }

@@ -29,12 +29,11 @@ namespace SqueletteTests
             _traceController = new TraceController(bdEnMemoire, new FakeUpload());
         }
 
-        /*[Fact]
+        [Fact]
         public void TraceAjoute()
         {
             var created = _traceController.AjoutTrace(nouvTrac);
-
-            Assert.Equal(new OkResult(), created);
-        }*/
+            Assert.Equal(200, (created as OkResult).StatusCode);
+        }
     }
 }
