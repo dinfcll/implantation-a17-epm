@@ -14,6 +14,7 @@
 
 #ChoixCategorie{
 	height: 0vh;
+	background-color: red;
 }
 
 #ChoixCritere{	
@@ -21,6 +22,7 @@
     border-bottom-style: solid;
     border-bottom-color: var(--CouleurTheme);
     box-shadow: 0px 5px 4px -2px #8c8c8c;
+	background-color: red;
 }
 
 
@@ -76,6 +78,27 @@ position:absolute;
 	background-position: right;
 }
 
+
+#btnChercher{
+	position:absolute;
+	left:85%;
+	bottom:10%;
+	border-radius:5px;	
+	border: none;
+	background-color: var(--CouleurTheme);
+	cursor: pointer;
+	color: white;
+	padding: 8px;
+	padding-left: 0px;
+	font-size: 20px;
+    width: 130px;
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+
+
 #btnSupprimerTrace{
 background-color: rgba(125, 141, 163, 0.71);
 	border-radius: 5px;
@@ -86,6 +109,11 @@ background-color: rgba(125, 141, 163, 0.71);
 }
 
 
+
+#btnChercher:hover, #btnAjouterTrace:hover
+{
+    background:linear-gradient(white 7%,var(--CouleurThemeHover));
+}
 
 .Trace{
 	background-color: rgba(125, 141, 163, 0.71);
@@ -117,7 +145,7 @@ background-color: rgba(125, 141, 163, 0.71);
 	padding-left: 12px;
 	padding-right: 22px;
 	font-size: 20px;
-    width: 130px;
+    width: 170px;
 	background-image: url("app/images/FlecheEnBas.png");
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
@@ -125,85 +153,46 @@ background-color: rgba(125, 141, 163, 0.71);
 	
 }
 
-#btnChercher{
-	position:absolute;
-	left:85%;
-	bottom:10%;
-	border-radius:5px;	
-	border: none;
-	background-color: var(--CouleurTheme);
-	cursor: pointer;
-	color: white;
-	padding: 8px;
-	padding-left: 0px;
-	font-size: 20px;
-    width: 130px;
-	background-size: 20px 20px;
-	background-repeat: no-repeat;
-	background-position: right;
-}
-#btnChercher:hover, #btnAjouterTrace:hover
-{
-background:linear-gradient(white 7%,var(--CouleurThemeHover));
-}
+
 .btnCategorie:hover, .btnCategorie:focus, .btnCritere:hover, .btnCritere:focus{
 	background-color: var(--CouleurThemeHover);
 }
 
 /*Liste deroulante Catégorie et Critère*/
 .ListeDeroulanteCategorie, .ListeDeroulanteCritere{
-	display: block;
-	margin-left: 85px;
+	margin-left: 50px;
 	margin-top: 40px;
     margin-bottom: 40px;
     width: 221px;
 }
 
-/*Liste d'éléments de la liste catégorie*/
-.ContenuListeDeroulanteCategorie{
+.ListeCategorie, .ListeCritere{
 	display: none;
 	position: absolute;
-	min-width: 130px;
+	width: 170px;
 	z-index: 1;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.ContenuListeDeroulanteCritere{
-	display: none;
-	position: absolute;
-	min-width: 130px;
-	z-index: 1;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-/*Éléments de la liste Catégorie*/
-.ContenuListeDeroulanteCategorie a, .ContenuListeDeroulanteCritere a{
-	display: block;
-	color: black;
-	background-color: white;
-	padding: 5px; 
-}
-
-/*Hover des éléments de la liste Catégorie*/
-.ContenuListeDeroulanteCategorie a:hover, .ContenuListeDeroulanteCritere a:hover{
+#ListeCritere:hover, #ListeCategorie:hover{
+	cursor: pointer;
 	background-color: #f2f2f2;
 }
 
-.showCategorie{
+.ShowElement{
 	display: block;
 }
 
-.showCritere{
-	display: block;
-}
-
-
-
-#ListBoxCat:hover{
+#ElementListe:hover{
+	background-color: #f2f2f2;
 	cursor: pointer;
 }
-#ListBoxCrit:hover{
-	cursor: pointer;
+
+#ElementListe{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
+
 
 /*-------------------------Fin css pour liste déroulantes---------------------------*/

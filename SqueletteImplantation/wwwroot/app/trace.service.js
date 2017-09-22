@@ -29,7 +29,7 @@ var TraceService = (function () {
     };
     //Permet d'envoyer une requête HTTP d'ajout de Tracé.
     TraceService.prototype.addTrace = function (trace) {
-        return this.http.post(this.TracesURL, trace, this.headers);
+        return this.http.post(this.TracesURL + "post", trace, this.headers);
     };
     TraceService.prototype.GestionErreur = function (error) {
         console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"
