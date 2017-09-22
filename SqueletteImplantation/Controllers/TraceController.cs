@@ -73,19 +73,19 @@ namespace SqueletteImplantation.Controllers
         }
 
 
-        //modifier un trace selon son id
+        //Ajouter un trace à la DB
         [HttpPut]
-        [Route("api/Trace/{id}")]
-        public IActionResult ModifyTrace(Trace updatedTrace)
+        [Route("api/Trace/put")]
+        public IActionResult AddTrace(Trace NewTrace)
         {
-            var trace = _maBd.Trace.FirstOrDefault(t =>t.TracId  == updatedTrace.TracId);
+            var trace = _maBd.Trace.FirstOrDefault(t =>t.TracId  == NewTrace.TracId);
 
             if (trace == null)
             {
                 return NotFound();
             }
 
-            _maBd.Entry(trace).CurrentValues.SetValues(updatedTrace);
+            _maBd.Entry(trace);
 
             return new OkResult();
         }

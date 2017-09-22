@@ -1,4 +1,5 @@
 import { Trace } from './trace';
+import { TraceDTO } from './tracedto';
 import { Headers, Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise'; // Pour accéder à la méthode .toPromise()
@@ -19,23 +20,17 @@ export class TraceService
     }
 
     //Permet d'envoyer une requête de suppression d'un certain Tracé au "controller".
-    deleteTrace(id: number): Promise<void> 
+    deleteTrace(id: number)
     {
         const url = `${this.TracesURL}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
-        .toPromise()
-        .then(() => null)
-        .catch(this.GestionErreur);
+        return this.http.delete(url);
     }
 
     //Permet d'envoyer une requête HTTP d'ajout de Tracé.
-    addTrace(trace: Trace): Promise<Trace>
+    addTrace(trace: TraceDTO)
     {
-       return this.http.post(this.TracesURL, JSON.stringify({trace: trace}), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json().data as Trace)
-      .catch(this.GestionErreur);
-    }
+      return this.http.post(this.TracesURL + "post", trace, this.headers);
+    } 
 
 
     private GestionErreur(error: any): Promise<any> 
