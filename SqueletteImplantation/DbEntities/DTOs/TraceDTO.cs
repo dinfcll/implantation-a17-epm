@@ -14,7 +14,7 @@ namespace SqueletteImplantation.DbEntities.DTOs
         public int[] id { get; set; }
         public string nomfich { get; set; }
 
-        public static string Chemin = "/opt/EPM/Traces/";
+        public static string Chemin = "/media/EPM/Traces/";
 
         public Trace CreateTrace()
         {
