@@ -1,7 +1,4 @@
-:root{
-	--CouleurTheme: rgba(43, 47, 61, 0.71);
-	--CouleurThemeHover: #5793CB;
-}
+
 
 .TableEspacePrincipalCat{
 	width: 100%;
@@ -58,31 +55,19 @@
 }
 
 
-#tableTracé{
-	margin-top: 2%;
-	margin-left:auto;
-	margin-right:auto;
-	border-collapse:collapse;
-	border:3px solid var(--CouleurTheme);
-	width:70%;
+
+.Trace{
+	background-color: rgba(125, 141, 163, 0.71);
+	margin: 20px;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	display: block;
 }
 
-#tableTracé td{
-	border:3px solid var(--CouleurTheme);
+#lientelechargement{
+	float: right;
 }
-
-#tableTracé th{
-	border:3px solid var(--CouleurTheme);
-	background-color:#EAEDED;
-	color:#000000;
-	text-align:center;
-}
-
-	
-
-
-
-
 
 
 
@@ -125,11 +110,12 @@
 	background-position: right;
 }
 #btnChercher:hover{
+
 	background:linear-gradient(white 7%,var(--CouleurThemeHover));
 }
 
 .btnCategorie:hover, .btnCategorie:focus, .btnCritere:hover, .btnCritere:focus{
-	background:linear-gradient(white 7%,var(--CouleurThemeHover));
+	background-color: var(--CouleurThemeHover);
 }
 
 /*Liste deroulante Catégorie et Critère*/

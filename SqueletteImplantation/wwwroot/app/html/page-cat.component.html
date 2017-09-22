@@ -1,5 +1,5 @@
- <body id="base">
-	<div>
+
+	<div id="base">
 	   <table class="TableEspacePrincipalCat">
 			<tr id="PremiereLigne">
 				<td id="ChoixCategorie">  
@@ -41,18 +41,17 @@
 			</tr>
 			<tr id="TroisiemeLigne">
 				<td colspan="2">
-					<div>
-						<table border="2" id="tableTracé"> 
-							<tr>
-								<th>Nom</th><th>Logiciel</th><th>Lien</th>
-							</tr>
-							<tr *ngFor="let trace of m_TabTrace">
-								<td>{{trace.traceNom}}</td><td>Logiciel</td><td><a  href="{{trace.tracUrl}}" download>Lien</a></td>
-							</tr>
-						</table>
+					<div *ngFor="let trace of m_TabTrace">
+						<section class="Trace">
+							Nom: {{trace.traceNom}}
+							&nbsp;
+							Logiciel à utiliser: {{trace.tracLogi}}
+
+							<a id="lientelechargement" href="{{trace.tracUrl}}" download>Télécharger</a>
+						</section>
+						
 			       </div>
 				</td>
 			</tr>			
 		</table>
 	</div>
-	</body>
