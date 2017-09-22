@@ -1,5 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
 
 //Importation des classes
 import { Trace } from './trace';
@@ -16,26 +15,24 @@ import { CritereService } from './critere.service';
 
 
 @Component({
-  selector: 'page-cat',
-  templateUrl: 'app/html/page-cat.component.html',  //Template de Étienne doit aller ici !
-  styleUrls: [ 'app/css/page-cat.component.css' ],
+  selector: 'page-ajout',
+  templateUrl: 'app/html/page-ajout-admin.component.html',  
+  styleUrls: [ 'app/css/page-ajout-admin.component.css' ],
   providers: [TraceService,CritereService,CategorieService]
 })
 
 //À compléter
-export class PageCatComponent implements OnInit
+export class AjoutAdminComponent implements OnInit
 {
-/*  Define a traces array property.
-    Inject the TraceService in the constructor and hold it in a private TraceService field.
-    Call the service to get traces inside the Angular ngOnInit() lifecycle hook.
-*/
+
     m_TabTrace: Trace[];
     m_TabCat: Categorie[];
     m_TabCrit: Critere[];
     m_TabRecherche: Critere[] = [];
+    m_TabCritID: number[] = [];
     m_EnvoieTrace: TraceDTO = null;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private router:Router){}
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService){}
 
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     ngOnInit(): void 
@@ -64,12 +61,12 @@ export class PageCatComponent implements OnInit
 
     OnClickListeDeroulanteCritere()
     {
-	    document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
+	    document.getElementById("ListeCritere").classList.toggle("showCritere");
     }
 	
     OnClickListeDeroulanteCategorie()
     {
-	    document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
+	    document.getElementById("ListeCategorie").classList.toggle("showCategorie");
     }
     
     //Action lors de la sélection d'une catégorie
@@ -83,6 +80,7 @@ export class PageCatComponent implements OnInit
     OnClickCritere(crit: Critere)
     {
         this.m_TabRecherche.push(crit);
+        this.m_TabCritID.push(crit.critId);
         console.log(this.m_TabRecherche);
     }
 
@@ -90,49 +88,47 @@ export class PageCatComponent implements OnInit
     OnClickSupprimer(crit: Critere)
     {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit),1);
+        this.m_TabCritID.splice(this.m_TabCritID.indexOf(crit.critId),1);
+        
         console.log(this.m_TabRecherche);
     }
     
-    //Action lors de l'appui sur le bouton recherche
-    OnClickRechercher()
-    {
-        let RequeteId: string;
-        
-        RequeteId = "?"
-
-        for (let crit of this.m_TabRecherche)
-        {
-            RequeteId += "Id=" + crit.critId + "&";
-        }
-        RequeteId = RequeteId.substr(0,RequeteId.length - 1);
-
-        this.traceService.getTraces(RequeteId).subscribe(trac => this.AffichageTrace(trac));
-    }
-
+   
 
     /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
-    public onClickDeleteTrace(id: number)
-    {
-        if(confirm("Voulez-vous vraiment supprimer définitivement le tracé #" + id  + "?"))
-         {
-            this.traceService.deleteTrace(id).subscribe(reponse => this.AffichageRepDel(reponse));
-            window.location.reload();
-         }
-         else
-         {
-             console.log("ABORT");
-         }
 
-    }
 
     public onClickAddTrace()
     {
-        this.router.navigateByUrl('/ajout');
+        if(this.m_EnvoieTrace != null)
+        {
+            this.traceService.addTrace(this.m_EnvoieTrace).subscribe(reponse => this.AffichageRepAdd(reponse));
+        }
+        
     }
 
-    private AffichageRepDel(param: any) // Si le param est une string !
+  
+    private AffichageRepAdd(param: any) // Si le param est une string !
     {
         console.log(param);
     }
+
+   
+
+public fileChange(event) 
+{
+    
+    let fileList: FileList = event.target.files;
+
+    if(fileList.length > 0) 
+    {
+        let file: File = fileList[0];
+
+        this.m_EnvoieTrace = new TraceDTO(file,this.m_TabCritID, file.name);
+    }
+}
+
+   
+
 
 }

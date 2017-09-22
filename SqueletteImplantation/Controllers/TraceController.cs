@@ -34,7 +34,7 @@ namespace SqueletteImplantation.Controllers
 
         [HttpGet]
         [Route("api/Trace/{id}")]
-        public IActionResult CetTrace(int id)
+        public IActionResult GetTrace(int id)
         {
             var trace = _maBd.Trace.FirstOrDefault(t => t.TracId == id);
 
@@ -86,7 +86,9 @@ namespace SqueletteImplantation.Controllers
             {
                 Trace trace;
 
-                if(_uploadService.upload(nouvtrace.fich, TraceDTO.Chemin +  nouvtrace.fich.FileName))
+                string chemin = nouvtrace.fich == null ? "" : nouvtrace.fich.FileName; // à modifier
+
+                if(_uploadService.upload(nouvtrace.fich, TraceDTO.Chemin +  chemin))
                 {
                     trace = nouvtrace.CreateTrace();
                     _maBd.Add(trace);
@@ -99,7 +101,7 @@ namespace SqueletteImplantation.Controllers
                         _maBd.Add(relation);
                     }
                     _maBd.SaveChanges();
-                    return new OkResult();
+                    return new OkObjectResult(trace);
                 }
             }
             return new NoContentResult();
@@ -108,7 +110,7 @@ namespace SqueletteImplantation.Controllers
 
         //supprimer un tracé selon son id
         [HttpDelete]
-        [Route("api/Trace/{id}")]
+        [Route("api/TraceListe/{id}")]
         public IActionResult DeleteTrace(int id)
         {
             var trace = _maBd.Trace.FirstOrDefault(t => t.TracId == id);

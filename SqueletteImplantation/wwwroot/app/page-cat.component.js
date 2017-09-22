@@ -16,11 +16,13 @@ var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
 var critere_service_1 = require("./critere.service");
 var PageCatComponent = (function () {
-    function PageCatComponent(traceService, catService, critService) {
+    function PageCatComponent(traceService, catService, critService, router) {
         this.traceService = traceService;
         this.catService = catService;
         this.critService = critService;
+        this.router = router;
         this.m_TabRecherche = [];
+        this.m_EnvoieTrace = null;
     }
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     PageCatComponent.prototype.ngOnInit = function () {
@@ -77,7 +79,16 @@ var PageCatComponent = (function () {
     /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
     PageCatComponent.prototype.onClickDeleteTrace = function (id) {
         var _this = this;
-        this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
+        if (confirm("Voulez-vous vraiment supprimer définitivement le tracé #" + id + "?")) {
+            this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
+            window.location.reload();
+        }
+        else {
+            console.log("ABORT");
+        }
+    };
+    PageCatComponent.prototype.onClickAddTrace = function () {
+        this.router.navigateByUrl('/ajout');
     };
     PageCatComponent.prototype.AffichageRepDel = function (param) {
         console.log(param);
@@ -124,7 +135,7 @@ PageCatComponent = __decorate([
     })
     //À compléter
     ,
-    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService])
+    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService, router_1.Router])
 ], PageCatComponent);
 exports.PageCatComponent = PageCatComponent;
 //# sourceMappingURL=page-cat.component.js.map
