@@ -1,5 +1,4 @@
-
-	<div id="base">
+<div id="base">
 	   <table class="TableEspacePrincipalCat">
 			<tr id="PremiereLigne">
 				<td id="ChoixCategorie">  
@@ -24,8 +23,9 @@
 							</tr>
 						</table>
 					</ul>
-					<button id="btnAjouterTrace" (click)="onClickAddTrace()"><span><img src="app/images/add.png" alt=""/>Page d'ajout de tracé</span></button>
-					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/> Rechercher</span></button>				
+					<button id="btnAjouterTrace" (click)="onClickAddTrace()"><span><img src="app/images/add.png" alt=""/>Soumettre</span></button>
+					<input type="file" name="file" id="file" class="inputfile"  (change)="fileChange($event)"  accept=".pdf,.doc,.docx"/>
+                    <label for="file"><img src="app/images/download.png" alt=""/> Insérer le tracé ...</label>			
 				</td>
 			</tr>
 			<tr id="DeuxiemeLigne">
@@ -34,7 +34,7 @@
 					  <button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
 						<div id="ListeCritere" (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
 						    <span *ngFor ="let critere of m_TabCrit">
-								<a (click)="OnClickCritere(critere)"><img src="app/images/add.png" alt=""/> {{critere.critNom}}</a>
+								<a (click)="OnClickCritere(critere)"><img src="app/images/add.gif" alt=""/> {{critere.critNom}}</a>
 						    </span>	
 						</div>	
 					</div>
