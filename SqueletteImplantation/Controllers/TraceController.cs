@@ -34,7 +34,7 @@ namespace SqueletteImplantation.Controllers
 
         [HttpGet]
         [Route("api/Trace/{id}")]
-        public IActionResult CetTrace(int id)
+        public IActionResult GetTrace(int id)
         {
             var trace = _maBd.Trace.FirstOrDefault(t => t.TracId == id);
 
@@ -101,7 +101,7 @@ namespace SqueletteImplantation.Controllers
                         _maBd.Add(relation);
                     }
                     _maBd.SaveChanges();
-                    return new OkResult();
+                    return new OkObjectResult(trace);
                 }
             }
             return new NoContentResult();
