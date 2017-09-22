@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var tracedto_1 = require("./tracedto");
 //Importation des services 
 var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
@@ -41,10 +42,10 @@ var PageCatComponent = (function () {
         console.log(this.m_TabTrace);
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
-        document.getElementById("ListeCritere").classList.toggle("showCritere");
+        document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
-        document.getElementById("ListeCategorie").classList.toggle("showCategorie");
+        document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
     };
     //Action lors de la sélection d'une catégorie
     PageCatComponent.prototype.OnClickCategorie = function (id) {
@@ -81,13 +82,20 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageRepDel = function (param) {
         console.log(param);
     };
+    PageCatComponent.prototype.getCritIDS = function () {
+        var j = 0;
+        var TabID;
+        while (j < this.m_TabCrit.length) {
+            TabID[j] = this.m_TabCrit[j].critId;
+            j++;
+        }
+        return TabID;
+    };
     PageCatComponent.prototype.fileChange = function (event) {
-        //let Envoietrace: TraceDTO = new TraceDTO();
         var fileList = event.target.files;
         if (fileList.length > 0) {
             var file = fileList[0];
-            //Envoietrace.fich = file;
-            //Envoietrace.nomfich = file.name;
+            var Envoietrace = new tracedto_1.TraceDTO(file, this.getCritIDS(), file.name);
             /*let formData:FormData = new FormData();
             formData.append('uploadFile', file, file.name);  // Formulaire qui va contenir mon fichier*/
             var headers = new Headers();
