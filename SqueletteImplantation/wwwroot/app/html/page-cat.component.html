@@ -25,7 +25,7 @@
 						</table>
 					</ul>
 					<input  id="parcourir" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
-					<button id="btnSupprimerTrace" (click)="OnClickDeleteTrace(0)"><span><img src="app/images/delete.gif" alt=""/>Supprimer le tracé</span></button> <!-- J'ai mit 0 par défaut (le premier)' -->
+					<button id="btnAjouterTrace" (click)="onClickAddTrace()"><span><img src="app/images/add.gif" alt=""/>Ajouter le tracé</span></button>
 					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/> Rechercher</span></button>				
 				</td>
 			</tr>
@@ -48,8 +48,8 @@
 							Nom: {{trace.traceNom}}
 							&nbsp;
 							Logiciel à utiliser: {{trace.tracLogi}}
-
-							<a id="lientelechargement" href="{{trace.tracUrl}}" download>Télécharger</a>
+							<button id="btnSupprimerTrace" (click)="onClickDeleteTrace(trace.tracId)"><img src="app/images/delete.gif" alt=""/>Tracé #{{trace.tracId}}</button> <!-- J'ai mit 0 par défaut (le premier)' -->
+							<a id="lientelechargement" href="{{trace.tracUrl}}" download ><img src="app/images/download.gif" alt=""/>Télécharger</a>
 						</section>
 						
 			       </div>

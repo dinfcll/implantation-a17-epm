@@ -32,6 +32,7 @@ export class PageCatComponent implements OnInit
     m_TabCat: Categorie[];
     m_TabCrit: Critere[];
     m_TabRecherche: Critere[] = [];
+    m_EnvoieTrace: TraceDTO = null;
 
     constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService){}
 
@@ -111,7 +112,24 @@ export class PageCatComponent implements OnInit
     /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
     public onClickDeleteTrace(id: number)
     {
-        this.traceService.deleteTrace(id).subscribe(reponse => this.AffichageRepDel(reponse));
+        if(confirm("Voulez-vous vraiment supprimer définitivement le tracé #" + id  + "?"))
+         {
+            this.traceService.deleteTrace(id).subscribe(reponse => this.AffichageRepDel(reponse));
+         }
+         else
+         {
+             console.log("ABORT");
+         }
+
+    }
+
+    public onClickAddTrace()
+    {
+        if(this.m_EnvoieTrace != null)
+        {
+            this.traceService.addTrace(this.m_EnvoieTrace).subscribe(reponse => this.AffichageRepAdd(reponse));
+        }
+        
     }
 
     private AffichageRepDel(param: any) // Si le param est une string !
@@ -119,10 +137,15 @@ export class PageCatComponent implements OnInit
         console.log(param);
     }
 
+    private AffichageRepAdd(param: any) // Si le param est une string !
+    {
+        console.log(param);
+    }
+
     private getCritIDS() : number[]
     {
         let j =  0;
-        let TabID: number[];
+        let TabID: number[] = [];
 
         while(j < this.m_TabCrit.length)
         {
@@ -133,36 +156,22 @@ export class PageCatComponent implements OnInit
         return TabID;
     }
 
-
-    fileChange(event) // TU ES ICI !!! IL TE MANQUE À FAIRE LE SERVICE
-    {
+public fileChange(event) // TU ES ICI !!! IL TE MANQUE À FAIRE LE SERVICE
+{
     
     let fileList: FileList = event.target.files;
 
     if(fileList.length > 0) 
     {
         let file: File = fileList[0];
-        let Envoietrace: TraceDTO = new TraceDTO(file,this.getCritIDS(), file.name);
+        this.m_EnvoieTrace = new TraceDTO(file,this.getCritIDS(), file.name);
         
         
         /*let formData:FormData = new FormData();
         formData.append('uploadFile', file, file.name);  // Formulaire qui va contenir mon fichier*/
         
-        let headers = new Headers();
-        headers.append('Accept', 'application/json');
-
-        console.log(file.type);
-        
-        //this.traceService.addTrace()
-       /* let options = new RequestOptions({ headers: headers });
-
-        this.http.post(`${this.apiEndPoint}`, formData, options)
-            .map(res => res.json())
-            .catch(error => Observable.throw(error))
-            .subscribe(
-                data => console.log('success'),
-                error => console.log(error)
-            )*/
+        /*let headers = new Headers();
+        headers.append('Accept', 'application/json');*/
     }
 }
 

@@ -58,7 +58,7 @@
 	background-position: right;
 }
 
-#btnSupprimerTrace{
+#btnAjouterTrace{
 position:absolute;
 	left:70%;
 	bottom:10%;
@@ -76,6 +76,15 @@ position:absolute;
 	background-position: right;
 }
 
+#btnSupprimerTrace{
+background-color: rgba(125, 141, 163, 0.71);
+	border-radius: 5px;
+	color: white;
+	display: block;
+	float: right;
+
+}
+
 
 
 .Trace{
@@ -89,6 +98,7 @@ position:absolute;
 
 #lientelechargement{
 	float: right;
+	margin-right: 25px;
 }
 
 
