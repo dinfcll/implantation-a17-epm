@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var tracedto_1 = require("./tracedto");
 //Importation des services 
 var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
@@ -20,6 +21,7 @@ var PageCatComponent = (function () {
         this.catService = catService;
         this.critService = critService;
         this.m_TabRecherche = [];
+        this.m_EnvoieTrace = null;
     }
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     PageCatComponent.prototype.ngOnInit = function () {
@@ -76,33 +78,43 @@ var PageCatComponent = (function () {
     /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
     PageCatComponent.prototype.onClickDeleteTrace = function (id) {
         var _this = this;
-        this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
+        if (confirm("Voulez-vous vraiment supprimer le tracé #" + id + "?")) {
+            this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
+        }
+        else {
+            console.log("ABORT");
+        }
+    };
+    PageCatComponent.prototype.onClickAddTrace = function () {
+        var _this = this;
+        if (this.m_EnvoieTrace != null) {
+            this.traceService.addTrace(this.m_EnvoieTrace).subscribe(function (reponse) { return _this.AffichageRepAdd(reponse); });
+        }
     };
     PageCatComponent.prototype.AffichageRepDel = function (param) {
         console.log(param);
     };
+    PageCatComponent.prototype.AffichageRepAdd = function (param) {
+        console.log(param);
+    };
+    PageCatComponent.prototype.getCritIDS = function () {
+        var j = 0;
+        var TabID = [];
+        while (j < this.m_TabCrit.length) {
+            TabID[j] = this.m_TabCrit[j].critId;
+            j++;
+        }
+        return TabID;
+    };
     PageCatComponent.prototype.fileChange = function (event) {
-        //let Envoietrace: TraceDTO = new TraceDTO();
         var fileList = event.target.files;
         if (fileList.length > 0) {
             var file = fileList[0];
-            //Envoietrace.fich = file;
-            //Envoietrace.nomfich = file.name;
+            this.m_EnvoieTrace = new tracedto_1.TraceDTO(file, this.getCritIDS(), file.name);
             /*let formData:FormData = new FormData();
             formData.append('uploadFile', file, file.name);  // Formulaire qui va contenir mon fichier*/
-            var headers = new Headers();
-            headers.append('Accept', 'application/json');
-            console.log(file.type);
-            //this.traceService.addTrace()
-            /* let options = new RequestOptions({ headers: headers });
-     
-             this.http.post(`${this.apiEndPoint}`, formData, options)
-                 .map(res => res.json())
-                 .catch(error => Observable.throw(error))
-                 .subscribe(
-                     data => console.log('success'),
-                     error => console.log(error)
-                 )*/
+            /*let headers = new Headers();
+            headers.append('Accept', 'application/json');*/
         }
     };
     return PageCatComponent;
