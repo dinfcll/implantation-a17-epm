@@ -6,8 +6,9 @@
 					<div class="ListeDeroulanteCategorie">
 						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
 						<select class="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()" size="8">
-							 <option *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ.catId)">
+							 <option id="ElementListe" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ.catId)">
 								 {{categ.catNom}}
+								 
 							</option>
 						</select>
 					</div>
@@ -24,7 +25,7 @@
 					</ul>
 					<input  id="parcourir" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
 					<button id="btnSupprimerTrace" (click)="OnClickDeleteTrace(0)"><span><img src="app/images/delete.gif" alt=""/>Supprimer le tracé</span></button> <!-- J'ai mit 0 par défaut (le premier)' -->
-					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/> Rechercher</span></button>				
+					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/>Rechercher</span></button>				
 				</td>
 			</tr>
 			<tr id="DeuxiemeLigne">
@@ -32,8 +33,8 @@
 					<div class="ListeDeroulanteCritere">
 						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
 					  	<select class="ListeCritere" (click)="OnClickListeDeroulanteCritere()" size="8">
-							<option *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)">
-								<img src="../images/add.gif" alt=""/>
+							<option id="ElementListe" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)">
+								<img src="app/images/add.gif" alt="non" />
 								{{critere.critNom}}
 							</option>
 						</select>
