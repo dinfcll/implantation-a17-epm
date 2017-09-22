@@ -78,7 +78,7 @@ var PageCatComponent = (function () {
     /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
     PageCatComponent.prototype.onClickDeleteTrace = function (id) {
         var _this = this;
-        if (confirm("Voulez-vous vraiment supprimer le tracé #" + id + "?")) {
+        if (confirm("Voulez-vous vraiment supprimer définitivement le tracé #" + id + "?")) {
             this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
         }
         else {

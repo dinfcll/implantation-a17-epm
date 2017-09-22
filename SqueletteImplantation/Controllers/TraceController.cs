@@ -108,7 +108,7 @@ namespace SqueletteImplantation.Controllers
 
         //supprimer un tracé selon son id
         [HttpDelete]
-        [Route("api/Trace/{id}")]
+        [Route("api/TraceListe/{id}")]
         public IActionResult DeleteTrace(int id)
         {
             var trace = _maBd.Trace.FirstOrDefault(t => t.TracId == id);

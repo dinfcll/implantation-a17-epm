@@ -22,7 +22,7 @@ export class TraceService
     //Permet d'envoyer une requête de suppression d'un certain Tracé au "controller".
     deleteTrace(id: number)
     {
-        const url = `${this.TracesURL}/${id}`;
+        const url = `${this.TracesURL}${id}`;
         return this.http.delete(url);
     }
 
