@@ -6,11 +6,11 @@
 					<div class="ListeDeroulanteCategorie">
 						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
 						<div id="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()" class="ContenuListeDeroulanteCategorie">
-							 <select id="ListBoxCat" name="Catégorie" size="6">
-									<option *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ.catId)">
-										{{categ.catNom}}
-									</option>
-							 </select>	
+							 <div *ngFor ="let categ of m_TabCat">
+								<a (click)="OnClickCategorie(categ.catId)">
+									{{categ.catNom}}
+								</a>
+							</div>
 						</div>
 					</div>
                 </td>
