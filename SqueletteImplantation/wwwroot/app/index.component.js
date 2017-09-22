@@ -30,8 +30,6 @@ var IndexComponent = (function () {
         if (Valide.status === 200) {
             this.router.navigateByUrl('/choix');
         }
-        else
-            console.log("Pas trouvé");
     };
     return IndexComponent;
 }());

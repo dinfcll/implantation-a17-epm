@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var tracedto_1 = require("./tracedto");
+var router_1 = require("@angular/router");
 //Importation des services 
 var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
@@ -92,37 +92,6 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageRepDel = function (param) {
         console.log(param);
-    };
-    PageCatComponent.prototype.getCritIDS = function () {
-        var j = 0;
-        var TabID;
-        while (j < this.m_TabCrit.length) {
-            TabID[j] = this.m_TabCrit[j].critId;
-            j++;
-        }
-        return TabID;
-    };
-    PageCatComponent.prototype.fileChange = function (event) {
-        var fileList = event.target.files;
-        if (fileList.length > 0) {
-            var file = fileList[0];
-            var Envoietrace = new tracedto_1.TraceDTO(file, this.getCritIDS(), file.name);
-            /*let formData:FormData = new FormData();
-            formData.append('uploadFile', file, file.name);  // Formulaire qui va contenir mon fichier*/
-            var headers = new Headers();
-            headers.append('Accept', 'application/json');
-            console.log(file.type);
-            //this.traceService.addTrace()
-            /* let options = new RequestOptions({ headers: headers });
-     
-             this.http.post(`${this.apiEndPoint}`, formData, options)
-                 .map(res => res.json())
-                 .catch(error => Observable.throw(error))
-                 .subscribe(
-                     data => console.log('success'),
-                     error => console.log(error)
-                 )*/
-        }
     };
     return PageCatComponent;
 }());
