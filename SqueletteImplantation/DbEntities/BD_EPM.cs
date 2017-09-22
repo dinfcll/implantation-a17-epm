@@ -12,7 +12,7 @@ namespace SqueletteImplantation.DbEntities
         public virtual DbSet<Critere> Critere { get; set; }
         public virtual DbSet<Trace> Trace { get; set; }
         public virtual DbSet<RelTracCrit> RelTracCrit { get; set; }
-
+		public virtual DbSet<Utilisateur> Utilisateur { get; set; }
 
         public BD_EPM(DbContextOptions options) : base(options)
         {
@@ -33,8 +33,14 @@ namespace SqueletteImplantation.DbEntities
             new TraceMap(modelBuilder.Entity<Trace>());
 
             new RelTracCritMap(modelBuilder.Entity<RelTracCrit>());
+			
+			new UtilisateurMap(modelBuilder.Entity<Utilisateur>());
 
             //Auto incréments
+			modelBuilder.Entity<Utilisateur>()
+                .Property(u => u.UtilId)
+                .ValueGeneratedOnAdd();
+				
             modelBuilder.Entity<Domaine>()
                 .Property(d => d.DomId)
                 .ValueGeneratedOnAdd();

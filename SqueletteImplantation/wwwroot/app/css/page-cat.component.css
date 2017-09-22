@@ -1,25 +1,25 @@
-:root{
-	--CouleurTheme: #1976d2;
-	--CouleurThemeHover: #328ce7;
-}
-
 
 
 .TableEspacePrincipalCat{
-    width: 100%;
+	width: 100%;
+    background-size:100%;
+    background-position:center;
+	background-attachment:fixed;
+	background-repeat: no-repeat;	
     border-spacing: 0px;
 	position: absolute;
 	top: 0px;    
 }
 
+
 #ChoixCategorie{
 	height: 0vh;
 }
 
-#ChoixCritere{
+#ChoixCritere{	
     height: 0vh;
     border-bottom-style: solid;
-    border-bottom-color: black;
+    border-bottom-color: var(--CouleurTheme);
     box-shadow: 0px 5px 4px -2px #8c8c8c;
 }
 
@@ -29,8 +29,8 @@
 	height: 0vh;
 	width: 138vw;
 	border-bottom-style: solid;
-    border-bottom-color: black;
-    border-left-color: black;
+    border-bottom-color: var(--CouleurTheme);
+    border-left-color: var(--CouleurTheme);
     border-left-style: solid;
     box-shadow: 0px 5px 4px -2px #8c8c8c;
     position: relative;
@@ -50,21 +50,7 @@
 	padding: 3px;
 	border-radius:5px;	
 	border: none;
-	background-color: #F8F8FF;
-	font-size: 20px;
-}
-
-#btnChercher{
-	position:absolute;
-	left:85%;
-	bottom:10%;
-	border-radius:5px;	
-	border: none;
-	background-color: var(--CouleurTheme);
-	cursor: pointer;
-	color: white;
-	padding: 8px;
-	padding-left: 0px;
+	background-color: #EAEDED;
 	font-size: 20px;
     width: 140px;
 	background-size: 20px 20px;
@@ -90,11 +76,20 @@ position:absolute;
 	background-position: right;
 }
 
-	
 
 
+.Trace{
+	background-color: rgba(125, 141, 163, 0.71);
+	margin: 20px;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	display: block;
+}
 
-
+#lientelechargement{
+	float: right;
+}
 
 
 
@@ -105,7 +100,7 @@ position:absolute;
 .btnCategorie, .btnCritere{
 	border: none;
 	border-radius:5px;
-	background-color: var(--CouleurTheme);
+	background-color:var(--CouleurTheme);
 	cursor: pointer;
 	color: white;
 	padding: 8px;
@@ -118,6 +113,27 @@ position:absolute;
 	background-repeat: no-repeat;
 	background-position: right;
 	
+}
+#btnChercher{
+	position:absolute;
+	left:85%;
+	bottom:10%;
+	border-radius:5px;	
+	border: none;
+	background-color: var(--CouleurTheme);
+	cursor: pointer;
+	color: white;
+	padding: 8px;
+	padding-left: 0px;
+	font-size: 20px;
+    width: 140px;
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: right;
+}
+#btnChercher:hover{
+
+	background:linear-gradient(white 7%,var(--CouleurThemeHover));
 }
 
 .btnCategorie:hover, .btnCategorie:focus, .btnCritere:hover, .btnCritere:focus{
@@ -171,7 +187,12 @@ position:absolute;
 	display: block;
 }
 
+
+
 #ListeCritere:hover{
+	cursor: pointer;
+}
+#ChoixCategorie:hover{
 	cursor: pointer;
 }
 
