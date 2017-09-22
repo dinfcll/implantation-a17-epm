@@ -4,15 +4,16 @@ import { Injectable } from '@angular/core';
 
 
 @Injectable()
-export class UtilisateurService 
+export class UtilisateurService
 {
-    private UtilisateurURL = 'api/UtilisateurListe/';
-    private headers = new Headers({ 'Content-Type': 'application/json' });
+    private UtilisateurURL = 'api/utilisateur/login';
 
     constructor(private http: Http) { }
 
-     postUtilisateur(param: any)
+    postUtilisateur(util: Utilisateur)
     {
-        return this.http.post(this.UtilisateurURL,param);
+        let headers = new Headers();
+        headers.append('Content-type', 'application/json');
+        return this.http.post(this.UtilisateurURL, JSON.stringify({ "UtilPWD": util.UtilPWD, "UtilUserName": util.UtilUserName }), { headers });
     }
-}
+} 

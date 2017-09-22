@@ -2,10 +2,10 @@
 	<div class="FormulaireConnexion">
 		<div id="divConnexion">
 			<p><label>Nom d'utilisateur: </label>
-			<input type="text" name="utilisateur" #utilisateur="ngModel" required></p>
+			<input type="text" [(ngModel)]="utilisateur" name="utilisateur" required></p>
 			<p><label>Mot de passe: </label>
-			<input type="password" name="motdepasse" #motdepasse="ngModel" required></p>
+			<input type="password" [(ngModel)]="motdepasse" name="motdepasse" required></p>
 		</div>
-		<p> <button type="button" id="btnConnexion">Connexion</button></p>
+		<p> <button type="submit" id="btnConnexion">Connexion</button></p>
 	</div>
-</form>
+</form> 

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var utilisateur_1 = require("./utilisateur");
 var utilisateur_service_1 = require("./utilisateur.service");
 var IndexComponent = (function () {
     function IndexComponent(router, utilServ) {
@@ -18,14 +19,19 @@ var IndexComponent = (function () {
         this.utilServ = utilServ;
     }
     IndexComponent.prototype.Connexion = function (f) {
+        var _this = this;
         console.log(f);
-        /*let util: Utilisateur = new Utilisateur(null, null, f.value.motdepasse ,f.value.utilisateur, null, null);
+        var util = new utilisateur_1.Utilisateur(null, null, null, f.value.motdepasse, f.value.utilisateur, null, null);
         console.log(util.UtilPWD);
-
-       this.utilServ.postUtilisateur(util).subscribe(reponse => this.ValidationConnexion(reponse));*/
+        this.utilServ.postUtilisateur(util).subscribe(function (Reponse) { return _this.ValidationConnexion(Reponse); });
     };
-    IndexComponent.prototype.ValidationConnexion = function (param) {
-        this.router.navigateByUrl("/choix");
+    IndexComponent.prototype.ValidationConnexion = function (Valide) {
+        console.log(Valide);
+        if (Valide.status === 200) {
+            this.router.navigateByUrl('/choix');
+        }
+        else
+            console.log("Pas trouvé");
     };
     return IndexComponent;
 }());

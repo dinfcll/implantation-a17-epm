@@ -16,17 +16,22 @@ export class IndexComponent
 { 
     constructor(private router: Router, private utilServ: UtilisateurService) { }
 
-    public Connexion(f: NgForm): void 
+    public Connexion(f: NgForm): void
     {
         console.log(f);
-        /*let util: Utilisateur = new Utilisateur(null, null, f.value.motdepasse ,f.value.utilisateur, null, null);
+        let util: Utilisateur = new Utilisateur(null, null, null, f.value.motdepasse, f.value.utilisateur, null, null);
         console.log(util.UtilPWD);
-
-       this.utilServ.postUtilisateur(util).subscribe(reponse => this.ValidationConnexion(reponse));*/
+        this.utilServ.postUtilisateur(util).subscribe(Reponse => this.ValidationConnexion(Reponse));
     }
 
-    private ValidationConnexion(param: any) 
+    private ValidationConnexion(Valide: any)
     {
-        this.router.navigateByUrl("/choix");
+        console.log(Valide);
+        if (Valide.status === 200)
+        {
+            this.router.navigateByUrl('/choix');
+        }
+        else
+            console.log("Pas trouvé");
     }
 }
