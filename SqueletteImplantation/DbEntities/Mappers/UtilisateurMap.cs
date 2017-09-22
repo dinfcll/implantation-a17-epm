@@ -14,6 +14,7 @@ namespace SqueletteImplantation.DbEntities.Mappers
             entityBuilder.Property(u => u.UtilNom).IsRequired();
             entityBuilder.Property(u => u.UtilPWD).IsRequired();
             entityBuilder.Property(u => u.UtilUserName).IsRequired();
+            //entityBuilder.Property(u => u.UtilUserName).IsUnique();
             entityBuilder.Property(u => u.UtilEmail).IsRequired();
             entityBuilder.Property(u => u.UtilType).IsRequired();
         }
