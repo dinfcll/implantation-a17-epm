@@ -10,16 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var tracedto_1 = require("./tracedto");
+var router_1 = require("@angular/router");
 //Importation des services 
 var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
 var critere_service_1 = require("./critere.service");
 var PageCatComponent = (function () {
-    function PageCatComponent(traceService, catService, critService) {
+    function PageCatComponent(traceService, catService, critService, router) {
         this.traceService = traceService;
         this.catService = catService;
         this.critService = critService;
+        this.router = router;
         this.m_TabRecherche = [];
         this.m_EnvoieTrace = null;
     }
@@ -80,42 +81,17 @@ var PageCatComponent = (function () {
         var _this = this;
         if (confirm("Voulez-vous vraiment supprimer définitivement le tracé #" + id + "?")) {
             this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
+            window.location.reload();
         }
         else {
             console.log("ABORT");
         }
     };
     PageCatComponent.prototype.onClickAddTrace = function () {
-        var _this = this;
-        if (this.m_EnvoieTrace != null) {
-            this.traceService.addTrace(this.m_EnvoieTrace).subscribe(function (reponse) { return _this.AffichageRepAdd(reponse); });
-        }
+        this.router.navigateByUrl('/ajout');
     };
     PageCatComponent.prototype.AffichageRepDel = function (param) {
         console.log(param);
-    };
-    PageCatComponent.prototype.AffichageRepAdd = function (param) {
-        console.log(param);
-    };
-    PageCatComponent.prototype.getCritIDS = function () {
-        var j = 0;
-        var TabID = [];
-        while (j < this.m_TabCrit.length) {
-            TabID[j] = this.m_TabCrit[j].critId;
-            j++;
-        }
-        return TabID;
-    };
-    PageCatComponent.prototype.fileChange = function (event) {
-        var fileList = event.target.files;
-        if (fileList.length > 0) {
-            var file = fileList[0];
-            this.m_EnvoieTrace = new tracedto_1.TraceDTO(file, this.getCritIDS(), file.name);
-            /*let formData:FormData = new FormData();
-            formData.append('uploadFile', file, file.name);  // Formulaire qui va contenir mon fichier*/
-            /*let headers = new Headers();
-            headers.append('Accept', 'application/json');*/
-        }
     };
     return PageCatComponent;
 }());
@@ -128,7 +104,7 @@ PageCatComponent = __decorate([
     })
     //À compléter
     ,
-    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService])
+    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService, router_1.Router])
 ], PageCatComponent);
 exports.PageCatComponent = PageCatComponent;
 //# sourceMappingURL=page-cat.component.js.map
