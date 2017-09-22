@@ -31,7 +31,5 @@ export class IndexComponent
         {
             this.router.navigateByUrl('/choix');
         }
-        else
-            console.log("Pas trouvé");
     }
 }
