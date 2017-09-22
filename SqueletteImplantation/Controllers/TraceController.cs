@@ -86,7 +86,9 @@ namespace SqueletteImplantation.Controllers
             {
                 Trace trace;
 
-                if(_uploadService.upload(nouvtrace.fich, TraceDTO.Chemin +  nouvtrace.fich.FileName))
+                string chemin = nouvtrace.fich == null ? "" : nouvtrace.fich.FileName; // à modifier
+
+                if(_uploadService.upload(nouvtrace.fich, TraceDTO.Chemin +  chemin))
                 {
                     trace = nouvtrace.CreateTrace();
                     _maBd.Add(trace);
