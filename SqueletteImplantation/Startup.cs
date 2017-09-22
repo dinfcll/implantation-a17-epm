@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using SqueletteImplantation.DbEntities;
+using SqueletteImplantation.Controllers;
 
 namespace SqueletteImplantation
 {
@@ -34,6 +35,8 @@ namespace SqueletteImplantation
 
             services.AddDbContext<BD_EPM>(
                 options => options.UseNpgsql(@"Host=10.2.3.67;Database=BD_EPM;Username=postgres;Password=admin123"));
+
+            services.AddTransient<UploadService, RealUpload>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -24,7 +24,7 @@ var TraceService = (function () {
     };
     //Permet d'envoyer une requête de suppression d'un certain Tracé au "controller".
     TraceService.prototype.deleteTrace = function (id) {
-        var url = this.TracesURL + "/" + id;
+        var url = "" + this.TracesURL + id;
         return this.http.delete(url);
     };
     //Permet d'envoyer une requête HTTP d'ajout de Tracé.

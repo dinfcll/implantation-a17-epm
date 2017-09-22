@@ -6,7 +6,7 @@
 					<div class="ListeDeroulanteCategorie">
 						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
 						<div id="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()" class="ContenuListeDeroulanteCategorie">
-							<div *ngFor ="let categ of m_TabCat">
+							 <div *ngFor ="let categ of m_TabCat">
 								<a (click)="OnClickCategorie(categ.catId)">
 									{{categ.catNom}}
 								</a>
@@ -19,7 +19,7 @@
 						<table>
 							<tr>
 								<td *ngFor="let choix of m_TabRecherche"  id="CritereChoisi">
-									<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)" style="cursor:pointer;"/> {{choix.critNom}}</span>
+									<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)" (click)="OnClickRechercher()" style="cursor:pointer;"/> {{choix.critNom}}</span>
 								</td>
 							</tr>
 						</table>
@@ -33,9 +33,11 @@
 					<div class="ListeDeroulanteCritere">
 					  <button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
 						<div id="ListeCritere" (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
-						    <span *ngFor ="let critere of m_TabCrit">
-								<a (click)="OnClickCritere(critere)"><img src="app/images/add.png" alt=""/> {{critere.critNom}}</a>
-						    </span>	
+							<select id="ListBoxCrit" name="Criteres" size="8">
+								<option *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)">
+									<img src="app/images/add.gif" alt=""/> {{critere.critNom}}
+								</option>
+							</select>
 						</div>	
 					</div>
 				</td>
