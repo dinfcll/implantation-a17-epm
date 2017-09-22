@@ -24,18 +24,12 @@ var TraceService = (function () {
     };
     //Permet d'envoyer une requête de suppression d'un certain Tracé au "controller".
     TraceService.prototype.deleteTrace = function (id) {
-        var url = this.TracesURL + "/" + id;
-        return this.http.delete(url, { headers: this.headers })
-            .toPromise()
-            .then(function () { return null; })
-            .catch(this.GestionErreur);
+        var url = "" + this.TracesURL + id;
+        return this.http.delete(url);
     };
     //Permet d'envoyer une requête HTTP d'ajout de Tracé.
     TraceService.prototype.addTrace = function (trace) {
-        return this.http.post(this.TracesURL, JSON.stringify({ trace: trace }), { headers: this.headers })
-            .toPromise()
-            .then(function (res) { return res.json().data; })
-            .catch(this.GestionErreur);
+        return this.http.post(this.TracesURL + "post", trace, this.headers);
     };
     TraceService.prototype.GestionErreur = function (error) {
         console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"

@@ -17,6 +17,7 @@ var app_component_1 = require("./app.component");
 var index_component_1 = require("./index.component");
 var page_cat_component_1 = require("./page-cat.component");
 var choix_component_1 = require("./choix.component");
+var page_ajout_admin_component_1 = require("./page-ajout-admin.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,8 +25,8 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, app_routing_module_1.routes, http_1.HttpModule, forms_1.FormsModule],
-        declarations: [index_component_1.IndexComponent, page_cat_component_1.PageCatComponent, app_component_1.AppComponent, choix_component_1.ChoixComponent],
+        imports: [platform_browser_1.BrowserModule, app_routing_module_1.routes, http_1.HttpModule],
+        declarations: [index_component_1.IndexComponent, page_cat_component_1.PageCatComponent, app_component_1.AppComponent, choix_component_1.ChoixComponent, page_ajout_admin_component_1.AjoutAdminComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

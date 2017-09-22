@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.Models;
 using Microsoft.EntityFrameworkCore;
+using SqueletteImplantation.DbEntities.DTOs;
 
 namespace SqueletteImplantation.Controllers
 {
@@ -13,9 +14,12 @@ namespace SqueletteImplantation.Controllers
     {
         private readonly BD_EPM _maBd;
 
-        public TraceController(BD_EPM maBd)
+        private readonly UploadService _uploadService;
+
+        public TraceController(BD_EPM maBd, UploadService uploadService)
         {
             _maBd = maBd;
+            _uploadService = uploadService;
         }
 
         //obtenir la liste de tous les tracés
@@ -30,7 +34,7 @@ namespace SqueletteImplantation.Controllers
 
         [HttpGet]
         [Route("api/Trace/{id}")]
-        public IActionResult CetTrace(int id)
+        public IActionResult GetTrace(int id)
         {
             var trace = _maBd.Trace.FirstOrDefault(t => t.TracId == id);
 
@@ -73,27 +77,40 @@ namespace SqueletteImplantation.Controllers
         }
 
 
-        //modifier un trace selon son id
-        [HttpPut]
-        [Route("api/Trace/{id}")]
-        public IActionResult ModifyTrace(Trace updatedTrace)
+        //Ajout de trace
+        [HttpPost]
+        [Route("api/ajouttrace")]
+        public IActionResult AjoutTrace(TraceDTO nouvtrace)
         {
-            var trace = _maBd.Trace.FirstOrDefault(t =>t.TracId  == updatedTrace.TracId);
-
-            if (trace == null)
+            if(nouvtrace.id.Length > 0 && (nouvtrace.nomfich != "" || nouvtrace.nomfich != null))
             {
-                return NotFound();
+                Trace trace;
+
+                string chemin = nouvtrace.fich == null ? "" : nouvtrace.fich.FileName; // à modifier
+
+                if(_uploadService.upload(nouvtrace.fich, TraceDTO.Chemin +  chemin))
+                {
+                    trace = nouvtrace.CreateTrace();
+                    _maBd.Add(trace);
+                    _maBd.SaveChanges();
+
+                    RelTracCrit relation;
+                    for (int i = 0; i < nouvtrace.id.Length; i++)
+                    {
+                        relation = new RelTracCrit { CritId = nouvtrace.id[i], TracId = trace.TracId };
+                        _maBd.Add(relation);
+                    }
+                    _maBd.SaveChanges();
+                    return new OkObjectResult(trace);
+                }
             }
-
-            _maBd.Entry(trace).CurrentValues.SetValues(updatedTrace);
-
-            return new OkResult();
+            return new NoContentResult();
         }
 
 
         //supprimer un tracé selon son id
         [HttpDelete]
-        [Route("api/Trace/{id}")]
+        [Route("api/TraceListe/{id}")]
         public IActionResult DeleteTrace(int id)
         {
             var trace = _maBd.Trace.FirstOrDefault(t => t.TracId == id);

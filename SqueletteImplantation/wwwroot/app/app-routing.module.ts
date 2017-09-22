@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { PageCatComponent} from './page-cat.component';
+import { AjoutAdminComponent} from './page-ajout-admin.component';
 import { IndexComponent } from './index.component';
 import {ChoixComponent} from './choix.component';
 
@@ -15,6 +16,7 @@ export const router: Routes =
   { path: 'categorie', component: PageCatComponent},
   { path: 'index', component: IndexComponent },
   { path: 'choix', component: ChoixComponent},
+  { path: 'ajout', component: AjoutAdminComponent},
   { path: '**', component: IndexComponent}
 ];
  

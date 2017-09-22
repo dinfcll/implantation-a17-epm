@@ -10,16 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var tracedto_1 = require("./tracedto");
 //Importation des services 
 var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
 var critere_service_1 = require("./critere.service");
 var PageCatComponent = (function () {
-    function PageCatComponent(traceService, catService, critService) {
+    function PageCatComponent(traceService, catService, critService, router) {
         this.traceService = traceService;
         this.catService = catService;
         this.critService = critService;
+        this.router = router;
         this.m_TabRecherche = [];
+        this.m_EnvoieTrace = null;
     }
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     PageCatComponent.prototype.ngOnInit = function () {
@@ -41,10 +44,10 @@ var PageCatComponent = (function () {
         console.log(this.m_TabTrace);
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
-        document.getElementById("ListeCritere").classList.toggle("showCritere");
+        document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
-        document.getElementById("ListeCategorie").classList.toggle("showCategorie");
+        document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
     };
     //Action lors de la sélection d'une catégorie
     PageCatComponent.prototype.OnClickCategorie = function (id) {
@@ -73,6 +76,54 @@ var PageCatComponent = (function () {
         RequeteId = RequeteId.substr(0, RequeteId.length - 1);
         this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
     };
+    /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
+    PageCatComponent.prototype.onClickDeleteTrace = function (id) {
+        var _this = this;
+        if (confirm("Voulez-vous vraiment supprimer définitivement le tracé #" + id + "?")) {
+            this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
+            window.location.reload();
+        }
+        else {
+            console.log("ABORT");
+        }
+    };
+    PageCatComponent.prototype.onClickAddTrace = function () {
+        this.router.navigateByUrl('/ajout');
+    };
+    PageCatComponent.prototype.AffichageRepDel = function (param) {
+        console.log(param);
+    };
+    PageCatComponent.prototype.getCritIDS = function () {
+        var j = 0;
+        var TabID;
+        while (j < this.m_TabCrit.length) {
+            TabID[j] = this.m_TabCrit[j].critId;
+            j++;
+        }
+        return TabID;
+    };
+    PageCatComponent.prototype.fileChange = function (event) {
+        var fileList = event.target.files;
+        if (fileList.length > 0) {
+            var file = fileList[0];
+            var Envoietrace = new tracedto_1.TraceDTO(file, this.getCritIDS(), file.name);
+            /*let formData:FormData = new FormData();
+            formData.append('uploadFile', file, file.name);  // Formulaire qui va contenir mon fichier*/
+            var headers = new Headers();
+            headers.append('Accept', 'application/json');
+            console.log(file.type);
+            //this.traceService.addTrace()
+            /* let options = new RequestOptions({ headers: headers });
+     
+             this.http.post(`${this.apiEndPoint}`, formData, options)
+                 .map(res => res.json())
+                 .catch(error => Observable.throw(error))
+                 .subscribe(
+                     data => console.log('success'),
+                     error => console.log(error)
+                 )*/
+        }
+    };
     return PageCatComponent;
 }());
 PageCatComponent = __decorate([
@@ -84,7 +135,7 @@ PageCatComponent = __decorate([
     })
     //À compléter
     ,
-    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService])
+    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService, router_1.Router])
 ], PageCatComponent);
 exports.PageCatComponent = PageCatComponent;
 //# sourceMappingURL=page-cat.component.js.map
