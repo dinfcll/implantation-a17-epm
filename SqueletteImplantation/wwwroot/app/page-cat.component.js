@@ -34,10 +34,20 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageCat = function (param) {
         this.m_TabCat = param.json();
         console.log(this.m_TabCat);
+        if (this.m_TabCat.length < 8) {
+            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
+        }
+        //document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());   
     };
     PageCatComponent.prototype.AffichageCrit = function (param) {
         this.m_TabCrit = param.json();
         console.log(this.m_TabCrit);
+        if (this.m_TabCrit.length < 8) {
+            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+        }
+        else {
+            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
+        }
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();

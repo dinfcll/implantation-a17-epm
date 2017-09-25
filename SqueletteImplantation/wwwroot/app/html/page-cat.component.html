@@ -5,8 +5,8 @@
 				<td id="ChoixCategorie">  
 					<div class="ListeDeroulanteCategorie">
 						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
-						<select class="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()" size="8">
-							 <option id="ElementListe" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ.catId)">
+						<select class="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()">
+							 <option id="ElementListe" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ.catId)" title="{{categ.catNom}}">
 								 {{categ.catNom}}
 								 
 							</option>
@@ -31,8 +31,8 @@
 				<td id="ChoixCritere">
 					<div class="ListeDeroulanteCritere">
 						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
-					  	<select class="ListeCritere" (click)="OnClickListeDeroulanteCritere()" size="8">
-							<option id="ElementListe" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)">
+					  	<select class="ListeCritere" (click)="OnClickListeDeroulanteCritere()">
+							<option id="ElementListe" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
 								<img src="app/images/add.gif" alt="non" />
 								{{critere.critNom}}
 							</option>
