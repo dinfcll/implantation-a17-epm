@@ -32,6 +32,7 @@ export class AjoutAdminComponent implements OnInit
     m_TabRecherche: Critere[] = [];
     m_TabCritID: number[] = [];
     m_EnvoieTrace: TraceDTO = null;
+    m_File: File = null;
 
     constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http){}
 
@@ -103,7 +104,7 @@ export class AjoutAdminComponent implements OnInit
     {
         if(this.m_EnvoieTrace != null)
         {
-            this.traceService.addTrace(this.m_EnvoieTrace).subscribe(reponse => this.AffichageRepAdd(reponse));
+            this.http.post('api/ajoutfichier' , this.m_File).subscribe(reponse => this.FichierValide(reponse));
         }
         
     }
@@ -118,26 +119,23 @@ export class AjoutAdminComponent implements OnInit
 
 public fileChange(event) 
 {
-    
     let fileList: FileList = event.target.files;
     
-    
-
     if(fileList.length > 0) 
     {
-        let file: File = fileList[0];
-        this.http.post('api/ajoutfichier' , file).subscribe(reponse => this.FichierValide(reponse, file));
+        this.m_File = fileList[0];
     }
 }
 
-public FichierValide(retour :any, file:File) 
+public FichierValide(retour :any) 
 {
     if(retour.status === 200)
     {
         if(retour._body != null)
         {
-            console.log("Fichier envoyer avec succès !");
-            this.m_EnvoieTrace = new TraceDTO(this.m_TabCritID, file.name, retour._body);
+            console.log("Fichier envoyé avec succès !");
+            this.m_EnvoieTrace = new TraceDTO(this.m_TabCritID,this.m_File.name, retour._body);
+            this.traceService.addTrace(this.m_EnvoieTrace).subscribe(reponse => this.AffichageRepAdd(reponse));
         }
     }
 }
