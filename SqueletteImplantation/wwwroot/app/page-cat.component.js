@@ -37,7 +37,9 @@ var PageCatComponent = (function () {
         if (this.m_TabCat.length < 8) {
             document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
         }
-        //document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());   
+        else {
+            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");
+        }
     };
     PageCatComponent.prototype.AffichageCrit = function (param) {
         this.m_TabCrit = param.json();
