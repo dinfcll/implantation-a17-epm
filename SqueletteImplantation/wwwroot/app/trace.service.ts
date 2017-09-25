@@ -32,11 +32,5 @@ export class TraceService
       return this.http.post("/api/ajouttrace" , trace);
     } 
 
-
-    private GestionErreur(error: any): Promise<any> 
-    {
-       console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"
-       return Promise.reject(error.message || error);
-    }
 }
 
