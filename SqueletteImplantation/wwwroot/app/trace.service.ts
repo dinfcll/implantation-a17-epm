@@ -29,7 +29,7 @@ export class TraceService
     //Permet d'envoyer une requête HTTP d'ajout de Tracé.
     addTrace(trace: TraceDTO)
     {
-      return this.http.post('api/ajouttrace' , trace, this.headers);
+      return this.http.post("/api/ajouttrace" , trace);
     } 
 
 }
