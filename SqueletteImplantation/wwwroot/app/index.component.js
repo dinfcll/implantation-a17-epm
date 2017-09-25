@@ -13,10 +13,12 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var utilisateur_1 = require("./utilisateur");
 var utilisateur_service_1 = require("./utilisateur.service");
+var app_component_1 = require("./app.component");
 var IndexComponent = (function () {
-    function IndexComponent(router, utilServ) {
+    function IndexComponent(router, utilServ, appcomponent) {
         this.router = router;
         this.utilServ = utilServ;
+        this.appcomponent = appcomponent;
     }
     IndexComponent.prototype.Connexion = function (f) {
         var _this = this;
@@ -28,6 +30,12 @@ var IndexComponent = (function () {
     IndexComponent.prototype.ValidationConnexion = function (Valide) {
         console.log(Valide);
         if (Valide.status === 200) {
+            if (Valide._body != 0) {
+                this.appcomponent.SetType(false);
+            }
+            else {
+                this.appcomponent.SetType(true);
+            }
             this.router.navigateByUrl('/choix');
         }
     };
@@ -40,7 +48,7 @@ IndexComponent = __decorate([
         styleUrls: ['app/css/index.component.css'],
         providers: [utilisateur_service_1.UtilisateurService]
     }),
-    __metadata("design:paramtypes", [router_1.Router, utilisateur_service_1.UtilisateurService])
+    __metadata("design:paramtypes", [router_1.Router, utilisateur_service_1.UtilisateurService, app_component_1.AppComponent])
 ], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map

@@ -25,7 +25,7 @@ namespace SqueletteImplantation.Controllers
             {
                 return NotFound();
             }
-            return new OkResult();
+            return new OkObjectResult(login.UtilType);
         }
 
     }

@@ -14,9 +14,8 @@ namespace SqueletteTests
     public class TraceControllerTest
     {
         private readonly TraceController _traceController;
-        private static IFormFile fichierbidon = null;
-        private const string NomFich = "Test";
-        private TraceDTO nouvTrac = new TraceDTO { fich=fichierbidon, id=new int[] { 1,2,3,4} , nomfich= NomFich };
+        private const string NomFich = "Test.pdf";
+        private TraceDTO nouvTrac = new TraceDTO {Id=new int[] { 1,2,3,4} , Nomfich= NomFich, chemin = RealUpload.Chemin + NomFich };
 
         public TraceControllerTest()
         {
@@ -36,7 +35,7 @@ namespace SqueletteTests
             Assert.Equal(200, (created as OkObjectResult).StatusCode);
         }
 
-
+        
         [Fact]
         public void TraceDelete()
         {
@@ -46,7 +45,7 @@ namespace SqueletteTests
         }
 
  
-
+        
         [Fact]
         public void TestInMemoryAddRetrieveTrace()
         {
@@ -55,7 +54,7 @@ namespace SqueletteTests
             Assert.Equal(NomFich, ((resultat as OkObjectResult).Value as Trace).TraceNom);
 
         }
-
+        
         [Fact]
         public void AddDelGetNotFound()
         {
@@ -64,6 +63,7 @@ namespace SqueletteTests
             var result = _traceController.GetTrace(((created as OkObjectResult).Value as Trace).TracId);
             Assert.Equal(404, ((NotFoundResult)result).StatusCode);
         }
+        
     }
 
 
