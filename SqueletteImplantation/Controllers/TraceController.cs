@@ -7,6 +7,7 @@ using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.Models;
 using Microsoft.EntityFrameworkCore;
 using SqueletteImplantation.DbEntities.DTOs;
+using Microsoft.AspNetCore.Http;
 
 namespace SqueletteImplantation.Controllers
 {
@@ -79,32 +80,45 @@ namespace SqueletteImplantation.Controllers
 
         //Ajout de trace
         [HttpPost]
-        [Route("api/ajouttrace")]
-        public IActionResult AjoutTrace(TraceDTO nouvtrace)
+        [Route("api/ajoutfichier")]
+        public IActionResult AjoutFichier([FromBody] IFormFile trace)
         {
-            if(nouvtrace.id.Length > 0 && (nouvtrace.nomfich != "" || nouvtrace.nomfich != null))
+            string NomTrace;
+
+            if(trace != null)
+            {
+                NomTrace = trace.FileName;
+
+                if (_uploadService.upload(trace, RealUpload.Chemin + NomTrace))
+                {
+                    return new OkObjectResult(RealUpload.Chemin + NomTrace);
+                }
+            }
+            return new BadRequestResult();
+        }
+
+        [HttpPost]
+        [Route("api/ajouttrace")]
+        public IActionResult AjoutTrace([FromBody] TraceDTO nouvtrace)
+        {
+            if(nouvtrace.Id.Length > 0 && (nouvtrace.Nomfich != "" || nouvtrace.Nomfich != null) && (nouvtrace.chemin != null || nouvtrace.chemin != ""))
             {
                 Trace trace;
 
-                string chemin = nouvtrace.fich == null ? "" : nouvtrace.fich.FileName; // à modifier
+                trace = nouvtrace.CreateTrace();
+                _maBd.Add(trace);
+                _maBd.SaveChanges();
 
-                if(_uploadService.upload(nouvtrace.fich, TraceDTO.Chemin +  chemin))
+                RelTracCrit relation;
+                for (int i = 0; i < nouvtrace.Id.Length; i++)
                 {
-                    trace = nouvtrace.CreateTrace();
-                    _maBd.Add(trace);
-                    _maBd.SaveChanges();
-
-                    RelTracCrit relation;
-                    for (int i = 0; i < nouvtrace.id.Length; i++)
-                    {
-                        relation = new RelTracCrit { CritId = nouvtrace.id[i], TracId = trace.TracId };
-                        _maBd.Add(relation);
-                    }
-                    _maBd.SaveChanges();
-                    return new OkObjectResult(trace);
+                    relation = new RelTracCrit { CritId = nouvtrace.Id[i], TracId = trace.TracId };
+                    _maBd.Add(relation);
                 }
+                _maBd.SaveChanges();
+                return new OkObjectResult(trace);
             }
-            return new NoContentResult();
+            return new BadRequestResult();
         }
 
 

@@ -5,36 +5,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using SqueletteImplantation.DbEntities.Models;
 using System.IO;
+using SqueletteImplantation.Controllers;
 
 namespace SqueletteImplantation.DbEntities.DTOs
 {
     public class TraceDTO
     {
-        public IFormFile fich { get; set; }
-        public int[] id { get; set; }
-        public string nomfich { get; set; }
+        public int[] Id { get; set; }
+        public string Nomfich { get; set; }
+        public string chemin { get; set; }
 
-        public static string Chemin = "/media/EPM/Traces/";
+
 
         public Trace CreateTrace()
         {
             string NomFich = "Bidon.txt";
-            if(fich != null)
-            {
-                NomFich = fich.FileName;
-            }
-            return new Trace { TraceNom = nomfich, TracLogi = IdentificationLogiciel(), TracUrl = TraceDTO.Chemin + NomFich};
+            return new Trace { TraceNom = Nomfich, TracLogi = IdentificationLogiciel(), TracUrl = chemin};
         }
 
         private string IdentificationLogiciel()
         {
             string extension;
 
-            if (fich == null || fich.FileName == "")
+            if (chemin == null || chemin == "")
             {
                 return "Aucun fichier";
             }
-            extension = Path.GetExtension(fich.FileName);
+            extension = Path.GetExtension(chemin);
             switch (extension)
             {
                 case ".pdf":

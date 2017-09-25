@@ -115,7 +115,7 @@ export class AjoutAdminComponent implements OnInit
 
    
 
-public fileChange(event) 
+public fileChange(event:any) 
 {
     
     let fileList: FileList = event.target.files;
