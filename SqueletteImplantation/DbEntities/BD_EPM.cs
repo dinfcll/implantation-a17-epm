@@ -40,7 +40,11 @@ namespace SqueletteImplantation.DbEntities
 			modelBuilder.Entity<Utilisateur>()
                 .Property(u => u.UtilId)
                 .ValueGeneratedOnAdd();
-				
+
+            modelBuilder.Entity<Utilisateur>()
+                .HasIndex(u => u.UtilUserName)
+                .IsUnique();
+
             modelBuilder.Entity<Domaine>()
                 .Property(d => d.DomId)
                 .ValueGeneratedOnAdd();
