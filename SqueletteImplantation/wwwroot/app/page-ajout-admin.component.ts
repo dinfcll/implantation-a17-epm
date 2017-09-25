@@ -32,7 +32,8 @@ export class AjoutAdminComponent implements OnInit
     m_TabRecherche: Critere[] = [];
     m_TabCritID: number[] = [];
     m_EnvoieTrace: TraceDTO = null;
-    m_File: File = null;
+    m_File:File;
+    m_Form: FormData = null;
 
     constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http){}
 
@@ -102,10 +103,8 @@ export class AjoutAdminComponent implements OnInit
 
     public onClickAddTrace()
     {
-        if(this.m_EnvoieTrace != null)
-        {
-            this.http.post('api/ajoutfichier' , this.m_File).subscribe(reponse => this.FichierValide(reponse));
-        }
+        
+            this.http.post('api/ajoutfichier' , this.m_Form).subscribe(reponse => this.FichierValide(reponse));
         
     }
 
@@ -124,6 +123,8 @@ public fileChange(event:any)
     if(fileList.length > 0) 
     {
         this.m_File = fileList[0];
+        this.m_Form = new FormData();
+        this.m_Form.append('uploadFile', this.m_File);
     }
 }
 
