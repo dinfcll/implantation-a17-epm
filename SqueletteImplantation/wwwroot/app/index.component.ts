@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Utilisateur } from './utilisateur';
 import { UtilisateurService } from './utilisateur.service';
 import { NgForm } from '@angular/forms';
+import { AppComponent } from './app.component';
 
 
 @Component ({
@@ -14,7 +15,9 @@ import { NgForm } from '@angular/forms';
 
 export class IndexComponent 
 { 
-    constructor(private router: Router, private utilServ: UtilisateurService) { }
+    
+    constructor(private router: Router, private utilServ: UtilisateurService, private appcomponent: AppComponent) {
+    }
 
     public Connexion(f: NgForm): void
     {
@@ -29,6 +32,14 @@ export class IndexComponent
         console.log(Valide);
         if (Valide.status === 200)
         {
+            if (Valide._body != 0)
+            {
+                this.appcomponent.SetType(false);
+            }
+            else
+            {
+                this.appcomponent.SetType(true);
+            }
             this.router.navigateByUrl('/choix');
         }
     }

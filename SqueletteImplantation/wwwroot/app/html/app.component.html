@@ -16,6 +16,9 @@
 					</a>
 				</td>
                 <td id="Navigation" colspan="2">
+					<div id="divDeconnexion" *ngIf="TypeUser">
+						<button (click)="Deconnexion()" id="btnDeconnexion">Déconnexion</button>
+					</div>
                 </td> 
             </tr>
 
@@ -29,15 +32,13 @@
 				<td id="Menu">
 					<ul id="ulMenu">
                         <li id="ElementDansMenu">
-                            Administration
-							<!--<div *ngIf="edited" class="alert alert-success box-msg" role="alert">
-        						<strong>List Saved!</strong> Your changes has been saved.
-							</div>-->
+                            <div *ngIf="TypeUser">
+        						<strong>Menu administration</strong>
+							</div>
                         </li>
                         <li id="ElementDansMenu">
                             Historique
-                        </li>
-                    
+                        </li>                    
                     </ul>
 				</td>
 			</tr>
