@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Http } from '@angular/http';
 
 //Importation des classes
 import { Trace } from './trace';
@@ -31,8 +32,10 @@ export class AjoutAdminComponent implements OnInit
     m_TabRecherche: Critere[] = [];
     m_TabCritID: number[] = [];
     m_EnvoieTrace: TraceDTO = null;
+    m_File:File;
+    m_Form: FormData = null;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService){}
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http){}
 
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     ngOnInit(): void 
@@ -100,10 +103,8 @@ export class AjoutAdminComponent implements OnInit
 
     public onClickAddTrace()
     {
-        if(this.m_EnvoieTrace != null)
-        {
-            this.traceService.addTrace(this.m_EnvoieTrace).subscribe(reponse => this.AffichageRepAdd(reponse));
-        }
+        
+            this.http.post('api/ajoutfichier' , this.m_Form).subscribe(reponse => this.FichierValide(reponse));
         
     }
 
@@ -115,19 +116,30 @@ export class AjoutAdminComponent implements OnInit
 
    
 
-public fileChange(event) 
+public fileChange(event:any) 
 {
-    
     let fileList: FileList = event.target.files;
-
+    
     if(fileList.length > 0) 
     {
-        let file: File = fileList[0];
-
-        this.m_EnvoieTrace = new TraceDTO(file,this.m_TabCritID, file.name);
+        this.m_File = fileList[0];
+        this.m_Form = new FormData();
+        this.m_Form.append('uploadFile', this.m_File);
     }
 }
 
+public FichierValide(retour :any) 
+{
+    if(retour.status === 200)
+    {
+        if(retour._body != null)
+        {
+            console.log("Fichier envoyé avec succès !");
+            this.m_EnvoieTrace = new TraceDTO(this.m_TabCritID,this.m_File.name, retour._body);
+            this.traceService.addTrace(this.m_EnvoieTrace).subscribe(reponse => this.AffichageRepAdd(reponse));
+        }
+    }
+}
    
 
 

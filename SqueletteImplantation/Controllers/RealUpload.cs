@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System.IO;
 
 namespace SqueletteImplantation.Controllers
 {
     public class RealUpload : UploadService
     {
+        public static string Chemin = "/media/EPM/Traces/";
+
         public bool upload(IFormFile formFile, string chemin)
         {
+
             try
             {
                 using (FileStream upload = new FileStream(chemin + formFile.FileName, FileMode.CreateNew))
