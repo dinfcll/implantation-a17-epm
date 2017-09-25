@@ -59,10 +59,11 @@
 }
 
 #btnAjouterTrace{
-position:absolute;
-	left:70%;
+	position: absolute;
+	transform: translate(-100%);
+	right: 10%;
 	bottom:10%;
-	border-radius:5px;	
+	border-radius: 5px;	
 	border: none;
 	background-color: var(--CouleurTheme);
 	cursor: pointer;
@@ -78,10 +79,10 @@ position:absolute;
 
 
 #btnChercher{
-	position:absolute;
-	left:85%;
-	bottom:10%;
-	border-radius:5px;	
+	position: absolute;
+	right: 5%;
+	bottom: 10%;
+	border-radius: 5px;	
 	border: none;
 	background-color: var(--CouleurTheme);
 	cursor: pointer;
