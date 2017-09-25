@@ -29,14 +29,8 @@ export class TraceService
     //Permet d'envoyer une requête HTTP d'ajout de Tracé.
     addTrace(trace: TraceDTO)
     {
-      return this.http.post(this.TracesURL , trace, this.headers);
+      return this.http.post('api/ajouttrace' , trace, this.headers);
     } 
 
-
-    private GestionErreur(error: any): Promise<any> 
-    {
-       console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"
-       return Promise.reject(error.message || error);
-    }
 }
 

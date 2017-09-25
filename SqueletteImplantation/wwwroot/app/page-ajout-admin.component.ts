@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Http } from '@angular/http';
 
 //Importation des classes
 import { Trace } from './trace';
@@ -32,7 +33,7 @@ export class AjoutAdminComponent implements OnInit
     m_TabCritID: number[] = [];
     m_EnvoieTrace: TraceDTO = null;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService){}
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http){}
 
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     ngOnInit(): void 
@@ -119,15 +120,27 @@ public fileChange(event)
 {
     
     let fileList: FileList = event.target.files;
+    
+    
 
     if(fileList.length > 0) 
     {
         let file: File = fileList[0];
-
-        this.m_EnvoieTrace = new TraceDTO(file,this.m_TabCritID, file.name);
+        this.http.post('api/ajoutfichier' , file).subscribe(reponse => this.FichierValide(reponse, file));
     }
 }
 
+public FichierValide(retour :any, file:File) 
+{
+    if(retour.status === 200)
+    {
+        if(retour._body != null)
+        {
+            console.log("Fichier envoyer avec succès !");
+            this.m_EnvoieTrace = new TraceDTO(this.m_TabCritID, file.name, retour._body);
+        }
+    }
+}
    
 
 
