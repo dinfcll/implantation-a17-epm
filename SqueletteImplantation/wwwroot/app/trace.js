@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 //Selon la BD
 var Trace = (function () {
     function Trace(tracId, traceNom, tracUrl, tracLogi, reltraccrit) {

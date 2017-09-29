@@ -8,15 +8,17 @@ import { AjoutAdminComponent} from './page-ajout-admin.component';
 import { IndexComponent } from './index.component';
 import {ChoixComponent} from './choix.component';
 
+import { AuthentificationGuard } from './authentification.guard';
+
 
 
 export const router: Routes = 
 [
   { path: '', redirectTo: '/index', pathMatch: 'full' }, 
-  { path: 'categorie', component: PageCatComponent},
+  { path: 'categorie', component: PageCatComponent, canActivate: [AuthentificationGuard]},
   { path: 'index', component: IndexComponent },
-  { path: 'choix', component: ChoixComponent},
-  { path: 'ajout', component: AjoutAdminComponent},
+  { path: 'choix', component: ChoixComponent, canActivate: [AuthentificationGuard]},
+  { path: 'ajout', component: AjoutAdminComponent , canActivate: [AuthentificationGuard]},
   { path: '**', component: IndexComponent}
 ];
  

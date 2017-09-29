@@ -11,13 +11,15 @@ import { IndexComponent } from './index.component';
 import { PageCatComponent } from './page-cat.component';
 import {ChoixComponent} from './choix.component';
 import {AjoutAdminComponent} from './page-ajout-admin.component';
+import { AuthentificationGuard } from "./authentification.guard";
 
 
 
 @NgModule({
   imports:      [ BrowserModule, routes, HttpModule, FormsModule ], // Importation des modules de l'application
   declarations: [ IndexComponent, PageCatComponent, AppComponent, ChoixComponent, AjoutAdminComponent ],  // Déclaration des "components" de l'application
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ AppComponent ],
+  providers: [ AuthentificationGuard ]
 })
 
 export class AppModule { }
