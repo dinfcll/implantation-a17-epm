@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
+using SqueletteImplantation.DbEntities.DTOs;
 using SqueletteImplantation.DbEntities.Models;
 
 namespace SqueletteImplantation.Controllers
@@ -50,22 +51,7 @@ namespace SqueletteImplantation.Controllers
         }
 
 
-        //modifier une catégorie
-        [HttpPut]
-        [Route("api/ModifCategorie/{id}")]
-        public IActionResult ModifyCategorie(Categorie updatedCategorie)
-        {
-            var categorie = _maBd.Categorie.FirstOrDefault(ca => ca.CatId == updatedCategorie.CatId);
-
-            if (categorie == null)
-            {
-                return NotFound();
-            }
-
-            _maBd.Entry(categorie).CurrentValues.SetValues(updatedCategorie);
-
-            return new OkResult();
-        }
+      
 
 
         //supprimer une catégorie
@@ -86,6 +72,22 @@ namespace SqueletteImplantation.Controllers
 
             return new OkResult();
         }
+
+
+        //ajouter une catégorie
+
+        [HttpPost]
+        [Route("api/ajoutCategorie")]
+        public IActionResult AddCategorie(CategorieDTO Catdto)
+        {
+
+            var cate= Catdto.CreateCategorie();
+            _maBd.Categorie.Add(cate);
+            _maBd.SaveChanges();
+
+            return new OkObjectResult(cate);
+        }
+
 
 
     }
