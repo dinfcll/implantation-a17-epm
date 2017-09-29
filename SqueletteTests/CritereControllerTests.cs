@@ -14,8 +14,7 @@ namespace SqueletteTests
        
         private const int CatId = 1;
         private const string CritNom = "truc";
-        private const int autreCatId = 2;
-        private const string autreCritNom = "truc2";
+      
 
 
         private readonly CritereController _CritereController;

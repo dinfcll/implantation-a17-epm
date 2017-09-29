@@ -1,17 +1,20 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System.IO;
+using System;
 
 namespace SqueletteImplantation.Controllers
 {
     public class RealUpload : UploadService
     {
-        public static string Chemin = "./Upload/";
+        public static string Chemin = "/Upload/";
 
         public bool upload(IFormFile formFile, string chemin)
         {
+            string CheminApp = Directory.GetCurrentDirectory() + "/wwroot" ;
             try
-            {
-                using (FileStream upload = new FileStream(chemin, FileMode.CreateNew))
+            {              
+                using (FileStream upload = new FileStream(CheminApp + chemin, FileMode.CreateNew))
                 {
                     formFile.CopyTo(upload);
                 }
