@@ -1,10 +1,10 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var router_1 = require("@angular/router");
 var page_cat_component_1 = require("./page-cat.component");
 var page_ajout_admin_component_1 = require("./page-ajout-admin.component");
 var index_component_1 = require("./index.component");
 var choix_component_1 = require("./choix.component");
+var authentification_guard_1 = require("./authentification.guard");
 exports.router = [
     { path: '', redirectTo: '/index', pathMatch: 'full' },
     { path: 'cardiologie', component: page_cat_component_1.PageCatComponent },

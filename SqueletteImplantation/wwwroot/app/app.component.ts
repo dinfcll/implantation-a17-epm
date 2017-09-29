@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthentificationService } from "./authentification.service";
 
 @Component({
   selector: 'app-root',
@@ -9,15 +10,26 @@ import { Router } from '@angular/router';
 
 export class AppComponent 
 {
-  constructor (private router: Router){
-  }  
-  TypeUser: boolean;
-  public SetType(Type: boolean){
-    this.TypeUser = Type;
-  }
+  public Admin: boolean;
+  public Connecte: boolean;
   
+  constructor (
+    private router: Router,
+    private authentificationService: AuthentificationService){
+  }
+  public UpdateAuthentificationPageIndex(): void
+  {
+    localStorage.removeItem('ConnectedUser');
+    this.authentificationService.logout();
+  }
+  public UpdateAuthentification(): void
+  {    
+    this.Connecte = this.authentificationService.Connecte();
+    this.Admin = this.authentificationService.Admin();
+  }
   Deconnexion(){
-    this.SetType(false);
-    this.router.navigateByUrl('');
+    localStorage.removeItem('ConnectedUser');
+    this.authentificationService.logout();
+    this.router.navigateByUrl('index');
   }
 }

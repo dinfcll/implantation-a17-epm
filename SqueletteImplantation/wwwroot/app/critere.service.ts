@@ -1,4 +1,4 @@
-import { Critere } from './critere';
+import { Critere,CritDTO } from './critere';
 import { Headers, Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise'; // Pour accéder à la méthode .toPromise()
@@ -19,22 +19,17 @@ export class CritereService
     }
 
     //Permet d'envoyer une requête de suppression d'un certain critère au "controller".
-    deleteCritere(id: number): Promise<void> 
+    deleteCritere(id: number)
     {
-        const url = `${this.CriteresURL}/${id}`;
-        return this.http.delete(url, {headers: this.headers})
-        .toPromise()
-        .then(() => null)
-        .catch(this.GestionErreur);
+        const url = `api/delcrite/${id}`;
+        return this.http.delete(url)
     }
 
+  
     //Permet d'envoyer une requête HTTP d'ajout d'un critère'.
-    addCritere(trace: Critere): Promise<Critere>
+    addCritere(CritDto: CritDTO)
     {
-       return this.http.post(this.CriteresURL, JSON.stringify({trace: trace}), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json().data as Critere)
-      .catch(this.GestionErreur);
+       return this.http.post("api/ajoutcrite", JSON.stringify({CritDto: CritDTO}))
     }
 
 
