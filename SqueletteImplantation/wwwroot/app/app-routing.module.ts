@@ -14,12 +14,19 @@ import { AuthentificationGuard } from './authentification.guard';
 
 export const router: Routes = 
 [
-  { path: '', redirectTo: '/choix', pathMatch: 'full' }, 
-  { path: 'categorie', component: PageCatComponent, canActivate: [AuthentificationGuard]},
+<<<<<<< SqueletteImplantation/wwwroot/app/app-routing.module.ts
+  { path: '', redirectTo: '/choix', pathMatch: 'full' },
+  { path: 'cardiologie', component: PageCatComponent, canActivate: [AuthentificationGuard]},
+  { path: 'cardiologie/ajouttrace', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},
+  { path: 'cardiologie/ajoutcritere', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},
+  { path: 'cardiologie/ajoutcategorie', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},
+  { path: 'neurologie', component: PageCatComponent, canActivate: [AuthentificationGuard]},
+  { path: 'neurologie/ajouttrace', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},
+  { path: 'neurologie/ajoutcritere', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},
+  { path: 'neurologie/ajoutcategorie', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},
   { path: 'index', component: IndexComponent },
   { path: 'choix', component: ChoixComponent, canActivate: [AuthentificationGuard]},
-  { path: 'ajout', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},
-  { path: '**', component: ChoixComponent}
+  { path: '**', component: IndexComponent}
 ];
  
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

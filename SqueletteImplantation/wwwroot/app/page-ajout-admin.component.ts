@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 //Importation des classes
 import { Trace } from './trace';
@@ -35,16 +36,27 @@ export class AjoutAdminComponent implements OnInit
     m_File:File;
     m_Form: FormData = null;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http){}
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http, private router:Router){}
 
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     ngOnInit(): void 
     {
         //Remplit les objets des données de la BD
 
-        this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
+        if(this.router.url.toString() == "/cardiologie")
+        {
+            this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
         
-        this.critService.getCriteres(1).subscribe(crit => this.AffichageCrit(crit));
+            this.critService.getCriteres(1).subscribe(crit => this.AffichageCrit(crit));
+        }
+
+
+        if(this.router.url.toString() == "/neurologie")
+        {
+            this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
+        
+            this.critService.getCriteres(2).subscribe(crit => this.AffichageCrit(crit));
+        }
     }
 
     private AffichageCat(param: any) {
