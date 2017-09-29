@@ -19,11 +19,11 @@ export class ChoixComponent
 
     NeuroClick(): void 
     {
-        this.router.navigateByUrl('/neurologie');
+        this.router.navigateByUrl('/categorie');
     }
 
     CardioClick(): void
     {
-        this.router.navigateByUrl('/cardiologie');
+        this.router.navigateByUrl('/categorie');
     }
 }
