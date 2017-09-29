@@ -8,6 +8,7 @@ using SqueletteImplantation.DbEntities.Models;
 using Microsoft.EntityFrameworkCore;
 using SqueletteImplantation.DbEntities.DTOs;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace SqueletteImplantation.Controllers
 {
@@ -81,15 +82,15 @@ namespace SqueletteImplantation.Controllers
         //Ajout de trace
         [HttpPost]
         [Route("api/ajoutfichier")]
-        public IActionResult AjoutFichier([FromBody] IFormFile trace)
+        public IActionResult AjoutFichier(IList<IFormFile> traces)
         {
             string NomTrace;
 
-            if(trace != null)
+            if(traces.Count==1 && traces[0] != null)
             {
-                NomTrace = trace.FileName;
+                NomTrace = traces[0].FileName;
 
-                if (_uploadService.upload(trace, RealUpload.Chemin + NomTrace))
+                if (_uploadService.upload(traces[0], RealUpload.Chemin + NomTrace))
                 {
                     return new OkObjectResult(RealUpload.Chemin + NomTrace);
                 }
