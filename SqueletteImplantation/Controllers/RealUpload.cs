@@ -9,10 +9,9 @@ namespace SqueletteImplantation.Controllers
 
         public bool upload(IFormFile formFile, string chemin)
         {
-
             try
             {
-                using (FileStream upload = new FileStream(chemin + formFile.FileName, FileMode.CreateNew))
+                using (FileStream upload = new FileStream(chemin, FileMode.CreateNew))
                 {
                     formFile.CopyTo(upload);
                 }
