@@ -10,33 +10,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var utilisateur_1 = require("./utilisateur");
-var utilisateur_service_1 = require("./utilisateur.service");
 var app_component_1 = require("./app.component");
+var authentification_service_1 = require("./authentification.service");
 var IndexComponent = (function () {
-    function IndexComponent(router, utilServ, appcomponent) {
+    function IndexComponent(router, authServ, appcomponent) {
         this.router = router;
-        this.utilServ = utilServ;
+        this.authServ = authServ;
         this.appcomponent = appcomponent;
     }
     IndexComponent.prototype.Connexion = function (f) {
         var _this = this;
         console.log(f);
-        var util = new utilisateur_1.Utilisateur(null, null, null, f.value.motdepasse, f.value.utilisateur, null, null);
-        console.log(util.UtilPWD);
-        this.utilServ.postUtilisateur(util).subscribe(function (Reponse) { return _this.ValidationConnexion(Reponse); });
-    };
-    IndexComponent.prototype.ValidationConnexion = function (Valide) {
-        console.log(Valide);
-        if (Valide.status === 200) {
-            if (Valide._body != 0) {
-                this.appcomponent.SetType(false);
+        this.authServ.login(f.value.utilisateur, f.value.motdepasse).subscribe(function (Reponse) {
+            _this.authServ.ValidationConnexion(Reponse);
+            if (_this.authServ.Connecte() && _this.authServ.Admin()) {
+                _this.router.navigate(['choix']);
+                console.log("im in admin");
             }
             else {
-                this.appcomponent.SetType(true);
+                if (_this.authServ.Connecte() && !_this.authServ.Admin()) {
+                    _this.router.navigate(['choix']);
+                    console.log("im in user");
+                }
+                else {
+                    if (!_this.authServ.Connecte()) {
+                        alert("Nom d'utilisateur ou mot de passe invalide!");
+                    }
+                }
             }
-            this.router.navigateByUrl('/choix');
-        }
+        });
     };
     return IndexComponent;
 }());
@@ -45,9 +47,9 @@ IndexComponent = __decorate([
         selector: 'my-index',
         templateUrl: 'app/html/index.component.html',
         styleUrls: ['app/css/index.component.css'],
-        providers: [utilisateur_service_1.UtilisateurService]
+        providers: [authentification_service_1.AuthentificationService]
     }),
-    __metadata("design:paramtypes", [router_1.Router, utilisateur_service_1.UtilisateurService, app_component_1.AppComponent])
+    __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService, app_component_1.AppComponent])
 ], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map

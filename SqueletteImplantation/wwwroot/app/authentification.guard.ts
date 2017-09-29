@@ -6,21 +6,16 @@ import { AuthentificationService } from './authentification.service';
 @Injectable()
 export class AuthentificationGuard implements CanActivate {
 
-    /*constructor(
+    constructor(
         private authentificationService: AuthentificationService,
-        private router: Router) {}*/
-
-    estConnecte = false;
-    estAdmin = false;
+        private router: Router) {}
 
     canActivate() {
 
-        /*if(this.authentificationService.estConnecte) {
+        if(this.authentificationService.Connecte()) {
             return true;
         }
 
-        this.router.navigate(['index']);*/
-        console.log('AuthenGuard');
-        return true;
+        this.router.navigate(['index']);
     }
 }

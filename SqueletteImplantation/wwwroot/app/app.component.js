@@ -10,15 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var authentification_service_1 = require("./authentification.service");
 var AppComponent = (function () {
-    function AppComponent(router) {
+    function AppComponent(router, authentificationService) {
         this.router = router;
+        this.authentificationService = authentificationService;
+        this.Admin = this.authentificationService.Admin();
+        this.Connecte = this.authentificationService.Connecte();
     }
-    AppComponent.prototype.SetType = function (Type) {
-        this.TypeUser = Type;
-    };
     AppComponent.prototype.Deconnexion = function () {
-        this.SetType(false);
         this.router.navigateByUrl('');
     };
     return AppComponent;
@@ -29,7 +29,8 @@ AppComponent = __decorate([
         templateUrl: 'app/html/app.component.html',
         styleUrls: ['app/css/app.component.css']
     }),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [router_1.Router,
+        authentification_service_1.AuthentificationService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

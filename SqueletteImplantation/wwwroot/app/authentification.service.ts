@@ -1,17 +1,43 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
 
 @Injectable()
 export class AuthentificationService {
-    estConnecte = false;
-    estAdmin = false;
+    private estConnecte = false;
+    private estAdmin = false;
+    private UtilisateurURL = 'api/utilisateur/login';
+
+    constructor(private http: Http){}
 
     login(user: string, motdepasse: string) {
-        console.log(user + " / " + motdepasse);
-        this.estConnecte = true;
+        console.log(user + " / " + motdepasse);        
+        let headers = new Headers();
 
-        return new Promise(function(resolve, reject){
-            resolve(true);
-        })
+        headers.append('Content-type', 'application/json');
+        return this.http.post(this.UtilisateurURL, JSON.stringify({ "UtilPWD": user, "UtilUserName": motdepasse }), { headers });        
+    }
+
+    public ValidationConnexion(Valide: any): void
+    {
+        console.log(Valide);
+        if (Valide.status === 200)
+        {
+            this.estConnecte = true;
+
+            if (Valide._body != 0)
+            {
+                this.estAdmin = false;
+            }
+            else
+            {
+                this.estAdmin = true;
+            }
+        }
+        else
+        {
+            this.estConnecte = false;
+            this.estAdmin = false;
+        }
     }
 
     logout() {
@@ -21,5 +47,13 @@ export class AuthentificationService {
         return new Promise(function(resolve,reject){
             resolve(false);
         })
+    }
+    Connecte()
+    {
+        return this.estConnecte;
+    }
+    Admin()
+    {
+        return this.estAdmin;
     }
 }

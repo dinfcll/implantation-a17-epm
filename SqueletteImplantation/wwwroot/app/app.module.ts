@@ -12,6 +12,7 @@ import { PageCatComponent } from './page-cat.component';
 import {ChoixComponent} from './choix.component';
 import {AjoutAdminComponent} from './page-ajout-admin.component';
 import { AuthentificationGuard } from "./authentification.guard";
+import { AuthentificationService } from "./authentification.service";
 
 
 
@@ -19,7 +20,7 @@ import { AuthentificationGuard } from "./authentification.guard";
   imports:      [ BrowserModule, routes, HttpModule, FormsModule ], // Importation des modules de l'application
   declarations: [ IndexComponent, PageCatComponent, AppComponent, ChoixComponent, AjoutAdminComponent ],  // Déclaration des "components" de l'application
   bootstrap:    [ AppComponent ],
-  providers: [ AuthentificationGuard ]
+  providers: [ AuthentificationGuard, AuthentificationService ]
 })
 
 export class AppModule { }
