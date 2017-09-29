@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var critere_1 = require("./critere");
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/toPromise"); // Pour accéder à la méthode .toPromise()
@@ -24,18 +25,12 @@ var CritereService = (function () {
     };
     //Permet d'envoyer une requête de suppression d'un certain critère au "controller".
     CritereService.prototype.deleteCritere = function (id) {
-        var url = this.CriteresURL + "/" + id;
-        return this.http.delete(url, { headers: this.headers })
-            .toPromise()
-            .then(function () { return null; })
-            .catch(this.GestionErreur);
+        var url = "api/delcrite/" + id;
+        return this.http.delete(url);
     };
     //Permet d'envoyer une requête HTTP d'ajout d'un critère'.
-    CritereService.prototype.addCritere = function (trace) {
-        return this.http.post(this.CriteresURL, JSON.stringify({ trace: trace }), { headers: this.headers })
-            .toPromise()
-            .then(function (res) { return res.json().data; })
-            .catch(this.GestionErreur);
+    CritereService.prototype.addCritere = function (CritDto) {
+        return this.http.post("api/ajoutcrite", JSON.stringify({ CritDto: critere_1.CritDTO }));
     };
     CritereService.prototype.GestionErreur = function (error) {
         console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"

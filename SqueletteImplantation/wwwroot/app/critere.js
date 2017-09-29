@@ -9,4 +9,12 @@ var Critere = (function () {
     return Critere;
 }());
 exports.Critere = Critere;
+var CritDTO = (function () {
+    function CritDTO(critNom, catId) {
+        this.critNom = critNom;
+        this.catId = catId;
+    }
+    return CritDTO;
+}());
+exports.CritDTO = CritDTO;
 //# sourceMappingURL=critere.js.map

@@ -5,7 +5,7 @@ namespace SqueletteImplantation.Controllers
 {
     public class RealUpload : UploadService
     {
-        public static string Chemin = "/media/EPM/Traces/";
+        public static string Chemin = "/Upload/";
 
         public bool upload(IFormFile formFile, string chemin)
         {
@@ -17,7 +17,7 @@ namespace SqueletteImplantation.Controllers
                 }
                 return true;
             }
-            catch (IOException ex)
+            catch (IOException)
             {
                 return false;
             }
