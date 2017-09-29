@@ -16,6 +16,9 @@
 					</a>
 				</td>
                 <td id="Navigation" colspan="2">
+					<div id="divAccueil" *ngIf="TypeUser">
+						<button (click)="Reroutage(2)" id="btnAccueil">Accueil</button>
+					</div>
 					<div id="divDeconnexion" *ngIf="TypeUser">
 						<button (click)="Deconnexion()" id="btnDeconnexion">Déconnexion</button>
 					</div>
@@ -30,17 +33,23 @@
 			</tr>
 			<tr>
 				<td id="Menu">
-					<div id="divMenu">
-                        <li id="ElementDansMenu">
-                            <div *ngIf="TypeUser">
-        						<strong>Menu administration</strong>
+					<div id="divMenuHaut">
+                        <li>
+                             <div *ngIf="TypeUser" id="divAdmin">
+        						<h3>Outils</h3>
+									 <ul>
+										<li (click)="Reroutage(0)">Page d'ajout de tracés</li>
+										<li (click)="Reroutage(1)">Page d'ajout de catégories et de critères</li>
+									</ul> 
 							</div>
-                        </li>
-                        <li id="ElementDansMenu">
-                            Historique
-                        </li>
+						</li>
+				    </div>
+					<hr>
+					<div id="divMenuBas">
+                        	<li id="ElementDansMenu"> Historique</li>
+					</div>
                     
-                    </div>
+				
 				</td>
 			</tr>
 

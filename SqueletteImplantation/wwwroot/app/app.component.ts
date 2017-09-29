@@ -20,4 +20,22 @@ export class AppComponent
     this.SetType(false);
     this.router.navigateByUrl('');
   }
+
+  Reroutage(type:Number) : void
+  {
+    console.log(type);
+    if(type === 0)
+    {
+       this.router.navigateByUrl('ajout');
+    }
+    else
+      if(type === 1)
+      {
+        //  this.router.navigateByUrl('ajout');
+      }
+      else
+      {
+        this.router.navigateByUrl('choix');
+      }
+  }
 }

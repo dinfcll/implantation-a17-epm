@@ -22,6 +22,18 @@ var AppComponent = (function () {
         this.SetType(false);
         this.router.navigateByUrl('');
     };
+    AppComponent.prototype.Reroutage = function (type) {
+        console.log(type);
+        if (type === 0) {
+            this.router.navigateByUrl('ajout');
+        }
+        else if (type === 1) {
+            //  this.router.navigateByUrl('ajout');
+        }
+        else {
+            this.router.navigateByUrl('choix');
+        }
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
