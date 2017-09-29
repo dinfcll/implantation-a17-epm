@@ -11,7 +11,7 @@ namespace SqueletteImplantation.Controllers
 
         public bool upload(IFormFile formFile, string chemin)
         {
-            string CheminApp = "/home/ubuntu/EPM/implantation-a17-epm/SqueletteImplantation/wwroot" ;
+            string CheminApp = "/home/ubuntu/EPM/implantation-a17-epm/SqueletteImplantation/wwwroot" ;
             try
             {              
                 using (FileStream upload = new FileStream(CheminApp + chemin, FileMode.CreateNew))
