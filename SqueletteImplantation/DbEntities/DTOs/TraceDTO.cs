@@ -19,7 +19,6 @@ namespace SqueletteImplantation.DbEntities.DTOs
 
         public Trace CreateTrace()
         {
-            string NomFich = "Bidon.txt";
             return new Trace { TraceNom = Nomfich, TracLogi = IdentificationLogiciel(), TracUrl = chemin};
         }
 
