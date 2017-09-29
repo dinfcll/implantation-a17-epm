@@ -7,10 +7,16 @@ var index_component_1 = require("./index.component");
 var choix_component_1 = require("./choix.component");
 exports.router = [
     { path: '', redirectTo: '/index', pathMatch: 'full' },
-    { path: 'categorie', component: page_cat_component_1.PageCatComponent },
+    { path: 'cardiologie', component: page_cat_component_1.PageCatComponent },
+    { path: 'cardiologie/ajouttrace', component: page_ajout_admin_component_1.AjoutAdminComponent },
+    { path: 'cardiologie/ajoutcritere', component: page_ajout_admin_component_1.AjoutAdminComponent },
+    { path: 'cardiologie/ajoutcategorie', component: page_ajout_admin_component_1.AjoutAdminComponent },
+    { path: 'neurologie', component: page_cat_component_1.PageCatComponent },
+    { path: 'neurologie/ajouttrace', component: page_ajout_admin_component_1.AjoutAdminComponent },
+    { path: 'neurologie/ajoutcritere', component: page_ajout_admin_component_1.AjoutAdminComponent },
+    { path: 'neurologie/ajoutcategorie', component: page_ajout_admin_component_1.AjoutAdminComponent },
     { path: 'index', component: index_component_1.IndexComponent },
     { path: 'choix', component: choix_component_1.ChoixComponent },
-    { path: 'ajout', component: page_ajout_admin_component_1.AjoutAdminComponent },
     { path: '**', component: index_component_1.IndexComponent }
 ];
 exports.routes = router_1.RouterModule.forRoot(exports.router);

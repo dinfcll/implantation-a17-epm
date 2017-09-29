@@ -16,10 +16,10 @@ var ChoixComponent = (function () {
         this.router = router;
     }
     ChoixComponent.prototype.NeuroClick = function () {
-        this.router.navigateByUrl('/categorie');
+        this.router.navigateByUrl('/neurologie');
     };
     ChoixComponent.prototype.CardioClick = function () {
-        this.router.navigateByUrl('/categorie');
+        this.router.navigateByUrl('/cardiologie');
     };
     return ChoixComponent;
 }());

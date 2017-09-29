@@ -13,10 +13,16 @@ import {ChoixComponent} from './choix.component';
 export const router: Routes = 
 [
   { path: '', redirectTo: '/index', pathMatch: 'full' }, 
-  { path: 'categorie', component: PageCatComponent},
+  { path: 'cardiologie', component: PageCatComponent},
+  { path: 'cardiologie/ajouttrace', component: AjoutAdminComponent},
+  { path: 'cardiologie/ajoutcritere', component: AjoutAdminComponent},
+  { path: 'cardiologie/ajoutcategorie', component: AjoutAdminComponent},
+  { path: 'neurologie', component: PageCatComponent},
+  { path: 'neurologie/ajouttrace', component: AjoutAdminComponent},
+  { path: 'neurologie/ajoutcritere', component: AjoutAdminComponent},
+  { path: 'neurologie/ajoutcategorie', component: AjoutAdminComponent},
   { path: 'index', component: IndexComponent },
   { path: 'choix', component: ChoixComponent},
-  { path: 'ajout', component: AjoutAdminComponent},
   { path: '**', component: IndexComponent}
 ];
  
