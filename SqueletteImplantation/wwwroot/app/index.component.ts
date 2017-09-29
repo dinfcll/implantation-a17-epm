@@ -14,7 +14,7 @@ import { AuthentificationService } from "./authentification.service";
 
 export class IndexComponent 
 { 
-    
+
     constructor(private router: Router, private authServ: AuthentificationService, private appcomponent: AppComponent) {
         this.appcomponent.UpdateAuthentificationPageIndex();
     }

@@ -3,11 +3,23 @@ import { Headers, Http } from '@angular/http';
 
 @Injectable()
 export class AuthentificationService {
-    private estConnecte = false;
-    private estAdmin = false;
+    private estConnecte : boolean;
+    private estAdmin: boolean;
     private UtilisateurURL = 'api/utilisateur/login';
 
-    constructor(private http: Http){}
+    constructor(private http: Http){
+        if(localStorage.getItem("ConnectedUser"))
+        {
+            let currentUser = JSON.parse(localStorage.getItem("ConnectedUser"));
+            this.estConnecte = currentUser.connect;
+            this.estAdmin = currentUser.type;
+        }
+        else
+        {
+            this.estAdmin = false;
+            this.estConnecte = false;
+        }
+    }
 
     login(user: string, motdepasse: string) {
         console.log(user + " / " + motdepasse);        
@@ -38,9 +50,11 @@ export class AuthentificationService {
             this.estConnecte = false;
             this.estAdmin = false;
         }
+        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte }));
     }
 
     public logout(): void {
+        localStorage.removeItem('ConnectedUser');
         this.estConnecte = false;
         this.estAdmin = false;
     }

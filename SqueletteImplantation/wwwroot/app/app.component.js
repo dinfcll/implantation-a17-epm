@@ -17,6 +17,7 @@ var AppComponent = (function () {
         this.authentificationService = authentificationService;
     }
     AppComponent.prototype.UpdateAuthentificationPageIndex = function () {
+        localStorage.removeItem('ConnectedUser');
         this.authentificationService.logout();
     };
     AppComponent.prototype.UpdateAuthentification = function () {
@@ -24,6 +25,7 @@ var AppComponent = (function () {
         this.Admin = this.authentificationService.Admin();
     };
     AppComponent.prototype.Deconnexion = function () {
+        localStorage.removeItem('ConnectedUser');
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
     };
