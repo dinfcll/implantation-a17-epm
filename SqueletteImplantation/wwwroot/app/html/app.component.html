@@ -16,7 +16,7 @@
 					</a>
 				</td>
                 <td id="Navigation" colspan="2">
-					<div id="divDeconnexion" *ngIf="Connecte">
+					<div id="divDeconnexion" *ngIf="this.authentificationService.Connecte()">
 						<button (click)="Deconnexion()" id="btnDeconnexion">Déconnexion</button>
 					</div>
                 </td> 
@@ -32,7 +32,7 @@
 				<td id="Menu">
 					<div id="divMenu">
                         <li id="ElementDansMenu">
-                            <div *ngIf="Admin">
+                            <div *ngIf="this.authentificationService.Admin()">
         						<strong>Menu administration</strong>
 							</div>
                         </li>

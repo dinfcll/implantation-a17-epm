@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageCatComponent} from './page-cat.component';
 import { AjoutAdminComponent} from './page-ajout-admin.component';
 import { IndexComponent } from './index.component';
-import {ChoixComponent} from './choix.component';
+import { ChoixComponent } from './choix.component';
 
 import { AuthentificationGuard } from './authentification.guard';
 

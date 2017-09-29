@@ -16,11 +16,14 @@ export class AppComponent
   constructor (
     private router: Router,
     private authentificationService: AuthentificationService){
-      this.Admin = this.authentificationService.Admin();
-      this.Connecte = this.authentificationService.Connecte();
   }
-  
+  public UpdateAuthentification(): void
+  {
+    this.Connecte = this.authentificationService.Connecte();
+    this.Admin = this.authentificationService.Admin();
+  }
   Deconnexion(){
-    this.router.navigateByUrl('');
+    this.authentificationService.logout();
+    this.router.navigateByUrl('index');
   }
 }

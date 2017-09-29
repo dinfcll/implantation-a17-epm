@@ -17,6 +17,7 @@ var IndexComponent = (function () {
         this.router = router;
         this.authServ = authServ;
         this.appcomponent = appcomponent;
+        this.appcomponent.UpdateAuthentification();
     }
     IndexComponent.prototype.Connexion = function (f) {
         var _this = this;
@@ -25,12 +26,10 @@ var IndexComponent = (function () {
             _this.authServ.ValidationConnexion(Reponse);
             if (_this.authServ.Connecte() && _this.authServ.Admin()) {
                 _this.router.navigate(['choix']);
-                console.log("im in admin");
             }
             else {
                 if (_this.authServ.Connecte() && !_this.authServ.Admin()) {
                     _this.router.navigate(['choix']);
-                    console.log("im in user");
                 }
                 else {
                     if (!_this.authServ.Connecte()) {
@@ -46,8 +45,7 @@ IndexComponent = __decorate([
     core_1.Component({
         selector: 'my-index',
         templateUrl: 'app/html/index.component.html',
-        styleUrls: ['app/css/index.component.css'],
-        providers: [authentification_service_1.AuthentificationService]
+        styleUrls: ['app/css/index.component.css']
     }),
     __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService, app_component_1.AppComponent])
 ], IndexComponent);

@@ -9,14 +9,14 @@ import { AuthentificationService } from "./authentification.service";
 @Component ({
     selector: 'my-index',
     templateUrl: 'app/html/index.component.html',
-    styleUrls: [ 'app/css/index.component.css' ],
-    providers: [ AuthentificationService ]
+    styleUrls: [ 'app/css/index.component.css' ]
 })
 
 export class IndexComponent 
 { 
     
     constructor(private router: Router, private authServ: AuthentificationService, private appcomponent: AppComponent) {
+        this.appcomponent.UpdateAuthentification();
     }
 
     public Connexion(f: NgForm): void
@@ -27,14 +27,12 @@ export class IndexComponent
             if(this.authServ.Connecte() && this.authServ.Admin())
             {
                 this.router.navigate(['choix']);
-                console.log("im in admin");
             }     
             else
             {
                 if(this.authServ.Connecte() && !this.authServ.Admin())
                 {
                     this.router.navigate(['choix']);
-                    console.log("im in user");
                 }
                 else
                 {

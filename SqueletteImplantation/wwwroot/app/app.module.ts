@@ -1,16 +1,16 @@
 //Modules
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {routes} from './app-routing.module';
-import {HttpModule} from '@angular/http';
+import { routes } from './app-routing.module';
+import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 //Components
 import {AppComponent} from './app.component';
 import { IndexComponent } from './index.component';
 import { PageCatComponent } from './page-cat.component';
-import {ChoixComponent} from './choix.component';
-import {AjoutAdminComponent} from './page-ajout-admin.component';
+import { ChoixComponent } from './choix.component';
+import { AjoutAdminComponent } from './page-ajout-admin.component';
 import { AuthentificationGuard } from "./authentification.guard";
 import { AuthentificationService } from "./authentification.service";
 

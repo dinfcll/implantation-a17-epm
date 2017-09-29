@@ -14,7 +14,7 @@ export class AuthentificationService {
         let headers = new Headers();
 
         headers.append('Content-type', 'application/json');
-        return this.http.post(this.UtilisateurURL, JSON.stringify({ "UtilPWD": user, "UtilUserName": motdepasse }), { headers });        
+        return this.http.post(this.UtilisateurURL, JSON.stringify({ "UtilPWD": motdepasse, "UtilUserName": user }), { headers });        
     }
 
     public ValidationConnexion(Valide: any): void
@@ -40,13 +40,9 @@ export class AuthentificationService {
         }
     }
 
-    logout() {
+    public logout(): void {
         this.estConnecte = false;
         this.estAdmin = false;
-
-        return new Promise(function(resolve,reject){
-            resolve(false);
-        })
     }
     Connecte()
     {

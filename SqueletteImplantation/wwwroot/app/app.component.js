@@ -15,11 +15,14 @@ var AppComponent = (function () {
     function AppComponent(router, authentificationService) {
         this.router = router;
         this.authentificationService = authentificationService;
-        this.Admin = this.authentificationService.Admin();
-        this.Connecte = this.authentificationService.Connecte();
     }
+    AppComponent.prototype.UpdateAuthentification = function () {
+        this.Connecte = this.authentificationService.Connecte();
+        this.Admin = this.authentificationService.Admin();
+    };
     AppComponent.prototype.Deconnexion = function () {
-        this.router.navigateByUrl('');
+        this.authentificationService.logout();
+        this.router.navigateByUrl('index');
     };
     return AppComponent;
 }());
