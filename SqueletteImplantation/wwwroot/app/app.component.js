@@ -8,19 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var authentification_service_1 = require("./authentification.service");
 var AppComponent = (function () {
-    function AppComponent(router) {
+    function AppComponent(router, authentificationService) {
         this.router = router;
+        this.authentificationService = authentificationService;
     }
-    AppComponent.prototype.SetType = function (Type) {
-        this.TypeUser = Type;
+    AppComponent.prototype.UpdateAuthentificationPageIndex = function () {
+        localStorage.removeItem('ConnectedUser');
+        this.authentificationService.logout();
+    };
+    AppComponent.prototype.UpdateAuthentification = function () {
+        this.Connecte = this.authentificationService.Connecte();
+        this.Admin = this.authentificationService.Admin();
     };
     AppComponent.prototype.Deconnexion = function () {
-        this.SetType(false);
-        this.router.navigateByUrl('');
+        localStorage.removeItem('ConnectedUser');
+        this.authentificationService.logout();
+        this.router.navigateByUrl('index');
     };
     return AppComponent;
 }());
@@ -30,7 +37,8 @@ AppComponent = __decorate([
         templateUrl: 'app/html/app.component.html',
         styleUrls: ['app/css/app.component.css']
     }),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [router_1.Router,
+        authentification_service_1.AuthentificationService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

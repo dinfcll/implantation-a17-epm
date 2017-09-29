@@ -8,12 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var app_component_1 = require("./app.component");
 var ChoixComponent = (function () {
-    function ChoixComponent(router) {
+    function ChoixComponent(router, appcomponent) {
         this.router = router;
+        this.appcomponent = appcomponent;
+        this.appcomponent.UpdateAuthentification();
     }
     ChoixComponent.prototype.NeuroClick = function () {
         this.router.navigateByUrl('/categorie');
@@ -29,7 +31,7 @@ ChoixComponent = __decorate([
         templateUrl: 'app/html/choix.component.html',
         styleUrls: ['app/css/choix.component.css']
     }),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [router_1.Router, app_component_1.AppComponent])
 ], ChoixComponent);
 exports.ChoixComponent = ChoixComponent;
 //# sourceMappingURL=choix.component.js.map

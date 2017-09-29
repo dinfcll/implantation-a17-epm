@@ -1,46 +1,49 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Utilisateur } from './utilisateur';
-import { UtilisateurService } from './utilisateur.service';
 import { NgForm } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { AuthentificationService } from "./authentification.service";
 
 
 @Component ({
     selector: 'my-index',
     templateUrl: 'app/html/index.component.html',
-    styleUrls: [ 'app/css/index.component.css' ],
-    providers: [UtilisateurService]
+    styleUrls: [ 'app/css/index.component.css' ]
 })
 
 export class IndexComponent 
 { 
-    
-    constructor(private router: Router, private utilServ: UtilisateurService, private appcomponent: AppComponent) {
+
+    constructor(private router: Router, private authServ: AuthentificationService, private appcomponent: AppComponent) {
+        this.appcomponent.UpdateAuthentificationPageIndex();
     }
 
     public Connexion(f: NgForm): void
     {
         console.log(f);
-        let util: Utilisateur = new Utilisateur(null, null, null, f.value.motdepasse, f.value.utilisateur, null, null);
-        console.log(util.UtilPWD);
-        this.utilServ.postUtilisateur(util).subscribe(Reponse => this.ValidationConnexion(Reponse));
-    }
-
-    private ValidationConnexion(Valide: any)
-    {
-        console.log(Valide);
-        if (Valide.status === 200)
-        {
-            if (Valide._body != 0)
+        this.authServ.login(f.value.utilisateur, f.value.motdepasse).subscribe(Reponse => {
+            this.authServ.ValidationConnexion(Reponse);       
+            if(this.authServ.Connecte() && this.authServ.Admin())
             {
-                this.appcomponent.SetType(false);
-            }
+                this.router.navigate(['choix']);
+            }     
             else
             {
-                this.appcomponent.SetType(true);
+                if(this.authServ.Connecte() && !this.authServ.Admin())
+                {
+                    this.router.navigate(['choix']);
+                }
+                else
+                {
+                    if (!this.authServ.Connecte())
+                    {
+                        alert("Nom d'utilisateur ou mot de passe invalide!");
+                    }
+                }                
             }
-            this.router.navigateByUrl('/choix');
-        }
+    });
     }
+
+    
 }
