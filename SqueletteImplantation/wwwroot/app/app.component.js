@@ -16,6 +16,9 @@ var AppComponent = (function () {
         this.router = router;
         this.authentificationService = authentificationService;
     }
+    AppComponent.prototype.UpdateAuthentificationPageIndex = function () {
+        this.authentificationService.logout();
+    };
     AppComponent.prototype.UpdateAuthentification = function () {
         this.Connecte = this.authentificationService.Connecte();
         this.Admin = this.authentificationService.Admin();

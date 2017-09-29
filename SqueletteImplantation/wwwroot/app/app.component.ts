@@ -17,6 +17,10 @@ export class AppComponent
     private router: Router,
     private authentificationService: AuthentificationService){
   }
+  public UpdateAuthentificationPageIndex(): void
+  {
+    this.authentificationService.logout();
+  }
   public UpdateAuthentification(): void
   {
     this.Connecte = this.authentificationService.Connecte();

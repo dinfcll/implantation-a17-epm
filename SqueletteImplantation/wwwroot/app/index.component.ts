@@ -16,7 +16,7 @@ export class IndexComponent
 { 
     
     constructor(private router: Router, private authServ: AuthentificationService, private appcomponent: AppComponent) {
-        this.appcomponent.UpdateAuthentification();
+        this.appcomponent.UpdateAuthentificationPageIndex();
     }
 
     public Connexion(f: NgForm): void

@@ -17,7 +17,7 @@ var IndexComponent = (function () {
         this.router = router;
         this.authServ = authServ;
         this.appcomponent = appcomponent;
-        this.appcomponent.UpdateAuthentification();
+        this.appcomponent.UpdateAuthentificationPageIndex();
     }
     IndexComponent.prototype.Connexion = function (f) {
         var _this = this;
