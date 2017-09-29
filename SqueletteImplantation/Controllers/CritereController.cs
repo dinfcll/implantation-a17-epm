@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
+using SqueletteImplantation.DbEntities.DTOs;
 using SqueletteImplantation.DbEntities.Models;
 
 namespace SqueletteImplantation.Controllers
@@ -41,29 +42,10 @@ namespace SqueletteImplantation.Controllers
         }
 
 
-
-        //modifier uen critère selon son id
-
-        [HttpPut]
-        [Route("api/ModifCritere/{id}")]
-        public IActionResult ModifyCritere(Critere updatedCritere)
-        {
-            var critere = _maBd.Critere.FirstOrDefault(c => c.CritId == updatedCritere.CritId);
-
-            if (critere == null)
-            {
-                return NotFound();
-            }
-
-            _maBd.Entry(critere).CurrentValues.SetValues(updatedCritere);
-
-            return new OkResult();
-        }
-
         //supprimer une critère selon son id
 
         [HttpDelete]
-        [Route("api/DelCritere/{id}")]
+        [Route("api/delcrite/{id}")]
         public IActionResult DeleteCritere(int id)
         {
             var critere = _maBd.Critere.FirstOrDefault(c => c.CritId== id);
@@ -78,6 +60,22 @@ namespace SqueletteImplantation.Controllers
 
             return new OkResult();
         }
+
+        
+        //ajouter une critère
+
+        [HttpPost]
+        [Route("api/ajoutcrite")]
+        public IActionResult AddCritere(CritereDTO CritDto)
+        {
+   
+            var Crit = CritDto.CreateCritere();
+            _maBd.Critere.Add(Crit);
+            _maBd.SaveChanges();
+
+            return new OkObjectResult(Crit);
+        }
+
 
     }
 }
