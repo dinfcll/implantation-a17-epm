@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from "./authentification.service";
 
@@ -33,6 +33,7 @@ export class AppComponent
     this.router.navigateByUrl('index');
   }
 
+
   Reroutage(type:Number) : void
   {
     console.log(type);
@@ -49,5 +50,10 @@ export class AppComponent
       {
         this.router.navigateByUrl('choix');
       }
+
+  @HostListener('window:beforeunload', ['$event'])
+    beforeunloadHandler() {
+    this.authentificationService.logout();
+
   }
 }
