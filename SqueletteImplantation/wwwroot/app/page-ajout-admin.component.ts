@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Http } from '@angular/http';
+import {Router} from '@angular/router';
 
 //Importation des classes
 import { Trace } from './trace';
@@ -44,20 +45,20 @@ export class AjoutAdminComponent implements OnInit
     ngOnInit(): void 
     {
         //Remplit les objets des données de la BD
+        console.log(this.router.url.toString());
+        if(this.router.url.toString() == "/neurologie/ajouttrace")
+        {
+           this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
+        
+            this.critService.getCriteres(2).subscribe(crit => this.AffichageCrit(crit));
+        }
+
 
         if(this.router.url.toString() == "/cardiologie/ajouttrace")
         {
             this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
         
             this.critService.getCriteres(1).subscribe(crit => this.AffichageCrit(crit));
-        }
-
-
-        if(this.router.url.toString() == "/neurologie/ajouttrace")
-        {
-            this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
-        
-            this.critService.getCriteres(2).subscribe(crit => this.AffichageCrit(crit));
         }
     }
 
