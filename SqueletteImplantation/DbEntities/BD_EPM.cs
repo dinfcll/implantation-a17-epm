@@ -6,7 +6,6 @@ namespace SqueletteImplantation.DbEntities
 {
     public class BD_EPM : DbContext
     {
-        public virtual DbSet<Machin> Machin { get; set; }
         public virtual DbSet<Categorie> Categorie { get; set; }
         public virtual DbSet<Domaine> Domaine { get; set; }
         public virtual DbSet<Critere> Critere { get; set; }
@@ -21,8 +20,6 @@ namespace SqueletteImplantation.DbEntities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            new MachinMap(modelBuilder.Entity<Machin>());
 
             new DomaineMap(modelBuilder.Entity<Domaine>());
 
