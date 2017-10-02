@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SqueletteImplantation.DbEntities.DTOs;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using System.IO;
 
 namespace SqueletteImplantation.Controllers
 {
@@ -129,10 +130,21 @@ namespace SqueletteImplantation.Controllers
         public IActionResult DeleteTrace(int id)
         {
             var trace = _maBd.Trace.FirstOrDefault(t => t.TracId == id);
+            string CheminApp = "/home/ubuntu/EPM/implantation-a17-epm/SqueletteImplantation/wwwroot";
 
             if (trace == null)
             {
                 return NotFound();
+            }
+
+            try
+            {
+                FileInfo Fichier = new FileInfo(CheminApp + trace.TraceNom);
+                Fichier.Delete();
+            }
+            catch (IOException)
+            {
+                return new BadRequestResult();
             }
 
             _maBd.Remove(trace);
