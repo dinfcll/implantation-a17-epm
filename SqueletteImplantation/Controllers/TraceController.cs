@@ -130,7 +130,7 @@ namespace SqueletteImplantation.Controllers
         public IActionResult DeleteTrace(int id)
         {
             var trace = _maBd.Trace.FirstOrDefault(t => t.TracId == id);
-            string CheminApp = "/home/ubuntu/EPM/implantation-a17-epm/SqueletteImplantation/wwwroot";
+            string CheminApp = "/home/ubuntu/EPM/implantation-a17-epm/SqueletteImplantation/wwwroot/";
 
             if (trace == null)
             {
