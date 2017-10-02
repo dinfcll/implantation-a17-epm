@@ -9,7 +9,7 @@ using Xunit;
 using Microsoft.AspNetCore.Http;
 namespace SqueletteTests
 {
-    class CategorieControllerTest
+    public class CategorieControllerTest
     {
         private const int DomId = 1;
         private const string CatNom = "truc";
@@ -28,6 +28,38 @@ namespace SqueletteTests
 
             _CategorieController = new CategorieController(bdEnMemoire);
         }
+
+        [Fact]
+        public void NoCritNotFound()
+        {
+            var result = _CategorieController.GetCategorie(100000000);
+
+            Assert.Equal(404, ((NotFoundResult)result).StatusCode);
+        }
+
+        [Fact]
+        public void AjoutCategorieTest()
+        {
+            var created =_CategorieController.AddCategorie(new CategorieDTO { NomCat = CatNom, IdDom= DomId });
+            var resultat = _CategorieController.GetCategorie(((created as OkObjectResult).Value as Categorie).CatId);
+            Assert.Equal(CatNom, ((resultat as OkObjectResult).Value as Categorie).CatNom);
+            Assert.Equal(DomId, ((resultat as OkObjectResult).Value as Categorie).DomId);
+        }
+
+        [Fact]
+        public void TestCreateDelete()
+        {
+            var created = _CategorieController.AddCategorie(new CategorieDTO { NomCat = CatNom, IdDom = DomId });
+
+            var resultat = _CategorieController.DeleteCategorie(((created as OkObjectResult).Value as Categorie).CatId);
+
+            Assert.Equal(200, (resultat as OkResult).StatusCode);
+
+            var entityNotFound = _CategorieController.GetCategorie(((created as OkObjectResult).Value as Categorie).CatId);
+
+            Assert.Equal(404, ((NotFoundResult)entityNotFound).StatusCode);
+        }
+
 
 
     }

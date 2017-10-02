@@ -9,7 +9,7 @@ namespace SqueletteImplantation.DbEntities.DTOs
 
         public Categorie CreateCategorie()
         {
-            return new Categorie { CatNom = NomCat, CatId = IdDom };
+            return new Categorie { CatNom = NomCat, DomId = IdDom };
         }
 
     }
