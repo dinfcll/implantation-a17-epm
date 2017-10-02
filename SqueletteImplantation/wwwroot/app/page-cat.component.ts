@@ -41,10 +41,18 @@ export class PageCatComponent implements OnInit
     ngOnInit(): void 
     {
         //Remplit les objets des données de la BD
-
+        if(this.router.url.toString() == '/neurologie')
+        {
         this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
         
         this.critService.getCriteres(1).subscribe(crit => this.AffichageCrit(crit));
+        }
+       else
+       {
+        this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
+        
+        this.critService.getCriteres(2).subscribe(crit => this.AffichageCrit(crit));
+       }
 
     }
 
@@ -147,7 +155,14 @@ export class PageCatComponent implements OnInit
 
     public onClickAddTrace()
     {
-        this.router.navigateByUrl('/ajout');
+        if(this.router.url.toString() == '/neurologie')
+        {
+            this.router.navigateByUrl('/neurologie/ajouttrace');
+        }
+        else
+        {
+             this.router.navigateByUrl('/cardiologie/ajouttrace');
+        }
     }
 
     private AffichageRepDel(param: any) // Si le param est une string !
