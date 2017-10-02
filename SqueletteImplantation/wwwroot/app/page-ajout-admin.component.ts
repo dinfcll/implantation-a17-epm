@@ -43,15 +43,15 @@ export class AjoutAdminComponent implements OnInit
     {
         //Remplit les objets des données de la BD
         console.log(this.router.url.toString());
-        if(this.router.url.toString() == "/cardiologie/ajouttrace")
+        if(this.router.url.toString() == "/neurologie/ajouttrace")
         {
-            this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
+           this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
         
             this.critService.getCriteres(2).subscribe(crit => this.AffichageCrit(crit));
         }
 
 
-        if(this.router.url.toString() == "/neurologie/ajouttrace")
+        if(this.router.url.toString() == "/cardiologie/ajouttrace")
         {
             this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
         

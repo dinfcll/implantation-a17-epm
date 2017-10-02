@@ -62,6 +62,7 @@ var PageCatComponent = (function () {
         console.log(this.m_TabTrace);
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
+        console.log(document.getElementsByClassName("ListeCritere")[0], document.getElementsByClassName("ListeCritere"));
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {

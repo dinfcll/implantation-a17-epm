@@ -93,6 +93,7 @@ export class PageCatComponent implements OnInit
 
     OnClickListeDeroulanteCritere()
     {
+        console.log(document.getElementsByClassName("ListeCritere")[0],document.getElementsByClassName("ListeCritere"));
 	    document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     }
 	
