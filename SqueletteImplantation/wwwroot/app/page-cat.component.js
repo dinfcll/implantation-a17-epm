@@ -39,7 +39,6 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageCat = function (param) {
         this.m_TabCat = param.json();
-        console.log(this.m_TabCat);
         if (this.m_TabCat.length < 8) {
             document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
         }
@@ -49,7 +48,6 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageCrit = function (param) {
         this.m_TabCrit = param.json();
-        console.log(this.m_TabCrit);
         if (this.m_TabCrit.length < 8) {
             document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
         }
@@ -59,10 +57,8 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();
-        console.log(this.m_TabTrace);
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
-        console.log(document.getElementsByClassName("ListeCritere")[0], document.getElementsByClassName("ListeCritere"));
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
@@ -76,12 +72,10 @@ var PageCatComponent = (function () {
     //Action lors de la sélection d'un critère
     PageCatComponent.prototype.OnClickCritere = function (crit) {
         this.m_TabRecherche.push(crit);
-        console.log(this.m_TabRecherche);
     };
     //Action lors du clic sur supprimer
     PageCatComponent.prototype.OnClickSupprimer = function (crit) {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit), 1);
-        console.log(this.m_TabRecherche);
     };
     //Action lors de l'appui sur le bouton recherche
     PageCatComponent.prototype.OnClickRechercher = function () {
