@@ -157,7 +157,7 @@ public fileChange(event:any)
     {
         this.m_File = fileList[0];
         this.m_Form = new FormData();
-        this.m_Form.append('uploadFile', this.m_File);
+        this.m_Form.append('traces', this.m_File);
         this.Message = this.m_File.name;
     }
 }
