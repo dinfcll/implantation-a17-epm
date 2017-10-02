@@ -10,8 +10,6 @@ import { AuthentificationService } from "./authentification.service";
 
 export class AppComponent 
 {
-  public Admin: boolean;
-  public Connecte: boolean;
   
   constructor (
     private router: Router,
@@ -24,9 +22,16 @@ export class AppComponent
   }
   public UpdateAuthentification(): void
   {    
-    this.Connecte = this.authentificationService.Connecte();
-    this.Admin = this.authentificationService.Admin();
+    this.authentificationService.Connecte();
+    this.authentificationService.Admin();
+    this.authentificationService.Domaine();
   }
+
+  public ChoixDomaine(): void
+  {
+    this.authentificationService.DomaineChange();
+  }
+
   Deconnexion(){
     localStorage.removeItem('ConnectedUser');
     this.authentificationService.logout();
@@ -37,23 +42,20 @@ export class AppComponent
   Reroutage(type:Number) : void
   {
     console.log(type);
-    if(type === 0)
+    if(type === 0 && this.router.url.toString() == '/neurologie') //tu sais déjà qu'il est admin
     {
-       this.router.navigateByUrl('ajout');
+      this.router.navigateByUrl('neurologie/ajouttrace');
     }
     else
-      if(type === 1)
+      if(type === 0 && this.router.url.toString() == '/cardiologie')
       {
-        //  this.router.navigateByUrl('ajout');
+        this.router.navigateByUrl('cardiologie/ajouttrace');
       }
       else
+      if(type === 2)
       {
         this.router.navigateByUrl('choix');
       }
-
-  @HostListener('window:beforeunload', ['$event'])
-    beforeunloadHandler() {
-    this.authentificationService.logout();
 
   }
 }

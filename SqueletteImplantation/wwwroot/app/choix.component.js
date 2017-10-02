@@ -12,16 +12,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
+var authentification_service_1 = require("./authentification.service");
 var ChoixComponent = (function () {
-    function ChoixComponent(router, appcomponent) {
+    function ChoixComponent(router, appcomponent, authentificationservice) {
         this.router = router;
         this.appcomponent = appcomponent;
+        this.authentificationservice = authentificationservice;
         this.appcomponent.UpdateAuthentification();
     }
+    ChoixComponent.prototype.ngOnInit = function () {
+        this.authentificationservice.InitDomaine();
+    };
     ChoixComponent.prototype.NeuroClick = function () {
+        this.authentificationservice.DomaineChange();
         this.router.navigateByUrl('/neurologie');
     };
     ChoixComponent.prototype.CardioClick = function () {
+        this.authentificationservice.DomaineChange();
         this.router.navigateByUrl('/cardiologie');
     };
     return ChoixComponent;
@@ -32,7 +39,7 @@ ChoixComponent = __decorate([
         templateUrl: 'app/html/choix.component.html',
         styleUrls: ['app/css/choix.component.css']
     }),
-    __metadata("design:paramtypes", [router_1.Router, app_component_1.AppComponent])
+    __metadata("design:paramtypes", [router_1.Router, app_component_1.AppComponent, authentification_service_1.AuthentificationService])
 ], ChoixComponent);
 exports.ChoixComponent = ChoixComponent;
 //# sourceMappingURL=choix.component.js.map
