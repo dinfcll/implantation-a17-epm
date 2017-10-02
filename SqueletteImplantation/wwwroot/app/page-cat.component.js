@@ -29,12 +29,12 @@ var PageCatComponent = (function () {
         var _this = this;
         //Remplit les objets des données de la BD
         if (this.router.url.toString() == '/neurologie') {
-            this.catService.getCategories(1).subscribe(function (cat) { return _this.AffichageCat(cat); });
-            this.critService.getCriteres(1).subscribe(function (crit) { return _this.AffichageCrit(crit); });
-        }
-        else {
             this.catService.getCategories(2).subscribe(function (cat) { return _this.AffichageCat(cat); });
             this.critService.getCriteres(2).subscribe(function (crit) { return _this.AffichageCrit(crit); });
+        }
+        else {
+            this.catService.getCategories(1).subscribe(function (cat) { return _this.AffichageCat(cat); });
+            this.critService.getCriteres(1).subscribe(function (crit) { return _this.AffichageCrit(crit); });
         }
     };
     PageCatComponent.prototype.AffichageCat = function (param) {
