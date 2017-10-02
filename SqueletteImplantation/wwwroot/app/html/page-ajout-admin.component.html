@@ -22,9 +22,10 @@
 							</tr>
 						</table>
 					</ul>
-					<button id="btnAjouterTrace" (click)="onClickAddTrace()"><span><img src="app/images/add.png" alt=""/>Soumettre</span></button>
 					<input type="file" name="file" id="file" class="inputfile"  (change)="fileChange($event)"  accept=".pdf,.doc,.docx"/>
-                    <label for="file"><img src="app/images/download.png" alt=""/> Insérer le tracé ...</label>			
+                    <label for="file"><img src="app/images/download.png" alt=""/>  {{Message}}</label>
+					<button id="btnAjouterTrace" (click)="onClickAddTrace()"><span><img src="app/images/add.png" alt=""/>Soumettre</span></button>
+								
 				</td>
 			</tr>
 			<tr id="DeuxiemeLigne">
