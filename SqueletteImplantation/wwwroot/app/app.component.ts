@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from "./authentification.service";
 
@@ -31,5 +31,9 @@ export class AppComponent
     localStorage.removeItem('ConnectedUser');
     this.authentificationService.logout();
     this.router.navigateByUrl('index');
+  }
+  @HostListener('window:beforeunload', ['$event'])
+    beforeunloadHandler() {
+    this.authentificationService.logout();
   }
 }

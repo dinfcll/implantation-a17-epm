@@ -4,13 +4,12 @@
 				<td id="ChoixCategorie">  
 					<div class="ListeDeroulanteCategorie">
 						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
-						<div id="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()" class="ContenuListeDeroulanteCategorie">
-							<div *ngFor ="let categ of m_TabCat">
-								<a (click)="OnClickCategorie(categ.catId)">
-									{{categ.catNom}}
-								</a>
-							</div>
-						</div>
+						<select class="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()">
+							 <option id="ElementListe" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ.catId)" title="{{categ.catNom}}">
+								 {{categ.catNom}}
+								 
+							</option>
+						</select>
 					</div>
                 </td>
 				<td id="EspaceCritereChoisi" rowspan="2">
@@ -31,12 +30,13 @@
 			<tr id="DeuxiemeLigne">
 				<td id="ChoixCritere">
 					<div class="ListeDeroulanteCritere">
-					  <button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
-						<div id="ListeCritere" (click)="OnClickListeDeroulanteCritere()" class="ContenuListeDeroulanteCritere">
-						    <span *ngFor ="let critere of m_TabCrit">
-								<a (click)="OnClickCritere(critere)"><img src="app/images/add.gif" alt=""/> {{critere.critNom}}</a>
-						    </span>	
-						</div>	
+						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
+					  	<select class="ListeCritere" (click)="OnClickListeDeroulanteCritere()">
+							<option id="ElementListe" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
+								<img src="app/images/add.gif" alt="non" />
+								{{critere.critNom}}
+							</option>
+						</select>
 					</div>
 				</td>
 			</tr>
