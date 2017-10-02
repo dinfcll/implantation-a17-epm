@@ -29,8 +29,17 @@ var AppComponent = (function () {
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
     };
+    AppComponent.prototype.beforeunloadHandler = function () {
+        this.authentificationService.logout();
+    };
     return AppComponent;
 }());
+__decorate([
+    core_1.HostListener('window:beforeunload', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AppComponent.prototype, "beforeunloadHandler", null);
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app-root',
