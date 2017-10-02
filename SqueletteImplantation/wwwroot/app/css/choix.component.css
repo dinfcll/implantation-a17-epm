@@ -1,4 +1,4 @@
-#ImageNeuro {
+#floatleft {
     float:left; 
     width: 47%;
     height: 60vh;
@@ -7,7 +7,7 @@
     margin-left: 2%;
 }
 
-#ImageCardio {
+#floatright {
     float: right;
     width: 47%;
     height: 60vh;
@@ -16,7 +16,7 @@
     margin-right: 2%;
 }
 
-#ImageCardio:hover, #ImageNeuro:hover {
+#floatleft:hover, #floatright:hover {
     opacity: 0.75;
     cursor: pointer;
 }

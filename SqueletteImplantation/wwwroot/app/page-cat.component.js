@@ -28,14 +28,8 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.ngOnInit = function () {
         //Remplit les objets des données de la BD
         var _this = this;
-        if (this.router.url.toString() == "/cardiologie") {
-            this.catService.getCategories(1).subscribe(function (cat) { return _this.AffichageCat(cat); });
-            this.critService.getCriteres(1).subscribe(function (crit) { return _this.AffichageCrit(crit); });
-        }
-        if (this.router.url.toString() == "/neurologie") {
-            this.catService.getCategories(2).subscribe(function (cat) { return _this.AffichageCat(cat); });
-            this.critService.getCriteres(2).subscribe(function (crit) { return _this.AffichageCrit(crit); });
-        }
+        this.catService.getCategories(1).subscribe(function (cat) { return _this.AffichageCat(cat); });
+        this.critService.getCriteres(1).subscribe(function (crit) { return _this.AffichageCrit(crit); });
     };
     PageCatComponent.prototype.AffichageCat = function (param) {
         this.m_TabCat = param.json();
@@ -106,12 +100,7 @@ var PageCatComponent = (function () {
         }
     };
     PageCatComponent.prototype.onClickAddTrace = function () {
-        if (this.router.url.toString() == "/cardiologie") {
-            this.router.navigateByUrl('cardiologie/ajouttrace');
-        }
-        if (this.router.url.toString() == "/neurologie") {
-            this.router.navigateByUrl('neurologie/ajouttrace');
-        }
+        this.router.navigateByUrl('/ajout');
     };
     PageCatComponent.prototype.AffichageRepDel = function (param) {
         console.log(param);

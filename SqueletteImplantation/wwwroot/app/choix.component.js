@@ -19,10 +19,10 @@ var ChoixComponent = (function () {
         this.appcomponent.UpdateAuthentification();
     }
     ChoixComponent.prototype.NeuroClick = function () {
-        this.router.navigateByUrl('/neurologie');
+        this.router.navigateByUrl('/categorie');
     };
     ChoixComponent.prototype.CardioClick = function () {
-        this.router.navigateByUrl('/cardiologie');
+        this.router.navigateByUrl('/categorie');
     };
     return ChoixComponent;
 }());

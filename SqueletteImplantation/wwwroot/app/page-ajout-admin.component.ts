@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
 import { Http } from '@angular/http';
-import { Router } from '@angular/router';
 
 //Importation des classes
 import { Trace } from './trace';
@@ -36,7 +35,7 @@ export class AjoutAdminComponent implements OnInit
     m_File:File;
     m_Form: FormData = null;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http, private router:Router){}
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http){}
 
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     ngOnInit(): void 

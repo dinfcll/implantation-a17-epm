@@ -42,27 +42,13 @@ export class PageCatComponent implements OnInit
     {
         //Remplit les objets des données de la BD
 
-        if(this.router.url.toString() == "/cardiologie")
-        {
-            this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
+        this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
         
-            this.critService.getCriteres(1).subscribe(crit => this.AffichageCrit(crit));
-        }
-
-
-        if(this.router.url.toString() == "/neurologie")
-        {
-            this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
-        
-            this.critService.getCriteres(2).subscribe(crit => this.AffichageCrit(crit));
-        }
-
-
+        this.critService.getCriteres(1).subscribe(crit => this.AffichageCrit(crit));
 
     }
 
-    private AffichageCat(param: any)
-    {
+    private AffichageCat(param: any) {
         this.m_TabCat = (param.json() as Categorie[]);
         console.log(this.m_TabCat);
 
@@ -77,8 +63,7 @@ export class PageCatComponent implements OnInit
           
     }
 
-    private AffichageCrit(param: any)
-    {
+    private AffichageCrit(param: any) {
         this.m_TabCrit = (param.json() as Critere[]);
         console.log(this.m_TabCrit);
 
@@ -162,16 +147,7 @@ export class PageCatComponent implements OnInit
 
     public onClickAddTrace()
     {
-
-        if(this.router.url.toString() == "/cardiologie")
-        {
-            this.router.navigateByUrl('cardiologie/ajouttrace');
-        }
-        
-        if(this.router.url.toString() == "/neurologie")
-        {
-            this.router.navigateByUrl('neurologie/ajouttrace');
-        }
+        this.router.navigateByUrl('/ajout');
     }
 
     private AffichageRepDel(param: any) // Si le param est une string !
