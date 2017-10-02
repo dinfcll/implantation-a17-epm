@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from "./app.component";
-
+import { AuthentificationService } from "./authentification.service";
 
 
 
@@ -13,17 +13,24 @@ import { AppComponent } from "./app.component";
 
 export class ChoixComponent 
 { 
-    constructor(private router: Router, private appcomponent: AppComponent) {
+    constructor(private router: Router, private appcomponent: AppComponent, private authentificationservice: AuthentificationService) {
         this.appcomponent.UpdateAuthentification();
      }
 
+    ngOnInit():void
+    {
+        this.authentificationservice.InitDomaine();
+    }
+
     NeuroClick(): void 
     {
+        this.authentificationservice.DomaineChange();
         this.router.navigateByUrl('/neurologie');
     }
 
     CardioClick(): void
     {
+        this.authentificationservice.DomaineChange();
         this.router.navigateByUrl('/cardiologie');
     }
 }

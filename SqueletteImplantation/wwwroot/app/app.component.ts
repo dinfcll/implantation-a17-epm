@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from "./authentification.service";
 
@@ -10,8 +10,6 @@ import { AuthentificationService } from "./authentification.service";
 
 export class AppComponent 
 {
-  public Admin: boolean;
-  public Connecte: boolean;
   
   constructor (
     private router: Router,
@@ -24,16 +22,40 @@ export class AppComponent
   }
   public UpdateAuthentification(): void
   {    
-    this.Connecte = this.authentificationService.Connecte();
-    this.Admin = this.authentificationService.Admin();
+    this.authentificationService.Connecte();
+    this.authentificationService.Admin();
+    this.authentificationService.Domaine();
   }
+
+  public ChoixDomaine(): void
+  {
+    this.authentificationService.DomaineChange();
+  }
+
   Deconnexion(){
     localStorage.removeItem('ConnectedUser');
     this.authentificationService.logout();
     this.router.navigateByUrl('index');
   }
-  @HostListener('window:beforeunload', ['$event'])
-    beforeunloadHandler() {
-    this.authentificationService.logout();
+
+
+  Reroutage(type:Number) : void
+  {
+    console.log(type);
+    if(type === 0 && this.router.url.toString() == '/neurologie') //tu sais déjà qu'il est admin
+    {
+      this.router.navigateByUrl('neurologie/ajouttrace');
+    }
+    else
+      if(type === 0 && this.router.url.toString() == '/cardiologie')
+      {
+        this.router.navigateByUrl('cardiologie/ajouttrace');
+      }
+      else
+      if(type === 2)
+      {
+        this.router.navigateByUrl('choix');
+      }
+
   }
 }

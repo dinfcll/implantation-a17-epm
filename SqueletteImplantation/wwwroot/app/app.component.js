@@ -22,25 +22,32 @@ var AppComponent = (function () {
         this.authentificationService.logout();
     };
     AppComponent.prototype.UpdateAuthentification = function () {
-        this.Connecte = this.authentificationService.Connecte();
-        this.Admin = this.authentificationService.Admin();
+        this.authentificationService.Connecte();
+        this.authentificationService.Admin();
+        this.authentificationService.Domaine();
+    };
+    AppComponent.prototype.ChoixDomaine = function () {
+        this.authentificationService.DomaineChange();
     };
     AppComponent.prototype.Deconnexion = function () {
         localStorage.removeItem('ConnectedUser');
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
     };
-    AppComponent.prototype.beforeunloadHandler = function () {
-        this.authentificationService.logout();
+    AppComponent.prototype.Reroutage = function (type) {
+        console.log(type);
+        if (type === 0 && this.router.url.toString() == '/neurologie') {
+            this.router.navigateByUrl('neurologie/ajouttrace');
+        }
+        else if (type === 0 && this.router.url.toString() == '/cardiologie') {
+            this.router.navigateByUrl('cardiologie/ajouttrace');
+        }
+        else if (type === 2) {
+            this.router.navigateByUrl('choix');
+        }
     };
     return AppComponent;
 }());
-__decorate([
-    core_1.HostListener('window:beforeunload', ['$event']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], AppComponent.prototype, "beforeunloadHandler", null);
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app-root',
