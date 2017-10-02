@@ -43,7 +43,7 @@ export class AjoutAdminComponent implements OnInit
     {
         //Remplit les objets des données de la BD
 
-        if(this.router.url.toString() == "/cardiologie")
+        if(this.router.url.toString() == "/cardiologie/ajouttrace")
         {
             this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
         
@@ -51,7 +51,7 @@ export class AjoutAdminComponent implements OnInit
         }
 
 
-        if(this.router.url.toString() == "/neurologie")
+        if(this.router.url.toString() == "/neurologie/ajouttrace")
         {
             this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
         
@@ -62,11 +62,29 @@ export class AjoutAdminComponent implements OnInit
     private AffichageCat(param: any) {
         this.m_TabCat = (param.json() as Categorie[]);
         console.log(this.m_TabCat);
+
+        if(this.m_TabCat.length < 8)
+        {
+            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());  
+        }
+        else
+        {
+            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");            
+        }
     }
 
     private AffichageCrit(param: any) {
         this.m_TabCrit = (param.json() as Critere[]);
         console.log(this.m_TabCrit);
+
+        if(this.m_TabCrit.length < 8)
+        {
+            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+        }
+        else
+        {
+            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
+        }
     }
 
     private AffichageTrace(param: any) {
@@ -76,12 +94,12 @@ export class AjoutAdminComponent implements OnInit
 
     OnClickListeDeroulanteCritere()
     {
-	    document.getElementById("ListeCritere").classList.toggle("showCritere");
+	    document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     }
 	
     OnClickListeDeroulanteCategorie()
     {
-	    document.getElementById("ListeCategorie").classList.toggle("showCategorie");
+	    document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
     }
     
     //Action lors de la sélection d'une catégorie
