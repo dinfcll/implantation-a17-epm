@@ -58,7 +58,6 @@ export class PageCatComponent implements OnInit
 
     private AffichageCat(param: any) {
         this.m_TabCat = (param.json() as Categorie[]);
-        console.log(this.m_TabCat);
 
         if(this.m_TabCat.length < 8)
         {
@@ -73,7 +72,6 @@ export class PageCatComponent implements OnInit
 
     private AffichageCrit(param: any) {
         this.m_TabCrit = (param.json() as Critere[]);
-        console.log(this.m_TabCrit);
 
         if(this.m_TabCrit.length < 8)
         {
@@ -88,12 +86,10 @@ export class PageCatComponent implements OnInit
 
     private AffichageTrace(param: any) {
         this.m_TabTrace = (param.json() as Trace[]);
-        console.log(this.m_TabTrace);
     }
 
     OnClickListeDeroulanteCritere()
     {
-        console.log(document.getElementsByClassName("ListeCritere")[0],document.getElementsByClassName("ListeCritere"));
 	    document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     }
 	
@@ -112,14 +108,12 @@ export class PageCatComponent implements OnInit
     OnClickCritere(crit: Critere)
     {
         this.m_TabRecherche.push(crit);
-        console.log(this.m_TabRecherche);
     }
 
     //Action lors du clic sur supprimer
     OnClickSupprimer(crit: Critere)
     {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit),1);
-        console.log(this.m_TabRecherche);
     }
     
     //Action lors de l'appui sur le bouton recherche
