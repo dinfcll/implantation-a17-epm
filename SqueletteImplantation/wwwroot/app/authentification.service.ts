@@ -5,6 +5,7 @@ import { Headers, Http } from '@angular/http';
 export class AuthentificationService {
     private estConnecte : boolean;
     private estAdmin: boolean;
+    private DomaineChoisi: boolean;
     private UtilisateurURL = 'api/utilisateur/login';
 
     constructor(private http: Http){
@@ -13,16 +14,17 @@ export class AuthentificationService {
             let currentUser = JSON.parse(localStorage.getItem("ConnectedUser"));
             this.estConnecte = currentUser.connect;
             this.estAdmin = currentUser.type;
+            this.DomaineChoisi = currentUser.Domaine;
         }
         else
         {
             this.estAdmin = false;
             this.estConnecte = false;
+            this.DomaineChoisi = false;
         }
     }
 
-    login(user: string, motdepasse: string) {
-        console.log(user + " / " + motdepasse);        
+    login(user: string, motdepasse: string) {      
         let headers = new Headers();
 
         headers.append('Content-type', 'application/json');
@@ -50,7 +52,7 @@ export class AuthentificationService {
             this.estConnecte = false;
             this.estAdmin = false;
         }
-        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte }));
+        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte, domaine: this.DomaineChoisi }));
     }
 
     public logout(): void {
@@ -58,10 +60,29 @@ export class AuthentificationService {
         this.estConnecte = false;
         this.estAdmin = false;
     }
+
+    
+
+    public DomaineChange(): void
+    {
+        this.DomaineChoisi = true;
+    }
+
+    public InitDomaine(): void
+    {
+        this.DomaineChoisi = false;
+    }
+
+    Domaine()
+    {
+        return this.DomaineChoisi;
+    }
+
     Connecte()
     {
         return this.estConnecte;
     }
+
     Admin()
     {
         return this.estAdmin;

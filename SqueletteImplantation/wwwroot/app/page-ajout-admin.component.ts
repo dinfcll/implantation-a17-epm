@@ -36,7 +36,7 @@ export class AjoutAdminComponent implements OnInit
     m_File:File;
     m_Form: FormData = null;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http)
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http, private router:Router)
     {
         this.Message = "Insérer le tracé ...";
     }
