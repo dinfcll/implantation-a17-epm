@@ -26,7 +26,7 @@ import { CritereService } from './critere.service';
 //À compléter
 export class AjoutAdminComponent implements OnInit
 {
-
+    Message: string;
     m_TabTrace: Trace[];
     m_TabCat: Categorie[];
     m_TabCrit: Critere[];
@@ -36,7 +36,10 @@ export class AjoutAdminComponent implements OnInit
     m_File:File;
     m_Form: FormData = null;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http, private router:Router){}
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private http:Http)
+    {
+        this.Message = "Insérer le tracé ...";
+    }
 
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     ngOnInit(): void 
@@ -154,7 +157,8 @@ public fileChange(event:any)
     {
         this.m_File = fileList[0];
         this.m_Form = new FormData();
-        this.m_Form.append('traces', this.m_File);
+        this.m_Form.append('uploadFile', this.m_File);
+        this.Message = this.m_File.name;
     }
 }
 
