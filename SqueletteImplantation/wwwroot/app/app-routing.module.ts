@@ -7,6 +7,7 @@ import { PageCatComponent} from './page-cat.component';
 import { AjoutAdminComponent} from './page-ajout-admin.component';
 import { IndexComponent } from './index.component';
 import { ChoixComponent } from './choix.component';
+import { AjoutSuppComponent } from "./ajout-cat-crit.component";
 
 import { AuthentificationGuard } from './authentification.guard';
 
@@ -15,6 +16,7 @@ import { AuthentificationGuard } from './authentification.guard';
 export const router: Routes = 
 [
   { path: '', redirectTo: '/choix', pathMatch: 'full' },
+  { path: 'ajoutsupp', component: AjoutSuppComponent, canActivate: [AuthentificationGuard]},
   { path: 'cardiologie', component: PageCatComponent, canActivate: [AuthentificationGuard]},
   { path: 'cardiologie/ajouttrace', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},
   { path: 'cardiologie/ajoutcritere', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},

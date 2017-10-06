@@ -35,12 +35,14 @@ var AppComponent = (function () {
         this.router.navigateByUrl('index');
     };
     AppComponent.prototype.Reroutage = function (type) {
-        console.log(type);
         if (type === 0 && this.router.url.toString() == '/neurologie') {
             this.router.navigateByUrl('neurologie/ajouttrace');
         }
         else if (type === 0 && this.router.url.toString() == '/cardiologie') {
             this.router.navigateByUrl('cardiologie/ajouttrace');
+        }
+        else if (type === 1) {
+            this.router.navigateByUrl('ajoutsupp');
         }
         else if (type === 2) {
             this.router.navigateByUrl('choix');

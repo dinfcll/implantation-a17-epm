@@ -41,7 +41,7 @@ export class AppComponent
 
   Reroutage(type:Number) : void
   {
-    console.log(type);
+   
     if(type === 0 && this.router.url.toString() == '/neurologie') //tu sais déjà qu'il est admin
     {
       this.router.navigateByUrl('neurologie/ajouttrace');
@@ -51,6 +51,11 @@ export class AppComponent
       {
         this.router.navigateByUrl('cardiologie/ajouttrace');
       }
+      else
+        if(type === 1)
+        {
+          this.router.navigateByUrl('ajoutsupp');
+        }
       else
       if(type === 2)
       {
