@@ -36,11 +36,11 @@ var CritereService = (function () {
         console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"
         return Promise.reject(error.message || error);
     };
+    CritereService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], CritereService);
     return CritereService;
 }());
-CritereService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], CritereService);
 exports.CritereService = CritereService;
 //# sourceMappingURL=critere.service.js.map

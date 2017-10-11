@@ -9,8 +9,8 @@
 	z-index: -1;
 }
 .inputfile + label {
-    position:absolute;
-	left:67%;
+	position:absolute;
+	left:55%;
 	bottom:10%;
 	white-space: nowrap;
 	border-radius:5px;	
@@ -100,7 +100,7 @@
 
 #btnAjouterTrace{
 position:absolute;
-	left:85%;
+	left:80%;
 	bottom:10%;
 	border-radius: 5px;	
 	border: none;

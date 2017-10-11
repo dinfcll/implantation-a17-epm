@@ -35,29 +35,38 @@ var AppComponent = (function () {
         this.router.navigateByUrl('index');
     };
     AppComponent.prototype.Reroutage = function (type) {
-        if (type === 0 && this.router.url.toString() == '/neurologie') {
+        if (type === 0 && this.DetectionPage() == 'neurologie') {
             this.router.navigateByUrl('neurologie/ajouttrace');
         }
-        else if (type === 0 && this.router.url.toString() == '/cardiologie') {
+        else if (type === 0 && this.DetectionPage() === 'cardiologie') {
             this.router.navigateByUrl('cardiologie/ajouttrace');
         }
-        else if (type === 1) {
-            this.router.navigateByUrl('ajoutsupp');
+        else if (type === 1 && this.DetectionPage() == 'neurologie') {
+            this.router.navigateByUrl('neurologie/ajoutsupp');
+        }
+        else if (type === 1 && this.DetectionPage() == 'cardiologie') {
+            this.router.navigateByUrl('cardiologie/ajoutsupp');
         }
         else if (type === 2) {
             this.router.navigateByUrl('choix');
         }
     };
+    AppComponent.prototype.DetectionPage = function () {
+        var CheminLong = this.router.url.toString();
+        var Page;
+        Page = CheminLong.split('/', 2);
+        return Page[1];
+    };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'app-root',
+            templateUrl: 'app/html/app.component.html',
+            styleUrls: ['app/css/app.component.css']
+        }),
+        __metadata("design:paramtypes", [router_1.Router,
+            authentification_service_1.AuthentificationService])
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'app-root',
-        templateUrl: 'app/html/app.component.html',
-        styleUrls: ['app/css/app.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router,
-        authentification_service_1.AuthentificationService])
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
