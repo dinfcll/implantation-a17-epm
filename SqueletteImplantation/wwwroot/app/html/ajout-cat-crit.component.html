@@ -2,20 +2,48 @@
 	   <table class="TableEspacePrincipalCat">
 			<tr id="PremiereLigne">
 				<td id="ChoixCategorie">  
+					<fieldset>
+					<legend>Suppression d'une catégorie</legend>
+					<div class="Container">
 					<div class="ListeDeroulanteCategorie">
-						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
+						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> {{NomCateg}} </button>
 						<select class="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()">
-							 <option id="ElementListe" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ.catId)" title="{{categ.catNom}}">
+							 <option id="ElementListe" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ)" title="{{categ.catNom}}">
 								 {{categ.catNom}}
-								 
 							</option>
 						</select>
 					</div>
+						<div class = "DivSupp">
+								<img src="app/images/delete.png" alt="" (click)="OnClickSupprimerCateg()"/>
+						</div>
+					</div>
+					</fieldset>
+					<form class="form-horizontal">
+							<fieldset>
+							<legend>Ajout d'une catégorie</legend>
+							<div class="form-group">
+								<label for="input" class="col-lg-2 control-label">Nom :</label>
+								<div class="col-lg-10">
+								<input type="text" class="form-control" id="inputEmail">
+								</div>
+							</div>
+							
+							
+							<div class="form-group">
+								<div class="col-lg-10 col-lg-offset-2">
+								<button type="reset" class="btn btn-default">Effacer</button>
+								<button type="submit" class="btn btn-primary">Soumettre</button>
+								</div>
+							</div>
+							</fieldset>
+						</form>
                 </td>
 				<td id="EspaceCritereChoisi" rowspan="2">
-					
+					<fieldset>
+					<legend>Suppression d'un critère</legend>
+					<div class="Container">
 						<div class="ListeDeroulanteCritere">
-							<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
+							<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> {{NomCrit}} </button>
 							  <select class="ListeCritere" (click)="OnClickListeDeroulanteCritere()">
 								<option id="ElementListe" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
 									<img src="app/images/add.gif" alt="non" />
@@ -23,9 +51,34 @@
 								</option>
 							</select>
 						</div>
-					
+						<div class = "DivSupp">
+								<img src="app/images/delete.png" alt="" (click)="OnClickSupprimerCrit()"/>
+						</div>
+					</div>
+				</fieldset>
+
+				<form class="form-horizontal">
+						<fieldset>
+						<legend>Ajout d'un critère</legend>
+						<div class="form-group">
+							<label for="input" class="col-lg-2 control-label">Nom :</label>
+							<div class="col-lg-10">
+							<input type="text" class="form-control" id="inputEmail">
+							</div>
+						</div>
+						
+						
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+							<button type="reset" class="btn btn-default">Effacer</button>
+							<button type="submit" class="btn btn-primary">Soumettre</button>
+							</div>
+						</div>
+						</fieldset>
+					</form>
 				</td>
 			</tr>
+
 			
 		</table>
 	</div>

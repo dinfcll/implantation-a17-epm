@@ -29,12 +29,8 @@ var CritereService = (function () {
         return this.http.delete(url);
     };
     //Permet d'envoyer une requête HTTP d'ajout d'un critère'.
-    CritereService.prototype.addCritere = function (CritDto) {
-        return this.http.post("api/ajoutcrite", JSON.stringify({ CritDto: critere_1.CritDTO }));
-    };
-    CritereService.prototype.GestionErreur = function (error) {
-        console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"
-        return Promise.reject(error.message || error);
+    CritereService.prototype.addCritere = function (Crit) {
+        return this.http.post("api/ajoutcrite", JSON.stringify({ Crit: critere_1.Critere }));
     };
     CritereService = __decorate([
         core_1.Injectable(),

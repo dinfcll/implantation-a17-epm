@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var categorie_1 = require("./categorie");
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/toPromise"); // Pour accéder à la méthode .toPromise()
@@ -25,22 +26,12 @@ var CategorieService = (function () {
     };
     //Permet d'envoyer une requête de suppression d'une certaine catégorie au "controller".
     CategorieService.prototype.deleteCategorie = function (id) {
-        var url = this.CategoriesURL + "/" + id;
-        return this.http.delete(url, { headers: this.headers })
-            .toPromise()
-            .then(function () { return null; })
-            .catch(this.GestionErreur);
+        var url = "api/delcat/" + id;
+        return this.http.delete(url);
     };
     //Permet d'envoyer une requête HTTP d'ajout d'une catégorie'.
-    CategorieService.prototype.addCategorie = function (trace) {
-        return this.http.post(this.CategoriesURL, JSON.stringify({ trace: trace }), { headers: this.headers })
-            .toPromise()
-            .then(function (res) { return res.json().data; })
-            .catch(this.GestionErreur);
-    };
-    CategorieService.prototype.GestionErreur = function (error) {
-        console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"
-        return Promise.reject(error.message || error);
+    CategorieService.prototype.addCategorie = function (categ) {
+        return this.http.post("api/ajoutcat", JSON.stringify({ categ: categorie_1.Categorie }), { headers: this.headers });
     };
     CategorieService = __decorate([
         core_1.Injectable(),

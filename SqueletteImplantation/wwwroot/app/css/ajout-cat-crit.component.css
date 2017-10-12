@@ -12,6 +12,31 @@
 td{ box-shadow: 0px 5px 4px -2px #8c8c8c;}
 
 
+.Container{
+	width:34%; 
+	display:flex;
+	flex-direction:row;
+	margin-bottom: 20%;
+
+}
+
+.Container > div{
+	flex: 1 1 auto;
+	text-align:right;
+}
+
+.Container img {
+    display: block;
+	margin-top: 8%;
+	margin-left: 4%;
+	
+}
+
+.DivSupp{
+cursor:pointer;
+width: 30%; 
+}
+
 #ChoixCategorie{
 	height: 0vh;
 	border-bottom-style: solid;
@@ -161,10 +186,12 @@ background-color: rgba(125, 141, 163, 0.71);
 }
 
 /*Liste deroulante Catégorie et Critère*/
-.ListeDeroulanteCategorie, .ListeDeroulanteCritere{
-	margin: 25%;
-    width: 221px;
+.ListeDeroulanteCategorie, .ListeDeroulanteCritere
+{
+	margin-left: 10%;
+    width: 70%;
 }
+
 
 .ListeCategorie, .ListeCritere{
 	display: none;
@@ -198,3 +225,92 @@ background-color: rgba(125, 141, 163, 0.71);
 
 
 /*-------------------------Fin css pour liste déroulantes---------------------------*/
+
+
+/***************************POUR LE FORMULAIRE***************************************/
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 8px 12px;
+	font-size: 15px;
+    line-height: 1.4;
+    border-radius: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn-default:hover{
+	color:grey;
+}
+
+.btn-primary:hover{
+	color:black;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #008cba;
+	border-color: #0079a1;
+	margin-left: 10px;
+}
+
+.btn-default {
+    color: #555555;
+    background-color: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+
+.form-control {
+    display: block;
+    width: 30%;
+    height: 8%;
+	padding: 8px 12px;
+	margin-bottom: 15px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #6f6f6f;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+legend {
+	display: block;
+	font:80%/1 sans-serif;
+	font-weight:bold;
+	font-size: 16px;
+    -webkit-padding-start: 2px;
+    -webkit-padding-end: 2px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+	border-image: initial;
+	
+}
+
+fieldset{
+	
+	margin:2%;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border-color: grey;
+}
