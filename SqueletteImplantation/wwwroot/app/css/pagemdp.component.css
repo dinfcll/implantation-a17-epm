@@ -1,8 +1,8 @@
-.FormulaireConnexion{
+.FormulaireMDP{
 	position: relative;
 	text-align: center;
 }
-#btnConnexion {
+#btnReset {
 	border-radius:5px;	
 	border: none;
 	background-color: var(--CouleurTheme);
@@ -12,22 +12,19 @@
 	padding-left: 12px;
 	padding-right: 12px;
 	font-size: 20px;
-    width: 130px;
+    width: 200px;
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
 	background-position: right;
 }
-#btnConnexion:hover{
+#btnReset:hover {
 	background:linear-gradient(white 7%,var(--CouleurThemeHover));
-}
-#divConnexion{
-	display:inline-block;
-	text-align: right;	
 }
 input{
 	width: 10vw;
 }
-#btnOublie {
+
+#btnCancel {
 	border-radius:5px;	
 	border: none;
 	background-color: var(--CouleurTheme);
@@ -37,11 +34,11 @@ input{
 	padding-left: 12px;
 	padding-right: 12px;
 	font-size: 20px;
-    width: 215px;
+    width: 200px;
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
 	background-position: right;
 }
-#btnOublie:hover {
+#btnCancel:hover {
 	background:linear-gradient(white 7%,var(--CouleurThemeHover));
 }

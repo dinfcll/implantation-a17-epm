@@ -22,7 +22,6 @@ var IndexComponent = (function () {
     }
     IndexComponent.prototype.Connexion = function (f) {
         var _this = this;
-        console.log(f);
         this.authServ.login(f.value.utilisateur, f.value.motdepasse).subscribe(function (Reponse) {
             _this.authServ.ValidationConnexion(Reponse);
             if (_this.authServ.Connecte() && _this.authServ.Admin()) {
@@ -39,6 +38,9 @@ var IndexComponent = (function () {
                 }
             }
         });
+    };
+    IndexComponent.prototype.Oublie = function (o) {
+        this.router.navigate(['MDP']);
     };
     return IndexComponent;
 }());
