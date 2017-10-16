@@ -24,18 +24,12 @@ var IndexComponent = (function () {
         var _this = this;
         this.authServ.login(f.value.utilisateur, f.value.motdepasse).subscribe(function (Reponse) {
             _this.authServ.ValidationConnexion(Reponse);
-            if (_this.authServ.Connecte() && _this.authServ.Admin()) {
+            if (_this.authServ.Connecte()) {
                 _this.router.navigate(['choix']);
             }
             else {
-                if (_this.authServ.Connecte() && !_this.authServ.Admin()) {
-                    _this.router.navigate(['choix']);
-                }
-                else {
-                    if (!_this.authServ.Connecte()) {
-                        alert("Nom d'utilisateur ou mot de passe invalide!");
-                    }
-                }
+                console.log("TestLogin");
+                alert("Nom d'utilisateur ou mot de passe invalide");
             }
         });
     };

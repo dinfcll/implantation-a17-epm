@@ -23,7 +23,7 @@ namespace SqueletteImplantation.Controllers
 
             if (login == null)
             {
-                return NotFound();
+                return new OkObjectResult(null);
             }
             return new OkObjectResult(login.UtilType);
         }

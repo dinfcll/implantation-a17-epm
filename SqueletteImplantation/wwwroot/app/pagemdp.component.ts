@@ -13,11 +13,11 @@ import { AuthentificationService } from "./authentification.service";
 
 export class mdpcomponent
 { 
-    constructor(private router: Router);
+    constructor(private router: Router){}
 
     public Cancel(c: NgForm): void
     {
-        this.router.navigateByUrl('');
-    }
-   
+        console.log("12Test");
+        this.router.navigateByUrl('choix');
+    }   
 }
