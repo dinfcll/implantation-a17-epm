@@ -33,7 +33,6 @@ export class AppComponent
   }
 
   Deconnexion(){
-    localStorage.removeItem('ConnectedUser');
     this.authentificationService.logout();
     this.router.navigateByUrl('index');
   }
