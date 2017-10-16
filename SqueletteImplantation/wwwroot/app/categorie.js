@@ -12,9 +12,9 @@ var Categorie = (function () {
 }());
 exports.Categorie = Categorie;
 var CatDTO = (function () {
-    function CatDTO(catNom, domId) {
-        this.catNom = catNom;
-        this.domId = domId;
+    function CatDTO(NomCat, IdDom) {
+        this.NomCat = NomCat;
+        this.IdDom = IdDom;
     }
     return CatDTO;
 }());

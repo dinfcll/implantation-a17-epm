@@ -10,9 +10,9 @@ var Critere = (function () {
 }());
 exports.Critere = Critere;
 var CritDTO = (function () {
-    function CritDTO(critNom, catId) {
-        this.critNom = critNom;
-        this.catId = catId;
+    function CritDTO(NomCrit, IdCat) {
+        this.NomCrit = NomCrit;
+        this.IdCat = IdCat;
     }
     return CritDTO;
 }());

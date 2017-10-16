@@ -4,5 +4,5 @@ export class Critere
 }
 export class CritDTO
 {
-    constructor(public critNom: String, public catId: number){}
+    constructor(public NomCrit: String, public IdCat: number){}
 }

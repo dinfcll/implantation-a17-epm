@@ -77,10 +77,10 @@ namespace SqueletteImplantation.Controllers
 
         [HttpPost]
         [Route("api/ajoutcat")]
-        public IActionResult AddCategorie(CategorieDTO Catdto)
+        public IActionResult AddCategorie(CategorieDTO catdto)
         {
 
-            var cate = Catdto.CreateCategorie();
+            var cate = catdto.CreateCategorie();
             _maBd.Categorie.Add(cate);
             _maBd.SaveChanges();
 

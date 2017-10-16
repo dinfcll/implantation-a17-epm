@@ -5,5 +5,5 @@ export class Categorie
 
 export class CatDTO
 {
-    constructor(public catNom: String, public domId: number){}
+    constructor(public NomCat: String, public IdDom: number){}
 }

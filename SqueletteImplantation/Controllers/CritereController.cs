@@ -66,9 +66,9 @@ namespace SqueletteImplantation.Controllers
 
         [HttpPost]
         [Route("api/ajoutcrite")]
-        public IActionResult AddCritere(CritereDTO CritDto)
+        public IActionResult AddCritere(CritereDTO critdto)
         {
-            var Crit = CritDto.CreateCritere();
+            var Crit = critdto.CreateCritere();
             _maBd.Critere.Add(Crit);
             _maBd.SaveChanges();
 

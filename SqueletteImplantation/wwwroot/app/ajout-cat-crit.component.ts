@@ -150,17 +150,17 @@ export class AjoutSuppComponent
 
      OnClickAjoutCategorie()
      {
-        let Categ = new CatDTO(this.NomAjoutCat,this.AppComp.TypeDom);
+        let catdto = new CatDTO(this.NomAjoutCat,this.AppComp.TypeDom);
         console.log(this.NomAjoutCat);  //Pas certain que ça va me donner le contenu du txtBox
-        this.catService.addCategorie(Categ).subscribe(reponse => this.AffichageRepAjout(reponse));
+        this.catService.addCategorie(catdto).subscribe(reponse => this.AffichageRepAjout(reponse));
        // window.location.reload();
      }
 
      OnClickAjoutCritere()
      {
-         let Crit = new CritDTO(this.NomAjoutCrit,this.m_CatID);
+         let critdto = new CritDTO(this.NomAjoutCrit,this.m_CatID);
          console.log(this.NomAjoutCrit);  //Pas certain que ça va me donner le contenu du txtBox
-         this.critService.addCritere(Crit).subscribe(reponse => this.AffichageRepAjout(reponse));
+         this.critService.addCritere(critdto).subscribe(reponse => this.AffichageRepAjout(reponse));
      }
 
      private AffichageRepDel(param: any) 
