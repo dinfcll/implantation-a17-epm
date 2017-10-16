@@ -32,11 +32,11 @@ var CritereService = (function () {
     CritereService.prototype.addCritere = function (Crit) {
         return this.http.post("api/ajoutcrite", JSON.stringify({ Crit: critere_1.Critere }));
     };
-    CritereService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], CritereService);
     return CritereService;
 }());
+CritereService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], CritereService);
 exports.CritereService = CritereService;
 //# sourceMappingURL=critere.service.js.map

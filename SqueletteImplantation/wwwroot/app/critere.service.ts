@@ -27,7 +27,7 @@ export class CritereService
 
   
     //Permet d'envoyer une requête HTTP d'ajout d'un critère'.
-    addCritere(Crit: Critere)
+    addCritere(Crit: CritDTO)
     {
        return this.http.post("api/ajoutcrite", JSON.stringify({Crit: Critere}))
     }

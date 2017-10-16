@@ -1,4 +1,4 @@
-import { Categorie } from './categorie';
+import { Categorie,CatDTO } from './categorie';
 import { Headers, Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise'; // Pour accéder à la méthode .toPromise()
@@ -27,7 +27,7 @@ export class CategorieService
     }
 
     //Permet d'envoyer une requête HTTP d'ajout d'une catégorie'.
-    addCategorie(categ: Categorie)
+    addCategorie(categ: CatDTO)
     {
        return this.http.post("api/ajoutcat", JSON.stringify({categ: Categorie}), {headers: this.headers});
     }

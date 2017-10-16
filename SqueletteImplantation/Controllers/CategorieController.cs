@@ -55,7 +55,6 @@ namespace SqueletteImplantation.Controllers
 
 
         //supprimer une catégorie
-
         [HttpDelete]
         [Route("api/delcat/{id}")]
         public IActionResult DeleteCategorie(int id)
@@ -78,10 +77,10 @@ namespace SqueletteImplantation.Controllers
 
         [HttpPost]
         [Route("api/ajoutcat")]
-        public IActionResult AddCategorie(Categorie cate)
+        public IActionResult AddCategorie(CategorieDTO Catdto)
         {
 
-            
+            var cate = Catdto.CreateCategorie();
             _maBd.Categorie.Add(cate);
             _maBd.SaveChanges();
 

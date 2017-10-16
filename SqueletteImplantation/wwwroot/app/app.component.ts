@@ -8,11 +8,11 @@ import { AuthentificationService } from "./authentification.service";
   styleUrls: ['app/css/app.component.css']
 })
 
-export class AppComponent {
-
-  constructor(
-    private router: Router,
-    private authentificationService: AuthentificationService) {
+export class AppComponent 
+{
+  public TypeDom :number;
+  constructor(private router: Router, private authentificationService: AuthentificationService) 
+  {
   }
   public UpdateAuthentificationPageIndex(): void {
     localStorage.removeItem('ConnectedUser');
@@ -35,7 +35,8 @@ export class AppComponent {
   }
 
 
-  Reroutage(type: Number): void {
+  Reroutage(type: Number): void 
+  {
     
     if (type === 0 && this.DetectionPage() == 'neurologie') //tu sais déjà qu'il est admin
     {
@@ -66,6 +67,15 @@ export class AppComponent {
     let Page: string[];
 
     Page = CheminLong.split('/', 2);
+
+    if(Page[1] == 'cardiologie')
+    {
+      this.TypeDom = 1;
+    }
+    else
+    {
+      this.TypeDom = 2;
+    }
 
     return Page[1];
   }

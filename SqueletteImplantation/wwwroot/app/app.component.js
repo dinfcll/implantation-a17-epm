@@ -55,18 +55,23 @@ var AppComponent = (function () {
         var CheminLong = this.router.url.toString();
         var Page;
         Page = CheminLong.split('/', 2);
+        if (Page[1] == 'cardiologie') {
+            this.TypeDom = 1;
+        }
+        else {
+            this.TypeDom = 2;
+        }
         return Page[1];
     };
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'app-root',
-            templateUrl: 'app/html/app.component.html',
-            styleUrls: ['app/css/app.component.css']
-        }),
-        __metadata("design:paramtypes", [router_1.Router,
-            authentification_service_1.AuthentificationService])
-    ], AppComponent);
     return AppComponent;
 }());
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'app-root',
+        templateUrl: 'app/html/app.component.html',
+        styleUrls: ['app/css/app.component.css']
+    }),
+    __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService])
+], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

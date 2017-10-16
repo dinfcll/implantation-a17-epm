@@ -24,7 +24,7 @@
 							<div class="form-group">
 								<label for="input" class="col-lg-2 control-label">Nom :</label>
 								<div class="col-lg-10">
-								<input type="text" class="form-control" id="inputEmail">
+								<input type="text" class="form-control" id="txtNomCat" [(ngModel)]='NomAjoutCat' [ngModelOptions]="{standalone: true}">
 								</div>
 							</div>
 							
@@ -32,7 +32,7 @@
 							<div class="form-group">
 								<div class="col-lg-10 col-lg-offset-2">
 								<button type="reset" class="btn btn-default">Effacer</button>
-								<button type="submit" class="btn btn-primary">Soumettre</button>
+								<button type="submit" (click)="OnClickAjoutCategorie()" class="btn btn-primary">Soumettre</button>
 								</div>
 							</div>
 							</fieldset>
@@ -63,7 +63,7 @@
 						<div class="form-group">
 							<label for="input" class="col-lg-2 control-label">Nom :</label>
 							<div class="col-lg-10">
-							<input type="text" class="form-control" id="inputEmail">
+							<input type="text" class="form-control" [(ngModel)]='NomAjoutCrit' [ngModelOptions]="{standalone: true}">
 							</div>
 						</div>
 						
@@ -71,7 +71,7 @@
 						<div class="form-group">
 							<div class="col-lg-10 col-lg-offset-2">
 							<button type="reset" class="btn btn-default">Effacer</button>
-							<button type="submit" class="btn btn-primary">Soumettre</button>
+							<button type="submit" class="btn btn-primary" (click)="OnClickAjoutCritere()">Soumettre</button>
 							</div>
 						</div>
 						</fieldset>

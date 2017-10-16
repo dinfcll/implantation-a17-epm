@@ -3,27 +3,27 @@
 S'entendre sur ce que le controller et le service vont faire
 Modifier l'interface en fonction
 Faire un ajout qui marche
-
 */
 
 
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import { Http } from '@angular/http';
+import {AppComponent} from './app.component';
 
 //Importation des services
 import { CategorieService } from './categorie.service';
 import { CritereService } from './critere.service';
 
 //Importation des composants
-import { Categorie } from './categorie';
-import { Critere } from './critere';
+import { Categorie, CatDTO } from './categorie';
+import { Critere, CritDTO } from './critere';
 
 @Component ({
     selector: 'my-ajoutsupp',
     templateUrl: 'app/html/ajout-cat-crit.component.html',
     styleUrls: [ 'app/css/ajout-cat-crit.component.css'],
-    providers: [CritereService,CategorieService]
+    providers: [CritereService,CategorieService, AppComponent]
 })
 
 export class AjoutSuppComponent
@@ -34,8 +34,11 @@ export class AjoutSuppComponent
     m_CritID: number;
     NomCateg: String;
     NomCrit: String;
+    ListeCrit: String;
+    NomAjoutCat: String;
+    NomAjoutCrit: String;
 
-    constructor(private catService: CategorieService, private critService: CritereService, private http:Http, private router:Router)
+    constructor(private catService: CategorieService, private critService: CritereService, private http:Http, private router:Router, private AppComp:AppComponent)
     {
         this.NomCateg = "Catégories";
         this.NomCrit = "Critères"
@@ -47,7 +50,6 @@ export class AjoutSuppComponent
         {
            this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
         
-            this.critService.getCriteres(2).subscribe(crit => this.AffichageCrit(crit));
         }
 
 
@@ -55,7 +57,7 @@ export class AjoutSuppComponent
         {
             this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
         
-            this.critService.getCriteres(1).subscribe(crit => this.AffichageCrit(crit));
+            //Pas de besoin de charger les critères, car par défaut la catégorie est "catégorie"
         }
     }
 
@@ -76,7 +78,13 @@ export class AjoutSuppComponent
     private AffichageCrit(param: any)
      {
         this.m_TabCrit = (param.json() as Critere[]);
-      
+        this.ListeCrit = "";
+
+        for(var i = 0; i < this.m_TabCrit.length; i++)
+        {
+            this.ListeCrit += "\n\r" + this.m_TabCrit[i].critNom + ", " ;
+        }
+        
 
         if(this.m_TabCrit.length < 8)
         {
@@ -116,8 +124,15 @@ export class AjoutSuppComponent
 
      OnClickSupprimerCateg()
      {
-        if(confirm("Voulez-vous vraiment supprimer définitivement la catégorie suivante :" + this.NomCateg  + " ?"))
+        if(confirm("Voulez-vous vraiment supprimer définitivement la catégorie suivante : " + this.NomCateg  + " ? \n\rLa suppression de cette catégorie entrainera la suppression des critère(s) suivant(s) : " + this.ListeCrit))
             {
+               
+               //Effacement des critères associés à ladite catégorie
+               for(var i = 0; i < this.m_TabCrit.length; i++) 
+               {
+                     this.critService.deleteCritere(this.m_TabCrit[i].critId).subscribe(reponse => this.AffichageRepDel(reponse));
+               }
+
                this.catService.deleteCategorie(this.m_CatID).subscribe(reponse => this.AffichageRepDel(reponse));
                window.location.reload();
             }
@@ -133,7 +148,27 @@ export class AjoutSuppComponent
             }
      }
 
+     OnClickAjoutCategorie()
+     {
+        let Categ = new CatDTO(this.NomAjoutCat,this.AppComp.TypeDom);
+        console.log(this.NomAjoutCat);  //Pas certain que ça va me donner le contenu du txtBox
+        this.catService.addCategorie(Categ).subscribe(reponse => this.AffichageRepAjout(reponse));
+       // window.location.reload();
+     }
+
+     OnClickAjoutCritere()
+     {
+         let Crit = new CritDTO(this.NomAjoutCrit,this.m_CatID);
+         console.log(this.NomAjoutCrit);  //Pas certain que ça va me donner le contenu du txtBox
+         this.critService.addCritere(Crit).subscribe(reponse => this.AffichageRepAjout(reponse));
+     }
+
      private AffichageRepDel(param: any) 
+     {
+         console.log(param);
+     }
+
+     private AffichageRepAjout(param: any)
      {
          console.log(param);
      }
