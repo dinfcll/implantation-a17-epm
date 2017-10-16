@@ -10,7 +10,8 @@ import { AuthentificationService } from "./authentification.service";
 
 export class AppComponent 
 {
-  
+  private IDIntervaleActivite : number;
+
   constructor (
     private router: Router,
     private authentificationService: AuthentificationService){
@@ -33,7 +34,6 @@ export class AppComponent
   }
 
   Deconnexion(){
-    localStorage.removeItem('ConnectedUser');
     this.authentificationService.logout();
     this.router.navigateByUrl('index');
   }
@@ -56,6 +56,23 @@ export class AppComponent
       {
         this.router.navigateByUrl('choix');
       }
+
+  }
+
+  DetectionActivite() : void
+  {
+    
+
+    if(this.authentificationService.Connecte() === true)
+    {
+      if(this.IDIntervaleActivite != null)
+      {
+        window.clearTimeout(this.IDIntervaleActivite);
+      }
+
+      this.IDIntervaleActivite = window.setTimeout(() => this.Deconnexion(), 5000);//Bon temps = 300000
+    }
+
 
   }
 }

@@ -30,7 +30,6 @@ var AppComponent = (function () {
         this.authentificationService.DomaineChange();
     };
     AppComponent.prototype.Deconnexion = function () {
-        localStorage.removeItem('ConnectedUser');
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
     };
@@ -44,6 +43,15 @@ var AppComponent = (function () {
         }
         else if (type === 2) {
             this.router.navigateByUrl('choix');
+        }
+    };
+    AppComponent.prototype.DetectionActivite = function () {
+        var _this = this;
+        if (this.authentificationService.Connecte() === true) {
+            if (this.IDIntervaleActivite != null) {
+                window.clearTimeout(this.IDIntervaleActivite);
+            }
+            this.IDIntervaleActivite = window.setTimeout(function () { return _this.Deconnexion(); }, 5000); //Bon temps = 300000
         }
     };
     return AppComponent;

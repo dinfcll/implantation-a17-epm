@@ -26,13 +26,16 @@ export class IndexComponent
             this.authServ.ValidationConnexion(Reponse);       
             if(this.authServ.Connecte() && this.authServ.Admin())
             {
+                
                 this.router.navigate(['choix']);
+                
             }     
             else
             {
                 if(this.authServ.Connecte() && !this.authServ.Admin())
                 {
                     this.router.navigate(['choix']);
+                    
                 }
                 else
                 {
