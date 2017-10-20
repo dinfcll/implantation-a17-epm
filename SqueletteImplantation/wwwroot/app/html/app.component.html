@@ -20,7 +20,7 @@
 						<button (click)="Reroutage(2)" id="btnAccueil">Accueil</button>
 					</div>
 					<div id="divDeconnexion" *ngIf="this.authentificationService.Connecte()">
-						<button (click)="this.authentificationService.logout()" id="btnDeconnexion">Déconnexion</button>
+						<button (click)="Deconnexion()" id="btnDeconnexion">Déconnexion</button>
 					</div>
                 </td> 
             </tr>

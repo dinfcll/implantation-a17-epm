@@ -16,6 +16,7 @@ var AppComponent = (function () {
     function AppComponent(router, authentificationService) {
         this.router = router;
         this.authentificationService = authentificationService;
+        this.TempsDeVerifierActivite = false;
     }
     AppComponent.prototype.UpdateAuthentificationPageIndex = function () {
         localStorage.removeItem('ConnectedUser');
@@ -51,7 +52,29 @@ var AppComponent = (function () {
             if (this.IDIntervaleActivite != null) {
                 window.clearTimeout(this.IDIntervaleActivite);
             }
-            this.IDIntervaleActivite = window.setTimeout(function () { return _this.Deconnexion(); }, 5000); //Bon temps = 300000
+            this.IDIntervaleActivite = window.setTimeout(function () { return _this.Deconnexion(); }, 20000); //Bon temps = 300000
+        }
+    };
+    AppComponent.prototype.VerificationActivite = function () {
+        var _this = this;
+        if (this.authentificationService.Connecte() === true) {
+            if (this.IDVerification == null) {
+                this.IDVerification = window.setInterval(function () { return _this.VerificationActivite(); }, 3000);
+            }
+            else {
+                this.TempsDeVerifierActivite = true;
+            }
+        }
+        else {
+            if (this.IDVerification != null) {
+                window.clearInterval(this.IDVerification);
+            }
+        }
+    };
+    AppComponent.prototype.MouvementSouris = function (event) {
+        if (this.TempsDeVerifierActivite == true) {
+            this.TempsDeVerifierActivite = false;
+            this.DetectionActivite();
         }
     };
     return AppComponent;
