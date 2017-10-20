@@ -69,7 +69,7 @@ namespace SqueletteImplantation.Controllers
         public IActionResult AddCritere(CritereDTO critdto)
         {
             var Crit = critdto.CreateCritere();
-            _maBd.Critere.Add(Crit);
+            _maBd.Add(Crit);
             _maBd.SaveChanges();
 
             return new OkObjectResult(Crit);

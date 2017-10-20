@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var categorie_1 = require("./categorie");
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/toPromise"); // Pour accéder à la méthode .toPromise()
@@ -30,8 +29,8 @@ var CategorieService = (function () {
         return this.http.delete(url);
     };
     //Permet d'envoyer une requête HTTP d'ajout d'une catégorie'.
-    CategorieService.prototype.addCategorie = function (categ) {
-        return this.http.post("api/ajoutcat", JSON.stringify({ categ: categorie_1.Categorie }), { headers: this.headers });
+    CategorieService.prototype.addCategorie = function (catdto) {
+        return this.http.post("api/ajoutcat", catdto);
     };
     return CategorieService;
 }());

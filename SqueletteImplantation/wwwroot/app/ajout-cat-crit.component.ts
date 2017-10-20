@@ -16,8 +16,8 @@ import { CategorieService } from './categorie.service';
 import { CritereService } from './critere.service';
 
 //Importation des composants
-import { Categorie, CatDTO } from './categorie';
-import { Critere, CritDTO } from './critere';
+import { Categorie, CategorieDTO } from './categorie';
+import { Critere, CritereDTO } from './critere';
 
 @Component ({
     selector: 'my-ajoutsupp',
@@ -150,7 +150,7 @@ export class AjoutSuppComponent
 
      OnClickAjoutCategorie()
      {
-        let catdto = new CatDTO(this.NomAjoutCat,this.AppComp.TypeDom);
+        let catdto = new CategorieDTO(this.NomAjoutCat,this.AppComp.TypeDom);
         console.log(this.NomAjoutCat);  //Pas certain que ça va me donner le contenu du txtBox
         this.catService.addCategorie(catdto).subscribe(reponse => this.AffichageRepAjout(reponse));
        // window.location.reload();
@@ -158,7 +158,7 @@ export class AjoutSuppComponent
 
      OnClickAjoutCritere()
      {
-         let critdto = new CritDTO(this.NomAjoutCrit,this.m_CatID);
+         let critdto = new CritereDTO(this.NomAjoutCrit,this.m_CatID);
          console.log(this.NomAjoutCrit);  //Pas certain que ça va me donner le contenu du txtBox
          this.critService.addCritere(critdto).subscribe(reponse => this.AffichageRepAjout(reponse));
      }
