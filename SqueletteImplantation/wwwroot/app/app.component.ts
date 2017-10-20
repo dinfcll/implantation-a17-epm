@@ -11,6 +11,8 @@ import { AuthentificationService } from "./authentification.service";
 export class AppComponent 
 {
   private IDIntervaleActivite : number;
+  private IDVerification : number;
+  private TempsDeVerifierActivite : boolean = false;
 
   constructor (
     private router: Router,
@@ -60,8 +62,7 @@ export class AppComponent
   }
 
   DetectionActivite() : void
-  {
-    
+  { 
 
     if(this.authentificationService.Connecte() === true)
     {
@@ -70,9 +71,39 @@ export class AppComponent
         window.clearTimeout(this.IDIntervaleActivite);
       }
 
-      this.IDIntervaleActivite = window.setTimeout(() => this.Deconnexion(), 5000);//Bon temps = 300000
+      this.IDIntervaleActivite = window.setTimeout(() => this.Deconnexion(), 20000);//Bon temps = 300000
     }
+  }
 
+  VerificationActivite() : void
+  {
+    if(this.authentificationService.Connecte() === true)
+    {
+      if(this.IDVerification == null)
+      {
+        this.IDVerification = window.setInterval(() => this.VerificationActivite(), 3000);
+      }
+      else
+      {
+        this.TempsDeVerifierActivite = true;
+      }
+    }
+    else
+    {
+      if(this.IDVerification != null)
+      {
+        window.clearInterval(this.IDVerification);
+      }
+    }
+  }
 
+  
+  MouvementSouris(event: MouseEvent) : void
+  {
+    if(this.TempsDeVerifierActivite == true)
+    {
+      this.TempsDeVerifierActivite = false;
+      this.DetectionActivite();
+    }
   }
 }
