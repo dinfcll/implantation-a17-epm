@@ -10,7 +10,7 @@ import { AuthentificationService } from "./authentification.service";
 
 export class AppComponent 
 {
-  public TypeDom :number;
+  
   constructor(private router: Router, private authentificationService: AuthentificationService) 
   {
   }
@@ -67,15 +67,6 @@ export class AppComponent
     let Page: string[];
 
     Page = CheminLong.split('/', 2);
-
-    if(Page[1] == 'cardiologie')
-    {
-      this.TypeDom = 1;
-    }
-    else
-    {
-      this.TypeDom = 2;
-    }
 
     return Page[1];
   }

@@ -54,6 +54,7 @@ width: 30%;
 
 
 
+
 #EspaceCritereChoisi{
 	height: 0vh;
 	width: 50%;
@@ -250,7 +251,21 @@ background-color: rgba(125, 141, 163, 0.71);
     user-select: none;
 }
 
-.btn-default:hover{
+.btnCardio{
+	color: #555555;
+	border-radius: 5px;
+    background-color: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+.btnNeuro{
+	margin-left: 5%;
+	color: #555555;
+	border-radius: 5px;
+    background-color: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn-default:hover, .btnCardio:hover, .btnNeuro:hover{
 	color:grey;
 }
 
@@ -259,6 +274,8 @@ background-color: rgba(125, 141, 163, 0.71);
 }
 
 .btn-primary {
+	border-radius: 5px;
+	width:22%;
     color: #ffffff;
     background-color: #008cba;
 	border-color: #0079a1;
@@ -267,6 +284,7 @@ background-color: rgba(125, 141, 163, 0.71);
 
 .btn-default {
     color: #555555;
+	border-radius: 5px;
     background-color: #ffffff;
     border-color: rgba(0, 0, 0, 0.1);
 }

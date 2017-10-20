@@ -55,12 +55,6 @@ var AppComponent = (function () {
         var CheminLong = this.router.url.toString();
         var Page;
         Page = CheminLong.split('/', 2);
-        if (Page[1] == 'cardiologie') {
-            this.TypeDom = 1;
-        }
-        else {
-            this.TypeDom = 2;
-        }
         return Page[1];
     };
     return AppComponent;

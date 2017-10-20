@@ -37,6 +37,7 @@ export class AjoutSuppComponent
     ListeCrit: String;
     NomAjoutCat: String;
     NomAjoutCrit: String;
+    TypeDom:number;
 
     constructor(private catService: CategorieService, private critService: CritereService, private http:Http, private router:Router, private AppComp:AppComponent)
     {
@@ -150,7 +151,7 @@ export class AjoutSuppComponent
 
      OnClickAjoutCategorie()
      {
-        let catdto = new CategorieDTO(this.NomAjoutCat,this.AppComp.TypeDom);
+        let catdto = new CategorieDTO(this.NomAjoutCat,this.TypeDom);
         console.log(this.NomAjoutCat);  //Pas certain que ça va me donner le contenu du txtBox
         this.catService.addCategorie(catdto).subscribe(reponse => this.AffichageRepAjout(reponse));
        // window.location.reload();
@@ -171,5 +172,22 @@ export class AjoutSuppComponent
      private AffichageRepAjout(param: any)
      {
          console.log(param);
+     }
+
+     OnClickDomCardio()
+     {
+         
+         document.getElementById("btnCardio").style.background='#008cba';
+         document.getElementById("btnNeuro").style.background='#FFFFFF';
+         
+         this.TypeDom = 1;
+     }
+
+     OnClickDomNeuro()
+     {
+         document.getElementById("btnCardio").style.background='#FFFFFF';
+         document.getElementById("btnNeuro").style.background='#008cba';
+         
+         this.TypeDom = 2;
      }
 }

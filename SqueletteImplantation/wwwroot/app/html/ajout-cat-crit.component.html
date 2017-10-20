@@ -3,6 +3,11 @@
 			<tr id="PremiereLigne">
 				<td id="ChoixCategorie">  
 					<fieldset>
+					<legend>Choix du domaine</legend>
+						<button (click)="OnClickDomCardio()" id = "btnCardio" class="btn btnCardio"> Cardiologie </button>
+						<button (click)="OnClickDomNeuro()" id = "btnNeuro" class="btn btnNeuro"> Neurologie </button>
+					</fieldset>
+					<fieldset>
 					<legend>Suppression d'une catégorie</legend>
 					<div class="Container">
 					<div class="ListeDeroulanteCategorie">
@@ -39,8 +44,10 @@
 						</form>
                 </td>
 				<td id="EspaceCritereChoisi" rowspan="2">
+					
 					<fieldset>
-					<legend>Suppression d'un critère</legend>
+					<legend class="lgd" >Suppression d'un critère</legend>
+					
 					<div class="Container">
 						<div class="ListeDeroulanteCritere">
 							<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> {{NomCrit}} </button>
@@ -56,7 +63,7 @@
 						</div>
 					</div>
 				</fieldset>
-
+				
 				<form class="form-horizontal">
 						<fieldset>
 						<legend>Ajout d'un critère</legend>
