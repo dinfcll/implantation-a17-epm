@@ -22,6 +22,7 @@ var ChoixComponent = (function () {
     }
     ChoixComponent.prototype.ngOnInit = function () {
         this.authentificationservice.InitDomaine();
+        this.appcomponent.VerificationActivite();
     };
     ChoixComponent.prototype.NeuroClick = function () {
         this.authentificationservice.DomaineChange();
