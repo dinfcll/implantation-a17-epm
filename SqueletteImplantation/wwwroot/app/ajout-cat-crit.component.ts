@@ -33,6 +33,7 @@ export class AjoutSuppComponent
     m_CatID: number;
     m_CritID: number;
     NomCateg: String;
+    NomCateg2: String;
     NomCrit: String;
     ListeCrit: String;
     NomAjoutCat: String;
@@ -41,38 +42,57 @@ export class AjoutSuppComponent
 
     constructor(private catService: CategorieService, private critService: CritereService, private http:Http, private router:Router, private AppComp:AppComponent)
     {
-        this.NomCateg = "Catégories";
-        this.NomCrit = "Critères"
+        this.ActualisationListes();
     }
 
     ngOnInit(): void 
     {
         if(this.router.url.toString() == "/neurologie/ajoutsupp" )
         {
-           this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
+           this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat,1));
+           this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat,2));
+           this.TypeDom = 2;
+           document.getElementById("btnNeuro").style.background='#008cba';
         
         }
 
 
         if(this.router.url.toString() == "/cardiologie/ajoutsupp")
         {
-            this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
-        
-            //Pas de besoin de charger les critères, car par défaut la catégorie est "catégorie"
+            this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat,1));
+            this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat,2));
+            this.TypeDom = 1;
+            document.getElementById("btnCardio").style.background='#008cba';
+
         }
     }
 
-    private AffichageCat(param: any) 
+    private AffichageCat(param: any,idListe: number) 
     {
         this.m_TabCat = (param.json() as Categorie[]);
 
         if(this.m_TabCat.length < 8)
         {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());  
+            if(idListe === 1)
+            {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());  
+            }
+            else
+            {
+                document.getElementsByClassName("ListeCategorie2")[0].setAttribute("size", this.m_TabCat.length.toString());  
+            }
+            
         }
         else
         {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");            
+            if(idListe === 1)
+            {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");          
+            }  
+            else
+            {
+                document.getElementsByClassName("ListeCategorie2")[0].setAttribute("size", "8");     
+            }
         }
     }
 
@@ -87,7 +107,7 @@ export class AjoutSuppComponent
         }
         
 
-        if(this.m_TabCrit.length < 8)
+        if(this.m_TabCrit.length < 8) //ICI
         {
             document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
         }
@@ -107,10 +127,23 @@ export class AjoutSuppComponent
 	    document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
     }
 
+    OnClickListeDeroulanteCategorie2()
+    {
+	    document.getElementsByClassName("ListeCategorie2")[0].classList.toggle("ShowElement");
+    }
+
      //Action lors de la sélection d'une catégorie
-     OnClickCategorie(categ: Categorie)
+     OnClickCategorie(categ: Categorie, IdListe : number)
      {
-         this.NomCateg = categ.catNom;
+         if(IdListe === 1) //Savoir sur laquelle des deux listes on veut effectuer une modification
+         {
+            this.NomCateg = categ.catNom;
+         }
+         else
+         {
+            this.NomCateg2 = categ.catNom;
+         }
+         
          this.m_CatID = categ.catId;
          this.NomCrit = "Critères";
          this.critService.getCriteres(categ.catId).subscribe(crit => this.AffichageCrit(crit));
@@ -125,53 +158,73 @@ export class AjoutSuppComponent
 
      OnClickSupprimerCateg()
      {
+       if(this.NomCateg != "Catégories")
+       {
         if(confirm("Voulez-vous vraiment supprimer définitivement la catégorie suivante : " + this.NomCateg  + " ? \n\rLa suppression de cette catégorie entrainera la suppression des critère(s) suivant(s) : " + this.ListeCrit))
             {
                
                //Effacement des critères associés à ladite catégorie
                for(var i = 0; i < this.m_TabCrit.length; i++) 
                {
-                     this.critService.deleteCritere(this.m_TabCrit[i].critId).subscribe(reponse => this.AffichageRepDel(reponse));
+                     this.critService.deleteCritere(this.m_TabCrit[i].critId).subscribe(reponse => this.ActualisationListeSuppCrit(reponse));
                }
 
-               this.catService.deleteCategorie(this.m_CatID).subscribe(reponse => this.AffichageRepDel(reponse));
-               //window.location.reload();
+               this.catService.deleteCategorie(this.m_CatID).subscribe(reponse => this.ActualisationListeSuppCat(reponse));
             }
+       }
+       else
+       {
+           //Mettre un JBOX disant : "Veuillez choisir une catégorie afin de pouvoir la supprimer"
+       }
 
      }
 
      OnClickSupprimerCrit()
      {
-        if(confirm("Voulez-vous vraiment supprimer définitivement le critère suivant :" + this.NomCrit  + " ?"))
-            {
-               this.critService.deleteCritere(this.m_CritID).subscribe(reponse => this.AffichageRepDel(reponse));
-               window.location.reload();
-            }
+        if(this.NomCrit != "Critères") 
+        {
+            if(confirm("Voulez-vous vraiment supprimer définitivement le critère suivant :" + this.NomCrit  + " ?"))
+                {
+                this.critService.deleteCritere(this.m_CritID).subscribe(reponse => this.ActualisationListeSuppCrit(reponse));
+                }
+        }
+        else
+        {
+            //Mettre un JBOX disant : "Veuillez choisir un critère afin de pouvoir le supprimer"
+        }
      }
 
      OnClickAjoutCategorie()
      {
         let catdto = new CategorieDTO(this.NomAjoutCat,this.TypeDom);
-        console.log(this.NomAjoutCat);  //Pas certain que ça va me donner le contenu du txtBox
-        this.catService.addCategorie(catdto).subscribe(reponse => this.AffichageRepAjout(reponse));
-       // window.location.reload();
+        this.catService.addCategorie(catdto).subscribe(reponse => this.ActualisationListeSuppCat(reponse));
      }
 
      OnClickAjoutCritere()
      {
-         let critdto = new CritereDTO(this.NomAjoutCrit,this.m_CatID);
-         console.log(this.NomAjoutCrit);  //Pas certain que ça va me donner le contenu du txtBox
-         this.critService.addCritere(critdto).subscribe(reponse => this.AffichageRepAjout(reponse));
+         if(this.m_CatID != null)
+         {
+            let critdto = new CritereDTO(this.NomAjoutCrit,this.m_CatID);
+            this.critService.addCritere(critdto).subscribe(reponse => this.ActualisationListeSuppCrit(reponse));
+         }
+         else
+         {
+             //Mettre un JBOX disant : "Veuillez choisir une catégorie afin de pouvoir ajouter un critère à celle-ci"
+         }
+         
+        
      }
 
-     private AffichageRepDel(param: any) 
-     {
-         console.log(param);
-     }
 
-     private AffichageRepAjout(param: any)
+     private ActualisationListeSuppCat(param: any)
      {
-         console.log(param);
+         this.catService.getCategories(this.TypeDom).subscribe(cat => this.AffichageCat(cat,1));
+         this.NomCateg = "Catégories";
+     }
+     private ActualisationListeSuppCrit(param: any)
+     {
+         this.critService.getCriteres(this.m_CatID).subscribe(rep => this.AffichageCrit(rep));
+         this.NomCrit = "Critères";
      }
 
      OnClickDomCardio()
@@ -179,6 +232,10 @@ export class AjoutSuppComponent
          
          document.getElementById("btnCardio").style.background='#008cba';
          document.getElementById("btnNeuro").style.background='#FFFFFF';
+
+         this.ActualisationListes();
+         this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat,1));
+         
          
          this.TypeDom = 1;
      }
@@ -187,7 +244,20 @@ export class AjoutSuppComponent
      {
          document.getElementById("btnCardio").style.background='#FFFFFF';
          document.getElementById("btnNeuro").style.background='#008cba';
+
+         this.ActualisationListes();
+         this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat,1));
+         
          
          this.TypeDom = 2;
      }
+
+     ActualisationListes()
+     {
+         this.NomCateg = "Catégories";
+         this.NomCrit = "Critères"
+         this.NomCateg2 = "Catégories";
+     }
+
+     
 }

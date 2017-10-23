@@ -28,8 +28,8 @@ var CritereService = (function () {
         return this.http.delete(url);
     };
     //Permet d'envoyer une requête HTTP d'ajout d'un critère'.
-    CritereService.prototype.addCritere = function (Critdto) {
-        return this.http.post("api/ajoutcrite", Critdto);
+    CritereService.prototype.addCritere = function (critdto) {
+        return this.http.post("api/ajoutcrite", critdto);
     };
     return CritereService;
 }());

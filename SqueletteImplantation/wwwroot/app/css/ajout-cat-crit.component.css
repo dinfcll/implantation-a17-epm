@@ -17,12 +17,15 @@ td{ box-shadow: 0px 5px 4px -2px #8c8c8c;}
 	display:flex;
 	flex-direction:row;
 	margin-bottom: 20%;
-
 }
 
+
 .Container > div{
-	flex: 1 1 auto;
+	
 	text-align:right;
+	display: inline-block;
+    border: solid 1px #000;
+	margin:3%;
 }
 
 .Container img {
@@ -194,7 +197,7 @@ background-color: rgba(125, 141, 163, 0.71);
 }
 
 
-.ListeCategorie, .ListeCritere{
+.ListeCategorie, .ListeCritere, .ListeCategorie2{
 	display: none;
 	position: absolute;
 	width: 170px;
@@ -202,7 +205,9 @@ background-color: rgba(125, 141, 163, 0.71);
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-#ListeCritere:hover, #ListeCategorie:hover{
+
+
+#ListeCritere:hover, #ListeCategorie:hover, #ListeCategorie2:hover{
 	cursor: pointer;
 	background-color: #f2f2f2;
 }
