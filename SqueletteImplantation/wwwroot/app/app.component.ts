@@ -16,8 +16,8 @@ export class AppComponent
 
   constructor (
     private router: Router,
-    private authentificationService: AuthentificationService){
-  }
+    private authentificationService: AuthentificationService){  }
+    
   public UpdateAuthentificationPageIndex(): void
   {
     localStorage.removeItem('ConnectedUser');

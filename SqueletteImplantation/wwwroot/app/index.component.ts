@@ -21,10 +21,9 @@ export class IndexComponent
 
     public Connexion(f: NgForm): void
     {
-        console.log(f);
         this.authServ.login(f.value.utilisateur, f.value.motdepasse).subscribe(Reponse => {
             this.authServ.ValidationConnexion(Reponse);       
-            if(this.authServ.Connecte() && this.authServ.Admin())
+            if(this.authServ.Connecte())
             {
                 
                 this.router.navigate(['choix']);
@@ -45,8 +44,10 @@ export class IndexComponent
                     }
                 }                
             }
-    });
+        });
     }
-
-    
+    public Oublie(o: NgForm): void
+    {
+        this.router.navigate(['MDP']);
+    }    
 }
