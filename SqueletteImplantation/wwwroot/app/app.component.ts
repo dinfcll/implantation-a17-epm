@@ -13,8 +13,8 @@ export class AppComponent
   
   constructor (
     private router: Router,
-    private authentificationService: AuthentificationService){
-  }
+    private authentificationService: AuthentificationService){  }
+    
   public UpdateAuthentificationPageIndex(): void
   {
     localStorage.removeItem('ConnectedUser');
@@ -33,7 +33,6 @@ export class AppComponent
   }
 
   Deconnexion(){
-    localStorage.removeItem('ConnectedUser');
     this.authentificationService.logout();
     this.router.navigateByUrl('index');
   }

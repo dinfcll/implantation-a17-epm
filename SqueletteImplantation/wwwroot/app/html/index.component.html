@@ -1,5 +1,6 @@
-<form #f="ngForm" (ngSubmit)="Connexion(f)" novalidate>
-	<div class="FormulaireConnexion">
+
+<div class="FormulaireConnexion">
+	<form #f="ngForm" (ngSubmit)="Connexion(f)" novalidate>
 		<div id="divConnexion">
 			<p><label>Nom d'utilisateur: </label>
 			<input type="text" [(ngModel)]="utilisateur" name="utilisateur" required></p>
@@ -7,5 +8,9 @@
 			<input type="password" [(ngModel)]="motdepasse" name="motdepasse" required></p>
 		</div>
 		<p> <button type="submit" id="btnConnexion">Connexion</button></p>
-	</div>
-</form> 
+	</form>
+	<form #o="ngForm" (ngSubmit)="Oublie(o)" novalidate>
+		<p><button type="submit" id="btnOublie">Mot de passe oublié?</button></p>
+	</form>
+</div>
+

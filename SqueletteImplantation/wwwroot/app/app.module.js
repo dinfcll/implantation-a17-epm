@@ -20,6 +20,7 @@ var choix_component_1 = require("./choix.component");
 var page_ajout_admin_component_1 = require("./page-ajout-admin.component");
 var authentification_guard_1 = require("./authentification.guard");
 var authentification_service_1 = require("./authentification.service");
+var pagemdp_component_1 = require("./pagemdp.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -28,7 +29,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, app_routing_module_1.routes, http_1.HttpModule, forms_1.FormsModule],
-        declarations: [index_component_1.IndexComponent, page_cat_component_1.PageCatComponent, app_component_1.AppComponent, choix_component_1.ChoixComponent, page_ajout_admin_component_1.AjoutAdminComponent],
+        declarations: [index_component_1.IndexComponent, page_cat_component_1.PageCatComponent, app_component_1.AppComponent, choix_component_1.ChoixComponent, page_ajout_admin_component_1.AjoutAdminComponent, pagemdp_component_1.mdpcomponent],
         bootstrap: [app_component_1.AppComponent],
         providers: [authentification_guard_1.AuthentificationGuard, authentification_service_1.AuthentificationService]
     })

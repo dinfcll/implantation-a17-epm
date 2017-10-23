@@ -22,23 +22,19 @@ var IndexComponent = (function () {
     }
     IndexComponent.prototype.Connexion = function (f) {
         var _this = this;
-        console.log(f);
         this.authServ.login(f.value.utilisateur, f.value.motdepasse).subscribe(function (Reponse) {
             _this.authServ.ValidationConnexion(Reponse);
-            if (_this.authServ.Connecte() && _this.authServ.Admin()) {
+            if (_this.authServ.Connecte()) {
                 _this.router.navigate(['choix']);
             }
             else {
-                if (_this.authServ.Connecte() && !_this.authServ.Admin()) {
-                    _this.router.navigate(['choix']);
-                }
-                else {
-                    if (!_this.authServ.Connecte()) {
-                        alert("Nom d'utilisateur ou mot de passe invalide!");
-                    }
-                }
+                console.log("TestLogin");
+                alert("Nom d'utilisateur ou mot de passe invalide");
             }
         });
+    };
+    IndexComponent.prototype.Oublie = function (o) {
+        this.router.navigate(['MDP']);
     };
     return IndexComponent;
 }());

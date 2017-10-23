@@ -21,29 +21,21 @@ export class IndexComponent
 
     public Connexion(f: NgForm): void
     {
-        console.log(f);
         this.authServ.login(f.value.utilisateur, f.value.motdepasse).subscribe(Reponse => {
             this.authServ.ValidationConnexion(Reponse);       
-            if(this.authServ.Connecte() && this.authServ.Admin())
+            if(this.authServ.Connecte())
             {
                 this.router.navigate(['choix']);
             }     
             else
             {
-                if(this.authServ.Connecte() && !this.authServ.Admin())
-                {
-                    this.router.navigate(['choix']);
-                }
-                else
-                {
-                    if (!this.authServ.Connecte())
-                    {
-                        alert("Nom d'utilisateur ou mot de passe invalide!");
-                    }
-                }                
+                console.log("TestLogin");
+                alert("Nom d'utilisateur ou mot de passe invalide");            
             }
-    });
+        });
     }
-
-    
+    public Oublie(o: NgForm): void
+    {
+        this.router.navigate(['MDP']);
+    }    
 }

@@ -31,16 +31,16 @@ export class AuthentificationService {
         return this.http.post(this.UtilisateurURL, JSON.stringify({ "UtilPWD": motdepasse, "UtilUserName": user }), { headers });        
     }
 
-    public ValidationConnexion(Valide: any): void
+    public ValidationConnexion(Valide: any): any
     {
         console.log(Valide);
-        if (Valide.status === 200)
+        if (Valide.status === 200 && Valide._body != null)
         {
             this.estConnecte = true;
 
             if (Valide._body != 0)
             {
-                this.estAdmin = false;
+                this.estAdmin = false;                
             }
             else
             {
