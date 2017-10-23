@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Linq;
+using System.Data;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SqueletteImplantation.DbEntities;
+using SqueletteImplantation.DbEntities.DTOs;
 using SqueletteImplantation.DbEntities.Models;
+using System;
+
 
 namespace SqueletteImplantation.Controllers
 {
     public class UtilisateurController: Controller
     {
         private readonly BD_EPM _maBd;
+        private Courriel courriel = new Courriel();
 
         public UtilisateurController(BD_EPM maBd)
         {
@@ -28,5 +34,35 @@ namespace SqueletteImplantation.Controllers
             return new OkObjectResult(login.UtilType);
         }
 
+        [HttpPost]
+        [Route("api/utilisateur/reset")]
+        public IActionResult Post(String email)
+        {
+            
+            var comptereset = _maBd.Utilisateur.SingleOrDefault(u => u.UtilEmail == email);
+
+            if (comptereset != null)
+            {
+                String PWD = "abcd";
+                comptereset.UtilPWD = Hash.GetHash(PWD);
+
+                courriel.setDestination(email);
+                courriel.setSender("electrophysologiemedicale@gmail.com", "Reset");
+                courriel.SetMessage("Votre mot de passe temporaire est le " + PWD + " .");
+                courriel.setSubject("Nouveau Mot de passe");
+                courriel.sendMessage();
+                               
+                _maBd.Utilisateur.Attach(comptereset);
+                
+                var entry = _maBd.Entry(comptereset);
+                entry.Property(e => e.UtilPWD).IsModified = true;
+                _maBd.SaveChanges();  
+            }
+            else
+            {
+                return new ObjectResult(null);
+            }
+            return new OkObjectResult(true);
+        }
     }
 }

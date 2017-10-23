@@ -4,6 +4,10 @@ import { Utilisateur } from './utilisateur';
 import { NgForm } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AuthentificationService } from "./authentification.service";
+import { UtilisateurService } from "./utilisateur.service";
+import { Response } from '@angular/http';
+
+declare var jBox :any;
 
 @Component ({
     selector: 'mdp-oublie',
@@ -13,11 +17,30 @@ import { AuthentificationService } from "./authentification.service";
 
 export class mdpcomponent
 { 
-    constructor(private router: Router){}
+    constructor(private router: Router, private utilisateurService: UtilisateurService){}
 
     public Cancel(c: NgForm): void
     {
-        console.log("12Test");
         this.router.navigateByUrl('choix');
-    }   
+    }
+    public ResetMDP(email : string) {
+        this.utilisateurService.reset(email).subscribe(res => {
+            if(res){
+                new jBox('notice',{
+                    content: 'Le mot de passe a été réinitialisé.',
+                    color: 'green',
+                    autoclose: 2000
+                });
+            }
+            else
+            {
+                new jBox('notice',{
+                    content: 'Échec',
+                    color: 'red',
+                    autoclose: 2000
+                });
+                this.router.navigateByUrl('choix');
+            }
+        })
+    }
 }
