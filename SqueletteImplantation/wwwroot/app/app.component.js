@@ -30,7 +30,7 @@ var AppComponent = (function () {
     AppComponent.prototype.ChoixDomaine = function () {
         this.authentificationService.DomaineChange();
     };
-    AppComponent.prototype.Deconnexion = function (Raison) {
+    AppComponent.prototype.Deconnexion = function () {
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
         if (Raison == 1) {
