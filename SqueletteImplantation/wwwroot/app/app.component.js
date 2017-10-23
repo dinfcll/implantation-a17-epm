@@ -30,7 +30,6 @@ var AppComponent = (function () {
         this.authentificationService.DomaineChange();
     };
     AppComponent.prototype.Deconnexion = function () {
-        localStorage.removeItem('ConnectedUser');
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
     };
