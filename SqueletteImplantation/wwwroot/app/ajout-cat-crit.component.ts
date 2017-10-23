@@ -135,7 +135,7 @@ export class AjoutSuppComponent
                }
 
                this.catService.deleteCategorie(this.m_CatID).subscribe(reponse => this.AffichageRepDel(reponse));
-               window.location.reload();
+               //window.location.reload();
             }
 
      }
