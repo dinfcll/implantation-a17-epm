@@ -16,6 +16,7 @@ var AppComponent = (function () {
     function AppComponent(router, authentificationService) {
         this.router = router;
         this.authentificationService = authentificationService;
+        this.TempsDeVerifierActivite = false;
     }
     AppComponent.prototype.UpdateAuthentificationPageIndex = function () {
         localStorage.removeItem('ConnectedUser');
@@ -32,6 +33,9 @@ var AppComponent = (function () {
     AppComponent.prototype.Deconnexion = function () {
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
+        if (Raison == 1) {
+            alert("Votre session a été fermée à cause de votre inactivité");
+        }
     };
     AppComponent.prototype.Reroutage = function (type) {
         console.log(type);
@@ -43,6 +47,40 @@ var AppComponent = (function () {
         }
         else if (type === 2) {
             this.router.navigateByUrl('choix');
+        }
+    };
+    AppComponent.prototype.DetectionActivite = function () {
+        var _this = this;
+        if (this.authentificationService.Connecte() === true) {
+            if (this.IDIntervaleActivite != null) {
+                window.clearTimeout(this.IDIntervaleActivite);
+            }
+            this.IDIntervaleActivite = window.setTimeout(function () { return _this.Deconnexion(1); }, 900000); //Bon temps = 900000
+        }
+    };
+    AppComponent.prototype.VerificationActivite = function () {
+        var _this = this;
+        if (this.authentificationService.Connecte() === true) {
+            if (this.IDVerification == null) {
+                this.IDVerification = window.setInterval(function () { return _this.VerificationActivite(); }, 3000);
+            }
+            else {
+                this.TempsDeVerifierActivite = true;
+            }
+        }
+        else {
+            if (this.IDVerification != null) {
+                window.clearInterval(this.IDVerification);
+                window.clearTimeout(this.IDIntervaleActivite);
+                this.IDIntervaleActivite = null;
+                this.IDVerification = null;
+            }
+        }
+    };
+    AppComponent.prototype.MouvementSouris = function (event) {
+        if (this.TempsDeVerifierActivite == true) {
+            this.TempsDeVerifierActivite = false;
+            this.DetectionActivite();
         }
     };
     return AppComponent;

@@ -20,6 +20,7 @@ export class ChoixComponent
     ngOnInit():void
     {
         this.authentificationservice.InitDomaine();
+        this.appcomponent.VerificationActivite();
     }
 
     NeuroClick(): void 
