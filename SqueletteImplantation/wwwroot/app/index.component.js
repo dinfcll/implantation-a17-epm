@@ -28,8 +28,14 @@ var IndexComponent = (function () {
                 _this.router.navigate(['choix']);
             }
             else {
-                console.log("TestLogin");
-                alert("Nom d'utilisateur ou mot de passe invalide");
+                if (_this.authServ.Connecte() && !_this.authServ.Admin()) {
+                    _this.router.navigate(['choix']);
+                }
+                else {
+                    if (!_this.authServ.Connecte()) {
+                        alert("Nom d'utilisateur ou mot de passe invalide!");
+                    }
+                }
             }
         });
     };
