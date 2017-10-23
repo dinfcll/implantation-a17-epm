@@ -48,6 +48,9 @@ var AppComponent = (function () {
         else if (type === 2) {
             this.router.navigateByUrl('choix');
         }
+        else if (type === 3) {
+            this.router.navigateByUrl('ModificationProfil');
+        }
     };
     AppComponent.prototype.DetectionActivite = function () {
         var _this = this;

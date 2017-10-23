@@ -59,10 +59,15 @@ export class AppComponent
         this.router.navigateByUrl('cardiologie/ajouttrace');
       }
       else
-      if(type === 2)
-      {
-        this.router.navigateByUrl('choix');
-      }
+        if(type === 2)
+        {
+          this.router.navigateByUrl('choix');
+        }
+        else
+          if(type === 3)
+          {
+            this.router.navigateByUrl('ModificationProfil');
+          }
 
   }
 
