@@ -35,9 +35,14 @@ export class AppComponent
     this.authentificationService.DomaineChange();
   }
 
-  Deconnexion(){
+  Deconnexion(Raison : Number){
     this.authentificationService.logout();
     this.router.navigateByUrl('index');
+
+    if(Raison == 1)
+    {
+      alert("Votre session à été fermé à cause de votre inactivité");
+    }
   }
 
 
@@ -71,7 +76,7 @@ export class AppComponent
         window.clearTimeout(this.IDIntervaleActivite);
       }
 
-      this.IDIntervaleActivite = window.setTimeout(() => this.Deconnexion(), 20000);//Bon temps = 300000
+      this.IDIntervaleActivite = window.setTimeout(() => this.Deconnexion(1), 900000);//Bon temps = 900000
     }
   }
 
@@ -93,6 +98,10 @@ export class AppComponent
       if(this.IDVerification != null)
       {
         window.clearInterval(this.IDVerification);
+        window.clearTimeout(this.IDIntervaleActivite);
+        this.IDIntervaleActivite = null;
+        this.IDVerification = null;
+
       }
     }
   }

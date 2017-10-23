@@ -30,9 +30,12 @@ var AppComponent = (function () {
     AppComponent.prototype.ChoixDomaine = function () {
         this.authentificationService.DomaineChange();
     };
-    AppComponent.prototype.Deconnexion = function () {
+    AppComponent.prototype.Deconnexion = function (Raison) {
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
+        if (Raison == 1) {
+            alert("Votre session à été fermé à cause de votre inactivité");
+        }
     };
     AppComponent.prototype.Reroutage = function (type) {
         console.log(type);
@@ -52,7 +55,7 @@ var AppComponent = (function () {
             if (this.IDIntervaleActivite != null) {
                 window.clearTimeout(this.IDIntervaleActivite);
             }
-            this.IDIntervaleActivite = window.setTimeout(function () { return _this.Deconnexion(); }, 20000); //Bon temps = 300000
+            this.IDIntervaleActivite = window.setTimeout(function () { return _this.Deconnexion(1); }, 900000); //Bon temps = 900000
         }
     };
     AppComponent.prototype.VerificationActivite = function () {
@@ -68,6 +71,9 @@ var AppComponent = (function () {
         else {
             if (this.IDVerification != null) {
                 window.clearInterval(this.IDVerification);
+                window.clearTimeout(this.IDIntervaleActivite);
+                this.IDIntervaleActivite = null;
+                this.IDVerification = null;
             }
         }
     };
