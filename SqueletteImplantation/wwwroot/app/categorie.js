@@ -11,4 +11,12 @@ var Categorie = (function () {
     return Categorie;
 }());
 exports.Categorie = Categorie;
+var CategorieDTO = (function () {
+    function CategorieDTO(NomCat, IdDom) {
+        this.NomCat = NomCat;
+        this.IdDom = IdDom;
+    }
+    return CategorieDTO;
+}());
+exports.CategorieDTO = CategorieDTO;
 //# sourceMappingURL=categorie.js.map

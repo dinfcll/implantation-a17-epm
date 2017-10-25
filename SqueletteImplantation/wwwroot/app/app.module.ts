@@ -13,13 +13,16 @@ import { ChoixComponent } from './choix.component';
 import { AjoutAdminComponent } from './page-ajout-admin.component';
 import { AuthentificationGuard } from "./authentification.guard";
 import { AuthentificationService } from "./authentification.service";
+
+import { AjoutSuppComponent } from "./ajout-cat-crit.component";
 import { mdpcomponent } from "./pagemdp.component";
+
 
 
 
 @NgModule({
   imports:      [ BrowserModule, routes, HttpModule, FormsModule ], // Importation des modules de l'application
-  declarations: [ IndexComponent, PageCatComponent, AppComponent, ChoixComponent, AjoutAdminComponent, mdpcomponent ],  // Déclaration des "components" de l'application
+  declarations: [ IndexComponent, PageCatComponent, AppComponent, ChoixComponent, AjoutAdminComponent, mdpcomponent,  AjoutSuppComponent ],  // Déclaration des "components" de l'application
   bootstrap:    [ AppComponent ],
   providers: [ AuthentificationGuard, AuthentificationService ]
 })

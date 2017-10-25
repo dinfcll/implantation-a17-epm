@@ -34,29 +34,32 @@ export class PageCatComponent implements OnInit
     m_TabCrit: Critere[];
     m_TabRecherche: Critere[] = [];
     m_EnvoieTrace: TraceDTO = null;
+    NomCateg: String;
+    NomCrit: String;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private router:Router){}
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private router:Router)
+    {
+        this.NomCateg = "Catégories";
+        this.NomCrit = "Critères"
+    }
 
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     ngOnInit(): void 
     {
-        //Remplit les objets des données de la BD
+        //Remplit les objets avec les données de la BD
         if(this.router.url.toString() == '/neurologie')
         {
         this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
-        
-        this.critService.getCriteres(2).subscribe(crit => this.AffichageCrit(crit));
         }
        else
        {
         this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
-        
-        this.critService.getCriteres(1).subscribe(crit => this.AffichageCrit(crit));
        }
 
     }
 
-    private AffichageCat(param: any) {
+    private AffichageCat(param: any) 
+    {
         this.m_TabCat = (param.json() as Categorie[]);
 
         if(this.m_TabCat.length < 8)
@@ -99,14 +102,17 @@ export class PageCatComponent implements OnInit
     }
     
     //Action lors de la sélection d'une catégorie
-    OnClickCategorie(id: number)
+    OnClickCategorie(categ: Categorie)
     {
-         this.critService.getCriteres(id).subscribe(crit => this.AffichageCrit(crit));
+         this.NomCateg = categ.catNom;
+         this.NomCrit = "Critères";
+         this.critService.getCriteres(categ.catId).subscribe(crit => this.AffichageCrit(crit));
     } 
 
     //Action lors de la sélection d'un critère
     OnClickCritere(crit: Critere)
     {
+        this.NomCrit = crit.critNom;
         this.m_TabRecherche.push(crit);
     }
 

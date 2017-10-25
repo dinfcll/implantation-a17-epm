@@ -20,18 +20,18 @@ export class AppComponent
     
   public UpdateAuthentificationPageIndex(): void
   {
+  }
+  public UpdateAuthentificationPageIndex(): void {
     localStorage.removeItem('ConnectedUser');
     this.authentificationService.logout();
   }
-  public UpdateAuthentification(): void
-  {    
+  public UpdateAuthentification(): void {
     this.authentificationService.Connecte();
     this.authentificationService.Admin();
     this.authentificationService.Domaine();
   }
 
-  public ChoixDomaine(): void
-  {
+  public ChoixDomaine(): void {
     this.authentificationService.DomaineChange();
   }
 
@@ -46,24 +46,40 @@ export class AppComponent
   }
 
 
-  Reroutage(type:Number) : void
+  Reroutage(type: Number): void 
   {
-    console.log(type);
-    if(type === 0 && this.router.url.toString() == '/neurologie') //tu sais déjà qu'il est admin
+    
+    if (type === 0 && this.DetectionPage() == 'neurologie') //tu sais déjà qu'il est admin
     {
       this.router.navigateByUrl('neurologie/ajouttrace');
     }
     else
-      if(type === 0 && this.router.url.toString() == '/cardiologie')
-      {
+      if (type === 0 && this.DetectionPage() === 'cardiologie') {
         this.router.navigateByUrl('cardiologie/ajouttrace');
       }
       else
-      if(type === 2)
-      {
-        this.router.navigateByUrl('choix');
-      }
+        if (type === 1 && this.DetectionPage() == 'neurologie') {
+          this.router.navigateByUrl('neurologie/ajoutsupp');
+        }
+        else
+          if (type === 1 && this.DetectionPage() == 'cardiologie') {
+            this.router.navigateByUrl('cardiologie/ajoutsupp');
+          }
+          else
+            if (type === 2) {
+              this.router.navigateByUrl('choix');
+            }
 
+  }
+
+  DetectionPage(): string // Pour savoir si on est dans la catégorie cardio ou neuro
+  {
+    let CheminLong: string = this.router.url.toString();
+    let Page: string[];
+
+    Page = CheminLong.split('/', 2);
+
+    return Page[1];
   }
 
   DetectionActivite() : void

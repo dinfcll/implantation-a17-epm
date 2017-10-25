@@ -23,18 +23,18 @@ var PageCatComponent = (function () {
         this.router = router;
         this.m_TabRecherche = [];
         this.m_EnvoieTrace = null;
+        this.NomCateg = "Catégories";
+        this.NomCrit = "Critères";
     }
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
     PageCatComponent.prototype.ngOnInit = function () {
         var _this = this;
-        //Remplit les objets des données de la BD
+        //Remplit les objets avec les données de la BD
         if (this.router.url.toString() == '/neurologie') {
             this.catService.getCategories(2).subscribe(function (cat) { return _this.AffichageCat(cat); });
-            this.critService.getCriteres(2).subscribe(function (crit) { return _this.AffichageCrit(crit); });
         }
         else {
             this.catService.getCategories(1).subscribe(function (cat) { return _this.AffichageCat(cat); });
-            this.critService.getCriteres(1).subscribe(function (crit) { return _this.AffichageCrit(crit); });
         }
     };
     PageCatComponent.prototype.AffichageCat = function (param) {
@@ -65,12 +65,15 @@ var PageCatComponent = (function () {
         document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
     };
     //Action lors de la sélection d'une catégorie
-    PageCatComponent.prototype.OnClickCategorie = function (id) {
+    PageCatComponent.prototype.OnClickCategorie = function (categ) {
         var _this = this;
-        this.critService.getCriteres(id).subscribe(function (crit) { return _this.AffichageCrit(crit); });
+        this.NomCateg = categ.catNom;
+        this.NomCrit = "Critères";
+        this.critService.getCriteres(categ.catId).subscribe(function (crit) { return _this.AffichageCrit(crit); });
     };
     //Action lors de la sélection d'un critère
     PageCatComponent.prototype.OnClickCritere = function (crit) {
+        this.NomCrit = crit.critNom;
         this.m_TabRecherche.push(crit);
     };
     //Action lors du clic sur supprimer
