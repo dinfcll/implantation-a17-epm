@@ -6,11 +6,14 @@ import { AppComponent } from './app.component';
 import { AuthentificationService } from "./authentification.service";
 
 
+declare var jBox:any;
+
 @Component ({
     selector: 'my-index',
     templateUrl: 'app/html/index.component.html',
     styleUrls: [ 'app/css/index.component.css' ]
 })
+
 
 export class IndexComponent 
 { 
@@ -21,29 +24,26 @@ export class IndexComponent
 
     public Connexion(f: NgForm): void
     {
-        console.log(f);
         this.authServ.login(f.value.utilisateur, f.value.motdepasse).subscribe(Reponse => {
             this.authServ.ValidationConnexion(Reponse);       
-            if(this.authServ.Connecte() && this.authServ.Admin())
+            if(this.authServ.Connecte())
             {
+                
                 this.router.navigate(['choix']);
+                
             }     
             else
             {
-                if(this.authServ.Connecte() && !this.authServ.Admin())
-                {
-                    this.router.navigate(['choix']);
-                }
-                else
-                {
-                    if (!this.authServ.Connecte())
-                    {
-                        alert("Nom d'utilisateur ou mot de passe invalide!");
-                    }
-                }                
+                new jBox('Notice', {
+                    content: 'Utilisateur ou mot de passe invalide',
+                    color: 'red',
+                    stack: false
+                });           
             }
-    });
+        });
     }
-
-    
+    public Oublie(o: NgForm): void
+    {
+        this.router.navigate(['MDP']);
+    }    
 }

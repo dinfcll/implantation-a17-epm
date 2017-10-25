@@ -16,6 +16,7 @@ var AppComponent = (function () {
     function AppComponent(router, authentificationService) {
         this.router = router;
         this.authentificationService = authentificationService;
+        this.TempsDeVerifierActivite = false;
     }
     AppComponent.prototype.UpdateAuthentificationPageIndex = function () {
         localStorage.removeItem('ConnectedUser');
@@ -29,10 +30,12 @@ var AppComponent = (function () {
     AppComponent.prototype.ChoixDomaine = function () {
         this.authentificationService.DomaineChange();
     };
-    AppComponent.prototype.Deconnexion = function () {
-        localStorage.removeItem('ConnectedUser');
+    AppComponent.prototype.Deconnexion = function (Raison) {
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
+        if (Raison == 1) {
+            alert("Votre session à été fermé à cause de votre inactivité");
+        }
     };
     AppComponent.prototype.Reroutage = function (type) {
         if (type === 0 && this.DetectionPage() == 'neurologie') {

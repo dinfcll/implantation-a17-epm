@@ -10,8 +10,15 @@ import { AuthentificationService } from "./authentification.service";
 
 export class AppComponent 
 {
-  
-  constructor(private router: Router, private authentificationService: AuthentificationService) 
+  private IDIntervaleActivite : number;
+  private IDVerification : number;
+  private TempsDeVerifierActivite : boolean = false;
+
+  constructor (
+    private router: Router,
+    private authentificationService: AuthentificationService){  }
+    
+  public UpdateAuthentificationPageIndex(): void
   {
   }
   public UpdateAuthentificationPageIndex(): void {
@@ -28,10 +35,14 @@ export class AppComponent
     this.authentificationService.DomaineChange();
   }
 
-  Deconnexion() {
-    localStorage.removeItem('ConnectedUser');
+  Deconnexion(Raison : Number){
     this.authentificationService.logout();
     this.router.navigateByUrl('index');
+
+    if(Raison == 1)
+    {
+      alert("Votre session à été fermé à cause de votre inactivité");
+    }
   }
 
 
@@ -69,5 +80,55 @@ export class AppComponent
     Page = CheminLong.split('/', 2);
 
     return Page[1];
+  }
+
+  DetectionActivite() : void
+  { 
+
+    if(this.authentificationService.Connecte() === true)
+    {
+      if(this.IDIntervaleActivite != null)
+      {
+        window.clearTimeout(this.IDIntervaleActivite);
+      }
+
+      this.IDIntervaleActivite = window.setTimeout(() => this.Deconnexion(1), 900000);//Bon temps = 900000
+    }
+  }
+
+  VerificationActivite() : void
+  {
+    if(this.authentificationService.Connecte() === true)
+    {
+      if(this.IDVerification == null)
+      {
+        this.IDVerification = window.setInterval(() => this.VerificationActivite(), 3000);
+      }
+      else
+      {
+        this.TempsDeVerifierActivite = true;
+      }
+    }
+    else
+    {
+      if(this.IDVerification != null)
+      {
+        window.clearInterval(this.IDVerification);
+        window.clearTimeout(this.IDIntervaleActivite);
+        this.IDIntervaleActivite = null;
+        this.IDVerification = null;
+
+      }
+    }
+  }
+
+  
+  MouvementSouris(event: MouseEvent) : void
+  {
+    if(this.TempsDeVerifierActivite == true)
+    {
+      this.TempsDeVerifierActivite = false;
+      this.DetectionActivite();
+    }
   }
 }
