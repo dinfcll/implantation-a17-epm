@@ -12,19 +12,6 @@
 }
 
 
-#ChoixCategorie{
-	height: 0vh;
-}
-
-#ChoixCritere{	
-    height: 0vh;
-    border-bottom-style: solid;
-    border-bottom-color: var(--CouleurTheme);
-    box-shadow: 0px 5px 4px -2px #8c8c8c;
-}
-
-
-
 #EspaceCritereChoisi{
 	height: 0vh;
 	width: 138vw;
@@ -125,27 +112,38 @@ background-color: rgba(125, 141, 163, 0.71);
 
 .Categorie{
 	background-color: rgba(125, 141, 163, 0.71);
-	margin: 7px;
+	margin: 10px;
 	border-radius: 5px;
-	padding: 7px;
+	padding: 5px;
 	color: white;
 	display: block;
+	position:relative;
 }
 
 .ListeCritere{
 	display: none;
 	position: absolute;
-	left: 300px;
+	left: 27vh;
+	width: 25vh;
+	top: 0vh;
 	z-index: 1;
 }
 
 .Critere{
 	background-color: rgba(125, 141, 163, 0.71);
-	margin: 7px;
+	margin: 5px;
 	border-radius: 5px;
-	padding: 7px;
+	padding: 5px;
 	color: white;
 	display: block;
+}
+
+#ChoixCategorie{
+	width: 41vh;
+	border-bottom-style: solid;
+    border-bottom-color: var(--CouleurTheme);
+    box-shadow: 0px 5px 4px -2px #8c8c8c;
+
 }
 
 .Categorie:hover, .Critere:hover{

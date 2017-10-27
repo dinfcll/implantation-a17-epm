@@ -2,20 +2,20 @@
 	<div id="base">
 	   <table class="TableEspacePrincipalCat">
 			<tr id="PremiereLigne">
-				<td id="ChoixCategorie">  	
-					<div ng-init="OnClickListeDeroulanteCategorie()">
-						<section class="Categorie" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
-							<div class="ListeCritere">
-								<section class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
+				<td id="ChoixCategorie"> 
+					<section ng-init="OnClickListeDeroulanteCategorie()"> 	
+						<div class="Categorie" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
+							<select class="ListeCritere">
+								<option class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
 									<img src="app/images/add.gif" alt="non" />
 									{{critere.critNom}}	
-								</section>
-							</div>
-						    {{categ.catNom}}			 
-						</section>
-					</div>
+								</option>
+							</select>
+							{{categ.catNom}}					 
+						</div>	
+					</section>
                 </td>
-				<td id="EspaceCritereChoisi" rowspan="2">
+				<td id="EspaceCritereChoisi" rowspan="1">
 					<ul id="ListeCritereChoisi">
 						<table>
 							<tr>
@@ -26,18 +26,6 @@
 						</table>
 					</ul>
 					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/>Rechercher</span></button>				
-				</td>
-			</tr>
-			<tr id="DeuxiemeLigne">
-				<td id="ChoixCritere">
-					<div class="ListeDeroulanteCritere">
-					  	<select class="ListeCritere" (click)="OnClickListeDeroulanteCritere()">
-							<option id="ElementListe" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
-								<img src="app/images/add.gif" alt="non" />
-								{{critere.critNom}}
-							</option>
-						</select>
-					</div>
 				</td>
 			</tr>
 			<tr id="TroisiemeLigne">
