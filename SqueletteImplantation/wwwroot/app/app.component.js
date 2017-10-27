@@ -60,15 +60,50 @@ var AppComponent = (function () {
         Page = CheminLong.split('/', 2);
         return Page[1];
     };
+    AppComponent.prototype.DetectionActivite = function () {
+        var _this = this;
+        if (this.authentificationService.Connecte() === true) {
+            if (this.IDIntervaleActivite != null) {
+                window.clearTimeout(this.IDIntervaleActivite);
+            }
+            this.IDIntervaleActivite = window.setTimeout(function () { return _this.Deconnexion(1); }, 900000); //Bon temps = 900000
+        }
+    };
+    AppComponent.prototype.VerificationActivite = function () {
+        var _this = this;
+        if (this.authentificationService.Connecte() === true) {
+            if (this.IDVerification == null) {
+                this.IDVerification = window.setInterval(function () { return _this.VerificationActivite(); }, 3000);
+            }
+            else {
+                this.TempsDeVerifierActivite = true;
+            }
+        }
+        else {
+            if (this.IDVerification != null) {
+                window.clearInterval(this.IDVerification);
+                window.clearTimeout(this.IDIntervaleActivite);
+                this.IDIntervaleActivite = null;
+                this.IDVerification = null;
+            }
+        }
+    };
+    AppComponent.prototype.MouvementSouris = function (event) {
+        if (this.TempsDeVerifierActivite == true) {
+            this.TempsDeVerifierActivite = false;
+            this.DetectionActivite();
+        }
+    };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'app-root',
+            templateUrl: 'app/html/app.component.html',
+            styleUrls: ['app/css/app.component.css']
+        }),
+        __metadata("design:paramtypes", [router_1.Router,
+            authentification_service_1.AuthentificationService])
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'app-root',
-        templateUrl: 'app/html/app.component.html',
-        styleUrls: ['app/css/app.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService])
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

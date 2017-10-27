@@ -24,7 +24,7 @@ td{ box-shadow: 0px 5px 4px -2px #8c8c8c;}
 	
 	text-align:right;
 	display: inline-block;
-    border: solid 1px #000;
+    border: none;
 	margin:3%;
 }
 
@@ -36,6 +36,7 @@ td{ box-shadow: 0px 5px 4px -2px #8c8c8c;}
 }
 
 .DivSupp{
+border:none;
 cursor:pointer;
 width: 30%; 
 }

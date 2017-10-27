@@ -32,11 +32,11 @@ var CategorieService = (function () {
     CategorieService.prototype.addCategorie = function (catdto) {
         return this.http.post("api/ajoutcat", catdto);
     };
+    CategorieService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], CategorieService);
     return CategorieService;
 }());
-CategorieService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], CategorieService);
 exports.CategorieService = CategorieService;
 //# sourceMappingURL=categorie.service.js.map

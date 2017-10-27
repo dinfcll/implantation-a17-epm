@@ -19,6 +19,8 @@ import { CritereService } from './critere.service';
 import { Categorie, CategorieDTO } from './categorie';
 import { Critere, CritereDTO } from './critere';
 
+declare var jBox:any;
+
 @Component ({
     selector: 'my-ajoutsupp',
     templateUrl: 'app/html/ajout-cat-crit.component.html',
@@ -174,7 +176,11 @@ export class AjoutSuppComponent
        }
        else
        {
-           //Mettre un JBOX disant : "Veuillez choisir une catégorie afin de pouvoir la supprimer"
+            new jBox('Notice', {
+                content: 'Veuillez choisir une catégorie afin de pouvoir la supprimer',
+                color: 'red',
+                stack: true
+            });
        }
 
      }
@@ -185,12 +191,16 @@ export class AjoutSuppComponent
         {
             if(confirm("Voulez-vous vraiment supprimer définitivement le critère suivant :" + this.NomCrit  + " ?"))
                 {
-                this.critService.deleteCritere(this.m_CritID).subscribe(reponse => this.ActualisationListeSuppCrit(reponse));
+                    this.critService.deleteCritere(this.m_CritID).subscribe(reponse => this.ActualisationListeSuppCrit(reponse));
                 }
         }
         else
         {
-            //Mettre un JBOX disant : "Veuillez choisir un critère afin de pouvoir le supprimer"
+            new jBox('Notice', {
+                content: 'Veuillez choisir un critère afin de pouvoir le supprimer',
+                color: 'red',
+                stack: true
+            });
         }
      }
 
@@ -209,10 +219,12 @@ export class AjoutSuppComponent
          }
          else
          {
-             //Mettre un JBOX disant : "Veuillez choisir une catégorie afin de pouvoir ajouter un critère à celle-ci"
+            new jBox('Notice', {
+                content: 'Veuillez choisir une catégorie afin de pouvoir ajouter un critère à celle-ci',
+                color: 'red',
+                stack: true
+            });
          }
-         
-        
      }
 
 
@@ -220,6 +232,7 @@ export class AjoutSuppComponent
      {
          this.catService.getCategories(this.TypeDom).subscribe(cat => this.AffichageCat(cat,1));
          this.NomCateg = "Catégories";
+         this.NomCateg2 = "Catégories";
      }
      private ActualisationListeSuppCrit(param: any)
      {
