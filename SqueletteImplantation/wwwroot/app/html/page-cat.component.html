@@ -2,15 +2,17 @@
 	<div id="base">
 	   <table class="TableEspacePrincipalCat">
 			<tr id="PremiereLigne">
-				<td id="ChoixCategorie">  
-					<div class="ListeDeroulanteCategorie">
-						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> {{NomCateg}} </button>
-						<select class="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()">
-							 <option id="ElementListe" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ)" title="{{categ.catNom}}">
-								 {{categ.catNom}}
-								 
-							</option>
-						</select>
+				<td id="ChoixCategorie">  	
+					<div ng-init="OnClickListeDeroulanteCategorie()">
+						<section class="Categorie" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
+							<div class="ListeCritere">
+								<section class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
+									<img src="app/images/add.gif" alt="non" />
+									{{critere.critNom}}	
+								</section>
+							</div>
+						    {{categ.catNom}}			 
+						</section>
 					</div>
                 </td>
 				<td id="EspaceCritereChoisi" rowspan="2">
@@ -29,7 +31,6 @@
 			<tr id="DeuxiemeLigne">
 				<td id="ChoixCritere">
 					<div class="ListeDeroulanteCritere">
-						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> {{NomCrit}} </button>
 					  	<select class="ListeCritere" (click)="OnClickListeDeroulanteCritere()">
 							<option id="ElementListe" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
 								<img src="app/images/add.gif" alt="non" />

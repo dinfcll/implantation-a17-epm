@@ -123,6 +123,38 @@ background-color: rgba(125, 141, 163, 0.71);
 	display: block;
 }
 
+.Categorie{
+	background-color: rgba(125, 141, 163, 0.71);
+	margin: 7px;
+	border-radius: 5px;
+	padding: 7px;
+	color: white;
+	display: block;
+}
+
+.ListeCritere{
+	display: none;
+	position: absolute;
+	left: 300px;
+	z-index: 1;
+}
+
+.Critere{
+	background-color: rgba(125, 141, 163, 0.71);
+	margin: 7px;
+	border-radius: 5px;
+	padding: 7px;
+	color: white;
+	display: block;
+}
+
+.Categorie:hover, .Critere:hover{
+	cursor: pointer;
+	background-color: var(--CouleurTheme);
+}
+
+
+
 #lientelechargement{
 	float: right;
 	margin-right: 25px;
@@ -165,27 +197,11 @@ background-color: rgba(125, 141, 163, 0.71);
     width: 221px;
 }
 
-.ListeCategorie, .ListeCritere{
-	display: none;
-	position: absolute;
-	width: 170px;
-	z-index: 1;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-#ListeCritere:hover, #ListeCategorie:hover{
-	cursor: pointer;
-	background-color: #f2f2f2;
-}
 
 .ShowElement{
 	display: block;
 }
 
-#ElementListe:hover{
-	background-color: #f2f2f2;
-	cursor: pointer;
-}
 
 #ElementListe{
 	overflow: hidden;
