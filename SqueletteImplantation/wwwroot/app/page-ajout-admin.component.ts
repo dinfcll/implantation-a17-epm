@@ -126,6 +126,7 @@ export class AjoutAdminComponent implements OnInit
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit),1);
         this.m_TabCritID.splice(this.m_TabCritID.indexOf(crit.critId),1);
         
+        
         console.log(this.m_TabRecherche);
     }
     

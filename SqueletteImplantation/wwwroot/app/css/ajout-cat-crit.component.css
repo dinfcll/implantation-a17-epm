@@ -1,3 +1,7 @@
+* {
+	outline: 0;
+}
+
 .TableEspacePrincipalCat{
 	width: 100%;
     background-size:100%;
