@@ -56,10 +56,10 @@ namespace SqueletteImplantation.Controllers
                 courriel.setDestination(email);
                 courriel.setSender("electrophysologiemedicale@gmail.com", "Reset");
                 courriel.SetMessage("Bonjour," +
-                    "Voici le nouveau mot de passe à utiliser lors de votre prochaine connexion." +
+                    "Voici le nouveau mot de passe a utiliser lors de votre prochaine connexion." +
                     PWD
-                    + "Nous vous recommandons de la changer à l'aide de la page de modification du profil." +
-                    "Bonne journée.");
+                    + "Nous vous recommandons de la changer a l'aide de la page de modification du profil." +
+                    "Bonne journee.");
                 courriel.setSubject("Nouveau Mot de passe");
                 await courriel.sendMessageAsync();
 
