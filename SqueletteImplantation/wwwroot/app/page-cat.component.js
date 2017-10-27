@@ -96,7 +96,6 @@ var PageCatComponent = (function () {
     };
     /************************************************************** */
     PageCatComponent.prototype.ValidationUtil = function () {
-        console.log(this.authentificationService.Admin());
         return this.authentificationService.Admin();
     };
     /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
