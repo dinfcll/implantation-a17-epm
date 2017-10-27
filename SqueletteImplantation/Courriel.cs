@@ -48,12 +48,12 @@ namespace SqueletteImplantation
             message.Subject = subject;
         }
 
-        public void sendMessage()
+        public async Task sendMessageAsync()
         {
             smtpClient.Connect("smtp.gmail.com", 587, false);
             smtpClient.AuthenticationMechanisms.Remove("XOAUTH2");
             smtpClient.Authenticate("electrophysiologiemedicale@gmail.com", "admin#123");
-            smtpClient.Send(message);
+            await smtpClient.SendAsync(message);
             smtpClient.Disconnect(true);
         }
 

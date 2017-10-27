@@ -10,12 +10,10 @@ export class UtilisateurService {
     constructor(private http: Http) { }
 
     reset(email: string) {
-        this.baseUrl = 'api/utilisateur/reset';
+        this.baseUrl = "api/utilisateur/reset/";
         let headers = new Headers();
         headers.append('Content-type', 'application/json');
         
-        return this.http.post(this.baseUrl, JSON.stringify({ email }), { headers });
+        return this.http.post(this.baseUrl + email, JSON.stringify({ email }), { headers });
     }
-
-
 }

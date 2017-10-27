@@ -2,11 +2,8 @@
 <html>
 	<head>
 	<link rel="stylesheet" href="/../app/css/app.component.css">
-	<script type="text/javascript" src="index.js"></script>
 	<title> EPM </title>
-	
 	</head>
-
 	<body>
 		<table class="TableComplete">
             <tr>
@@ -24,12 +21,10 @@
 					</div>
                 </td> 
             </tr>
-
 			<tr>
 				<td colspan="2" rowspan="2" id="EspacePrincipal">
 					<router-outlet></router-outlet>
 				</td>
-
 			</tr>
 			<tr>
 				<td id="Menu">
@@ -37,26 +32,19 @@
                         <li>
                              <div *ngIf="this.authentificationService.Admin() && this.authentificationService.Domaine()" id="divAdmin">
         						<h3>Outils</h3>
-									 <ul>
-										<li (click)="Reroutage(0)">Page d'ajout de tracés</li>
-										<li (click)="Reroutage(1)">Page d'ajout de catégories et de critères</li>
-									</ul> 
+								<ul>
+									<li (click)="Reroutage(0)">Page d'ajout de tracés</li>
+									<li (click)="Reroutage(1)">Page d'ajout de catégories et de critères</li>
+								</ul> 
 							</div>
 						</li>
 				    </div>
 					<hr>
 					<div id="divMenuBas">
-                        	<li id="ElementDansMenu"> Historique</li>
+                    	<li id="ElementDansMenu"> Historique</li>
 					</div>
-                    
-				
 				</td>
 			</tr>
-
 		</table>
-	
 	</body>
-
 </html>
-
-		

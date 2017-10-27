@@ -17,14 +17,16 @@ declare var jBox :any;
 
 export class mdpcomponent
 { 
+    private courriel: string;
+
     constructor(private router: Router, private utilisateurService: UtilisateurService){}
 
-    public Cancel(c: NgForm): void
+    public Cancel(): void
     {
         this.router.navigateByUrl('choix');
     }
-    public ResetMDP(email : string) {
-        this.utilisateurService.reset(email).subscribe(res => {
+    public ResetMDP() {        
+        this.utilisateurService.reset(this.courriel).subscribe(res => {
             if(res){
                 new jBox('notice',{
                     content: 'Le mot de passe a été réinitialisé.',

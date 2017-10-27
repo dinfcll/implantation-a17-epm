@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var router_1 = require("@angular/router");
 var page_cat_component_1 = require("./page-cat.component");
 var page_ajout_admin_component_1 = require("./page-ajout-admin.component");

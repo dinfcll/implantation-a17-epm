@@ -35,10 +35,10 @@ namespace SqueletteImplantation.Controllers
         }
 
         [HttpPost]
-        [Route("api/utilisateur/reset")]
-        public IActionResult Post(String email)
+        [Route("api/utilisateur/reset/{email}")]
+        public async System.Threading.Tasks.Task<IActionResult> PostAsync(String email)
         {
-            
+
             var comptereset = _maBd.Utilisateur.SingleOrDefault(u => u.UtilEmail == email);
 
             if (comptereset != null)
@@ -50,13 +50,13 @@ namespace SqueletteImplantation.Controllers
                 courriel.setSender("electrophysologiemedicale@gmail.com", "Reset");
                 courriel.SetMessage("Votre mot de passe temporaire est le " + PWD + " .");
                 courriel.setSubject("Nouveau Mot de passe");
-                courriel.sendMessage();
-                               
+                await courriel.sendMessageAsync();
+
                 _maBd.Utilisateur.Attach(comptereset);
-                
+
                 var entry = _maBd.Entry(comptereset);
                 entry.Property(e => e.UtilPWD).IsModified = true;
-                _maBd.SaveChanges();  
+                _maBd.SaveChanges();
             }
             else
             {
