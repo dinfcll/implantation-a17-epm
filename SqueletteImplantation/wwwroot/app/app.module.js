@@ -5,7 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 //Modules
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
@@ -22,6 +21,7 @@ var authentification_guard_1 = require("./authentification.guard");
 var authentification_service_1 = require("./authentification.service");
 var ajout_cat_crit_component_1 = require("./ajout-cat-crit.component");
 var pagemdp_component_1 = require("./pagemdp.component");
+var utilisateur_service_1 = require("./utilisateur.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,7 +32,7 @@ AppModule = __decorate([
         imports: [platform_browser_1.BrowserModule, app_routing_module_1.routes, http_1.HttpModule, forms_1.FormsModule],
         declarations: [index_component_1.IndexComponent, page_cat_component_1.PageCatComponent, app_component_1.AppComponent, choix_component_1.ChoixComponent, page_ajout_admin_component_1.AjoutAdminComponent, pagemdp_component_1.mdpcomponent, ajout_cat_crit_component_1.AjoutSuppComponent],
         bootstrap: [app_component_1.AppComponent],
-        providers: [authentification_guard_1.AuthentificationGuard, authentification_service_1.AuthentificationService]
+        providers: [authentification_guard_1.AuthentificationGuard, authentification_service_1.AuthentificationService, utilisateur_service_1.UtilisateurService]
     })
 ], AppModule);
 exports.AppModule = AppModule;
