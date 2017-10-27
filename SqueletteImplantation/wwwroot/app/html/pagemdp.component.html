@@ -5,8 +5,10 @@
             <input type="text" [(ngModel)]="UserName" name="UserName" required></p>    
 	        <p><button type="submit" id="btnReset">Réinitialiser le mot de passe</button></p>
         </div>
+
+    <form #c="ngForm" id="bar" name ="bar" (ngSubmit)="Cancel(c)" novalidate>
+        <p><button type="submit" id="btnCancel">Retour</button></p>
     </form>
-    <form #c="ngForm" (ngSubmit)="Cancel(c)" novalidate>
-        <p><button type="submit" id="btnCancel">Cancel</button></p>
+
     </form>
 </div>
