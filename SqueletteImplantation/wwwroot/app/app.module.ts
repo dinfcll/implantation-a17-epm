@@ -16,6 +16,7 @@ import { AuthentificationService } from "./authentification.service";
 
 import { AjoutSuppComponent } from "./ajout-cat-crit.component";
 import { mdpcomponent } from "./pagemdp.component";
+import { UtilisateurService } from "./utilisateur.service";
 
 
 
@@ -24,7 +25,7 @@ import { mdpcomponent } from "./pagemdp.component";
   imports:      [ BrowserModule, routes, HttpModule, FormsModule ], // Importation des modules de l'application
   declarations: [ IndexComponent, PageCatComponent, AppComponent, ChoixComponent, AjoutAdminComponent, mdpcomponent,  AjoutSuppComponent ],  // Déclaration des "components" de l'application
   bootstrap:    [ AppComponent ],
-  providers: [ AuthentificationGuard, AuthentificationService ]
+  providers: [ AuthentificationGuard, AuthentificationService, UtilisateurService ]
 })
 
 export class AppModule { }
