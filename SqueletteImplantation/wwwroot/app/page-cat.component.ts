@@ -11,6 +11,7 @@ import { TraceDTO } from './tracedto';
 import { TraceService } from './trace.service';
 import { CategorieService } from './categorie.service';
 import { CritereService } from './critere.service';
+import { AuthentificationService } from "./authentification.service";
 
 
 
@@ -37,7 +38,7 @@ export class PageCatComponent implements OnInit
     NomCateg: String;
     NomCrit: String;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private router:Router)
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private router:Router,private authentificationService: AuthentificationService)
     {
         this.NomCateg = "Catégories";
         this.NomCrit = "Critères"
@@ -120,6 +121,7 @@ export class PageCatComponent implements OnInit
     OnClickSupprimer(crit: Critere)
     {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit),1);
+      
     }
     
     //Action lors de l'appui sur le bouton recherche
@@ -137,7 +139,11 @@ export class PageCatComponent implements OnInit
 
         this.traceService.getTraces(RequeteId).subscribe(trac => this.AffichageTrace(trac));
     }
-
+    /************************************************************** */
+    ValidationUtil() : boolean
+    {
+        return this.authentificationService.Admin()
+    }
 
     /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
     public onClickDeleteTrace(id: number)
