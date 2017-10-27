@@ -6,6 +6,7 @@ var page_ajout_admin_component_1 = require("./page-ajout-admin.component");
 var index_component_1 = require("./index.component");
 var choix_component_1 = require("./choix.component");
 var ajout_cat_crit_component_1 = require("./ajout-cat-crit.component");
+var pagemdp_component_1 = require("./pagemdp.component");
 var authentification_guard_1 = require("./authentification.guard");
 exports.router = [
     { path: '', redirectTo: '/choix', pathMatch: 'full' },
