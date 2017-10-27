@@ -6,11 +6,14 @@ import { AppComponent } from './app.component';
 import { AuthentificationService } from "./authentification.service";
 
 
+declare var jBox:any;
+
 @Component ({
     selector: 'my-index',
     templateUrl: 'app/html/index.component.html',
     styleUrls: [ 'app/css/index.component.css' ]
 })
+
 
 export class IndexComponent 
 { 
@@ -25,12 +28,17 @@ export class IndexComponent
             this.authServ.ValidationConnexion(Reponse);       
             if(this.authServ.Connecte())
             {
+                
                 this.router.navigate(['choix']);
+                
             }     
             else
             {
-                console.log("TestLogin");
-                alert("Nom d'utilisateur ou mot de passe invalide");            
+                new jBox('Notice', {
+                    content: 'Utilisateur ou mot de passe invalide',
+                    color: 'red',
+                    stack: false
+                });           
             }
         });
     }

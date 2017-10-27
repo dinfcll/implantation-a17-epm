@@ -12,5 +12,6 @@ namespace SqueletteImplantation.DbEntities.DTOs
             return new Categorie { CatNom = NomCat, DomId = IdDom };
         }
 
+
     }
 }

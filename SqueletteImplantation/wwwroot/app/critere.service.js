@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var critere_1 = require("./critere");
+Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/toPromise"); // Pour accéder à la méthode .toPromise()
@@ -28,12 +28,8 @@ var CritereService = (function () {
         return this.http.delete(url);
     };
     //Permet d'envoyer une requête HTTP d'ajout d'un critère'.
-    CritereService.prototype.addCritere = function (CritDto) {
-        return this.http.post("api/ajoutcrite", JSON.stringify({ CritDto: critere_1.CritDTO }));
-    };
-    CritereService.prototype.GestionErreur = function (error) {
-        console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"
-        return Promise.reject(error.message || error);
+    CritereService.prototype.addCritere = function (critdto) {
+        return this.http.post("api/ajoutcrite", critdto);
     };
     return CritereService;
 }());

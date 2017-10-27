@@ -10,51 +10,122 @@ import { AuthentificationService } from "./authentification.service";
 
 export class AppComponent 
 {
-  
+  private IDIntervaleActivite : number;
+  private IDVerification : number;
+  private TempsDeVerifierActivite : boolean = false;
+
   constructor (
     private router: Router,
     private authentificationService: AuthentificationService){  }
     
-  public UpdateAuthentificationPageIndex(): void
-  {
+  public UpdateAuthentificationPageIndex(): void {
     localStorage.removeItem('ConnectedUser');
     this.authentificationService.logout();
   }
-  public UpdateAuthentification(): void
-  {    
+  public UpdateAuthentification(): void {
     this.authentificationService.Connecte();
     this.authentificationService.Admin();
     this.authentificationService.Domaine();
   }
 
-  public ChoixDomaine(): void
-  {
+  public ChoixDomaine(): void {
     this.authentificationService.DomaineChange();
   }
 
-  Deconnexion(){
+  Deconnexion(Raison : Number){
     this.authentificationService.logout();
     this.router.navigateByUrl('index');
+
+    if(Raison == 1)
+    {
+      alert("Votre session à été fermée à cause de votre inactivité");
+    }
   }
 
 
-  Reroutage(type:Number) : void
+  Reroutage(type: Number): void 
   {
-    console.log(type);
-    if(type === 0 && this.router.url.toString() == '/neurologie') //tu sais déjà qu'il est admin
+    
+    if (type === 0 && this.DetectionPage() == 'neurologie') //tu sais déjà qu'il est admin
     {
       this.router.navigateByUrl('neurologie/ajouttrace');
     }
     else
-      if(type === 0 && this.router.url.toString() == '/cardiologie')
-      {
+      if (type === 0 && this.DetectionPage() === 'cardiologie') {
         this.router.navigateByUrl('cardiologie/ajouttrace');
       }
       else
-      if(type === 2)
+        if (type === 1 && this.DetectionPage() == 'neurologie') {
+          this.router.navigateByUrl('neurologie/ajoutsupp');
+        }
+        else
+          if (type === 1 && this.DetectionPage() == 'cardiologie') {
+            this.router.navigateByUrl('cardiologie/ajoutsupp');
+          }
+          else
+            if (type === 2) {
+              this.router.navigateByUrl('choix');
+            }
+
+  }
+
+  DetectionPage(): string // Pour savoir si on est dans la catégorie cardio ou neuro
+  {
+    let CheminLong: string = this.router.url.toString();
+    let Page: string[];
+
+    Page = CheminLong.split('/', 2);
+
+    return Page[1];
+  }
+
+  DetectionActivite() : void
+  { 
+
+    if(this.authentificationService.Connecte() === true)
+    {
+      if(this.IDIntervaleActivite != null)
       {
-        this.router.navigateByUrl('choix');
+        window.clearTimeout(this.IDIntervaleActivite);
       }
 
+      this.IDIntervaleActivite = window.setTimeout(() => this.Deconnexion(1), 900000);//Bon temps = 900000
+    }
+  }
+
+  VerificationActivite() : void
+  {
+    if(this.authentificationService.Connecte() === true)
+    {
+      if(this.IDVerification == null)
+      {
+        this.IDVerification = window.setInterval(() => this.VerificationActivite(), 3000);
+      }
+      else
+      {
+        this.TempsDeVerifierActivite = true;
+      }
+    }
+    else
+    {
+      if(this.IDVerification != null)
+      {
+        window.clearInterval(this.IDVerification);
+        window.clearTimeout(this.IDIntervaleActivite);
+        this.IDIntervaleActivite = null;
+        this.IDVerification = null;
+
+      }
+    }
+  }
+
+  
+  MouvementSouris(event: MouseEvent) : void
+  {
+    if(this.TempsDeVerifierActivite == true)
+    {
+      this.TempsDeVerifierActivite = false;
+      this.DetectionActivite();
+    }
   }
 }

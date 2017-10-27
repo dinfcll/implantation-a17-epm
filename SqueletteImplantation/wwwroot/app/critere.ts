@@ -2,7 +2,7 @@ export class Critere
 {
     constructor(public critId: number,public critNom: String, public catId: number){} 
 }
-export class CritDTO
+export class CritereDTO
 {
-    constructor(public critNom: String, public catId: number){}
+    constructor(public NomCrit: String, public IdCat: number){}
 }

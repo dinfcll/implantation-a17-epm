@@ -27,8 +27,11 @@ var IndexComponent = (function () {
                 _this.router.navigate(['choix']);
             }
             else {
-                console.log("TestLogin");
-                alert("Nom d'utilisateur ou mot de passe invalide");
+                new jBox('Notice', {
+                    content: 'Utilisateur ou mot de passe invalide',
+                    color: 'red',
+                    stack: false
+                });
             }
         });
     };

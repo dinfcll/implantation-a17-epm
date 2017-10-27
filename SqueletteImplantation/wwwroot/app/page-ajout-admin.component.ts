@@ -13,7 +13,7 @@ import { TraceService } from './trace.service';
 import { CategorieService } from './categorie.service';
 import { CritereService } from './critere.service';
 
-
+declare var jBox:any;
 
 
 @Component({
@@ -126,6 +126,7 @@ export class AjoutAdminComponent implements OnInit
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit),1);
         this.m_TabCritID.splice(this.m_TabCritID.indexOf(crit.critId),1);
         
+        
         console.log(this.m_TabRecherche);
     }
     
@@ -171,6 +172,13 @@ public FichierValide(retour :any)
             console.log("Fichier envoyé avec succès !");
             this.m_EnvoieTrace = new TraceDTO(this.m_TabCritID,this.m_File.name, retour._body);
             this.traceService.addTrace(this.m_EnvoieTrace).subscribe(reponse => this.AffichageRepAdd(reponse));
+            
+            new jBox('Notice', {
+                content: 'Fichier envoyé avec succès',
+                color: 'green',
+                stack: true
+            });
+
         }
     }
 }

@@ -33,13 +33,17 @@ namespace SqueletteImplantation.DbEntities
 			
 			new UtilisateurMap(modelBuilder.Entity<Utilisateur>());
 
-            //Auto incréments
+            //Auto incréments et champs uniques
 			modelBuilder.Entity<Utilisateur>()
                 .Property(u => u.UtilId)
                 .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Utilisateur>()
                 .HasIndex(u => u.UtilUserName)
+                .IsUnique();
+
+            modelBuilder.Entity<Utilisateur>()
+                .HasIndex(u => u.UtilEmail)
                 .IsUnique();
 
             modelBuilder.Entity<Domaine>()
