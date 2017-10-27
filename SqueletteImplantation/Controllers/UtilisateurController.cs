@@ -20,6 +20,14 @@ namespace SqueletteImplantation.Controllers
         {
             _maBd = maBd;
         }
+
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "qwertyuiopasdfghjklzxcvbnmABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=";
+            return new string(Enumerable.Repeat(chars, length)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
         
         [HttpPost]
         [Route("api/utilisateur/login")]
@@ -42,13 +50,16 @@ namespace SqueletteImplantation.Controllers
             var comptereset = _maBd.Utilisateur.SingleOrDefault(u => u.UtilEmail == email);
 
             if (comptereset != null)
-            {
-                String PWD = "abcd";
+            {                
+                String PWD = RandomString(8);
                 comptereset.UtilPWD = Hash.GetHash(PWD);
-
                 courriel.setDestination(email);
                 courriel.setSender("electrophysologiemedicale@gmail.com", "Reset");
-                courriel.SetMessage("Votre mot de passe temporaire est le " + PWD + " .");
+                courriel.SetMessage("Bonjour," +
+                    "Voici le nouveau mot de passe à utiliser lors de votre prochaine connexion." +
+                    PWD
+                    + "Nous vous recommandons de la changer à l'aide de la page de modification du profil." +
+                    "Bonne journée.");
                 courriel.setSubject("Nouveau Mot de passe");
                 await courriel.sendMessageAsync();
 
