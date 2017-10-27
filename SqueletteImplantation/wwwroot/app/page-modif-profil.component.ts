@@ -33,14 +33,12 @@ export class ModifProfilComponent
     {
         var key = event.keyCode;
 
-        if((key >= 65 && key <= 90) || key == 8)
-        {
-            document.getElementById("NomUtilNouv").style.borderColor = "red";
-        }
-        else
+        if(!((key >= 65 && key <= 90) || key == 8))
         {
             event.preventDefault();
+            document.getElementById("NomUtilNouv").style.borderColor = "red";
         }
+
 
         
 

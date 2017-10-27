@@ -8,7 +8,7 @@
             </div>
             <div id="divConfNomUtil">
                 <label>Confirmation:</label>
-                <input (keypress)="ChangementNomUtilConf($event)" [(ngModel)]="m_NomUtilConf" type="text" name="NomUtilConf">
+                <input (keydown)="ChangementNomUtilConf($event)" [(ngModel)]="m_NomUtilConf" type="text" name="NomUtilConf">
             </div>
             <button (click)="SauvegarderNomUtilisateur()" id="btnSauvegarderNomUtil">Sauvegarder</button>
         </fieldset>
