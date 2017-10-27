@@ -97,7 +97,7 @@ var PageCatComponent = (function () {
         var _this = this;
         if (confirm("Voulez-vous vraiment supprimer définitivement le tracé #" + id + "?")) {
             this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
-            window.location.reload();
+            this.OnClickRechercher();
         }
         else {
             console.log("ABORT");

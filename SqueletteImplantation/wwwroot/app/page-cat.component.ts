@@ -145,7 +145,7 @@ export class PageCatComponent implements OnInit
         if(confirm("Voulez-vous vraiment supprimer définitivement le tracé #" + id  + "?"))
          {
             this.traceService.deleteTrace(id).subscribe(reponse => this.AffichageRepDel(reponse));
-            window.location.reload();
+            this.OnClickRechercher();
          }
          else
          {
