@@ -35,7 +35,7 @@
 				<td id="Menu">
 					<div id="divMenuHaut">
                         <li>
-                             <div *ngIf="this.authentificationService.Admin() && this.authentificationService.Domaine()" id="divAdmin">
+                             <div *ngIf="this.authentificationService.Admin()" id="divAdmin">
         						<h3>Outils</h3>
 									 <ul>
 										<li (click)="Reroutage(0)">Page d'ajout de tracés</li>
