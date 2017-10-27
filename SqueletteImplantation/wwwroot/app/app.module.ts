@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 //Components
-import {AppComponent} from './app.component';
+import { AppComponent } from './app.component';
 import { IndexComponent } from './index.component';
 import { PageCatComponent } from './page-cat.component';
 import { ChoixComponent } from './choix.component';
@@ -15,6 +15,7 @@ import { AuthentificationGuard } from "./authentification.guard";
 import { AuthentificationService } from "./authentification.service";
 import { mdpcomponent } from "./pagemdp.component";
 import { ModifProfilComponent } from "./page-modif-profil.component";
+import { ModificationUtilisateurService } from './ModificationUtilisateur.service';
 
 
 
