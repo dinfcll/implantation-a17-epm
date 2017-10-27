@@ -95,15 +95,16 @@ var PageCatComponent = (function () {
     };
     /************************************************************** */
     PageCatComponent.prototype.ValidationUtil = function () {
-        console.log(this.authentificationService.Admin());
         return this.authentificationService.Admin();
     };
     /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
     PageCatComponent.prototype.onClickDeleteTrace = function (id) {
         var _this = this;
         if (confirm("Voulez-vous vraiment supprimer définitivement le tracé #" + id + "?")) {
-            this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
-            this.OnClickRechercher();
+            this.traceService.deleteTrace(id).subscribe(function (reponse) {
+                _this.AffichageRepDel(reponse);
+                _this.OnClickRechercher();
+            });
         }
         else {
             console.log("ABORT");
