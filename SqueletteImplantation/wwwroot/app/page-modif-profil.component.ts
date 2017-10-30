@@ -139,16 +139,15 @@ export class ModifProfilComponent
     private SauvegarderNomUtilisateur() : void
     {
         this.modificationutilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv);
-
     }
     
     private SauvegarderEmail() : void
     {
-        
+        this.modificationutilisateurservice.ModifierEmail(this.EmailNouv);
     }
 
     private SauvegarderMotDePasse() : void
     {
-        
+        this.modificationutilisateurservice.ModifierMotDePasse(this.MdpNouv);
     }
 }

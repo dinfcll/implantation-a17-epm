@@ -6,10 +6,20 @@ import { Utilisateur } from './utilisateur';
 @Injectable()
 export class ModificationUtilisateurService
 {
-    constructor(http : Http){}
+    constructor(private http : Http){}
 
-    public ModifierNomUtilisateur(NomUtilisateur : string)
+    public ModifierNomUtilisateur(NouveauNomUtilisateur : string)
     {
-        
+        //this.http.patch()
+    }
+
+    public ModifierEmail(NouveauEmail : string)
+    {
+
+    }
+
+    public ModifierMotDePasse(NouveauMotDePasse : string)
+    {
+
     }
 }
