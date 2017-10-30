@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/toPromise"); // Pour accéder à la méthode .toPromise()
-var CategorieService = (function () {
+var CategorieService = /** @class */ (function () {
     function CategorieService(http) {
         this.http = http;
         this.CategoriesURL = 'api/categorie'; // URL de l'API
@@ -42,11 +42,11 @@ var CategorieService = (function () {
         console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"
         return Promise.reject(error.message || error);
     };
+    CategorieService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], CategorieService);
     return CategorieService;
 }());
-CategorieService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], CategorieService);
 exports.CategorieService = CategorieService;
 //# sourceMappingURL=categorie.service.js.map

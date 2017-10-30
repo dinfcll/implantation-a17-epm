@@ -29,47 +29,54 @@ export class ModifProfilComponent
         this.m_MdpConf="";
     }
 
-    private ChangementNomUtilNouv(event : any)
+    ngOnInit()
     {
-        var key = event.keyCode;
+        document.getElementById("btnSauvegarderNomUtil").style.backgroundColor = "lightgray";
+    }
 
-        if(!((key >= 65 && key <= 90) || key == 8))
+    private RestrictionCharactere(event : any)
+    {
+        let Touche = event.keyCode;
+
+        if(!(Touche >= 65 && Touche <= 90 || Touche === 8 || Touche === 95 || Touche === 127 || Touche === 64))
         {
             event.preventDefault();
-            document.getElementById("NomUtilNouv").style.borderColor = "red";
         }
+    }
 
+    private ComparaisonChangement()
+    {
+        let PartieVerif;
 
-        
-
-        /*const pattern = /[a-z\A-Z\0-9\ ]/;
-        let inputChar = String.fromCharCode(event.charCode);
-
-        if (!pattern.test(inputChar))
+        if(this.m_NomUtilConf.length <= this.m_NomUtilNouv.length)
         {
-            // invalid character, prevent input
-            event.preventDefault();
-        }
-        else
-        {
-            if(this.m_NomUtilNouv.length < 3)
+            PartieVerif = this.m_NomUtilNouv.slice(0, this.m_NomUtilConf.length);
+
+            if(PartieVerif === this.m_NomUtilConf && this.m_NomUtilConf != "")
             {
-                document.getElementById("NomUtilNouv").setAttribute("style", "border-color: red");
+                document.getElementById("NomUtilConf").style.borderColor = "green";
+                
+
+                if(this.m_NomUtilNouv === this.m_NomUtilConf)
+                {
+                    (<HTMLInputElement>document.getElementById("btnSauvegarderNomUtil")).disabled = false;
+                    document.getElementById("btnSauvegarderNomUtil").style.backgroundColor = "";
+                }
             }
             else
             {
-
-                for(var Indice = this.m_NomUtilNouv.length - 1; Indice >= 0 && Touche ; Indice++)
-                {
-
-                }
+                (<HTMLInputElement>document.getElementById("btnSauvegarderNomUtil")).disabled = true;
+                document.getElementById("btnSauvegarderNomUtil").style.backgroundColor = "lightgray";
+                document.getElementById("NomUtilConf").style.borderColor = "red";
             }
-        }*/
-
-
+        }
+        else
+        {
+            (<HTMLInputElement>document.getElementById("btnSauvegarderNomUtil")).disabled = true;
+            document.getElementById("btnSauvegarderNomUtil").style.backgroundColor = "lightgray";
+            document.getElementById("NomUtilConf").style.borderColor = "red";
+        }
     }
-
-
 
 
 

@@ -4,25 +4,25 @@
             <legend id="legendeNomUtil">Changement du nom d'utilisateur</legend>
             <div id="divNouveauNomUtil">
                 <label>Nouveau nom d'utilisateur:</label>
-                <input (keydown)="ChangementNomUtilNouv($event)" [(ngModel)]="m_NomUtilNouv" type="text" id="NomUtilNouv">
+                <input (keydown)="RestrictionCharactere($event)" [(ngModel)]="m_NomUtilNouv" (ngModelChange)="ComparaisonChangement()" type="text" id="NomUtilNouv">
             </div>
             <div id="divConfNomUtil">
                 <label>Confirmation:</label>
-                <input (keydown)="ChangementNomUtilConf($event)" [(ngModel)]="m_NomUtilConf" type="text" name="NomUtilConf">
+                <input (keydown)="RestrictionCharactere($event)" [(ngModel)]="m_NomUtilConf" (ngModelChange)="ComparaisonChangement()" type="text" id="NomUtilConf">
             </div>
-            <button (click)="SauvegarderNomUtilisateur()" id="btnSauvegarderNomUtil">Sauvegarder</button>
+            <button (click)="SauvegarderNomUtilisateur()" id="btnSauvegarderNomUtil" disabled>Sauvegarder</button>
         </fieldset>
     </tr>
     <tr>
         <fieldset id="fieldsetEmail">
             <legend id="legendeEmail">Changement de l'adresse email</legend>
             <div id="divNouveauEmail">
-                <label>Nouvel adresse email:</label>
-                <input [(ngModel)]="m_EmailNouv" type="text" name="EmailNouv">
+                <label>Nouvelle adresse email:</label>
+                <input (keydown)="RestrictionCharactere($event)" [(ngModel)]="m_EmailNouv" type="text" name="EmailNouv">
             </div>
             <div id="divConfEmail">
                 <label>Confirmation:</label>
-                <input [(ngModel)]="m_EmailConf" type="text" name="EmailConf">
+                <input (keydown)="RestrictionCharactere($event)" [(ngModel)]="m_EmailConf" type="text" name="EmailConf">
             </div>
             <button (click)="SauvegarderEmail()" id="btnSauvegarderEmail">Sauvegarder</button>
         </fieldset>
@@ -32,11 +32,11 @@
             <legend id="legendeMdp">Changement du mot de passe</legend>
             <div id="divNouveauMdp">
                 <label>Nouveau mot de passe:</label>
-                <input [(ngModel)]="m_MdpNouv" type="text" name="MdpNouv">
+                <input (keydown)="RestrictionCharactere($event)" [(ngModel)]="m_MdpNouv" type="password" name="MdpNouv">
             </div>
             <div id="divConfMdp">
                 <label>Confirmation:</label>
-                <input [(ngModel)]="m_MdpConf" type="password" name="MdpConf">
+                <input (keydown)="RestrictionCharactere($event)" [(ngModel)]="m_MdpConf" type="password" name="MdpConf">
             </div>
             <button (click)="SauvegarderMotDePasse()" id="btnSauvegarderMdp">Sauvegarder</button>
         </fieldset>

@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
 var authentification_service_1 = require("./authentification.service");
-var IndexComponent = (function () {
+var IndexComponent = /** @class */ (function () {
     function IndexComponent(router, authServ, appcomponent) {
         this.router = router;
         this.authServ = authServ;
@@ -42,15 +42,15 @@ var IndexComponent = (function () {
     IndexComponent.prototype.Oublie = function (o) {
         this.router.navigate(['MDP']);
     };
+    IndexComponent = __decorate([
+        core_1.Component({
+            selector: 'my-index',
+            templateUrl: 'app/html/index.component.html',
+            styleUrls: ['app/css/index.component.css']
+        }),
+        __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService, app_component_1.AppComponent])
+    ], IndexComponent);
     return IndexComponent;
 }());
-IndexComponent = __decorate([
-    core_1.Component({
-        selector: 'my-index',
-        templateUrl: 'app/html/index.component.html',
-        styleUrls: ['app/css/index.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService, app_component_1.AppComponent])
-], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map
