@@ -1,9 +1,9 @@
-#divAdmin{
+#divAdmin, #divParametre{
    
     padding: 5px; 
 }
 
-h3{}
+
 
 ul, li {
   list-style-type: none;
@@ -65,7 +65,7 @@ html,body{
     transform: translate(-50%);
     
 }
-#divAdmin li 
+#divAdmin li, #divParametre li
 {
     margin-bottom: 10px;
     cursor: pointer;
@@ -76,7 +76,7 @@ html,body{
     /* ...and now for the proper property */
      transition:.5s;
 }
-#divAdmin li:hover {
+#divAdmin li:hover, #divParametre li:hover {
    
     opacity: 70;
     cursor: pointer;

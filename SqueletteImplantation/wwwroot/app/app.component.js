@@ -33,7 +33,7 @@ var AppComponent = (function () {
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
         if (Raison == 1) {
-            alert("Votre session à été fermée à cause de votre inactivité");
+            alert("Votre session a été fermée à cause de votre inactivité");
         }
     };
     AppComponent.prototype.Reroutage = function (type) {
@@ -51,6 +51,9 @@ var AppComponent = (function () {
         }
         else if (type === 2) {
             this.router.navigateByUrl('choix');
+        }
+        else if (type === 3) {
+            this.router.navigateByUrl('ModificationProfil');
         }
     };
     AppComponent.prototype.DetectionPage = function () {
