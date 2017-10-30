@@ -96,10 +96,6 @@ export class PageCatComponent implements OnInit
 	    document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     }
 	
-    OnClickListeDeroulanteCategorie()
-    {
-	    document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
-    }
     
     //Action lors de la sélection d'une catégorie
     OnClickCategorie(categ: Categorie)

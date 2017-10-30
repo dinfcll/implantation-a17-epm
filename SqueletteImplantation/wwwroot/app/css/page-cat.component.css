@@ -95,7 +95,6 @@ background-color: rgba(125, 141, 163, 0.71);
 }
 
 
-
 #btnChercher:hover, #btnAjouterTrace:hover
 {
     background:linear-gradient(white 7%,var(--CouleurThemeHover));
@@ -121,19 +120,20 @@ background-color: rgba(125, 141, 163, 0.71);
 }
 
 .ListeCritere{
+	background-color:var(--CouleurTheme);
+	border-radius: 5px;
 	display: none;
 	position: absolute;
 	left: 27vh;
-	width: 25vh;
+	width: 29vh;
 	top: 0vh;
 	z-index: 1;
 }
 
 .Critere{
-	background-color: rgba(125, 141, 163, 0.71);
-	margin: 5px;
-	border-radius: 5px;
-	padding: 5px;
+	border-radius: 2px;
+	padding: 2px;
+	margin: 2px;
 	color: white;
 	display: block;
 }
@@ -146,9 +146,13 @@ background-color: rgba(125, 141, 163, 0.71);
 
 }
 
-.Categorie:hover, .Critere:hover{
+.Categorie:hover{
 	cursor: pointer;
 	background-color: var(--CouleurTheme);
+}
+.Critere:hover{
+	cursor: pointer;
+	background-color:  rgba(125, 141, 163, 0.71);
 }
 
 
@@ -158,56 +162,7 @@ background-color: rgba(125, 141, 163, 0.71);
 	margin-right: 25px;
 }
 
-
-
-
-
-
-/*-------------------------Début css pour liste déroulantes---------------------------*/
-.btnCategorie, .btnCritere{
-	border: none;
-	border-radius:5px;
-	background-color:var(--CouleurTheme);
-	cursor: pointer;
-	color: white;
-	padding: 8px;
-	padding-left: 12px;
-	padding-right: 22px;
-	font-size: 20px;
-    width: 170px;
-	background-image: url("app/images/FlecheEnBas.png");
-	background-size: 20px 20px;
-	background-repeat: no-repeat;
-	background-position: right;
-	
-}
-
-
-.btnCategorie:hover, .btnCategorie:focus, .btnCritere:hover, .btnCritere:focus{
-	background-color: var(--CouleurThemeHover);
-}
-
-/*Liste deroulante Catégorie et Critère*/
-.ListeDeroulanteCategorie, .ListeDeroulanteCritere{
-	margin-left: 50px;
-	margin-top: 40px;
-    margin-bottom: 40px;
-    width: 221px;
-}
-
-
 .ShowElement{
 	display: block;
 }
 
-
-#ElementListe{
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-
-	
-}
-
-
-/*-------------------------Fin css pour liste déroulantes---------------------------*/

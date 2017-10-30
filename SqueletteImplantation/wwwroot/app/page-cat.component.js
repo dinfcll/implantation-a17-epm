@@ -61,9 +61,6 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     };
-    PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
-        document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
-    };
     //Action lors de la sélection d'une catégorie
     PageCatComponent.prototype.OnClickCategorie = function (categ) {
         var _this = this;

@@ -3,14 +3,14 @@
 	   <table class="TableEspacePrincipalCat">
 			<tr id="PremiereLigne">
 				<td id="ChoixCategorie"> 
-					<section ng-init="OnClickListeDeroulanteCategorie()"> 	
+					<section> 	
 						<div class="Categorie" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
-							<select class="ListeCritere">
-								<option class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
+							<section class="ListeCritere">
+								<div class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
 									<img src="app/images/add.gif" alt="non" />
 									{{critere.critNom}}	
-								</option>
-							</select>
+								</div>
+							</section>
 							{{categ.catNom}}					 
 						</div>	
 					</section>
