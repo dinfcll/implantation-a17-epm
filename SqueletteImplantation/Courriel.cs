@@ -58,9 +58,9 @@ namespace SqueletteImplantation
             await smtpClient.SendAsync(message);
             smtpClient.Disconnect(true);
             }
-            catch(e)
+            catch(Exception e)
             {
-                console.log(e);
+                Console.WriteLine(e);
             }
         }
 
