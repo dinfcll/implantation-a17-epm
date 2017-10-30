@@ -13,28 +13,30 @@ import { ModificationUtilisateurService } from './ModificationUtilisateur.servic
 
 export class ModifProfilComponent
 {
-    private m_NomUtilNouv: String;
-    private m_NomUtilConf: String;
-    private m_EmailNouv: String;
-    private m_EmailConf: String;
-    private m_MdpNouv: String;
-    private m_MdpConf: String;
+    private NomUtilNouv: String;
+    private NomUtilConf: String;
+    private EmailNouv: String;
+    private EmailConf: String;
+    private MdpNouv: String;
+    private MdpConf: String;
     
     constructor(private appcomponent: AppComponent, private modificationutilisateurservice: ModificationUtilisateurService){
-        this.m_NomUtilNouv="";
-        this.m_NomUtilConf="";
-        this.m_EmailNouv="";
-        this.m_EmailConf="";
-        this.m_MdpNouv="";
-        this.m_MdpConf="";
+        this.NomUtilNouv="";
+        this.NomUtilConf="";
+        this.EmailNouv="";
+        this.EmailConf="";
+        this.MdpNouv="";
+        this.MdpConf="";
     }
 
     ngOnInit()
     {
-        document.getElementById("btnSauvegarderNomUtil").style.backgroundColor = "lightgray";
+        document.getElementById("SauvegarderNomUtil").style.backgroundColor = "lightgray";
+        document.getElementById("SauvegarderEmail").style.backgroundColor = "lightgray";
+        document.getElementById("SauvegarderMdp").style.backgroundColor = "lightgray";
     }
 
-    private RestrictionCharactere(event : any)
+    private RestrictionCharactere(event : any) : void
     {
         let Touche = event.keyCode;
 
@@ -44,38 +46,90 @@ export class ModifProfilComponent
         }
     }
 
-    private ComparaisonChangement()
+    private ComparaisonChangementNomUtil() : void
     {
-        let PartieVerif;
+        let PartieAVerif;
 
-        if(this.m_NomUtilConf.length <= this.m_NomUtilNouv.length)
+        if(this.NomUtilConf.length <= this.NomUtilNouv.length)
         {
-            PartieVerif = this.m_NomUtilNouv.slice(0, this.m_NomUtilConf.length);
+            PartieAVerif = this.NomUtilNouv.slice(0, this.NomUtilConf.length);
 
-            if(PartieVerif === this.m_NomUtilConf && this.m_NomUtilConf != "")
+            if(PartieAVerif === this.NomUtilConf && this.NomUtilConf != "")
             {
                 document.getElementById("NomUtilConf").style.borderColor = "green";
                 
 
-                if(this.m_NomUtilNouv === this.m_NomUtilConf)
+                if(this.NomUtilNouv === this.NomUtilConf)
                 {
-                    (<HTMLInputElement>document.getElementById("btnSauvegarderNomUtil")).disabled = false;
-                    document.getElementById("btnSauvegarderNomUtil").style.backgroundColor = "";
+                    (<HTMLInputElement>document.getElementById("SauvegarderNomUtil")).disabled = false;
+                    document.getElementById("SauvegarderNomUtil").style.backgroundColor = "";
                 }
-            }
-            else
-            {
-                (<HTMLInputElement>document.getElementById("btnSauvegarderNomUtil")).disabled = true;
-                document.getElementById("btnSauvegarderNomUtil").style.backgroundColor = "lightgray";
-                document.getElementById("NomUtilConf").style.borderColor = "red";
+
+                return;
             }
         }
-        else
+
+        (<HTMLInputElement>document.getElementById("SauvegarderNomUtil")).disabled = true;
+        document.getElementById("SauvegarderNomUtil").style.backgroundColor = "lightgray";
+        document.getElementById("NomUtilConf").style.borderColor = "red";
+    }
+
+
+    private ComparaisonChangementEmail() : void
+    {
+        let PartieAVerif;
+
+        if(this.EmailConf.length <= this.EmailNouv.length)
         {
-            (<HTMLInputElement>document.getElementById("btnSauvegarderNomUtil")).disabled = true;
-            document.getElementById("btnSauvegarderNomUtil").style.backgroundColor = "lightgray";
-            document.getElementById("NomUtilConf").style.borderColor = "red";
+            PartieAVerif = this.EmailNouv.slice(0, this.EmailConf.length);
+
+            if(PartieAVerif === this.EmailConf && this.EmailConf != "")
+            {
+                document.getElementById("EmailConf").style.borderColor = "green";
+                
+
+                if(this.NomUtilNouv === this.NomUtilConf)
+                {
+                    (<HTMLInputElement>document.getElementById("SauvegarderEmail")).disabled = false;
+                    document.getElementById("SauvegarderEmail").style.backgroundColor = "";
+                }
+
+                return;
+            }
         }
+
+        (<HTMLInputElement>document.getElementById("SauvegarderEmail")).disabled = true;
+        document.getElementById("SauvegarderEmail").style.backgroundColor = "lightgray";
+        document.getElementById("EmailConf").style.borderColor = "red";
+    }
+
+
+    private ComparaisonChangementMdp() : void
+    {
+        let PartieAVerif;
+
+        if(this.MdpConf.length <= this.MdpNouv.length)
+        {
+            PartieAVerif = this.MdpNouv.slice(0, this.MdpConf.length);
+
+            if(PartieAVerif === this.MdpConf && this.MdpConf != "")
+            {
+                document.getElementById("MdpConf").style.borderColor = "green";
+                
+
+                if(this.MdpNouv === this.MdpConf)
+                {
+                    (<HTMLInputElement>document.getElementById("SauvegarderMdp")).disabled = false;
+                    document.getElementById("SauvegarderMdp").style.backgroundColor = "";
+                }
+
+                return;
+            }
+        }
+
+        (<HTMLInputElement>document.getElementById("SauvegarderMdp")).disabled = true;
+        document.getElementById("SauvegarderMdp").style.backgroundColor = "lightgray";
+        document.getElementById("MdpConf").style.borderColor = "red";
     }
 
 

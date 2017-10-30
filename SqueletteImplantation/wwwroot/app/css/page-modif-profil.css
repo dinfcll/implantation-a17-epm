@@ -10,19 +10,19 @@
     top: 0px;
 }
 
-#fieldsetNomUtil, #fieldsetEmail, #fieldsetMdp{
+#RegroupementParametre{
     border-radius:5px;
     margin: 20px;
     display: inline-block;
 }
 
-#legendeNomUtil, #legendeEmail, #legendeMdp{
+#TitreParametre{
     font: 80%/1 sans-serif;
     font-size: 16px;
     font-weight: bold;
 }
 
-#divNouveauNomUtil, #divConfNomUtil, #divNouveauEmail, #divConfEmail, #divConfMdp, #divNouveauMdp{
+#SectionNouveauNomUtil, #SectionConfirmationNomUtil, #SectionNouveauEmail, #SectionConfirmationEmail, #SectionNouveauMdp, #SectionConfirmationMdp{
     display: inline-block;
     position: relative;
     margin: 15px;
@@ -30,7 +30,7 @@
 
 
 
-#btnSauvegarderNomUtil, #btnSauvegarderEmail, #btnSauvegarderMdp{
+#SauvegarderNomUtil, #SauvegarderEmail, #SauvegarderMdp{
     border-radius:5px;	
 	border: none;
 	background-color: var(--CouleurTheme);
@@ -46,9 +46,4 @@
 	background-repeat: no-repeat;
     background-position: right;
     margin: 15px;
-}
-
-.ClasseConfirmation
-{
-    border-style: solid;
 }
