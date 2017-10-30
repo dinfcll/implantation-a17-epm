@@ -13,12 +13,12 @@ import { ModificationUtilisateurService } from './ModificationUtilisateur.servic
 
 export class ModifProfilComponent
 {
-    private NomUtilNouv: String;
-    private NomUtilConf: String;
-    private EmailNouv: String;
-    private EmailConf: String;
-    private MdpNouv: String;
-    private MdpConf: String;
+    private NomUtilNouv: string;
+    private NomUtilConf: string;
+    private EmailNouv: string;
+    private EmailConf: string;
+    private MdpNouv: string;
+    private MdpConf: string;
     
     constructor(private appcomponent: AppComponent, private modificationutilisateurservice: ModificationUtilisateurService){
         this.NomUtilNouv="";
@@ -138,7 +138,7 @@ export class ModifProfilComponent
 
     private SauvegarderNomUtilisateur() : void
     {
-        alert("passé");
+        this.modificationutilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv);
 
     }
     
