@@ -118,6 +118,9 @@ namespace squeletteimplantation.Migrations
 
                     b.HasKey("UtilId");
 
+                    b.HasIndex("UtilEmail")
+                        .IsUnique();
+
                     b.HasIndex("UtilUserName")
                         .IsUnique();
 

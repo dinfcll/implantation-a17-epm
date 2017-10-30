@@ -1,4 +1,4 @@
-import { Critere,CritDTO } from './critere';
+import { Critere,CritereDTO } from './critere';
 import { Headers, Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise'; // Pour accéder à la méthode .toPromise()
@@ -27,15 +27,9 @@ export class CritereService
 
   
     //Permet d'envoyer une requête HTTP d'ajout d'un critère'.
-    addCritere(CritDto: CritDTO)
+    addCritere(critdto: CritereDTO)
     {
-       return this.http.post("api/ajoutcrite", JSON.stringify({CritDto: CritDTO}))
+       return this.http.post("api/ajoutcrite", critdto)
     }
 
-
-    private GestionErreur(error: any): Promise<any> 
-    {
-       console.error('Une erreur s\'est produite : ', error); // Plus facile à "debug"
-       return Promise.reject(error.message || error);
-    }
 }

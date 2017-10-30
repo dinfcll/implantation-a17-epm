@@ -2,9 +2,7 @@
 <html>
 	<head>
 	<link rel="stylesheet" href="/../app/css/app.component.css">
-	<script type="text/javascript" src="index.js"></script>
 	<title> EPM </title>
-	
 	</head>
 
 	<body (mousemove)="MouvementSouris($event)">
@@ -24,12 +22,10 @@
 					</div>
                 </td> 
             </tr>
-
 			<tr>
 				<td colspan="2" rowspan="2" id="EspacePrincipal">
 					<router-outlet></router-outlet>
 				</td>
-
 			</tr>
 			<tr>
 				<td id="Menu">
@@ -53,15 +49,8 @@
 					<div *ngIf="this.authentificationService.Connecte()" id="divMenuBas">
                         	<li id="ElementDansMenu">Historique</li>
 					</div>
-                    
-				
 				</td>
 			</tr>
-
 		</table>
-	
 	</body>
-
 </html>
-
-		

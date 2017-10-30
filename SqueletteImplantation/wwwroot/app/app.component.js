@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var authentification_service_1 = require("./authentification.service");
@@ -34,16 +33,21 @@ var AppComponent = (function () {
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
         if (Raison == 1) {
-            alert("Votre session à été fermé à cause de votre inactivité");
+            alert("Votre session a été fermée à cause de votre inactivité");
         }
     };
     AppComponent.prototype.Reroutage = function (type) {
-        console.log(type);
-        if (type === 0 && this.router.url.toString() == '/neurologie') {
+        if (type === 0 && this.DetectionPage() == 'neurologie') {
             this.router.navigateByUrl('neurologie/ajouttrace');
         }
-        else if (type === 0 && this.router.url.toString() == '/cardiologie') {
+        else if (type === 0 && this.DetectionPage() === 'cardiologie') {
             this.router.navigateByUrl('cardiologie/ajouttrace');
+        }
+        else if (type === 1 && this.DetectionPage() == 'neurologie') {
+            this.router.navigateByUrl('neurologie/ajoutsupp');
+        }
+        else if (type === 1 && this.DetectionPage() == 'cardiologie') {
+            this.router.navigateByUrl('cardiologie/ajoutsupp');
         }
         else if (type === 2) {
             this.router.navigateByUrl('choix');
@@ -51,6 +55,12 @@ var AppComponent = (function () {
         else if (type === 3) {
             this.router.navigateByUrl('ModificationProfil');
         }
+    };
+    AppComponent.prototype.DetectionPage = function () {
+        var CheminLong = this.router.url.toString();
+        var Page;
+        Page = CheminLong.split('/', 2);
+        return Page[1];
     };
     AppComponent.prototype.DetectionActivite = function () {
         var _this = this;

@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
@@ -28,14 +27,11 @@ var IndexComponent = (function () {
                 _this.router.navigate(['choix']);
             }
             else {
-                if (_this.authServ.Connecte() && !_this.authServ.Admin()) {
-                    _this.router.navigate(['choix']);
-                }
-                else {
-                    if (!_this.authServ.Connecte()) {
-                        alert("Nom d'utilisateur ou mot de passe invalide!");
-                    }
-                }
+                new jBox('Notice', {
+                    content: 'Utilisateur ou mot de passe invalide',
+                    color: 'red',
+                    stack: false
+                });
             }
         });
     };

@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var Categorie = (function () {
     function Categorie(catId, catNom, domId, domaine, criteres) {
         this.catId = catId;
@@ -11,4 +10,12 @@ var Categorie = (function () {
     return Categorie;
 }());
 exports.Categorie = Categorie;
+var CategorieDTO = (function () {
+    function CategorieDTO(NomCat, IdDom) {
+        this.NomCat = NomCat;
+        this.IdDom = IdDom;
+    }
+    return CategorieDTO;
+}());
+exports.CategorieDTO = CategorieDTO;
 //# sourceMappingURL=categorie.js.map

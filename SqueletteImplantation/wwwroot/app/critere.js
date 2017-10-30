@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var Critere = (function () {
     function Critere(critId, critNom, catId) {
         this.critId = critId;
@@ -9,12 +8,12 @@ var Critere = (function () {
     return Critere;
 }());
 exports.Critere = Critere;
-var CritDTO = (function () {
-    function CritDTO(critNom, catId) {
-        this.critNom = critNom;
-        this.catId = catId;
+var CritereDTO = (function () {
+    function CritereDTO(NomCrit, IdCat) {
+        this.NomCrit = NomCrit;
+        this.IdCat = IdCat;
     }
-    return CritDTO;
+    return CritereDTO;
 }());
-exports.CritDTO = CritDTO;
+exports.CritereDTO = CritereDTO;
 //# sourceMappingURL=critere.js.map
