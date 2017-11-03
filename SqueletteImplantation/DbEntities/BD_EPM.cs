@@ -33,6 +33,8 @@ namespace SqueletteImplantation.DbEntities
 			
 			new UtilisateurMap(modelBuilder.Entity<Utilisateur>());
 
+            new RelTracUsagMap(modelBuilder.Entity<RelTracUsag>());
+
             //Auto incréments et champs uniques
 			modelBuilder.Entity<Utilisateur>()
                 .Property(u => u.UtilId)
@@ -92,6 +94,23 @@ namespace SqueletteImplantation.DbEntities
                 .WithMany(t => t.reltraccrit)
                 .HasForeignKey(rtc => rtc.TracId)
                 .HasConstraintName("fk_Trace_relTracCrit");
+
+            //Clé primaire table de relation RelTracCrit
+            modelBuilder.Entity<RelTracUsag>()
+                .HasKey(rtu => new { rtu.TracId, rtu.UtilId });
+
+            //Foreign keys de la table de relation RelTracUsag
+            modelBuilder.Entity<RelTracUsag>()
+                .HasOne(rtu => rtu.trace)
+                .WithMany(t => t.reltracusag)
+                .HasForeignKey(rtc => rtc.TracId)
+                .HasConstraintName("fk_Trace_relTracUsag");
+
+            modelBuilder.Entity<RelTracUsag>()
+                .HasOne(rtu => rtu.utilisateur)
+                .WithMany(u => u.reltracusag)
+                .HasForeignKey(rtu => rtu.UtilId)
+                .HasConstraintName("fk_Utilisateur_relTracUsag");
         }
     }
 }

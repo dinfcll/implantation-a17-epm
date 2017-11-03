@@ -13,6 +13,7 @@ namespace SqueletteImplantation.DbEntities.Models
         public string TracLogi { get; set; }
 
         public List<RelTracCrit> reltraccrit { get; set; }
-        
+        public List<RelTracUsag> reltracusag { get; set; }
+
     }
 }
