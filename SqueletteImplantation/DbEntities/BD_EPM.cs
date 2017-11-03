@@ -12,6 +12,7 @@ namespace SqueletteImplantation.DbEntities
         public virtual DbSet<Trace> Trace { get; set; }
         public virtual DbSet<RelTracCrit> RelTracCrit { get; set; }
 		public virtual DbSet<Utilisateur> Utilisateur { get; set; }
+        public virtual DbSet<RelTracUsag> RelTracUsager { get; set; }
 
         public BD_EPM(DbContextOptions options) : base(options)
         {
@@ -30,13 +31,13 @@ namespace SqueletteImplantation.DbEntities
             new TraceMap(modelBuilder.Entity<Trace>());
 
             new RelTracCritMap(modelBuilder.Entity<RelTracCrit>());
-			
-			new UtilisateurMap(modelBuilder.Entity<Utilisateur>());
+
+            new UtilisateurMap(modelBuilder.Entity<Utilisateur>());
 
             new RelTracUsagMap(modelBuilder.Entity<RelTracUsag>());
 
             //Auto incréments et champs uniques
-			modelBuilder.Entity<Utilisateur>()
+            modelBuilder.Entity<Utilisateur>()
                 .Property(u => u.UtilId)
                 .ValueGeneratedOnAdd();
 
@@ -63,6 +64,7 @@ namespace SqueletteImplantation.DbEntities
             modelBuilder.Entity<Trace>()
                 .Property(t => t.TracId)
                 .ValueGeneratedOnAdd();
+
             
             //Foreign key de la table catégorie
             modelBuilder.Entity<Categorie>()
