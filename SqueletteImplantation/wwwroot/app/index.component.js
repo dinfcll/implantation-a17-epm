@@ -35,7 +35,7 @@ var IndexComponent = (function () {
             }
         });
     };
-    IndexComponent.prototype.Oublie = function (o) {
+    IndexComponent.prototype.MotDePasseOublie = function () {
         this.router.navigate(['MDP']);
     };
     return IndexComponent;

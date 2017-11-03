@@ -33,7 +33,6 @@ export class AuthentificationService {
 
     public ValidationConnexion(Valide: any): any
     {
-        console.log(Valide);
         if (Valide.status === 200 && Valide._body != null)
         {
             this.estConnecte = true;
@@ -59,9 +58,7 @@ export class AuthentificationService {
         localStorage.removeItem('ConnectedUser');
         this.estConnecte = false;
         this.estAdmin = false;
-    }
-
-    
+    }    
 
     public DomaineChange(): void
     {
