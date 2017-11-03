@@ -44,7 +44,7 @@ namespace SqueletteImplantation.Controllers
 
         [HttpPost]
         [Route("api/utilisateur/reset/{email}")]
-        public async System.Threading.Tasks.Task<IActionResult> PostAsync(String email)
+        public IActionResult Post(String email)
         {
 
             var comptereset = _maBd.Utilisateur.SingleOrDefault(u => u.UtilEmail == email);
@@ -54,14 +54,14 @@ namespace SqueletteImplantation.Controllers
                 String PWD = RandomString(8);
                 comptereset.UtilPWD = Hash.GetHash(PWD);
                 courriel.setDestination(email);
-                courriel.setSender("electrophysologiemedicale@gmail.com", "Reset");
+                courriel.setSender("electrophysologiemedicale@gmail.com", "Réinitialisation du mot de passe");
                 courriel.SetMessage("Bonjour," +
                     "Voici le nouveau mot de passe a utiliser lors de votre prochaine connexion." +
                     PWD
                     + "Nous vous recommandons de la changer a l'aide de la page de modification du profil." +
                     "Bonne journee.");
                 courriel.setSubject("Nouveau Mot de passe");
-                await courriel.sendMessageAsync();
+                courriel.sendMessage();
 
                 _maBd.Utilisateur.Attach(comptereset);
 
