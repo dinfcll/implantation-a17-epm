@@ -54,13 +54,13 @@ namespace SqueletteImplantation.Controllers
                 String PWD = RandomString(8);
                 comptereset.UtilPWD = Hash.GetHash(PWD);
                 courriel.setDestination(email);
-                courriel.setSender("electrophysologiemedicale@gmail.com", "Réinitialisation du mot de passe");
-                courriel.SetMessage("Bonjour," +
+                courriel.setSender("electrophysologiemedicale@gmail.com", "noreplyEPM");
+                courriel.SetMessage("<h1>Bonjour</h1>," +
                     "Voici le nouveau mot de passe a utiliser lors de votre prochaine connexion." +
                     PWD
                     + "Nous vous recommandons de la changer a l'aide de la page de modification du profil." +
                     "Bonne journee.");
-                courriel.setSubject("Nouveau Mot de passe");
+                courriel.setSubject("Réinitialisation du mot de passe");
                 courriel.sendMessage();
 
                 _maBd.Utilisateur.Attach(comptereset);

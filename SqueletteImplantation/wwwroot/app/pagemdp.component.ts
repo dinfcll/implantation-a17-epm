@@ -29,7 +29,7 @@ export class mdpcomponent
         this.utilisateurService.reset(this.courriel).subscribe(res => {
             if(res){
                 new jBox('notice',{
-                    content: 'Le mot de passe a été réinitialisé.',
+                    content: 'Le mot de passe a été réinitialisé. Vérifier aussi vos courriels indésirables.',
                     color: 'green',
                     autoclose: 2000
                 });
@@ -37,7 +37,7 @@ export class mdpcomponent
             else
             {
                 new jBox('notice',{
-                    content: 'Échec',
+                    content: 'Échec de la réinitialisation du mot de passe.',
                     color: 'red',
                     autoclose: 2000
                 });
