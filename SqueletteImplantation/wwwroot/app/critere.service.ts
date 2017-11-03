@@ -13,13 +13,13 @@ export class CritereService
     constructor(private http: Http) { }
 
     //Envoie une requête d'obtention des critères au "controller".
-    getCriteres(id: number) 
+    public getCriteres(id: number) 
     {
         return this.http.get(this.CriteresURL + id);
     }
 
     //Permet d'envoyer une requête de suppression d'un certain critère au "controller".
-    deleteCritere(id: number)
+    public deleteCritere(id: number)
     {
         const url = `api/delcrite/${id}`;
         return this.http.delete(url)
@@ -27,7 +27,7 @@ export class CritereService
 
   
     //Permet d'envoyer une requête HTTP d'ajout d'un critère'.
-    addCritere(critdto: CritereDTO)
+    public addCritere(critdto: CritereDTO)
     {
        return this.http.post("api/ajoutcrite", critdto)
     }

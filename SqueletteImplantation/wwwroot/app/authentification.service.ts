@@ -24,7 +24,7 @@ export class AuthentificationService {
         }
     }
 
-    login(user: string, motdepasse: string) {      
+    public login(user: string, motdepasse: string) {      
         let headers = new Headers();
 
         headers.append('Content-type', 'application/json');
@@ -73,17 +73,17 @@ export class AuthentificationService {
         this.DomaineChoisi = false;
     }
 
-    Domaine()
+    public Domaine()
     {
         return this.DomaineChoisi;
     }
 
-    Connecte()
+    public Connecte()
     {
         return this.estConnecte;
     }
 
-    Admin()
+    public Admin()
     {
         return this.estAdmin;
     }

@@ -29,7 +29,7 @@ export class ModifProfilComponent
         this.MdpConf="";
     }
 
-    ngOnInit()
+    private ngOnInit()
     {
         document.getElementById("SauvegarderNomUtil").style.backgroundColor = "lightgray";
         document.getElementById("SauvegarderEmail").style.backgroundColor = "lightgray";
@@ -131,8 +131,6 @@ export class ModifProfilComponent
         document.getElementById("SauvegarderMdp").style.backgroundColor = "lightgray";
         document.getElementById("MdpConf").style.borderColor = "red";
     }
-
-
 
 
 
