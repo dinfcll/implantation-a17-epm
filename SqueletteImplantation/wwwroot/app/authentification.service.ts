@@ -34,13 +34,14 @@ export class AuthentificationService {
     public ValidationConnexion(Valide: any): any
     {
         console.log(Valide);
+
         if (Valide.status === 200 && Valide._body != null)
         {
             this.estConnecte = true;
-
-            if (Valide._body != 0)
+            //Rendu ici
+            if (Valide._body[0] != 0)
             {
-                this.estAdmin = false;                
+                this.estAdmin = false;
             }
             else
             {
@@ -52,14 +53,29 @@ export class AuthentificationService {
             this.estConnecte = false;
             this.estAdmin = false;
         }
-        
-        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte, domaine: this.DomaineChoisi }));
+
+        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte, domaine: this.DomaineChoisi, IdUtil: Valide._body[1] }));
     }
 
     public logout(): void {
         localStorage.removeItem('ConnectedUser');
         this.estConnecte = false;
         this.estAdmin = false;
+    }
+
+
+    StringEnTableauNombre(ElementAConvertir: string) : number[]
+    {
+        let Chaine = ElementAConvertir.slice(1, ElementAConvertir.length-1);
+        let tElementString = Chaine.split(",");
+        let tElementNombre : number[];
+
+        for(let Indice = 0; Indice < tElementString.length - 1; Indice++)
+        {
+            tElementNombre[Indice] = Number(tElementString[Indice]);
+        }
+
+        return tElementNombre;
     }
 
     

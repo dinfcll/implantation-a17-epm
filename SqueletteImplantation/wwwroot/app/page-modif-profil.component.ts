@@ -134,9 +134,32 @@ export class ModifProfilComponent
 
 
 
-    private SauvegarderNomUtilisateur() : void
+    private SauvegarderNomUtilisateur()
     {
-        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv);
+        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv).subscribe(Resultat => {
+
+            if(Resultat.ok == true)
+            {
+                if(Resultat.text() == "Fait")
+                {
+
+                }
+                else
+                {
+                    if(Resultat.text() == "Doublon")
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                
+            }
+
+        })
+
+
     }
     
     private SauvegarderEmail() : void
