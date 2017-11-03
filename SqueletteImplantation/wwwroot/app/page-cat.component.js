@@ -59,7 +59,6 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();
-        console.log(this.m_TabTrace.length);
         this.UploadJBOX();
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
@@ -97,7 +96,6 @@ var PageCatComponent = (function () {
         this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
     };
     PageCatComponent.prototype.UploadJBOX = function () {
-        console.log(this.m_TabTrace.length);
         for (var i = 0; i < this.m_TabTrace.length; i++) {
             new jBox('Image');
         }

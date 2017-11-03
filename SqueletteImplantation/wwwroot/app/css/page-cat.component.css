@@ -1,4 +1,6 @@
-
+.hover_img a { float:left;}
+.hover_img a span { position:absolute; display:none; z-index:99; }
+.hover_img a:hover span { display:block; }
 
 .TableEspacePrincipalCat{
 	width: 100%;
@@ -103,7 +105,8 @@ background-color: rgba(125, 141, 163, 0.71);
 	border-radius: 5px;
 	color: white;
 	display: block;
-	float: right;
+	display: inline-block; 
+	margin-left: 25px;
 
 }
 
@@ -121,11 +124,12 @@ background-color: rgba(125, 141, 163, 0.71);
 	padding: 10px;
 	color: white;
 	display: block;
+	display: inline-block; 
 }
 
 #lientelechargement{
-	float: right;
-	margin-right: 25px;
+	display: inline-block; 
+	margin-left: 25px;
 }
 
 
