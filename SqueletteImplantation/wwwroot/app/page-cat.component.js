@@ -59,6 +59,8 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();
+        console.log(this.m_TabTrace.length);
+        this.UploadJBOX();
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
@@ -93,6 +95,12 @@ var PageCatComponent = (function () {
         }
         RequeteId = RequeteId.substr(0, RequeteId.length - 1);
         this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
+    };
+    PageCatComponent.prototype.UploadJBOX = function () {
+        console.log(this.m_TabTrace.length);
+        for (var i = 0; i < this.m_TabTrace.length; i++) {
+            new jBox('Image');
+        }
     };
     /************************************************************** */
     PageCatComponent.prototype.ValidationUtil = function () {
