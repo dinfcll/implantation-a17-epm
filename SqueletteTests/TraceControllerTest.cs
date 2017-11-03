@@ -6,7 +6,7 @@ using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.DTOs;
 using SqueletteImplantation.DbEntities.Models;
 using Xunit;
-using Microsoft.AspNetCore.Http;
+
 
 namespace SqueletteTests
 {
@@ -31,7 +31,7 @@ namespace SqueletteTests
         [Fact]
         public void TraceAjoute()
         {
-            var created = _traceController.AjoutTrace(nouvTrac);
+            var created = _traceController.AjoutTraceDansBd(nouvTrac);
             Assert.Equal(200, (created as OkObjectResult).StatusCode);
         }
 
@@ -39,8 +39,8 @@ namespace SqueletteTests
         [Fact]
         public void TraceDelete()
         {
-            var created = _traceController.AjoutTrace(nouvTrac);
-            var resultat = _traceController.DeleteTrace(((created as OkObjectResult).Value as Trace).TracId);
+            var created = _traceController.AjoutTraceDansBd(nouvTrac);
+            var resultat = _traceController.DeleteTraceSelonId(((created as OkObjectResult).Value as Trace).TracId);
             Assert.Equal(200, (resultat as OkResult).StatusCode);
         }
 
@@ -49,8 +49,8 @@ namespace SqueletteTests
         [Fact]
         public void TestInMemoryAddRetrieveTrace()
         {
-            var created = _traceController.AjoutTrace(nouvTrac);
-            var resultat = _traceController.GetTrace(((created as OkObjectResult).Value as Trace).TracId);
+            var created = _traceController.AjoutTraceDansBd(nouvTrac);
+            var resultat = _traceController.GetTraceSelonId(((created as OkObjectResult).Value as Trace).TracId);
             Assert.Equal(NomFich, ((resultat as OkObjectResult).Value as Trace).TraceNom);
 
         }
@@ -58,9 +58,9 @@ namespace SqueletteTests
         [Fact]
         public void AddDelGetNotFound()
         {
-            var created = _traceController.AjoutTrace(nouvTrac);
-            _traceController.DeleteTrace(((created as OkObjectResult).Value as Trace).TracId);
-            var result = _traceController.GetTrace(((created as OkObjectResult).Value as Trace).TracId);
+            var created = _traceController.AjoutTraceDansBd(nouvTrac);
+            _traceController.DeleteTraceSelonId(((created as OkObjectResult).Value as Trace).TracId);
+            var result = _traceController.GetTraceSelonId(((created as OkObjectResult).Value as Trace).TracId);
             Assert.Equal(404, ((NotFoundResult)result).StatusCode);
         }
         
