@@ -1,10 +1,6 @@
-using System.Collections;
 using System.Linq;
-using System.Data;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using SqueletteImplantation.DbEntities;
-using SqueletteImplantation.DbEntities.DTOs;
 using SqueletteImplantation.DbEntities.Models;
 using System;
 
@@ -22,7 +18,7 @@ namespace SqueletteImplantation.Controllers
         }
 
         private static Random random = new Random();
-        public static string RandomString(int length)
+        public static string GetRandomString(int length)
         {
             const string chars = "qwertyuiopasdfghjklzxcvbnmABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=";
             return new string(Enumerable.Repeat(chars, length)
@@ -31,7 +27,7 @@ namespace SqueletteImplantation.Controllers
         
         [HttpPost]
         [Route("api/utilisateur/login")]
-        public IActionResult Post([FromBody]Utilisateur util)
+        public IActionResult ConnexionUser([FromBody]Utilisateur util)
         {
             var login = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
 
@@ -44,14 +40,14 @@ namespace SqueletteImplantation.Controllers
 
         [HttpPost]
         [Route("api/utilisateur/reset/{email}")]
-        public IActionResult Post(String email)
+        public IActionResult ReinitialisatioMDP(String email)
         {
 
             var comptereset = _maBd.Utilisateur.SingleOrDefault(u => u.UtilEmail == email);
 
             if (comptereset != null)
             {                
-                String PWD = RandomString(8);
+                String PWD = GetRandomString(8);
                 comptereset.UtilPWD = Hash.GetHash(PWD);
                 courriel.setDestination(email);
                 courriel.setSender("electrophysologiemedicale@gmail.com", "noreplyEPM");

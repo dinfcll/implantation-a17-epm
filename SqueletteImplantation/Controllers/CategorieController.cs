@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.DTOs;
-using SqueletteImplantation.DbEntities.Models;
+
 
 namespace SqueletteImplantation.Controllers
 {
@@ -16,21 +16,20 @@ namespace SqueletteImplantation.Controllers
             _maBd = maBd;
         }
 
-        //obtenir la liste de toutes les catégories
+      
         [HttpGet]
         [Route("api/Categorie")]
-        public IEnumerable ListeCategorie()
+        public IEnumerable GetListeCategorie()
         {
             return _maBd.Categorie.ToList();
         }
 
 
-
-        //obtenir une catégorie selon son id
+        
 
         [HttpGet]
         [Route("api/Categorie/{id}")]
-        public IActionResult GetCategorie(int id)
+        public IActionResult GetCategorieSelonId(int id)
         {
             var categorie = _maBd.Categorie.FirstOrDefault(ca => ca.CatId== id);
 
@@ -42,22 +41,19 @@ namespace SqueletteImplantation.Controllers
             return new OkObjectResult(categorie);
         }
 
-        //obtenir une catégorie selon l'id de son domaine
+      
         [HttpGet]
         [Route("api/CategorieDomaine/{DomId}")]
-        public IEnumerable GetCategorieDomaine(int domId)
+        public IEnumerable GetCategorieSelonDomaine(int domId)
         {
             return _maBd.Categorie.Where(ca => ca.DomId == domId).ToList();
         }
 
 
-      
 
-
-        //supprimer une catégorie
         [HttpDelete]
         [Route("api/delcat/{id}")]
-        public IActionResult DeleteCategorie(int id)
+        public IActionResult DeleteCategorieSelonId(int id)
         {
             var categorie = _maBd.Categorie.FirstOrDefault(ca => ca.CatId== id);
 
