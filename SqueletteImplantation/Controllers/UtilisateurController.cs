@@ -20,7 +20,7 @@ namespace SqueletteImplantation.Controllers
         private static Random random = new Random();
         public static string GetRandomString(int length)
         {
-            const string chars = "qwertyuiopasdfghjklzxcvbnmABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=";
+            const string chars = "qwertyupasdfghjkzxcvbnmABCDEFGHJKMNPQRSTUVWXYZ123456789";
             return new string(Enumerable.Repeat(chars, length)
             .Select(s => s[random.Next(s.Length)]).ToArray());
         }
@@ -51,12 +51,10 @@ namespace SqueletteImplantation.Controllers
                 comptereset.UtilPWD = Hash.GetHash(PWD);
                 courriel.setDestination(email);
                 courriel.setSender("electrophysologiemedicale@gmail.com", "noreplyEPM");
-                courriel.SetMessage("<h1>Bonjour</h1>," +
-                    "Voici le nouveau mot de passe a utiliser lors de votre prochaine connexion." +
-                    PWD
-                    + "Nous vous recommandons de la changer a l'aide de la page de modification du profil." +
-                    "Bonne journee.");
-                courriel.setSubject("Réinitialisation du mot de passe");
+                courriel.SetHTMLMessage("<h1>Bonjour " + comptereset.UtilUserName + "</h1><br>Voici le nouveau mot de passe à utiliser lors de votre prochaine connexion : <b>" + 
+                    PWD + 
+                    "</b><br><p>Nous vous recommandons de le changer à l'aide de la page de modification du profil le plus tôt possible.<p><br><h2>Merci et bonne journée.");
+                courriel.setSubject("Réinitialisation du mot de passe.");
                 courriel.sendMessage();
 
                 _maBd.Utilisateur.Attach(comptereset);
