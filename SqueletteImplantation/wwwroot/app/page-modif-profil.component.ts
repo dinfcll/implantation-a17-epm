@@ -21,12 +21,12 @@ export class ModifProfilComponent
     private MdpConf: string;
     
     constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService){
-        this.NomUtilNouv="";
-        this.NomUtilConf="";
-        this.EmailNouv="";
-        this.EmailConf="";
-        this.MdpNouv="";
-        this.MdpConf="";
+        this.NomUtilNouv = "";
+        this.NomUtilConf = "";
+        this.EmailNouv = "";
+        this.EmailConf = "";
+        this.MdpNouv = "";
+        this.MdpConf = "";
     }
 
     private ngOnInit()

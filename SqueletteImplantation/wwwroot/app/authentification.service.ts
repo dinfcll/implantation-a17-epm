@@ -52,6 +52,7 @@ export class AuthentificationService {
             this.estConnecte = false;
             this.estAdmin = false;
         }
+        
         localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte, domaine: this.DomaineChoisi }));
     }
 
