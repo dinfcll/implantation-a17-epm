@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
-import { ModificationUtilisateurService } from './ModificationUtilisateur.service'
+import { UtilisateurService } from './utilisateur.service';
 
 
 @Component ({
     selector: 'mod-profil',
     templateUrl: 'app/html/page-modif-profil.html',
     styleUrls: [ 'app/css/page-modif-profil.css' ],
-    providers: [ModificationUtilisateurService]
+    providers: [UtilisateurService]
 })
 
 
@@ -20,7 +20,7 @@ export class ModifProfilComponent
     private MdpNouv: string;
     private MdpConf: string;
     
-    constructor(private appcomponent: AppComponent, private modificationutilisateurservice: ModificationUtilisateurService){
+    constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService){
         this.NomUtilNouv="";
         this.NomUtilConf="";
         this.EmailNouv="";
@@ -138,16 +138,16 @@ export class ModifProfilComponent
 
     private SauvegarderNomUtilisateur() : void
     {
-        this.modificationutilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv);
+        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv);
     }
     
     private SauvegarderEmail() : void
     {
-        this.modificationutilisateurservice.ModifierEmail(this.EmailNouv);
+        this.utilisateurservice.ModifierEmail(this.EmailNouv);
     }
 
     private SauvegarderMotDePasse() : void
     {
-        this.modificationutilisateurservice.ModifierMotDePasse(this.MdpNouv);
+        this.utilisateurservice.ModifierMotDePasse(this.MdpNouv);
     }
 }
