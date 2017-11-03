@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 //Importation des services 
@@ -58,6 +59,8 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();
+        console.log(this.m_TabTrace.length);
+        this.UploadJBOX();
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
@@ -92,6 +95,12 @@ var PageCatComponent = (function () {
         }
         RequeteId = RequeteId.substr(0, RequeteId.length - 1);
         this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
+    };
+    PageCatComponent.prototype.UploadJBOX = function () {
+        console.log(this.m_TabTrace.length);
+        for (var i = 0; i < this.m_TabTrace.length; i++) {
+            new jBox('Image');
+        }
     };
     /************************************************************** */
     PageCatComponent.prototype.ValidationUtil = function () {
