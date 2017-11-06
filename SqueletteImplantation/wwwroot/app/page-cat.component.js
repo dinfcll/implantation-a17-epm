@@ -16,13 +16,15 @@ var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
 var critere_service_1 = require("./critere.service");
 var authentification_service_1 = require("./authentification.service");
+var Historique_service_1 = require("./Historique.service");
 var PageCatComponent = (function () {
-    function PageCatComponent(traceService, catService, critService, router, authentificationService) {
+    function PageCatComponent(traceService, catService, critService, router, authentificationService, historiqueService) {
         this.traceService = traceService;
         this.catService = catService;
         this.critService = critService;
         this.router = router;
         this.authentificationService = authentificationService;
+        this.historiqueService = historiqueService;
         this.m_TabRecherche = [];
         this.m_EnvoieTrace = null;
         this.NomCateg = "Catégories";
@@ -122,18 +124,19 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageRepDel = function (param) {
         console.log(param);
     };
-    PageCatComponent = __decorate([
-        core_1.Component({
-            selector: 'page-cat',
-            templateUrl: 'app/html/page-cat.component.html',
-            styleUrls: ['app/css/page-cat.component.css'],
-            providers: [trace_service_1.TraceService, critere_service_1.CritereService, categorie_service_1.CategorieService]
-        })
-        //À compléter
-        ,
-        __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService, router_1.Router, authentification_service_1.AuthentificationService])
-    ], PageCatComponent);
     return PageCatComponent;
 }());
+PageCatComponent = __decorate([
+    core_1.Component({
+        selector: 'page-cat',
+        templateUrl: 'app/html/page-cat.component.html',
+        styleUrls: ['app/css/page-cat.component.css'],
+        providers: [trace_service_1.TraceService, critere_service_1.CritereService, categorie_service_1.CategorieService]
+    })
+    //À compléter
+    ,
+    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService,
+        router_1.Router, authentification_service_1.AuthentificationService, Historique_service_1.HistoriqueService])
+], PageCatComponent);
 exports.PageCatComponent = PageCatComponent;
 //# sourceMappingURL=page-cat.component.js.map

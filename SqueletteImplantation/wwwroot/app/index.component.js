@@ -13,11 +13,13 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
 var authentification_service_1 = require("./authentification.service");
+var Historique_service_1 = require("./Historique.service");
 var IndexComponent = (function () {
-    function IndexComponent(router, authServ, appcomponent) {
+    function IndexComponent(router, authServ, appcomponent, historiqueService) {
         this.router = router;
         this.authServ = authServ;
         this.appcomponent = appcomponent;
+        this.historiqueService = historiqueService;
         this.appcomponent.UpdateAuthentificationPageIndex();
     }
     IndexComponent.prototype.Connexion = function (f) {
@@ -25,6 +27,7 @@ var IndexComponent = (function () {
         this.authServ.login(f.value.utilisateur, f.value.motdepasse).subscribe(function (Reponse) {
             _this.authServ.ValidationConnexion(Reponse);
             if (_this.authServ.Connecte()) {
+                _this.historiqueService.ObtenirHistorique(3); //Changer la valeur 3 par l'id de l'utilisateur
                 _this.router.navigate(['choix']);
             }
             else {
@@ -39,15 +42,15 @@ var IndexComponent = (function () {
     IndexComponent.prototype.Oublie = function (o) {
         this.router.navigate(['MDP']);
     };
-    IndexComponent = __decorate([
-        core_1.Component({
-            selector: 'my-index',
-            templateUrl: 'app/html/index.component.html',
-            styleUrls: ['app/css/index.component.css']
-        }),
-        __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService, app_component_1.AppComponent])
-    ], IndexComponent);
     return IndexComponent;
 }());
+IndexComponent = __decorate([
+    core_1.Component({
+        selector: 'my-index',
+        templateUrl: 'app/html/index.component.html',
+        styleUrls: ['app/css/index.component.css']
+    }),
+    __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService, app_component_1.AppComponent, Historique_service_1.HistoriqueService])
+], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map

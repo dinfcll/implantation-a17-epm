@@ -4,6 +4,7 @@ import { Utilisateur } from './utilisateur';
 import { NgForm } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AuthentificationService } from "./authentification.service";
+import { HistoriqueService } from "./Historique.service";
 
 
 declare var jBox:any;
@@ -18,7 +19,7 @@ declare var jBox:any;
 export class IndexComponent 
 { 
 
-    constructor(private router: Router, private authServ: AuthentificationService, private appcomponent: AppComponent) {
+    constructor(private router: Router, private authServ: AuthentificationService, private appcomponent: AppComponent, private historiqueService: HistoriqueService) {
         this.appcomponent.UpdateAuthentificationPageIndex();
     }
 
@@ -28,7 +29,7 @@ export class IndexComponent
             this.authServ.ValidationConnexion(Reponse);       
             if(this.authServ.Connecte())
             {
-                
+                this.historiqueService.ObtenirHistorique(3); //Changer la valeur 3 par l'id de l'utilisateur
                 this.router.navigate(['choix']);
                 
             }     
