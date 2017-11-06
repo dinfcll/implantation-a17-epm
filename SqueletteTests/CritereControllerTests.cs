@@ -6,7 +6,6 @@ using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.DTOs;
 using SqueletteImplantation.DbEntities.Models;
 using Xunit;
-using Microsoft.AspNetCore.Http;
 namespace SqueletteTests
 {
     public class CritereControllerTests
@@ -34,7 +33,7 @@ namespace SqueletteTests
         [Fact]
         public void NoCritNotFound()
         {
-            var result = _CritereController.GetCritere(10000000);
+            var result = _CritereController.GetCritereSolonId(10000000);
 
             Assert.Equal(404, ((NotFoundResult)result).StatusCode);
         }
@@ -43,7 +42,7 @@ namespace SqueletteTests
         public void AjoutCritereTest()
         {
             var created = _CritereController.AddCritere(new CritereDTO { NomCrit = CritNom, IdCat = CatId });
-            var resultat = _CritereController.GetCritere(((created as OkObjectResult).Value as Critere).CritId);
+            var resultat = _CritereController.GetCritereSolonId(((created as OkObjectResult).Value as Critere).CritId);
             Assert.Equal(CritNom, ((resultat as OkObjectResult).Value as Critere).CritNom);
             Assert.Equal(CatId, ((resultat as OkObjectResult).Value as Critere).CatId);
         }
@@ -53,11 +52,11 @@ namespace SqueletteTests
         {
             var created = _CritereController.AddCritere(new CritereDTO{ NomCrit = CritNom, IdCat = CatId });
 
-            var resultat = _CritereController.DeleteCritere(((created as OkObjectResult).Value as Critere).CritId);
+            var resultat = _CritereController.DeleteCritereSelonId(((created as OkObjectResult).Value as Critere).CritId);
 
             Assert.Equal(200, (resultat as OkResult).StatusCode);
 
-            var entityNotFound = _CritereController.GetCritere(((created as OkObjectResult).Value as Critere).CritId);
+            var entityNotFound = _CritereController.GetCritereSolonId(((created as OkObjectResult).Value as Critere).CritId);
 
             Assert.Equal(404, ((NotFoundResult)entityNotFound).StatusCode);
         }

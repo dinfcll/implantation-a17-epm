@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.DTOs;
-using SqueletteImplantation.DbEntities.Models;
 
 namespace SqueletteImplantation.Controllers
 {
@@ -16,20 +15,19 @@ namespace SqueletteImplantation.Controllers
             _maBd = maBd;
         }
 
-        //obtenir la liste des critères selon la catégorie
+     
         [HttpGet]
         [Route("api/CritereCat/{CatId}")]
-        public IEnumerable Critere(int catId)
+        public IEnumerable GetListeCritereSelonCategorie(int catId)
         {
             return _maBd.Critere.Where(cr => cr.CatId == catId).ToList();
         }
 
 
-        //obtenir une critère selon son id
 
         [HttpGet]
         [Route("api/Critere/{id}")]
-        public IActionResult GetCritere(int id)
+        public IActionResult GetCritereSolonId(int id)
         {
             var critere = _maBd.Critere.FirstOrDefault(c => c.CritId == id);
 
@@ -42,11 +40,10 @@ namespace SqueletteImplantation.Controllers
         }
 
 
-        //supprimer une critère selon son id
 
         [HttpDelete]
         [Route("api/delcrite/{id}")]
-        public IActionResult DeleteCritere(int id)
+        public IActionResult DeleteCritereSelonId(int id)
         {
             var critere = _maBd.Critere.FirstOrDefault(c => c.CritId== id);
 
@@ -62,7 +59,6 @@ namespace SqueletteImplantation.Controllers
         }
 
         
-        //ajouter une critère
 
         [HttpPost]
         [Route("api/ajoutcrite")]
