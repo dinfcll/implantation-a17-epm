@@ -59,7 +59,6 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();
-        this.UploadJBOX();
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
@@ -83,16 +82,14 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.OnClickSupprimer = function (crit) {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit), 1);
     };
-    PageCatComponent.prototype.onClickImg = function () {
-        window.open("https://drive.google.com/uc?id=0By19gDkyFUzVYzAzMUhjXzUtSFU");
+    PageCatComponent.prototype.onClickImg = function (url) {
+        window.open(url);
     };
     PageCatComponent.prototype.ValidationPage = function () {
         var CheminLong = this.router.url.toString();
         var Page;
         Page = CheminLong.split('/', 2);
-        console.log(Page);
         if (Page[1] == 'neurologie') {
-            console.log("false == neurologie");
             return false;
         }
         return true;
@@ -108,11 +105,6 @@ var PageCatComponent = (function () {
         }
         RequeteId = RequeteId.substr(0, RequeteId.length - 1);
         this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
-    };
-    PageCatComponent.prototype.UploadJBOX = function () {
-        for (var i = 0; i < this.m_TabTrace.length; i++) {
-            new jBox('Image');
-        }
     };
     /************************************************************** */
     PageCatComponent.prototype.ValidationUtil = function () {

@@ -127,9 +127,9 @@ export class PageCatComponent implements OnInit
       
     }
     
-    onClickImg()
+    onClickImg(url: string)
     {
-        window.open("https://drive.google.com/uc?id=0By19gDkyFUzVYzAzMUhjXzUtSFU");
+        window.open(url);
     }
 
     ValidationPage() : boolean
