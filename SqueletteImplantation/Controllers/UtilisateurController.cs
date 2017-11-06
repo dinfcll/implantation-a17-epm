@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.Models;
 using System;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 
 namespace SqueletteImplantation.Controllers
@@ -75,7 +76,31 @@ namespace SqueletteImplantation.Controllers
         [Route("api/utilisateur/modifiernom/")]
         public IActionResult PatchNomUtilisateur([FromBody]Utilisateur Util )
         {
-            return new OkObjectResult(true);
+            OkObjectResult ResultatOk;
+            var UtilCorrespondantAuNomUtil = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilUserName == Util.UtilUserName);
+            Utilisateur UtilConnecte;
+            EntityEntry<Utilisateur> Changement;
+
+            if (UtilCorrespondantAuNomUtil == null)
+            {
+                UtilConnecte = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilId == Util.UtilId);
+
+                if (UtilConnecte != null)
+                {
+                    /*UtilConnecte.UtilUserName = Util.UtilUserName;
+                    _maBd.Utilisateur.Attach(UtilConnecte);
+                    Changement = _maBd.Entry(UtilConnecte);
+                    Changement.Property(e => e.UtilUserName).IsModified = true;
+                    _maBd.SaveChanges();*/
+                    ResultatOk = new OkObjectResult("Fait");
+                }
+                else
+                    ResultatOk = new OkObjectResult("Erreur");
+            }
+            else
+                ResultatOk = new OkObjectResult("Doublon");
+
+            return ResultatOk;
         }
     }
 }
