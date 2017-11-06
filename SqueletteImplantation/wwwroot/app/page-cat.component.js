@@ -83,6 +83,20 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.OnClickSupprimer = function (crit) {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit), 1);
     };
+    PageCatComponent.prototype.onClickImg = function () {
+        window.open("https://drive.google.com/uc?id=0By19gDkyFUzVYzAzMUhjXzUtSFU");
+    };
+    PageCatComponent.prototype.ValidationPage = function () {
+        var CheminLong = this.router.url.toString();
+        var Page;
+        Page = CheminLong.split('/', 2);
+        console.log(Page);
+        if (Page[1] == 'neurologie') {
+            console.log("false == neurologie");
+            return false;
+        }
+        return true;
+    };
     //Action lors de l'appui sur le bouton recherche
     PageCatComponent.prototype.OnClickRechercher = function () {
         var _this = this;
