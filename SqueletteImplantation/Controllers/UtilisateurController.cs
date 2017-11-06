@@ -29,8 +29,8 @@ namespace SqueletteImplantation.Controllers
         [Route("api/utilisateur/login")]
         public IActionResult ConnexionUser([FromBody]Utilisateur util)
         {
-            var login = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
-            object[] tInfoUtil = { login.UtilType, login.UtilId };
+            var compteUtilisateur = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
+            object[] tInfoUtil = { compteUtilisateur.UtilType, compteUtilisateur.UtilId };
 
             if (compteUtilisateur == null)
             {
