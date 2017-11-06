@@ -55,6 +55,9 @@ var AppComponent = (function () {
         else if (type === 3) {
             this.router.navigateByUrl('ModificationProfil');
         }
+        else if (type === 4) {
+            this.router.navigateByUrl('GestionUtilisateur');
+        }
     };
     AppComponent.prototype.DetectionPage = function () {
         var CheminLong = this.router.url.toString();

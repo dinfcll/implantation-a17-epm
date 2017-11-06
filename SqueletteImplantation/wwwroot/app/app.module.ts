@@ -19,12 +19,12 @@ import { mdpcomponent } from "./pagemdp.component";
 import { ModifProfilComponent } from "./page-modif-profil.component";
 import { ModificationUtilisateurService } from './ModificationUtilisateur.service';
 import { UtilisateurService } from "./utilisateur.service";
-
+import { GestionUtilComponent } from "./gestionutil.component";
 
 
 @NgModule({
   imports:      [ BrowserModule, routes, HttpModule, FormsModule ], // Importation des modules de l'application
-  declarations: [ IndexComponent, PageCatComponent, AppComponent, ChoixComponent, AjoutAdminComponent, mdpcomponent, ModifProfilComponent,  AjoutSuppComponent ],  // Déclaration des "components" de l'application
+  declarations: [ IndexComponent, PageCatComponent, AppComponent, ChoixComponent, AjoutAdminComponent, mdpcomponent, ModifProfilComponent,  AjoutSuppComponent, GestionUtilComponent ],  // Déclaration des "components" de l'application
   bootstrap:    [ AppComponent ],
   providers: [ AuthentificationGuard, AuthentificationService, UtilisateurService ]
 })

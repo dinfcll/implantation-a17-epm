@@ -71,7 +71,11 @@ export class AppComponent
                 {
                     this.router.navigateByUrl('ModificationProfil');
                 }
-
+                else
+                if(type === 4)
+                {
+                  this.router.navigateByUrl('GestionUtilisateur');
+                }
   }
 
   DetectionPage(): string // Pour savoir si on est dans la catégorie cardio ou neuro
