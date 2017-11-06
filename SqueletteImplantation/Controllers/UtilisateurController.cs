@@ -29,13 +29,13 @@ namespace SqueletteImplantation.Controllers
         [Route("api/utilisateur/login")]
         public IActionResult ConnexionUser([FromBody]Utilisateur util)
         {
-            var login = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
+            var compteUtilisateur = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
 
-            if (login == null)
+            if (compteUtilisateur == null)
             {
                 return new OkObjectResult(null);
             }
-            return new OkObjectResult(login.UtilType);
+            return new OkObjectResult(compteUtilisateur.UtilType);
         }
 
         [HttpPost]

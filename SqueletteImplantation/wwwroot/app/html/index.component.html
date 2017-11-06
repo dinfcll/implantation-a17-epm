@@ -8,9 +8,7 @@
 			<input type="password" [(ngModel)]="motdepasse" name="motdepasse" required></p>
 		</div>
 		<p> <button type="submit" id="btnConnexion">Connexion</button></p>
-	<form name="bar" id="bar" #o="ngForm" (ngSubmit)="Oublie(o)" novalidate>
-		<a><button type="submit" id="btnOublie">Mot de passe oublié ?</button></a>
-	</form>
+		<a><button type="button" id="btnOublie" (click)="MotDePasseOublie()">Mot de passe oublié?</button></a>
 	</form>
 </div>
 
