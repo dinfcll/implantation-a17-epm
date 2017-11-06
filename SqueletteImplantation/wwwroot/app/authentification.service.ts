@@ -34,7 +34,7 @@ export class AuthentificationService {
     public ValidationConnexion(Valide: any): any
     {
         console.log(Valide);
-        let tRetour : number[];
+        let tRetour : number[] = new Array();
 
 
         if (Valide.status === 200 && Valide._body != null)

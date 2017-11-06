@@ -31,12 +31,16 @@ namespace SqueletteImplantation.Controllers
         public IActionResult ConnexionUser([FromBody]Utilisateur util)
         {
             var compteUtilisateur = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
-            object[] tInfoUtil = { compteUtilisateur.UtilType, compteUtilisateur.UtilId };
+            object[] tInfoUtil = new object[2];
 
             if (compteUtilisateur == null)
             {
                 return new OkObjectResult(null);
             }
+
+            tInfoUtil[0] = compteUtilisateur.UtilType;
+            tInfoUtil[1] = compteUtilisateur.UtilId;
+
             return new OkObjectResult(tInfoUtil);
         }
 
@@ -87,11 +91,11 @@ namespace SqueletteImplantation.Controllers
 
                 if (UtilConnecte != null)
                 {
-                    /*UtilConnecte.UtilUserName = Util.UtilUserName;
+                    UtilConnecte.UtilUserName = Util.UtilUserName;
                     _maBd.Utilisateur.Attach(UtilConnecte);
                     Changement = _maBd.Entry(UtilConnecte);
                     Changement.Property(e => e.UtilUserName).IsModified = true;
-                    _maBd.SaveChanges();*/
+                    _maBd.SaveChanges();
                     ResultatOk = new OkObjectResult("Fait");
                 }
                 else
