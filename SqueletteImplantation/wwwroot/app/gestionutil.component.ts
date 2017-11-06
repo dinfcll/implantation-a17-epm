@@ -11,8 +11,35 @@ declare var jBox: any;
 
 export class GestionUtilComponent 
 {
-    public AjoutUtilisateur(f: NgForm): void
+    Affiche: boolean = false;
+
+    public InfoCreationUtil(): boolean
+    {
+        return this.Affiche;
+    }
+    public AfficheAjoutUtilisateur(): void
     {
         
+        if (this.Affiche === false)
+        {
+            this.Affiche = true;
+        }
+        else
+        {
+            this.Affiche = false;
+        }
+    }
+    public AjoutUtilisateur(f: NgForm): void
+    {
+        console.log(f.value);
+        var droitutil: number;
+        if(f.value.admin === true)
+        {
+            droitutil = 0;
+        }
+        else
+        {
+            droitutil = 1;
+        }
     }
 }
