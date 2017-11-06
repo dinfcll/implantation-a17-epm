@@ -32,7 +32,7 @@ namespace SqueletteImplantation.Controllers
             var login = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
             object[] tInfoUtil = { login.UtilType, login.UtilId };
 
-            if (login == null)
+            if (compteUtilisateur == null)
             {
                 return new OkObjectResult(null);
             }

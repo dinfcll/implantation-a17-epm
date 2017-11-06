@@ -17,13 +17,6 @@ namespace SqueletteImplantation
             message = new MimeMessage();
             smtpClient = new SmtpClient();
         }
-        public void SetMessage(String msg)
-        {
-            message.Body = new TextPart("plain")
-            {
-                Text = msg
-            };
-        }
         public void SetHTMLMessage(string msg)
         {
             var bodyBuilder = new BodyBuilder();
