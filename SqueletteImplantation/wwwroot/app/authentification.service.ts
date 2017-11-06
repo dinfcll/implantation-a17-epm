@@ -34,12 +34,16 @@ export class AuthentificationService {
     public ValidationConnexion(Valide: any): any
     {
         console.log(Valide);
+        let tRetour : number[];
+
 
         if (Valide.status === 200 && Valide._body != null)
         {
             this.estConnecte = true;
-            //Rendu ici
-            if (Valide._body[0] != 0)
+            
+            tRetour = this.StringEnTableauNombre(Valide._body);
+
+            if (tRetour[0] != 0)
             {
                 this.estAdmin = false;
             }
@@ -54,7 +58,7 @@ export class AuthentificationService {
             this.estAdmin = false;
         }
 
-        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte, domaine: this.DomaineChoisi, IdUtil: Valide._body[1] }));
+        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte, domaine: this.DomaineChoisi, IdUtil: tRetour[1] }));
     }
 
     public logout(): void {
@@ -64,13 +68,13 @@ export class AuthentificationService {
     }
 
 
-    StringEnTableauNombre(ElementAConvertir: string) : number[]
+    private StringEnTableauNombre(ElementAConvertir: string) : number[]
     {
-        let Chaine = ElementAConvertir.slice(1, ElementAConvertir.length-1);
+        let Chaine = ElementAConvertir.slice(1, ElementAConvertir.length - 1);
         let tElementString = Chaine.split(",");
-        let tElementNombre : number[];
+        let tElementNombre : number[] = new Array(tElementString.length);
 
-        for(let Indice = 0; Indice < tElementString.length - 1; Indice++)
+        for(let Indice = 0; Indice < tElementString.length; Indice++)
         {
             tElementNombre[Indice] = Number(tElementString[Indice]);
         }

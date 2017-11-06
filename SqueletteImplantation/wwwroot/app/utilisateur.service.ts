@@ -21,13 +21,14 @@ export class UtilisateurService {
 
     public ModifierNomUtilisateur(NouveauNomUtilisateur : string)
     {
-        let headers = new Headers();
+        //let headers = new Headers();
         let URL = "api/utilisateur/modifiernom/";
         let CurrentUser = JSON.parse(localStorage.getItem("ConnectedUser"));
 
-        headers.append('Content-type', 'application/json');
+        /*headers.append('Content-type', 'application/json');
 
-        return this.http.patch(URL, JSON.stringify({"IdUtilisateur": CurrentUser.IdUtil, "NouveauNomUtil": NouveauNomUtilisateur}), { headers });
+        return this.http.patch(URL, JSON.stringify({"IdUtilisateur": CurrentUser.IdUtil, "NouveauNomUtil": NouveauNomUtilisateur}), { headers });*/
+        console.log(CurrentUser.IdUtil);
     }
 
     public ModifierEmail(NouveauEmail : string)

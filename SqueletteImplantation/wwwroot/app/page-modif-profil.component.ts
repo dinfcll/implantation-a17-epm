@@ -136,7 +136,8 @@ export class ModifProfilComponent
 
     private SauvegarderNomUtilisateur()
     {
-        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv).subscribe(Resultat => {
+        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv);
+        /*.subscribe(Resultat => {
 
             if(Resultat.ok == true)
             {
@@ -157,7 +158,7 @@ export class ModifProfilComponent
                 
             }
 
-        })
+        })*/
 
 
     }
