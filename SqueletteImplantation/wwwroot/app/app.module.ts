@@ -17,7 +17,6 @@ import { AuthentificationService } from "./authentification.service";
 import { AjoutSuppComponent } from "./ajout-cat-crit.component";
 import { mdpcomponent } from "./pagemdp.component";
 import { ModifProfilComponent } from "./page-modif-profil.component";
-import { ModificationUtilisateurService } from './ModificationUtilisateur.service';
 import { UtilisateurService } from "./utilisateur.service";
 
 

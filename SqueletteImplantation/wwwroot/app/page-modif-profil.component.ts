@@ -1,35 +1,35 @@
 import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
-import { ModificationUtilisateurService } from './ModificationUtilisateur.service'
+import { UtilisateurService } from './utilisateur.service';
 
 
 @Component ({
     selector: 'mod-profil',
     templateUrl: 'app/html/page-modif-profil.html',
     styleUrls: [ 'app/css/page-modif-profil.css' ],
-    providers: [ModificationUtilisateurService]
+    providers: [UtilisateurService]
 })
 
 
 export class ModifProfilComponent
 {
-    private NomUtilNouv: String;
-    private NomUtilConf: String;
-    private EmailNouv: String;
-    private EmailConf: String;
-    private MdpNouv: String;
-    private MdpConf: String;
+    private NomUtilNouv: string;
+    private NomUtilConf: string;
+    private EmailNouv: string;
+    private EmailConf: string;
+    private MdpNouv: string;
+    private MdpConf: string;
     
-    constructor(private appcomponent: AppComponent, private modificationutilisateurservice: ModificationUtilisateurService){
-        this.NomUtilNouv="";
-        this.NomUtilConf="";
-        this.EmailNouv="";
-        this.EmailConf="";
-        this.MdpNouv="";
-        this.MdpConf="";
+    constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService){
+        this.NomUtilNouv = "";
+        this.NomUtilConf = "";
+        this.EmailNouv = "";
+        this.EmailConf = "";
+        this.MdpNouv = "";
+        this.MdpConf = "";
     }
 
-    ngOnInit()
+    private ngOnInit()
     {
         document.getElementById("SauvegarderNomUtil").style.backgroundColor = "lightgray";
         document.getElementById("SauvegarderEmail").style.backgroundColor = "lightgray";
@@ -134,21 +134,42 @@ export class ModifProfilComponent
 
 
 
-
-
-    private SauvegarderNomUtilisateur() : void
+    private SauvegarderNomUtilisateur()
     {
-        alert("passé");
+        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv);
+        /*.subscribe(Resultat => {
+
+            if(Resultat.ok == true)
+            {
+                if(Resultat.text() == "Fait")
+                {
+
+                }
+                else
+                {
+                    if(Resultat.text() == "Doublon")
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                
+            }
+
+        })*/
+
 
     }
     
     private SauvegarderEmail() : void
     {
-        
+        this.utilisateurservice.ModifierEmail(this.EmailNouv);
     }
 
     private SauvegarderMotDePasse() : void
     {
-        
+        this.utilisateurservice.ModifierMotDePasse(this.MdpNouv);
     }
 }

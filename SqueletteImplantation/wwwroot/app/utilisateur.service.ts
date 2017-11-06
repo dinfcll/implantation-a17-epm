@@ -1,6 +1,7 @@
 
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Injectable } from "@angular/core";
+import { Utilisateur } from './utilisateur';
 
 @Injectable()
 export class UtilisateurService {
@@ -9,11 +10,34 @@ export class UtilisateurService {
 
     constructor(private http: Http) { }
 
-    reset(email: string) {
+    public reset(email: string) {
         this.baseUrl = "api/utilisateur/reset/";
         let headers = new Headers();
         headers.append('Content-type', 'application/json');
         
         return this.http.post(this.baseUrl + email, JSON.stringify({ email }), { headers });
+    }
+
+
+    public ModifierNomUtilisateur(NouveauNomUtilisateur : string)
+    {
+        //let headers = new Headers();
+        let URL = "api/utilisateur/modifiernom/";
+        let CurrentUser = JSON.parse(localStorage.getItem("ConnectedUser"));
+
+        /*headers.append('Content-type', 'application/json');
+
+        return this.http.patch(URL, JSON.stringify({"IdUtilisateur": CurrentUser.IdUtil, "NouveauNomUtil": NouveauNomUtilisateur}), { headers });*/
+        console.log(CurrentUser.IdUtil);
+    }
+
+    public ModifierEmail(NouveauEmail : string)
+    {
+
+    }
+
+    public ModifierMotDePasse(NouveauMotDePasse : string)
+    {
+
     }
 }

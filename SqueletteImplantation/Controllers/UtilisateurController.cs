@@ -30,12 +30,13 @@ namespace SqueletteImplantation.Controllers
         public IActionResult ConnexionUser([FromBody]Utilisateur util)
         {
             var compteUtilisateur = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
+            object[] tInfoUtil = { compteUtilisateur.UtilType, compteUtilisateur.UtilId };
 
             if (compteUtilisateur == null)
             {
                 return new OkObjectResult(null);
             }
-            return new OkObjectResult(compteUtilisateur.UtilType);
+            return new OkObjectResult(tInfoUtil);
         }
 
         [HttpPost]
@@ -67,6 +68,13 @@ namespace SqueletteImplantation.Controllers
             {
                 return new ObjectResult(null);
             }
+            return new OkObjectResult(true);
+        }
+
+        [HttpPatch]
+        [Route("api/utilisateur/modifiernom/")]
+        public IActionResult PatchNomUtilisateur([FromBody]Utilisateur Util )
+        {
             return new OkObjectResult(true);
         }
     }
