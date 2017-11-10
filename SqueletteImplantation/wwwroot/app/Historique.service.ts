@@ -8,6 +8,7 @@ import { Trace } from './trace';
 export class HistoriqueService 
 {
     public tabHistoriqueTrace: Trace[];
+    private IdUsager:number;
     private HistoriqueURL = 'api/DerniersTelechargements/';
     private AjoutHistoriqueURL='api/AjoutRechercheRecente'; 
     private headers = new Headers({ 'Content-Type': 'application/json' }); 
@@ -24,9 +25,9 @@ export class HistoriqueService
        return this.http.post(this.AjoutHistoriqueURL, Historiquedto);
     }
 
-    ObtenirHistorique(id:number)
+    ObtenirHistorique()
     {
-        this.getHistorique(id).subscribe(liste => this.AfficherHistorique(liste));
+        this.getHistorique(this.IdUsager).subscribe(liste => this.AfficherHistorique(liste));
     }
 
     private AfficherHistorique(param:any)
@@ -34,5 +35,10 @@ export class HistoriqueService
         this.tabHistoriqueTrace = (param.json() as Trace[]);
         console.log(this.tabHistoriqueTrace);
     } 
+    SetUsager()
+    {
+        let usager = JSON.parse(localStorage.getItem('ConnectedUser'));
+        this.IdUsager = usager.IdUtil;
+    }
 }
 

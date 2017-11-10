@@ -27,7 +27,8 @@ var IndexComponent = (function () {
         this.authServ.login(f.value.utilisateur, f.value.motdepasse).subscribe(function (Reponse) {
             _this.authServ.ValidationConnexion(Reponse);
             if (_this.authServ.Connecte()) {
-                _this.historiqueService.ObtenirHistorique(3); //Changer la valeur 3 par l'id de l'utilisateur
+                _this.historiqueService.SetUsager();
+                _this.historiqueService.ObtenirHistorique();
                 _this.router.navigate(['choix']);
             }
             else {
