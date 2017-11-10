@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
 import { UtilisateurService } from './utilisateur.service';
 
+declare var jBox: any;
 
 @Component ({
     selector: 'mod-profil',
@@ -142,28 +143,30 @@ export class ModifProfilComponent
             {
                 if(Resultat.text() == "Fait")
                 {
-                    alert("Fait");
+                    new jBox( 'Notice', {
+                        content: 'Changement effectué',
+                        color: 'green',
+                        stack: false
+                    });
                 }
                 else
                 {
-                    if(Resultat.text() == "Doublon")
-                    {
-                        alert("Doublon");
-                    }
-                    else
-                    {
-                        alert("Erreur");
-                    }
+                    new jBox('Notice', {
+                        content: Resultat.text(),
+                        color: 'red',
+                        stack: false
+                    });
                 }
             }
             else
             {
-                alert("400");
+                new jBox('Notice', {
+                    content: 'Erreur de connexion avec le serveur',
+                    color: 'red',
+                    stack: false
+                });
             }
-
         })
-
-
     }
     
     private SauvegarderEmail() : void
