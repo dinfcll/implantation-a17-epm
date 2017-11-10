@@ -43,11 +43,14 @@
 								<li (click)="Reroutage(3)">Modification du profil utilisateur</li>
 							</ul>
 						</div>
-
 				    </div>
 					<hr>
 					<div *ngIf="this.authentificationService.Connecte()" id="divMenuBas">
                         	<li id="ElementDansMenu">Historique</li>
+							<div *ngFor="let trace of this.historiqueService.tabHistoriqueTrace">
+								{{trace.tracId}}
+							</div>
+
 					</div>
 				</td>
 			</tr>
