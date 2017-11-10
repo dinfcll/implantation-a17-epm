@@ -1,6 +1,6 @@
 <div id="base">
 	   <table class="TableEspacePrincipalCat">
-			<tr id="PremiereLigne">
+			<tr>
 				<td id="ChoixCategorie">  
 					<fieldset>
 					<legend>Choix du domaine</legend>
@@ -9,7 +9,8 @@
 					</fieldset>
 					<fieldset>
 					<legend>Suppression d'une catégorie</legend>
-					<div class="Container">
+					
+					<div>
 					<div class="ListeDeroulanteCategorie">
 						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> {{NomCateg}} </button>
 						<select class="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()">
@@ -18,10 +19,11 @@
 							</option>
 						</select>
 					</div>
-						<div class = "DivSupp">
-								<img src="app/images/delete.png" alt="" (click)="OnClickSupprimerCateg()"/>
-						</div>
+					<div class = "DivSupp">
+						<img src="app/images/delete.png" class ="Supp" alt="" (click)="OnClickSupprimerCateg()"/>
 					</div>
+					</div>
+					
 					</fieldset>
 					<form class="form-horizontal">
 							<fieldset>
