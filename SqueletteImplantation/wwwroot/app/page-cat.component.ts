@@ -6,6 +6,7 @@ import { Trace } from './trace';
 import { Categorie } from './categorie';
 import { Critere } from './critere';
 import { TraceDTO } from './tracedto';
+import {HistoriqueDTO} from './Historique';
 
 //Importation des services 
 import { TraceService } from './trace.service';
@@ -13,6 +14,7 @@ import { CategorieService } from './categorie.service';
 import { CritereService } from './critere.service';
 import { AuthentificationService } from "./authentification.service";
 import { HistoriqueService } from "./Historique.service";
+
 
 declare var jBox:any;
 
@@ -38,6 +40,8 @@ export class PageCatComponent implements OnInit
     m_EnvoieTrace: TraceDTO = null;
     NomCateg: String;
     NomCrit: String;
+    infostelechargement: HistoriqueDTO;
+
 
     constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, 
     private router:Router,private authentificationService: AuthentificationService, private historiqueService: HistoriqueService)
@@ -145,6 +149,17 @@ export class PageCatComponent implements OnInit
 
         this.traceService.getTraces(RequeteId).subscribe(trac => this.AffichageTrace(trac));
       
+    }
+
+    onClickTelecharger(id: number)
+    {       
+        this.infostelechargement=new HistoriqueDTO(id,this.historiqueService.IdUsager);
+        
+        console.log(this.infostelechargement);
+
+        this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(Reponse=> this.historiqueService.ObtenirHistorique());
+        
+
     }
 
 

@@ -42,7 +42,7 @@ namespace SqueletteImplantation.Controllers
             EntreeHistorique = infostelechargement.CreationElementHistorique();
 
 
-            if (ValiderSiEntreeExistante(EntreeHistorique))
+            if (!ValiderSiEntreeExistante(EntreeHistorique))
             {
                 _maBd.Add(EntreeHistorique);
                 _maBd.SaveChanges();
@@ -61,13 +61,15 @@ namespace SqueletteImplantation.Controllers
 
         private bool ValiderSiEntreeExistante(RelTracUsag EntreeHistorique)
         {
-            return (from hist in _maBd.RelTracUsager
-                    where EntreeHistorique.UtilId == hist.UtilId &&
-                    EntreeHistorique.TracId == hist.TracId
-                    group hist by new { hist.TracId, hist.UtilId }
-                    into grp
-                    select grp.Count()).Equals(0);
-        }
+            var res = (from hist in _maBd.RelTracUsager
+                              where EntreeHistorique.UtilId == hist.UtilId &&
+                              EntreeHistorique.TracId == hist.TracId
+                              select hist).ToList();
+
+            return res.Count > 0;
+          
+         }
+           
 
         private void SupprEntreesUserSiPlusDe5(int IdUser)
         {

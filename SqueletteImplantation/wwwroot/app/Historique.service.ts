@@ -8,7 +8,7 @@ import { Trace } from './trace';
 export class HistoriqueService 
 {
     public tabHistoriqueTrace: Trace[];
-    private IdUsager:number;
+    public IdUsager:number;
     private HistoriqueURL = 'api/DerniersTelechargements/';
     private AjoutHistoriqueURL='api/AjoutRechercheRecente'; 
     private headers = new Headers({ 'Content-Type': 'application/json' }); 
