@@ -66,6 +66,11 @@ export class ModifProfilComponent
                     (<HTMLInputElement>document.getElementById("SauvegarderNomUtil")).disabled = false;
                     document.getElementById("SauvegarderNomUtil").style.backgroundColor = "";
                 }
+                else
+                {
+                    (<HTMLInputElement>document.getElementById("SauvegarderNomUtil")).disabled = true;
+                    document.getElementById("SauvegarderNomUtil").style.backgroundColor = "lightgray";
+                }
 
                 return;
             }
@@ -95,6 +100,11 @@ export class ModifProfilComponent
                     (<HTMLInputElement>document.getElementById("SauvegarderEmail")).disabled = false;
                     document.getElementById("SauvegarderEmail").style.backgroundColor = "";
                 }
+                else
+                {
+                    (<HTMLInputElement>document.getElementById("SauvegarderEmail")).disabled = true;
+                    document.getElementById("SauvegarderEmail").style.backgroundColor = "lightgray";
+                }
 
                 return;
             }
@@ -123,6 +133,11 @@ export class ModifProfilComponent
                 {
                     (<HTMLInputElement>document.getElementById("SauvegarderMdp")).disabled = false;
                     document.getElementById("SauvegarderMdp").style.backgroundColor = "";
+                }
+                else
+                {
+                    (<HTMLInputElement>document.getElementById("SauvegarderMdp")).disabled = true;
+                    document.getElementById("SauvegarderMdp").style.backgroundColor = "lightgray";
                 }
 
                 return;
