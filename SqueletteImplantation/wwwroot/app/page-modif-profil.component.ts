@@ -136,29 +136,32 @@ export class ModifProfilComponent
 
     private SauvegarderNomUtilisateur()
     {
-        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv);
-        /*.subscribe(Resultat => {
+        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv).subscribe(Resultat => {
 
             if(Resultat.ok == true)
             {
                 if(Resultat.text() == "Fait")
                 {
-
+                    alert("Fait");
                 }
                 else
                 {
                     if(Resultat.text() == "Doublon")
                     {
-
+                        alert("Doublon");
+                    }
+                    else
+                    {
+                        alert("Erreur");
                     }
                 }
             }
             else
             {
-                
+                alert("400");
             }
 
-        })*/
+        })
 
 
     }
