@@ -12,6 +12,7 @@ import { TraceService } from './trace.service';
 import { CategorieService } from './categorie.service';
 import { CritereService } from './critere.service';
 import { AuthentificationService } from "./authentification.service";
+import { HistoriqueService } from "./Historique.service";
 
 
 
@@ -40,7 +41,8 @@ export class PageCatComponent implements OnInit
     NomCateg: String;
     NomCrit: String;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private router:Router,private authentificationService: AuthentificationService)
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, 
+    private router:Router,private authentificationService: AuthentificationService, private historiqueService: HistoriqueService)
     {
         this.NomCateg = "Catégories";
         this.NomCrit = "Critères";
@@ -60,6 +62,7 @@ export class PageCatComponent implements OnInit
        }
 
     }
+
 
     private AffichageCat(param: any) 
     {

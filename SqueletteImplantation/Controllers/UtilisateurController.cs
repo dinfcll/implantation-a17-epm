@@ -1,12 +1,9 @@
-using System.Collections;
 using System.Linq;
-using System.Data;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using SqueletteImplantation.DbEntities;
-using SqueletteImplantation.DbEntities.DTOs;
 using SqueletteImplantation.DbEntities.Models;
 using System;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 
 namespace SqueletteImplantation.Controllers
@@ -22,46 +19,49 @@ namespace SqueletteImplantation.Controllers
         }
 
         private static Random random = new Random();
-        public static string RandomString(int length)
+        public static string GetRandomString(int length)
         {
-            const string chars = "qwertyuiopasdfghjklzxcvbnmABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=";
+            const string chars = "qwertyupasdfghjkzxcvbnmABCDEFGHJKMNPQRSTUVWXYZ123456789";
             return new string(Enumerable.Repeat(chars, length)
             .Select(s => s[random.Next(s.Length)]).ToArray());
         }
         
         [HttpPost]
         [Route("api/utilisateur/login")]
-        public IActionResult Post([FromBody]Utilisateur util)
+        public IActionResult ConnexionUser([FromBody]Utilisateur util)
         {
-            var login = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
+            var compteUtilisateur = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
+            object[] tInfoUtil = new object[2];
 
-            if (login == null)
+            if (compteUtilisateur == null)
             {
                 return new OkObjectResult(null);
             }
-            return new OkObjectResult(login.UtilType);
+
+            tInfoUtil[0] = compteUtilisateur.UtilType;
+            tInfoUtil[1] = compteUtilisateur.UtilId;
+
+            return new OkObjectResult(tInfoUtil);
         }
 
         [HttpPost]
         [Route("api/utilisateur/reset/{email}")]
-        public async System.Threading.Tasks.Task<IActionResult> PostAsync(String email)
+        public IActionResult ReinitialisatioMDP(String email)
         {
 
             var comptereset = _maBd.Utilisateur.SingleOrDefault(u => u.UtilEmail == email);
 
             if (comptereset != null)
             {                
-                String PWD = RandomString(8);
+                String PWD = GetRandomString(8);
                 comptereset.UtilPWD = Hash.GetHash(PWD);
                 courriel.setDestination(email);
-                courriel.setSender("electrophysologiemedicale@gmail.com", "Reset");
-                courriel.SetMessage("Bonjour," +
-                    "Voici le nouveau mot de passe a utiliser lors de votre prochaine connexion." +
-                    PWD
-                    + "Nous vous recommandons de la changer a l'aide de la page de modification du profil." +
-                    "Bonne journee.");
-                courriel.setSubject("Nouveau Mot de passe");
-                await courriel.sendMessageAsync();
+                courriel.setSender("electrophysologiemedicale@gmail.com", "noreplyEPM");
+                courriel.SetHTMLMessage("<h1>Bonjour " + comptereset.UtilUserName + "</h1><br>Voici le nouveau mot de passe à utiliser lors de votre prochaine connexion : <b>" + 
+                    PWD + 
+                    "</b><br><p>Nous vous recommandons de le changer à l'aide de la page de modification du profil le plus tôt possible.<p><br><h2>Merci et bonne journée.");
+                courriel.setSubject("Réinitialisation du mot de passe.");
+                courriel.sendMessage();
 
                 _maBd.Utilisateur.Attach(comptereset);
 
@@ -74,6 +74,37 @@ namespace SqueletteImplantation.Controllers
                 return new ObjectResult(null);
             }
             return new OkObjectResult(true);
+        }
+
+        [HttpPatch]
+        [Route("api/utilisateur/modifiernom/")]
+        public IActionResult PatchNomUtilisateur([FromBody]Utilisateur Util )
+        {
+            OkObjectResult ResultatOk;
+            var UtilCorrespondantAuNomUtil = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilUserName == Util.UtilUserName);
+            Utilisateur UtilConnecte;
+            EntityEntry<Utilisateur> Changement;
+
+            if (UtilCorrespondantAuNomUtil == null)
+            {
+                UtilConnecte = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilId == Util.UtilId);
+
+                if (UtilConnecte != null)
+                {
+                    UtilConnecte.UtilUserName = Util.UtilUserName;
+                    _maBd.Utilisateur.Attach(UtilConnecte);
+                    Changement = _maBd.Entry(UtilConnecte);
+                    Changement.Property(e => e.UtilUserName).IsModified = true;
+                    _maBd.SaveChanges();
+                    ResultatOk = new OkObjectResult("Fait");
+                }
+                else
+                    ResultatOk = new OkObjectResult("Erreur");
+            }
+            else
+                ResultatOk = new OkObjectResult("Doublon");
+
+            return ResultatOk;
         }
     }
 }

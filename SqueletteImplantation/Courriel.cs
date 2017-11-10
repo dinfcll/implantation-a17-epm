@@ -17,13 +17,6 @@ namespace SqueletteImplantation
             message = new MimeMessage();
             smtpClient = new SmtpClient();
         }
-        public void SetMessage(String msg)
-        {
-            message.Body = new TextPart("plain")
-            {
-                Text = msg
-            };
-        }
         public void SetHTMLMessage(string msg)
         {
             var bodyBuilder = new BodyBuilder();
@@ -48,14 +41,20 @@ namespace SqueletteImplantation
             message.Subject = subject;
         }
 
-        public async Task sendMessageAsync()
+        public void sendMessage()
         {
-            smtpClient.Connect("smtp.gmail.com", 587, false);
+            try
+            {
+            smtpClient.Connect("smtp.mailgun.org", 587, false);
             smtpClient.AuthenticationMechanisms.Remove("XOAUTH2");
-            smtpClient.Authenticate("electrophysiologiemedicale@gmail.com", "admin#123");
-            await smtpClient.SendAsync(message);
+            smtpClient.Authenticate("1eb@dinf.cll.qc.ca", "LB0rD6YYQR5nTzMA1EIr");
+            smtpClient.Send(message);
             smtpClient.Disconnect(true);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
-
     }
 }

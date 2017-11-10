@@ -12,10 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var authentification_service_1 = require("./authentification.service");
+var Historique_service_1 = require("./Historique.service");
 var AppComponent = (function () {
-    function AppComponent(router, authentificationService) {
+    function AppComponent(router, authentificationService, historiqueService) {
         this.router = router;
         this.authentificationService = authentificationService;
+        this.historiqueService = historiqueService;
         this.TempsDeVerifierActivite = false;
     }
     AppComponent.prototype.UpdateAuthentificationPageIndex = function () {
@@ -34,7 +36,7 @@ var AppComponent = (function () {
         this.authentificationService.logout();
         this.router.navigateByUrl('index');
         if (Raison == 1) {
-            alert("Votre session à été fermée à cause de votre inactivité");
+            alert("Votre session a été fermée à cause de votre inactivité");
         }
     };
     AppComponent.prototype.Reroutage = function (type) {
@@ -52,6 +54,9 @@ var AppComponent = (function () {
         }
         else if (type === 2) {
             this.router.navigateByUrl('choix');
+        }
+        else if (type === 3) {
+            this.router.navigateByUrl('ModificationProfil');
         }
     };
     AppComponent.prototype.DetectionPage = function () {
@@ -103,7 +108,8 @@ AppComponent = __decorate([
         styleUrls: ['app/css/app.component.css']
     }),
     __metadata("design:paramtypes", [router_1.Router,
-        authentification_service_1.AuthentificationService])
+        authentification_service_1.AuthentificationService,
+        Historique_service_1.HistoriqueService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

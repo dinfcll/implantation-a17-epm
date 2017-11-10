@@ -8,9 +8,10 @@ using SqueletteImplantation.DbEntities;
 namespace squeletteimplantation.Migrations
 {
     [DbContext(typeof(BD_EPM))]
-    partial class BD_EPMModelSnapshot : ModelSnapshot
+    [Migration("20171103150146_TablePourHistorique")]
+    partial class TablePourHistorique
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
@@ -82,14 +83,11 @@ namespace squeletteimplantation.Migrations
 
                     b.Property<int>("UtilId");
 
-                    b.Property<DateTime>("DateTelechargement")
-                        .ValueGeneratedOnAdd();
-
                     b.HasKey("TracId", "UtilId");
 
                     b.HasIndex("UtilId");
 
-                    b.ToTable("RelTracUsager");
+                    b.ToTable("RelTracUsag");
                 });
 
             modelBuilder.Entity("SqueletteImplantation.DbEntities.Models.Trace", b =>
