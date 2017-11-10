@@ -31,7 +31,6 @@ export class IndexComponent
             {
                 this.historiqueService.ObtenirHistorique(3); //Changer la valeur 3 par l'id de l'utilisateur
                 this.router.navigate(['choix']);
-                
             }     
             else
             {
@@ -43,7 +42,7 @@ export class IndexComponent
             }
         });
     }
-    public Oublie(o: NgForm): void
+    public MotDePasseOublie(): void
     {
         this.router.navigate(['MDP']);
     }    

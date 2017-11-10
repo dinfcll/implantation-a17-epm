@@ -14,7 +14,7 @@ import { CritereService } from './critere.service';
 import { AuthentificationService } from "./authentification.service";
 import { HistoriqueService } from "./Historique.service";
 
-
+declare var jBox:any;
 
 
 @Component({
@@ -91,8 +91,10 @@ export class PageCatComponent implements OnInit
 
     }
 
-    private AffichageTrace(param: any) {
+    private AffichageTrace(param: any) 
+    {
         this.m_TabTrace = (param.json() as Trace[]);
+        this.UploadJBOX(); 
     }
 
     OnClickListeDeroulanteCritere()
@@ -127,6 +129,7 @@ export class PageCatComponent implements OnInit
       
     }
     
+    
     //Action lors de l'appui sur le bouton recherche
     OnClickRechercher()
     {
@@ -141,6 +144,17 @@ export class PageCatComponent implements OnInit
         RequeteId = RequeteId.substr(0,RequeteId.length - 1);
 
         this.traceService.getTraces(RequeteId).subscribe(trac => this.AffichageTrace(trac));
+      
+    }
+
+
+    UploadJBOX()
+    {
+       
+        for (var i = 0; i < this.m_TabTrace.length; i++) 
+        { 
+            new jBox('Image');
+        } 
     }
     /************************************************************** */
     ValidationUtil() : boolean
