@@ -41,7 +41,8 @@ export class ModifProfilComponent
     {
         let Touche = event.keyCode;
 
-        if(!(Touche >= 65 && Touche <= 90 || Touche === 8 || Touche === 95 || Touche === 127 || Touche === 64))
+
+        if(!(Touche >= 64 && Touche <= 90 || Touche >= 97 && Touche <= 122 || Touche >= 48 && Touche <= 57 || Touche === 8 || Touche === 95 || Touche === 127 || Touche === 46))
         {
             event.preventDefault();
         }
@@ -166,16 +167,74 @@ export class ModifProfilComponent
                     stack: false
                 });
             }
-        })
+        });
     }
     
     private SauvegarderEmail() : void
     {
-        this.utilisateurservice.ModifierEmail(this.EmailNouv);
+        this.utilisateurservice.ModifierEmail(this.EmailNouv).subscribe(Resultat => {
+
+            if(Resultat.ok == true)
+            {
+                if(Resultat.text() == "Fait")
+                {
+                    new jBox( 'Notice', {
+                        content: 'Changement effectué',
+                        color: 'green',
+                        stack: false
+                    });
+                }
+                else
+                {
+                    new jBox('Notice', {
+                        content: Resultat.text(),
+                        color: 'red',
+                        stack: false
+                    });
+                }
+            }
+            else
+            {
+                new jBox('Notice', {
+                    content: 'Erreur de connexion avec le serveur',
+                    color: 'red',
+                    stack: false
+                });
+            }
+        });
     }
 
     private SauvegarderMotDePasse() : void
     {
-        this.utilisateurservice.ModifierMotDePasse(this.MdpNouv);
+        this.utilisateurservice.ModifierMotDePasse(this.MdpNouv).subscribe(Resultat =>{
+
+            if(Resultat.ok == true)
+            {
+                if(Resultat.text() == "Fait")
+                {
+                    new jBox( 'Notice', {
+                        content: 'Changement effectué',
+                        color: 'green',
+                        stack: false
+                    });
+                }
+                else
+                {
+                    new jBox('Notice', {
+                        content: Resultat.text(),
+                        color: 'red',
+                        stack: false
+                    });
+                }
+            }
+            else
+            {
+                new jBox('Notice', {
+                    content: 'Erreur de connexion avec le serveur',
+                    color: 'red',
+                    stack: false
+                });
+            }
+        });
     }
 }
