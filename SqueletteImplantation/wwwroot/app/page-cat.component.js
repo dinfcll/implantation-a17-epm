@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var Historique_1 = require("./Historique");
 //Importation des services 
 var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
@@ -61,7 +62,6 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();
-        this.UploadJBOX();
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
@@ -85,6 +85,18 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.OnClickSupprimer = function (crit) {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit), 1);
     };
+    PageCatComponent.prototype.onClickImg = function (url) {
+        window.open(url);
+    };
+    PageCatComponent.prototype.ValidationPage = function () {
+        var CheminLong = this.router.url.toString();
+        var Page;
+        Page = CheminLong.split('/', 2);
+        if (Page[1] == 'neurologie') {
+            return false;
+        }
+        return true;
+    };
     //Action lors de l'appui sur le bouton recherche
     PageCatComponent.prototype.OnClickRechercher = function () {
         var _this = this;
@@ -96,6 +108,12 @@ var PageCatComponent = (function () {
         }
         RequeteId = RequeteId.substr(0, RequeteId.length - 1);
         this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
+    };
+    PageCatComponent.prototype.onClickTelecharger = function (id) {
+        var _this = this;
+        this.infostelechargement = new Historique_1.HistoriqueDTO(id, this.historiqueService.IdUsager);
+        console.log(this.infostelechargement);
+        this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(function (Reponse) { return _this.historiqueService.ObtenirHistorique(); });
     };
     PageCatComponent.prototype.UploadJBOX = function () {
         for (var i = 0; i < this.m_TabTrace.length; i++) {
