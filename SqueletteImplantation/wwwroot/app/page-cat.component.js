@@ -62,7 +62,6 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();
-        this.UploadJBOX();
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
@@ -85,6 +84,18 @@ var PageCatComponent = (function () {
     //Action lors du clic sur supprimer
     PageCatComponent.prototype.OnClickSupprimer = function (crit) {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit), 1);
+    };
+    PageCatComponent.prototype.onClickImg = function (url) {
+        window.open(url);
+    };
+    PageCatComponent.prototype.ValidationPage = function () {
+        var CheminLong = this.router.url.toString();
+        var Page;
+        Page = CheminLong.split('/', 2);
+        if (Page[1] == 'neurologie') {
+            return false;
+        }
+        return true;
     };
     //Action lors de l'appui sur le bouton recherche
     PageCatComponent.prototype.OnClickRechercher = function () {

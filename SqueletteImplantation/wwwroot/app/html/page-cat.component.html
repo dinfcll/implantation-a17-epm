@@ -44,7 +44,8 @@
 					<div *ngFor="let trace of m_TabTrace">
 						<section class="Trace">
 							Nom: {{trace.traceNom}}
-							&nbsp;
+							&nbsp;&nbsp;&nbsp;
+							
 							Logiciel à utiliser: {{trace.tracLogi}}
 							<button id="btnSupprimerTrace" *ngIf="ValidationUtil()" (click)="onClickDeleteTrace(trace.tracId)"><img src="app/images/delete.gif" alt=""/>Tracé #{{trace.tracId}}</button>
 							<a href="{{trace.tracUrl}}" title="{{trace.traceNom}}" data-jbox-image="gallery1"><img src="{{trace.tracUrl}}" alt=""></a> 

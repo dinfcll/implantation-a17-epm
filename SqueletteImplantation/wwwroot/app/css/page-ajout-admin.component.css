@@ -4,31 +4,28 @@
 	outline: 0;
 }
 
+.container{
+	margin-left: 65%;
+	margin-top:12%;
+}
+
 .inputfile {
 	width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
-	overflow: hidden;
-	position: absolute;
 	z-index: -1;
+	
 }
 .inputfile + label {
-	position:absolute;
-	left:55%;
-	bottom:10%;
-	white-space: nowrap;
+	display: inline-block;
 	border-radius:5px;	
 	border: none;
 	background-color: var(--CouleurTheme);
 	cursor: pointer;
 	color: white;
 	padding: 8px;
-	padding-left: 15px;
 	font-size: 20px;
-    width: 170px;
-	background-size: 20px 20px;
-	background-repeat: no-repeat;
-	background-position: right;
+    width: 200px;
 }
 
 
@@ -103,41 +100,22 @@
 }
 
 #btnAjouterTrace{
-position:absolute;
-	left:80%;
-	bottom:10%;
+	
+	margin-left: 5%;
 	border-radius: 5px;	
 	border: none;
 	background-color: var(--CouleurTheme);
 	cursor: pointer;
 	color: white;
 	padding: 8px;
-	padding-left: 0px;
+	margin-top:10px;
 	font-size: 20px;
     width: 140px;
-	background-size: 20px 20px;
-	background-repeat: no-repeat;
-	background-position: right;
+	display: inline-block;
 }
 
 
-#btnChercher{
-	position: absolute;
-	right: 5%;
-	bottom: 10%;
-	border-radius: 5px;	
-	border: none;
-	background-color: var(--CouleurTheme);
-	cursor: pointer;
-	color: white;
-	padding: 8px;
-	padding-left: 0px;
-	font-size: 20px;
-    width: 130px;
-	background-size: 20px 20px;
-	background-repeat: no-repeat;
-	background-position: right;
-}
+
 
 
 
@@ -226,16 +204,16 @@ background-color: rgba(125, 141, 163, 0.71);
 }
 
 #ElementListe:hover{
-	background-color: #f2f2f2;
+	background-color: rgba(125, 141, 163, 0.71);
 	cursor: pointer;
+	opacity: 0.8;
 }
 
 #ElementListe{
 	overflow: hidden;
 	white-space: nowrap;
+	transition: all 0.4s ease-out;
 	text-overflow: ellipsis;
-
-	
 }
 
 
