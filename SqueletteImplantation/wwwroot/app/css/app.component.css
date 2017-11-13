@@ -52,6 +52,33 @@ html,body{
 	border-top: 1px solid #8c8b8b;
     
 }
+#DivHistorique
+{
+    position:relative;
+    text-align: left;
+    margin: 1vh;   
+}
+
+.Historique a{
+    background-color: rgba(125, 141, 163, 0.71);
+	margin-bottom: 10px;
+	border-radius: 3px;
+	padding: 5px;
+	color: white;
+	display: block;
+	position:relative;
+    
+}
+
+#lientelechargement{
+  color: white;
+}
+
+#lientelechargement{
+	float: right;
+	margin-right: 25px;
+}
+
 
 
 

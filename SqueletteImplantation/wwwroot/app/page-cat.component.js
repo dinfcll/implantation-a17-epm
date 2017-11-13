@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var Historique_1 = require("./Historique");
 //Importation des services 
 var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
@@ -117,6 +118,17 @@ var PageCatComponent = (function () {
         }
         RequeteId = RequeteId.substr(0, RequeteId.length - 1);
         this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
+    };
+    PageCatComponent.prototype.onClickTelecharger = function (id) {
+        var _this = this;
+        this.infostelechargement = new Historique_1.HistoriqueDTO(id, this.historiqueService.IdUsager);
+        console.log(this.infostelechargement);
+        this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(function (Reponse) { return _this.historiqueService.ObtenirHistorique(); });
+    };
+    PageCatComponent.prototype.UploadJBOX = function () {
+        for (var i = 0; i < this.m_TabTrace.length; i++) {
+            new jBox('Image');
+        }
     };
     /************************************************************** */
     PageCatComponent.prototype.ValidationUtil = function () {
