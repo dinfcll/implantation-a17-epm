@@ -43,18 +43,11 @@ namespace SqueletteImplantation
 
         public void sendMessage()
         {
-            try
-            {
             smtpClient.Connect("smtp.mailgun.org", 587, false);
             smtpClient.AuthenticationMechanisms.Remove("XOAUTH2");
             smtpClient.Authenticate("1eb@dinf.cll.qc.ca", "LB0rD6YYQR5nTzMA1EIr");
             smtpClient.Send(message);
             smtpClient.Disconnect(true);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e);
-            }
         }
     }
 }
