@@ -35,15 +35,6 @@ namespace SqueletteTests
             Assert.Equal(200, (created as OkObjectResult).StatusCode);
         }
 
-        
-        [Fact]
-        public void TraceDelete()
-        {
-            var created = _traceController.AjoutTraceDansBd(nouvTrac);
-            var resultat = _traceController.DeleteTraceSelonId(((created as OkObjectResult).Value as Trace).TracId);
-            Assert.Equal(200, (resultat as OkResult).StatusCode);
-        }
-
  
         
         [Fact]
@@ -55,14 +46,6 @@ namespace SqueletteTests
 
         }
         
-        [Fact]
-        public void AddDelGetNotFound()
-        {
-            var created = _traceController.AjoutTraceDansBd(nouvTrac);
-            _traceController.DeleteTraceSelonId(((created as OkObjectResult).Value as Trace).TracId);
-            var result = _traceController.GetTraceSelonId(((created as OkObjectResult).Value as Trace).TracId);
-            Assert.Equal(404, ((NotFoundResult)result).StatusCode);
-        }
         
     }
 

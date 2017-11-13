@@ -8,13 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var authentification_service_1 = require("./authentification.service");
+var Historique_service_1 = require("./Historique.service");
 var AppComponent = (function () {
-    function AppComponent(router, authentificationService) {
+    function AppComponent(router, authentificationService, historiqueService) {
         this.router = router;
         this.authentificationService = authentificationService;
+        this.historiqueService = historiqueService;
         this.TempsDeVerifierActivite = false;
     }
     AppComponent.prototype.UpdateAuthentificationPageIndex = function () {
@@ -108,7 +111,8 @@ AppComponent = __decorate([
         styleUrls: ['app/css/app.component.css']
     }),
     __metadata("design:paramtypes", [router_1.Router,
-        authentification_service_1.AuthentificationService])
+        authentification_service_1.AuthentificationService,
+        Historique_service_1.HistoriqueService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

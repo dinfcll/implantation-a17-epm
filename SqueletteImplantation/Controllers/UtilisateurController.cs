@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.Models;
 using System;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 
 namespace SqueletteImplantation.Controllers
@@ -29,13 +30,18 @@ namespace SqueletteImplantation.Controllers
         [Route("api/utilisateur/login")]
         public IActionResult ConnexionUser([FromBody]Utilisateur util)
         {
-            var login = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
+            var compteUtilisateur = _maBd.Utilisateur.FirstOrDefault(retour => retour.UtilUserName == util.UtilUserName && retour.UtilPWD == Hash.GetHash(util.UtilPWD));
+            object[] tInfoUtil = new object[2];
 
-            if (login == null)
+            if (compteUtilisateur == null)
             {
                 return new OkObjectResult(null);
             }
-            return new OkObjectResult(login.UtilType);
+
+            tInfoUtil[0] = compteUtilisateur.UtilType;
+            tInfoUtil[1] = compteUtilisateur.UtilId;
+
+            return new OkObjectResult(tInfoUtil);
         }
 
         [HttpPost]
@@ -68,6 +74,37 @@ namespace SqueletteImplantation.Controllers
                 return new ObjectResult(null);
             }
             return new OkObjectResult(true);
+        }
+
+        [HttpPatch]
+        [Route("api/utilisateur/modifiernom/")]
+        public IActionResult PatchNomUtilisateur([FromBody]Utilisateur Util )
+        {
+            OkObjectResult ResultatOk;
+            var UtilCorrespondantAuNomUtil = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilUserName == Util.UtilUserName);
+            Utilisateur UtilConnecte;
+            EntityEntry<Utilisateur> Changement;
+
+            if (UtilCorrespondantAuNomUtil == null)
+            {
+                UtilConnecte = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilId == Util.UtilId);
+
+                if (UtilConnecte != null)
+                {
+                    UtilConnecte.UtilUserName = Util.UtilUserName;
+                    _maBd.Utilisateur.Attach(UtilConnecte);
+                    Changement = _maBd.Entry(UtilConnecte);
+                    Changement.Property(e => e.UtilUserName).IsModified = true;
+                    _maBd.SaveChanges();
+                    ResultatOk = new OkObjectResult("Fait");
+                }
+                else
+                    ResultatOk = new OkObjectResult("Erreur");
+            }
+            else
+                ResultatOk = new OkObjectResult("Doublon");
+
+            return ResultatOk;
         }
     }
 }

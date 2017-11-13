@@ -6,12 +6,15 @@ import { Trace } from './trace';
 import { Categorie } from './categorie';
 import { Critere } from './critere';
 import { TraceDTO } from './tracedto';
+import {HistoriqueDTO} from './Historique';
 
 //Importation des services 
 import { TraceService } from './trace.service';
 import { CategorieService } from './categorie.service';
 import { CritereService } from './critere.service';
 import { AuthentificationService } from "./authentification.service";
+import { HistoriqueService } from "./Historique.service";
+
 
 declare var jBox:any;
 
@@ -37,11 +40,14 @@ export class PageCatComponent implements OnInit
     m_EnvoieTrace: TraceDTO = null;
     NomCateg: String;
     NomCrit: String;
+    infostelechargement: HistoriqueDTO;
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, private router:Router,private authentificationService: AuthentificationService)
+
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, 
+    private router:Router,private authentificationService: AuthentificationService, private historiqueService: HistoriqueService)
     {
         this.NomCateg = "Catégories";
-        this.NomCrit = "Critères"
+        this.NomCrit = "Critères";
     }
 
     //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
@@ -58,6 +64,7 @@ export class PageCatComponent implements OnInit
        }
 
     }
+
 
     private AffichageCat(param: any) 
     {
@@ -91,7 +98,6 @@ export class PageCatComponent implements OnInit
     private AffichageTrace(param: any) 
     {
         this.m_TabTrace = (param.json() as Trace[]);
-        this.UploadJBOX(); 
     }
 
     OnClickListeDeroulanteCritere()
@@ -126,7 +132,24 @@ export class PageCatComponent implements OnInit
       
     }
     
-    
+    onClickImg(url: string)
+    {
+        window.open(url);
+    }
+
+    ValidationPage() : boolean
+    {
+      let CheminLong: string = this.router.url.toString();
+      let Page: string[];
+
+      Page = CheminLong.split('/', 2);
+     
+      if(Page[1] == 'neurologie')
+      {
+        return false;
+      }
+      return true;
+    }
     //Action lors de l'appui sur le bouton recherche
     OnClickRechercher()
     {
@@ -141,18 +164,20 @@ export class PageCatComponent implements OnInit
         RequeteId = RequeteId.substr(0,RequeteId.length - 1);
 
         this.traceService.getTraces(RequeteId).subscribe(trac => this.AffichageTrace(trac));
-      
+    }
+
+    onClickTelecharger(id: number)
+    {       
+        this.infostelechargement=new HistoriqueDTO(id,this.historiqueService.IdUsager);
+        
+        console.log(this.infostelechargement);
+
+        this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(Reponse=> this.historiqueService.ObtenirHistorique());
+        
+
     }
 
 
-    UploadJBOX()
-    {
-       
-        for (var i = 0; i < this.m_TabTrace.length; i++) 
-        { 
-            new jBox('Image');
-        } 
-    }
     /************************************************************** */
     ValidationUtil() : boolean
     {

@@ -14,5 +14,8 @@ namespace SqueletteImplantation.DbEntities.Models
         public Trace trace { get; set; }
 
         public Utilisateur utilisateur { get; set; }
+
+
+        public DateTime DateTelechargement { get; set; }
     }
 }

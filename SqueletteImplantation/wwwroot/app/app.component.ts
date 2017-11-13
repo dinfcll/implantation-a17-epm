@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from "./authentification.service";
+import { HistoriqueService } from "./Historique.service";
+
 
 @Component({
   selector: 'app-root',
@@ -10,13 +12,16 @@ import { AuthentificationService } from "./authentification.service";
 
 export class AppComponent 
 {
+
   private IDIntervaleActivite : number;
   private IDVerification : number;
   private TempsDeVerifierActivite : boolean = false;
 
   constructor (
     private router: Router,
-    private authentificationService: AuthentificationService){  }
+    private authentificationService: AuthentificationService,
+    private historiqueService:HistoriqueService){  }
+
     
   public UpdateAuthentificationPageIndex(): void {
     localStorage.removeItem('ConnectedUser');
@@ -31,6 +36,8 @@ export class AppComponent
   public ChoixDomaine(): void {
     this.authentificationService.DomaineChange();
   }
+
+
 
   Deconnexion(Raison : Number){
     this.authentificationService.logout();
@@ -77,6 +84,7 @@ export class AppComponent
                   this.router.navigateByUrl('GestionUtilisateur');
                 }
   }
+
 
   DetectionPage(): string // Pour savoir si on est dans la catégorie cardio ou neuro
   {
@@ -138,3 +146,4 @@ export class AppComponent
     }
   }
 }
+

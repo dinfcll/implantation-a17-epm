@@ -8,20 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var Historique_1 = require("./Historique");
 //Importation des services 
 var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
 var critere_service_1 = require("./critere.service");
 var authentification_service_1 = require("./authentification.service");
+var Historique_service_1 = require("./Historique.service");
 var PageCatComponent = (function () {
-    function PageCatComponent(traceService, catService, critService, router, authentificationService) {
+    function PageCatComponent(traceService, catService, critService, router, authentificationService, historiqueService) {
         this.traceService = traceService;
         this.catService = catService;
         this.critService = critService;
         this.router = router;
         this.authentificationService = authentificationService;
+        this.historiqueService = historiqueService;
         this.m_TabRecherche = [];
         this.m_EnvoieTrace = null;
         this.NomCateg = "Catégories";
@@ -58,7 +62,10 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();
+<<<<<<< HEAD
         this.UploadJBOX();
+=======
+>>>>>>> 96f6a7f65fa56f3e5f5ac396fd3d0a7afe95be54
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
@@ -82,6 +89,18 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.OnClickSupprimer = function (crit) {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit), 1);
     };
+    PageCatComponent.prototype.onClickImg = function (url) {
+        window.open(url);
+    };
+    PageCatComponent.prototype.ValidationPage = function () {
+        var CheminLong = this.router.url.toString();
+        var Page;
+        Page = CheminLong.split('/', 2);
+        if (Page[1] == 'neurologie') {
+            return false;
+        }
+        return true;
+    };
     //Action lors de l'appui sur le bouton recherche
     PageCatComponent.prototype.OnClickRechercher = function () {
         var _this = this;
@@ -93,6 +112,12 @@ var PageCatComponent = (function () {
         }
         RequeteId = RequeteId.substr(0, RequeteId.length - 1);
         this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
+    };
+    PageCatComponent.prototype.onClickTelecharger = function (id) {
+        var _this = this;
+        this.infostelechargement = new Historique_1.HistoriqueDTO(id, this.historiqueService.IdUsager);
+        console.log(this.infostelechargement);
+        this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(function (Reponse) { return _this.historiqueService.ObtenirHistorique(); });
     };
     PageCatComponent.prototype.UploadJBOX = function () {
         for (var i = 0; i < this.m_TabTrace.length; i++) {
@@ -135,8 +160,11 @@ PageCatComponent = __decorate([
         templateUrl: 'app/html/page-cat.component.html',
         styleUrls: ['app/css/page-cat.component.css'],
         providers: [trace_service_1.TraceService, critere_service_1.CritereService, categorie_service_1.CategorieService]
-    }),
-    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService, router_1.Router, authentification_service_1.AuthentificationService])
+    })
+    //À compléter
+    ,
+    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService,
+        router_1.Router, authentification_service_1.AuthentificationService, Historique_service_1.HistoriqueService])
 ], PageCatComponent);
 exports.PageCatComponent = PageCatComponent;
 //# sourceMappingURL=page-cat.component.js.map

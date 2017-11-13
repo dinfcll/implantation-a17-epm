@@ -9,6 +9,7 @@ namespace SqueletteImplantation.DbEntities.Mappers
         {
             entityBuilder.Property(rtu => rtu.TracId).IsRequired();
             entityBuilder.Property(rtu => rtu.UtilId).IsRequired();
+            entityBuilder.Property(rtu => rtu.DateTelechargement).IsRequired();
         }
     }
 }
