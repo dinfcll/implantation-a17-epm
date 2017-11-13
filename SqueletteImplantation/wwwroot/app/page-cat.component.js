@@ -44,7 +44,12 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageCat = function (param) {
         this.m_TabCat = param.json();
         if (this.m_TabCat.length < 8) {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
+            if (this.m_TabCat.length > 1) {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
+            }
+            else {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
+            }
         }
         else {
             document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");
@@ -53,7 +58,12 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageCrit = function (param) {
         this.m_TabCrit = param.json();
         if (this.m_TabCrit.length < 8) {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            if (this.m_TabCrit.length > 1) {
+                document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            }
+            else {
+                document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
+            }
         }
         else {
             document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");

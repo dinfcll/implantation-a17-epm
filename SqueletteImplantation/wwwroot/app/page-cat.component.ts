@@ -70,7 +70,15 @@ export class PageCatComponent implements OnInit
 
         if(this.m_TabCat.length < 8)
         {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());  
+            if(this.m_TabCat.length > 1)
+            {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString()); 
+            }
+            else
+            {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
+            }
+             
         }
         else
         {
@@ -84,7 +92,15 @@ export class PageCatComponent implements OnInit
 
         if(this.m_TabCrit.length < 8)
         {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            if(this.m_TabCrit.length > 1)
+            {
+              document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            }
+            else
+            {
+                 document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
+            }
+        
         }
         else
         {
