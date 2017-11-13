@@ -98,8 +98,8 @@ export class AjoutSuppComponent
         }
     }
 
-    private AffichageCrit(param: any)
-     {
+    private AffichageCrit(param: any) 
+    {
         this.m_TabCrit = (param.json() as Critere[]);
         this.ListeCrit = "";
 
@@ -107,16 +107,24 @@ export class AjoutSuppComponent
         {
             this.ListeCrit += "\n\r" + this.m_TabCrit[i].critNom + ", " ;
         }
-        
 
-        if(this.m_TabCrit.length < 8) //ICI
+        if(this.m_TabCrit.length < 8)
         {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            if(this.m_TabCrit.length > 1)
+            {
+              document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            }
+            else
+            {
+                 document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
+            }
+        
         }
         else
         {
             document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
         }
+
     }
 
     OnClickListeDeroulanteCritere()
