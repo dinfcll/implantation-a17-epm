@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
 import { UtilisateurService } from './utilisateur.service';
+import { AuthentificationService } from "./authentification.service";
 
 declare var jBox: any;
 
@@ -21,13 +22,14 @@ export class ModifProfilComponent
     private MdpNouv: string;
     private MdpConf: string;
     
-    constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService){
+    constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService, private authentificationservice: AuthentificationService){
         this.NomUtilNouv = "";
         this.NomUtilConf = "";
         this.EmailNouv = "";
         this.EmailConf = "";
         this.MdpNouv = "";
         this.MdpConf = "";
+        this.authentificationservice.InitDomaine();
     }
 
     private ngOnInit()
