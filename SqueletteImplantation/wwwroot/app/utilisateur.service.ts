@@ -39,4 +39,14 @@ export class UtilisateurService {
     {
 
     }
+
+    public CreationUtil(nouveauutilisateur: Utilisateur)
+    {
+        this.baseUrl = "api/utilisateur/creationutilisateur";
+        let headers = new Headers();
+        headers.append('Content-type', 'application/json');
+        
+        console.log(nouveauutilisateur);
+        return this.http.post(this.baseUrl, nouveauutilisateur);
+    }
 }

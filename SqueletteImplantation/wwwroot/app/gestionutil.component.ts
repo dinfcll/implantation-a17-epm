@@ -1,5 +1,8 @@
 import { Component } from "@angular/core";
 import { NgForm } from '@angular/forms';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Utilisateur } from "./utilisateur";
+import { UtilisateurService } from "./utilisateur.service";
 
 declare var jBox: any;
 
@@ -12,6 +15,8 @@ declare var jBox: any;
 export class GestionUtilComponent 
 {
     Affiche: boolean = false;
+
+    constructor(private http: Http, private utilisateurService: UtilisateurService) { }
 
     public InfoCreationUtil(): boolean
     {
@@ -32,14 +37,18 @@ export class GestionUtilComponent
     public AjoutUtilisateur(f: NgForm): void
     {
         console.log(f.value);
+        var Util: Utilisateur = new Utilisateur(null, f.value.prenom as string, f.value.nom as string, null, f.value.utilisateur as string, f.value.courriel as string, null);
+        
         var droitutil: number;
         if(f.value.admin === true)
         {
-            droitutil = 0;
+            Util.utiltype = 0;
         }
         else
         {
-            droitutil = 1;
+            Util.utiltype = 1;
         }
+        this.utilisateurService.CreationUtil(Util).subscribe(Reponse => {
+            console.log("XYZ" + Reponse)});
     }
 }

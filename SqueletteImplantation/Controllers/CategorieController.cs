@@ -75,7 +75,6 @@ namespace SqueletteImplantation.Controllers
         [Route("api/ajoutcat")]
         public IActionResult AddCategorie([FromBody]CategorieDTO catdto)
         {
-
             var cate = catdto.CreateCategorie();
             _maBd.Add(cate);
             _maBd.SaveChanges();

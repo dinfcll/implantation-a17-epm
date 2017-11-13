@@ -11,12 +11,12 @@
         </p>
         <p>
             <label>Courriel : </label>
-			<input type="text" [(ngModel)]="courriel" name="courriel" required>
+			<input type="email" [(ngModel)]="courriel" name="courriel" required>
             <label>Nom d'utilisateur : </label>
 			<input type="text" [(ngModel)]="utilisateur" name="utilisateur" required>
         </p>
         <p>
-            <label>Sélectionner pour droit administrateur : </label>
+            <label>Sélectionner pour donner les droits administrateurs : </label>
 			<input type="checkbox" [(ngModel)]="admin" name="admin"/>
         </p>
             <button type="submit" id="btnAjoutUtilisateur">Créer</button>

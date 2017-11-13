@@ -81,7 +81,7 @@ var AppComponent = (function () {
         var _this = this;
         if (this.authentificationService.Connecte() === true) {
             if (this.IDVerification == null) {
-                this.IDVerification = window.setInterval(function () { return _this.VerificationActivite(); }, 3000);
+                this.IDVerification = window.setInterval(function () { return _this.VerificationActivite(); }, 30000);
             }
             else {
                 this.TempsDeVerifierActivite = true;

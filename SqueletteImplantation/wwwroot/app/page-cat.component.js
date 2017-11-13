@@ -62,10 +62,6 @@ var PageCatComponent = (function () {
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();
-<<<<<<< HEAD
-        this.UploadJBOX();
-=======
->>>>>>> 96f6a7f65fa56f3e5f5ac396fd3d0a7afe95be54
     };
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
@@ -118,11 +114,6 @@ var PageCatComponent = (function () {
         this.infostelechargement = new Historique_1.HistoriqueDTO(id, this.historiqueService.IdUsager);
         console.log(this.infostelechargement);
         this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(function (Reponse) { return _this.historiqueService.ObtenirHistorique(); });
-    };
-    PageCatComponent.prototype.UploadJBOX = function () {
-        for (var i = 0; i < this.m_TabTrace.length; i++) {
-            new jBox('Image');
-        }
     };
     /************************************************************** */
     PageCatComponent.prototype.ValidationUtil = function () {

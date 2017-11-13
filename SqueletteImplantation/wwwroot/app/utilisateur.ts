@@ -1,5 +1,5 @@
 export class Utilisateur
 {
-    constructor(public UtilId: number, public UtilPren: string, public UtilNom: string, public UtilPWD: string, 
-        public UtilUserName: string, public UtilEmail: string, public UtilType: number){}
+    constructor(public utilid: number, public utilpren: string, public utilnom: string, public utilpwd: string, 
+        public utilusername: string, public utilemail: string, public utiltype: number){}
 }

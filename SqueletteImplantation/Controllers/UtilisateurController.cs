@@ -106,5 +106,22 @@ namespace SqueletteImplantation.Controllers
 
             return ResultatOk;
         }
+
+        [HttpPost]
+        [Route("api/utilisateur/CreationUtilisateur")]
+        public IActionResult CreationNouvelUtilisateur([FromBody]Utilisateur nouveauutilisateur)
+        {
+            Utilisateur VerificationUtilExistant = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilUserName == nouveauutilisateur.UtilUserName);
+
+            if (VerificationUtilExistant == null)
+            {
+                String PWD = GetRandomString(8);
+                VerificationUtilExistant.UtilPWD = Hash.GetHash(PWD);
+                _maBd.Add(VerificationUtilExistant);
+                _maBd.SaveChanges();
+                return new OkObjectResult(true);
+            }
+            return new OkObjectResult(false);
+        }
     }
 }

@@ -24,11 +24,8 @@ var ajout_cat_crit_component_1 = require("./ajout-cat-crit.component");
 var pagemdp_component_1 = require("./pagemdp.component");
 var page_modif_profil_component_1 = require("./page-modif-profil.component");
 var utilisateur_service_1 = require("./utilisateur.service");
-<<<<<<< HEAD
 var gestionutil_component_1 = require("./gestionutil.component");
-=======
 var Historique_service_1 = require("./Historique.service");
->>>>>>> 96f6a7f65fa56f3e5f5ac396fd3d0a7afe95be54
 var AppModule = (function () {
     function AppModule() {
     }
