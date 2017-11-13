@@ -31,14 +31,14 @@
 				<td id="Menu">
 					<div id="divMenuHaut">
                         <div *ngIf="this.authentificationService.Admin() && this.authentificationService.Domaine()" id="divAdmin">
-        					<h3>Outils administrateur</h3>
+        					<h3 style = "text-decoration:underline;">Outils administrateur</h3>
 							<ul>
 								<li (click)="Reroutage(0)">Page d'ajout de tracés</li>
 								<li (click)="Reroutage(1)">Page d'ajout de catégories et de critères</li>
 							</ul> 
 						</div>
 						<div *ngIf="this.authentificationService.Connecte()" id="divParametre">
-							<h3>Paramètres</h3>
+							<h3 style = "text-decoration:underline;">Paramètres</h3>
 							<ul>
 								<li (click)="Reroutage(3)">Modification du profil utilisateur</li>
 							</ul>
