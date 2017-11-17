@@ -14,26 +14,19 @@ declare var jBox: any;
 
 export class GestionUtilComponent 
 {
-    Affiche: boolean = false;
+    Affiche: boolean = true;
+    m_TabUtil: Utilisateur[];
 
-    constructor(private http: Http, private utilisateurService: UtilisateurService) { }
+    constructor(private http: Http, private utilisateurService: UtilisateurService) 
+    { 
+        this.utilisateurService.getUtils().subscribe(retour => this.AfficheUtils(retour));
+    }
 
     public InfoCreationUtil(): boolean
     {
         return this.Affiche;
     }
-    public AfficheAjoutUtilisateur(): void
-    {
-        
-        if (this.Affiche === false)
-        {
-            this.Affiche = true;
-        }
-        else
-        {
-            this.Affiche = false;
-        }
-    }
+   
     public AjoutUtilisateur(f: NgForm): void
     {
         console.log(f.value);
@@ -51,4 +44,11 @@ export class GestionUtilComponent
         this.utilisateurService.CreationUtil(Util).subscribe(Reponse => {
             console.log("XYZ" + Reponse)});
     }
+
+    public AfficheUtils(param: any)
+    {
+        console.log(param);
+        this.m_TabUtil = (param.json() as Utilisateur[]);
+    }
+
 }

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections;
 using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.Models;
@@ -122,6 +123,14 @@ namespace SqueletteImplantation.Controllers
                 return new OkObjectResult(true);
             }
             return new OkObjectResult(false);
+        }
+
+
+        [HttpGet]
+        [Route("api/utilisateur/liste")]
+        public IEnumerable GetListeUtilisateur()
+        {
+            return _maBd.Utilisateur.ToList();
         }
     }
 }

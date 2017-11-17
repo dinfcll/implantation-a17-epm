@@ -40,6 +40,12 @@ export class UtilisateurService {
 
     }
 
+    public getUtils()
+    {
+        let URL = "api/utilisateur/liste/";
+        return this.http.get(URL);
+    }
+
     public CreationUtil(nouveauutilisateur: Utilisateur)
     {
         this.baseUrl = "api/utilisateur/creationutilisateur";
