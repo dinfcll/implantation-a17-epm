@@ -202,8 +202,8 @@ img, a
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-    position: fixed;
 }
+
 select 
 {
     -webkit-appearance: none;
