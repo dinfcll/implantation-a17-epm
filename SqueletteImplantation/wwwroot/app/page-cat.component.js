@@ -125,6 +125,11 @@ var PageCatComponent = (function () {
         console.log(this.infostelechargement);
         this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(function (Reponse) { return _this.historiqueService.ObtenirHistorique(); });
     };
+    PageCatComponent.prototype.UploadJBOX = function () {
+        for (var i = 0; i < this.m_TabTrace.length; i++) {
+            new jBox('Image');
+        }
+    };
     /************************************************************** */
     PageCatComponent.prototype.ValidationUtil = function () {
         return this.authentificationService.Admin();
