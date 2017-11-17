@@ -47,6 +47,7 @@ export class UtilisateurService {
         headers.append('Content-type', 'application/json');
         
         console.log(nouveauutilisateur);
-        return this.http.post(this.baseUrl, nouveauutilisateur);
+        return this.http.post(this.baseUrl, JSON.stringify({ "utilpren": nouveauutilisateur.utilpren, "utilnom": nouveauutilisateur.utilnom,
+            "utilusername":nouveauutilisateur.utilusername, "utilemail":nouveauutilisateur.utilemail, "utiltype":nouveauutilisateur.utiltype }), { headers });
     }
 }
