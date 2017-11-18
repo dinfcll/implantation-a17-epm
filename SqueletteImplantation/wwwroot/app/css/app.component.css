@@ -23,25 +23,21 @@ body{
     background-repeat: no-repeat;
     margin:0px;
     padding:0px;
-    height:96%;
     border:none;
     overflow: hidden;
     
 }
 
-footer{
+#footer{
     position: fixed;
+    left: 0px;
+    bottom: 0px;
     width: 100vw;
-    height: 4%;
     background-color: black;
-    color: darkgray;
-    box-sizing: content-box;
-    padding-top: 0.5%;
-}
-
-footer span{
-    margin-left: 10%;
-    vertical-align: middle;
+    color: rgb(161, 161, 161);
+    text-align: center;
+    z-index: 1;
+    font-size: 0.8em;
 }
 
 
