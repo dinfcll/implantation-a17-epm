@@ -202,8 +202,14 @@ img, a
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+}
 
-	
+select 
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
 }
 
 

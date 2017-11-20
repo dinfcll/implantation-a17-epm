@@ -1,14 +1,4 @@
-#divAdmin, #divParametre{
-   
-    padding: 5px; 
-}
 
-
-
-ul, li {
-  list-style-type: none;
-   float:left;
-}
 
 :root{
 	--CouleurTheme: rgba(43, 47, 61, 0.71);
@@ -29,6 +19,8 @@ html,body{
     
 }
 
+
+
 .TableComplete{
     width: 100%;
     height: 100%;
@@ -41,57 +33,78 @@ html,body{
     color: white;
     position: relative;
     height: 80vh;
-    width: 12%;
-    text-align: center;
     padding: 0px;
+    display: block;
 }
+
 
 #Menu hr{
-    width:100%;
-    size:10;
+    width: 100%;
+    size: 10;
 	border-top: 1px solid #8c8b8b;
-    
-}
-#DivHistorique
-{
-    position:relative;
-    text-align: left;
-    margin: 1vh;   
 }
 
-.Historique a{
+#Menu h3{
+    position: relative;
+    float: left;
+}
+
+#Menu ul{
+    padding-left: 20px;
+    list-style-type: none;
+    float: left;
+    margin: 0px;
+}
+
+#Menu li {
+    list-style-type: none;
+    float: left;
+    margin: 0px;
+}
+
+
+#divParametre{
+   position: relative;
+   display: inline-block;
+   text-align: left;
+   margin: 5px;
+}
+
+#divAdmin{
+   position: relative;
+   padding: 5px;
+   top: 3px;
+   display: inline-block;
+   text-align: left;
+
+}
+
+#divHistorique
+{
+   position: relative;
+   padding: 5px;
+   top: 3px;
+   display: inline-block;
+   text-align: left;
+}
+
+
+
+#lientelechargement{
     background-color: rgba(125, 141, 163, 0.71);
 	margin-bottom: 10px;
+    margin-right: 10px;
 	border-radius: 3px;
 	padding: 5px;
 	color: white;
-	display: block;
-	position:relative;
-    
-}
-
-#lientelechargement{
-  color: white;
-}
-
-#lientelechargement{
-	float: right;
-	margin-right: 25px;
-}
-
-
-
-
-
-#divMenuHaut{
-    position: absolute;
-    top: 3px;
-    text-align: left;
+	position: relative;
+    float: left;
     width: 100%;
-    display: inline-block;
-    transform: translate(-50%);
-    
+    box-sizing: border-box;
 }
+
+
+
 #divAdmin li, #divParametre li
 {
     margin-bottom: 10px;
@@ -103,6 +116,7 @@ html,body{
     /* ...and now for the proper property */
      transition:.5s;
 }
+
 #divAdmin li:hover, #divParametre li:hover {
    
     opacity: 70;
@@ -110,21 +124,8 @@ html,body{
     text-decoration: underline;
 }
 
-#divMenuBas{
-    position: absolute;
-    display: inline-block;
-    text-align: left;
-    transform: translate(-50%);
-   
-    
-}
 
-#ElementDansMenu{
-    list-style: none;
-    font-size: 18px;
-    font-weight: 600;
-    text-align: left;
-}
+
 
 #Navigation{
     height: 6vh;
@@ -151,6 +152,7 @@ html,body{
     overflow-y: auto;
     overflow-x: hidden;
 }
+
 #btnAccueil
 {
     border-radius:5px;	
@@ -168,6 +170,7 @@ html,body{
 	background-position: right;
     margin-right: 10px;;
 }
+
 #btnDeconnexion{
     border-radius:5px;	
 	border: none;
@@ -183,14 +186,17 @@ html,body{
 	background-repeat: no-repeat;
 	background-position: right;
     margin-right: 10px;;
-    }
+}
+
 #btnDeconnexion:hover, #btnAccueil:hover{
     background:linear-gradient(white 7%,var(--CouleurThemeHover));
 }
+
 #divDeconnexion{
 	display:inline-block;
 	text-align: right;	
 }
+
 #divAccueil{
 	display:inline-block;
 	text-align: left;	
