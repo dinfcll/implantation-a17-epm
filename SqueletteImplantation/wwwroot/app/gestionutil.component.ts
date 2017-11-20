@@ -51,4 +51,18 @@ export class GestionUtilComponent
         this.m_TabUtil = (param.json() as Utilisateur[]);
     }
 
+    public onClickDeleteUtil(id: number)
+    {
+        if(confirm("Voulez-vous vraiment supprimer définitivement l'utilisateur' #" + id  + "?"))
+         {
+            this.utilisateurService.deleteUtil(id).subscribe(reponse => 
+                {
+                    this.utilisateurService.getUtils().subscribe(retour => this.AfficheUtils(retour));
+                });
+            
+         }
+         
+
+    }
+
 }

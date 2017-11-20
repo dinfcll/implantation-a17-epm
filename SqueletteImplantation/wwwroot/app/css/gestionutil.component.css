@@ -1,19 +1,30 @@
 .FormulaireConnexion{
 	position: relative;
 	text-align: center;
-   
-   display: flex;
-   align-items: center
+    float:left;
+    align-items: center
 }
 
+#wrapper {
+  display: inline-block; 
+  width: 90%;
+  
+  }
 .ListeUtil
 {
-    
-    margin-right:30%;
+    overflow-y: auto;
+    display: inline-block;
+    margin-left:10%;
+   
 }
 
 p {
     display: flex;
+}
+
+.FormulaireConnexion {
+    margin-left: 100px;
+    display: inline-block;
 }
 
 .FormulaireConnexion div input {
@@ -31,13 +42,13 @@ p {
 
 .Util{
 	background-color: rgba(125, 141, 163, 0.71);
-	margin: 20px;
+	margin: 10px;
 	border-radius: 5px;
 	padding: 10px;
 	color: white;
 	display: block;
 	display: inline-block; 
-	width:96%;
+
 }
 
 
@@ -84,7 +95,6 @@ input:focus {
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border-radius: 50px;
-
   margin:2%;
  -webkit-border-radius: 8px;
  -moz-border-radius: 8px;
@@ -93,9 +103,33 @@ input:focus {
     
 }
 
+#btnModifierUtilisateur{
+    background-color: rgba(125, 141, 163, 0.71);
+	border-radius: 5px;
+	color: white;
+	display: block;
+    padding:5px;
+	float:left;
+    margin-top:5px;
+	cursor: pointer;
+    
+}
+
+#btnSupprimerUtilisateur{
+	background-color: rgba(125, 141, 163, 0.71);
+	border-radius: 5px;
+    margin-top:5px;
+	color: white;
+	display: block;
+	float:right;
+	cursor: pointer;
+
+}
+
 #legend {
     text-decoration: underline;
-    margin-top:20px;
+    margin-top:-20px;
+    position: absolute;
 	display: block;
 	font:80%/1 sans-serif;
 	font-weight:bold;
@@ -108,3 +142,6 @@ input:focus {
 	border-image: initial;
 	
 }
+
+
+

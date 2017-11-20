@@ -46,6 +46,12 @@ export class UtilisateurService {
         return this.http.get(URL);
     }
 
+    public deleteUtil(id: number)
+    {
+        const url = `api/delutil/${id}`;
+        return this.http.delete(url);
+    }
+
     public CreationUtil(nouveauutilisateur: Utilisateur)
     {
         this.baseUrl = "api/utilisateur/creationutilisateur";

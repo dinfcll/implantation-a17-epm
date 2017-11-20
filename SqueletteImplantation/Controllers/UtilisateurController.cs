@@ -132,5 +132,25 @@ namespace SqueletteImplantation.Controllers
         {
             return _maBd.Utilisateur.ToList();
         }
+
+
+        
+        [HttpDelete]
+        [Route("api/delutil/{id}")]
+        public IActionResult DeleteUtilSelonId(int id)
+        {
+            var utilisateur = _maBd.Utilisateur.FirstOrDefault(ca => ca.UtilId== id);
+
+            if (utilisateur == null)
+            {
+                return NotFound();
+            }
+
+            _maBd.Remove(utilisateur);
+            _maBd.SaveChanges();
+
+            return new OkResult();
+        }
+
     }
 }

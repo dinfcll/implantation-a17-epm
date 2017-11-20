@@ -1,4 +1,4 @@
-
+<div id="wrapper">
 <div class="FormulaireConnexion">
 <form #f="ngForm" (ngSubmit)="AjoutUtilisateur(f)" novalidate>
     <div *ngIf="InfoCreationUtil()" id="divAdmin">
@@ -17,7 +17,7 @@
 			<input type="text" [(ngModel)]="utilisateur" name="utilisateur" required> </p>
         
         
-            <p><label>Sélectionner pour donner les droits administrateurs : </label>
+            <p><label>Droits d'administrateurs ? : </label>
 			<input type="checkbox" [(ngModel)]="admin" name="admin"/> </p>
         
             <button type="submit" id="btnAjoutUtilisateur">Créer</button>
@@ -29,7 +29,7 @@
 </div>
 
 <div class="ListeUtil">
- <fieldset>
+ <fieldset id ="field">
         <legend id = "legend">Liste des utilisateurs</legend>
         <div *ngFor="let util of m_TabUtil">
 						<section class="Util">
@@ -39,10 +39,13 @@
                             Prénom: {{util.utilPren}}
                             &nbsp;&nbsp;&nbsp;
 							
-							
-							<button id="btnSupprimerutil"  (click)="onClickDeleteUtil(util.tracId)"><img src="app/images/delete.gif" alt=""/>Utilisateur #{{util.utilId}}</button>	
+							<div id="wrapper">
+							<button id="btnSupprimerUtilisateur"  (click)="onClickDeleteUtil(util.utilId)"><img src="app/images/delete.gif" alt=""/>Utilisateur #{{util.utilId}}</button>
+                            <button id="btnModifierUtilisateur"  (click)="onClickModifUtil(util.utilId)">Modifier </button>	
+                            </div>
 						</section>
 						
 		</div>
 </fieldset>
+</div>
 </div>
