@@ -125,7 +125,7 @@ background-color: rgba(125, 141, 163, 0.71);
 	display: none;
 	position: absolute;
 	left: 27vh;
-	width: 29vh;
+	width: 100vh;
 	top: 0vh;
 	z-index: 1;
 }
@@ -150,6 +150,7 @@ background-color: rgba(125, 141, 163, 0.71);
 	cursor: pointer;
 	background-color: var(--CouleurTheme);
 }
+
 .Critere:hover{
 	cursor: pointer;
 	background-color:  rgba(125, 141, 163, 0.71);

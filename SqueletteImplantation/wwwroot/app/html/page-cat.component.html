@@ -5,12 +5,12 @@
 				<td id="ChoixCategorie"> 
 					<section> 	
 						<div class="Categorie" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
-							<section class="ListeCritere">
-								<div class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
-									<img src="app/images/add.gif" alt="non" />
-									{{critere.critNom}}	
-								</div>
-							</section>
+							 <div class="ListeCritere"> 	
+									<span class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
+										<img src="app/images/add.gif" alt="non" />
+										{{critere.critNom}}	
+									</span>
+							 </div>
 							{{categ.catNom}}					 
 						</div>	
 					</section>
