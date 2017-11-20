@@ -98,17 +98,17 @@ var AppComponent = (function () {
             this.DetectionActivite();
         }
     };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'app-root',
+            templateUrl: 'app/html/app.component.html',
+            styleUrls: ['app/css/app.component.css']
+        }),
+        __metadata("design:paramtypes", [router_1.Router,
+            authentification_service_1.AuthentificationService,
+            Historique_service_1.HistoriqueService])
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'app-root',
-        templateUrl: 'app/html/app.component.html',
-        styleUrls: ['app/css/app.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router,
-        authentification_service_1.AuthentificationService,
-        Historique_service_1.HistoriqueService])
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
