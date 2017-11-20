@@ -5,18 +5,39 @@
 	--CouleurThemeHover: #464d63;
 }
 
-html,body{
+
+html{
+    margin:0px;
+    padding:0px;
+    height:100vh;
+    border:none;
+    overflow: hidden;
+}
+
+
+body{
     background-image:url('app/images/font8.jpg');
     background-size: 100% 100%;
     background-position:center;
     background-attachment:fixed;
     background-repeat: no-repeat;
-    margin:0;
-    padding:0;
-    height:100%;
+    margin:0px;
+    padding:0px;
     border:none;
     overflow: hidden;
     
+}
+
+#footer{
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100vw;
+    background-color: black;
+    color: rgb(161, 161, 161);
+    text-align: center;
+    z-index: 1;
+    font-size: 0.8em;
 }
 
 
