@@ -116,8 +116,20 @@ namespace SqueletteImplantation.Controllers
             if (VerificationUtilExistant == null)
             {
                 String PWD = GetRandomString(8);
-                VerificationUtilExistant.UtilPWD = Hash.GetHash(PWD);
-                _maBd.Add(VerificationUtilExistant);
+                nouveauutilisateur.UtilPWD = Hash.GetHash(PWD);
+                courriel.setDestination(nouveauutilisateur.UtilEmail);
+                courriel.setSender("electrophysologiemedicale@gmail.com", "noreplyEPM");
+                courriel.SetHTMLMessage(
+                    "<h1>Bonjour " + nouveauutilisateur.UtilUserName +
+                    "</h1><br>Bienvenue sur le site d'électrophysiologie médicale<br>" + 
+                    "<br>Vous pouvez vous connectez à l'adresse suivante : <a href=epm.dinf.cll.qc.ca>epm.dinf.cll.qc.ca</a><br><br>" +
+                    "Votre nom d'utilisateur est : <b>" + nouveauutilisateur.UtilUserName + "</b>" +
+                    "<br>Votre mot de passe est : <b>" + PWD + 
+                    "</b><br><p>Nous vous recommandons de le changer à l'aide de la page de modification du profil lors de votre première connexion.<p>" +
+                    "<br><h2>Merci et bonne journée.");
+                courriel.setSubject("Nouveau compte utilisateur");
+                courriel.sendMessage();
+                _maBd.Add(nouveauutilisateur);
                 _maBd.SaveChanges();
                 return new OkObjectResult(true);
             }
