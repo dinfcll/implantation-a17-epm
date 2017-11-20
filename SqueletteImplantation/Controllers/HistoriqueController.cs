@@ -57,6 +57,7 @@ namespace SqueletteImplantation.Controllers
 
                 _maBd.Entry(Entree[0]).CurrentValues.SetValues(EntreeHistorique);
                 _maBd.SaveChanges();
+                SupprEntreesUserSiPlusDe5(EntreeHistorique.UtilId);
             }
 
 

@@ -30,11 +30,11 @@ var TraceService = (function () {
     TraceService.prototype.addTrace = function (trace) {
         return this.http.post("/api/ajouttrace", trace);
     };
-    TraceService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], TraceService);
     return TraceService;
 }());
+TraceService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], TraceService);
 exports.TraceService = TraceService;
 //# sourceMappingURL=trace.service.js.map

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from "./authentification.service";
 import { HistoriqueService } from "./Historique.service";
+import {HistoriqueDTO} from './Historique';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class AppComponent
   private IDIntervaleActivite : number;
   private IDVerification : number;
   private TempsDeVerifierActivite : boolean = false;
+  private infostelechargement: HistoriqueDTO;
 
   constructor (
     private router: Router,
@@ -141,5 +143,14 @@ export class AppComponent
       this.DetectionActivite();
     }
   }
+
+  onClickTelecharger(id: number)
+    {       
+        this.infostelechargement=new HistoriqueDTO(id,this.historiqueService.IdUsager);
+        
+        console.log(this.infostelechargement);
+
+        this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(Reponse=> this.historiqueService.ObtenirHistorique());
+    }
 }
 
