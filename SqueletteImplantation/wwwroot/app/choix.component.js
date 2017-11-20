@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
@@ -32,15 +31,15 @@ var ChoixComponent = (function () {
         this.authentificationservice.DomaineChange();
         this.router.navigateByUrl('/cardiologie');
     };
+    ChoixComponent = __decorate([
+        core_1.Component({
+            selector: 'my-choix',
+            templateUrl: 'app/html/choix.component.html',
+            styleUrls: ['app/css/choix.component.css']
+        }),
+        __metadata("design:paramtypes", [router_1.Router, app_component_1.AppComponent, authentification_service_1.AuthentificationService])
+    ], ChoixComponent);
     return ChoixComponent;
 }());
-ChoixComponent = __decorate([
-    core_1.Component({
-        selector: 'my-choix',
-        templateUrl: 'app/html/choix.component.html',
-        styleUrls: ['app/css/choix.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router, app_component_1.AppComponent, authentification_service_1.AuthentificationService])
-], ChoixComponent);
 exports.ChoixComponent = ChoixComponent;
 //# sourceMappingURL=choix.component.js.map

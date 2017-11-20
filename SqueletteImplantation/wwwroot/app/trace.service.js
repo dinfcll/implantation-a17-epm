@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/toPromise"); // Pour accéder à la méthode .toPromise()
@@ -31,11 +30,11 @@ var TraceService = (function () {
     TraceService.prototype.addTrace = function (trace) {
         return this.http.post("/api/ajouttrace", trace);
     };
+    TraceService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], TraceService);
     return TraceService;
 }());
-TraceService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], TraceService);
 exports.TraceService = TraceService;
 //# sourceMappingURL=trace.service.js.map

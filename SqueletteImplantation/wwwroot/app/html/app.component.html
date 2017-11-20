@@ -29,31 +29,32 @@
 			</tr>
 			<tr>
 				<td id="Menu">
-					<div id="divMenuHaut">
-                        <div *ngIf="this.authentificationService.Admin() && this.authentificationService.Domaine()" id="divAdmin">
-        					<h3 style = "text-decoration:underline;">Outils administrateur</h3>
-							<ul>
-								<li (click)="Reroutage(0)">Page d'ajout de tracés</li>
-								<li (click)="Reroutage(1)">Page d'ajout de catégories et de critères</li>
-							</ul> 
-						</div>
-						<div *ngIf="this.authentificationService.Connecte()" id="divParametre">
-							<h3 style = "text-decoration:underline;">Paramètres</h3>
-							<ul>
-								<li (click)="Reroutage(3)">Modification du profil utilisateur</li>
-							</ul>
-						</div>
-				    </div>
-					<hr>
-					<div *ngIf="this.authentificationService.Connecte()" id="DivHistorique">
-                        	<h3>Historique</h3>
-
-							<section class="Historique" *ngFor="let trace of this.historiqueService.tabHistoriqueTrace">	
-							    <a id="lientelechargement" href="{{trace.tracUrl}}" download ><img src="app/images/download.gif" alt=""/>{{ trace.traceNom}}</a>
-							</section>
+					<div *ngIf="this.authentificationService.Connecte()" id="divParametre">
+						<h3>Paramètres</h3>
+						<ul>
+							<li (click)="Reroutage(3)">Modification du profil utilisateur</li>
+						</ul>
+					</div>
+                    <div *ngIf="this.authentificationService.Admin() && this.authentificationService.Domaine()" id="divAdmin">
+        				<h3>Outils administrateur</h3>
+						<ul>
+							<li (click)="Reroutage(0)">Page d'ajout de tracés</li>
+							<li (click)="Reroutage(1)">Page d'ajout de catégories et de critères</li>
+						</ul> 
+					</div>
+					<hr *ngIf="this.authentificationService.Connecte()">
+					<div *ngIf="this.authentificationService.Connecte()" id="divHistorique">
+                        <h3>Historique</h3>
+						<ul>
+							<a *ngFor="let trace of this.historiqueService.tabHistoriqueTrace" id="lientelechargement" href="{{trace.tracUrl}}" download ><img src="app/images/download.gif" alt=""/>{{ trace.traceNom}}</a>
+						</ul>
 					</div>
 				</td>
 			</tr>
 		</table>
+		<div id="footer">
+			<p>Copyright © 2017 Site web développé par Alex Lacasse, Étienne Savard, Frédérick Picard-Burg, Marc-Antoine Chevalier et Thinhinane Alliche pour le département d'électrophysiologie médicale du cégep de Lévis-Lauzon<br>
+			favicon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
+		</div>
 	</body>
 </html>
