@@ -137,7 +137,11 @@ img, a
 	width:96%;
 }
 
-
+#lientelechargement{
+	
+	float:right;
+	width:10%;
+}
 
 
 
@@ -202,15 +206,10 @@ img, a
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-}
 
-select 
-{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    text-indent: 1px;
-    text-overflow: '';
+	
 }
 
 
 /*-------------------------Fin css pour liste déroulantes---------------------------*/
+
