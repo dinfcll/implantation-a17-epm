@@ -39,16 +39,6 @@ export class ModifProfilComponent
         document.getElementById("SauvegarderMdp").style.backgroundColor = "lightgray";
     }
 
-    private RestrictionCharactere(event : any) : void
-    {
-        let Touche = event.keyCode;
-
-        if(!(Touche >= 64 && Touche <= 90 || Touche >= 97 && Touche <= 122 || Touche >= 48 && Touche <= 57 || Touche === 8 || Touche === 95 || Touche === 127 || Touche === 46 || Touche === 45))
-        {
-            event.preventDefault();
-        }
-    }
-
     private ComparaisonChangementNomUtil() : void
     {
         let PartieAVerif;
