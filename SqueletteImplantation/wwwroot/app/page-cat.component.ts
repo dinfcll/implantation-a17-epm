@@ -189,8 +189,6 @@ export class PageCatComponent implements OnInit
         console.log(this.infostelechargement);
 
         this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(Reponse=> this.historiqueService.ObtenirHistorique());
-        
-
     }
 
 

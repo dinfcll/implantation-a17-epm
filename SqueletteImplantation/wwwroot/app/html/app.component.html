@@ -46,7 +46,7 @@
 					<div *ngIf="this.authentificationService.Connecte()" id="divHistorique">
                         <h3>Historique</h3>
 						<ul>
-							<a *ngFor="let trace of this.historiqueService.tabHistoriqueTrace" id="lientelechargement" href="{{trace.tracUrl}}" download ><img src="app/images/download.gif" alt=""/>{{ trace.traceNom}}</a>
+							<a *ngFor="let trace of this.historiqueService.tabHistoriqueTrace" id="lientelechargement" (click)="onClickTelecharger(trace.tracId)" ><img src="app/images/download.gif" alt=""/>{{ trace.traceNom}}</a>
 						</ul>
 					</div>
 				</td>
