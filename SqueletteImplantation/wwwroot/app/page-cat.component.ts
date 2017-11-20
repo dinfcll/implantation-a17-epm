@@ -148,7 +148,7 @@ export class PageCatComponent implements OnInit
       
     }
     
-    onClickImg(url: string)
+     onClickImg(url: string)
     {
         window.open(url);
     }
@@ -166,6 +166,7 @@ export class PageCatComponent implements OnInit
       }
       return true;
     }
+
     //Action lors de l'appui sur le bouton recherche
     OnClickRechercher()
     {
