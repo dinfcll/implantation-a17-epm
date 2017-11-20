@@ -125,11 +125,6 @@ var PageCatComponent = (function () {
         console.log(this.infostelechargement);
         this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(function (Reponse) { return _this.historiqueService.ObtenirHistorique(); });
     };
-    PageCatComponent.prototype.UploadJBOX = function () {
-        for (var i = 0; i < this.m_TabTrace.length; i++) {
-            new jBox('Image');
-        }
-    };
     /************************************************************** */
     PageCatComponent.prototype.ValidationUtil = function () {
         return this.authentificationService.Admin();
@@ -158,19 +153,19 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageRepDel = function (param) {
         console.log(param);
     };
+    PageCatComponent = __decorate([
+        core_1.Component({
+            selector: 'page-cat',
+            templateUrl: 'app/html/page-cat.component.html',
+            styleUrls: ['app/css/page-cat.component.css'],
+            providers: [trace_service_1.TraceService, critere_service_1.CritereService, categorie_service_1.CategorieService]
+        })
+        //À compléter
+        ,
+        __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService,
+            router_1.Router, authentification_service_1.AuthentificationService, Historique_service_1.HistoriqueService])
+    ], PageCatComponent);
     return PageCatComponent;
 }());
-PageCatComponent = __decorate([
-    core_1.Component({
-        selector: 'page-cat',
-        templateUrl: 'app/html/page-cat.component.html',
-        styleUrls: ['app/css/page-cat.component.css'],
-        providers: [trace_service_1.TraceService, critere_service_1.CritereService, categorie_service_1.CategorieService]
-    })
-    //À compléter
-    ,
-    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService,
-        router_1.Router, authentification_service_1.AuthentificationService, Historique_service_1.HistoriqueService])
-], PageCatComponent);
 exports.PageCatComponent = PageCatComponent;
 //# sourceMappingURL=page-cat.component.js.map

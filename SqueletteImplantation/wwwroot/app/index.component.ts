@@ -29,8 +29,8 @@ export class IndexComponent
             this.authServ.ValidationConnexion(Reponse);       
             if(this.authServ.Connecte())
             {
-                this.historiqueService.SetUsager()
-                this.historiqueService.ObtenirHistorique();
+                this.historiqueService.SetUsager();
+                this.historiqueService.ObtenirHistorique(); 
                 this.router.navigate(['choix']);
             }     
             else
