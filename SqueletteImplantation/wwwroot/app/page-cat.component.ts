@@ -100,6 +100,15 @@ export class PageCatComponent implements OnInit
     //Action lors de la sélection d'une catégorie
     OnClickCategorie(categ: Categorie)
     {
+     
+        for(var i=0; i<this.m_TabCat.length;i++)
+            {
+                document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
+            }
+      
+    
+         document.getElementById(categ.catId.toString()).style.background="rgba(43, 47, 61, 0.71)";
+
          this.NomCateg = categ.catNom;
          this.NomCrit = "Critères";
          this.critService.getCriteres(categ.catId).subscribe(crit => this.AffichageCrit(crit));

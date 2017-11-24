@@ -64,6 +64,10 @@ var PageCatComponent = (function () {
     //Action lors de la sélection d'une catégorie
     PageCatComponent.prototype.OnClickCategorie = function (categ) {
         var _this = this;
+        for (var i = 0; i < this.m_TabCat.length; i++) {
+            document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
+        }
+        document.getElementById(categ.catId.toString()).style.background = "rgba(43, 47, 61, 0.71)";
         this.NomCateg = categ.catNom;
         this.NomCrit = "Critères";
         this.critService.getCriteres(categ.catId).subscribe(function (crit) { return _this.AffichageCrit(crit); });

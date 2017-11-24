@@ -39,10 +39,11 @@
 	border: none;
 	background-color: #EAEDED;
 	font-size: 20px;
-    width: 140px;
+    display:inline-block; 
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
 	background-position: right;
+	margin-right: 2px;
 }
 
 #btnAjouterTrace{
@@ -125,17 +126,18 @@ background-color: rgba(125, 141, 163, 0.71);
 	display: none;
 	position: absolute;
 	left: 27vh;
-	width: 100vh;
 	top: 0vh;
 	z-index: 1;
+	width:100vh;
 }
 
 .Critere{
 	border-radius: 2px;
 	padding: 2px;
-	margin: 2px;
+	margin: 5px;
 	color: white;
-	display: block;
+	display: inline-block;
+	
 }
 
 #ChoixCategorie{
