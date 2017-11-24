@@ -134,6 +134,9 @@ export class PageCatComponent implements OnInit
     
          document.getElementById(categ.catId.toString()).style.background="rgba(43, 47, 61, 0.71)";
 
+         var offs = document.getElementById(categ.catId.toString()).offsetTop;
+         document.getElementById("ListeCrit").style.top = (offs - 10) +"px";
+
          this.NomCateg = categ.catNom;
          this.NomCrit = "Critères";
          this.critService.getCriteres(categ.catId).subscribe(crit => this.AffichageCrit(crit));
