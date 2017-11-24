@@ -102,6 +102,12 @@ var AppComponent = (function () {
             this.DetectionActivite();
         }
     };
+    AppComponent.prototype.onClickTelecharger = function (id) {
+        var _this = this;
+        this.infostelechargement = new Historique_1.HistoriqueDTO(id, this.historiqueService.IdUsager);
+        console.log(this.infostelechargement);
+        this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(function (Reponse) { return _this.historiqueService.ObtenirHistorique(); });
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -111,7 +117,8 @@ AppComponent = __decorate([
         styleUrls: ['app/css/app.component.css']
     }),
     __metadata("design:paramtypes", [router_1.Router,
-        authentification_service_1.AuthentificationService])
+        authentification_service_1.AuthentificationService,
+        Historique_service_1.HistoriqueService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
