@@ -11,16 +11,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var Historique_1 = require("./Historique");
 //Importation des services 
 var trace_service_1 = require("./trace.service");
 var categorie_service_1 = require("./categorie.service");
 var critere_service_1 = require("./critere.service");
+var authentification_service_1 = require("./authentification.service");
+var Historique_service_1 = require("./Historique.service");
 var PageCatComponent = (function () {
-    function PageCatComponent(traceService, catService, critService, router) {
+    function PageCatComponent(traceService, catService, critService, router, authentificationService, historiqueService) {
         this.traceService = traceService;
         this.catService = catService;
         this.critService = critService;
         this.router = router;
+        this.authentificationService = authentificationService;
+        this.historiqueService = historiqueService;
         this.m_TabRecherche = [];
         this.m_EnvoieTrace = null;
         this.NomCateg = "Catégories";
@@ -40,7 +45,12 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageCat = function (param) {
         this.m_TabCat = param.json();
         if (this.m_TabCat.length < 8) {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
+            if (this.m_TabCat.length > 1) {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
+            }
+            else {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
+            }
         }
         else {
             document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");
@@ -49,7 +59,12 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageCrit = function (param) {
         this.m_TabCrit = param.json();
         if (this.m_TabCrit.length < 8) {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            if (this.m_TabCrit.length > 1) {
+                document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            }
+            else {
+                document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
+            }
         }
         else {
             document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
@@ -81,6 +96,18 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.OnClickSupprimer = function (crit) {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit), 1);
     };
+    PageCatComponent.prototype.onClickImg = function (url) {
+        window.open(url);
+    };
+    PageCatComponent.prototype.ValidationPage = function () {
+        var CheminLong = this.router.url.toString();
+        var Page;
+        Page = CheminLong.split('/', 2);
+        if (Page[1] == 'neurologie') {
+            return false;
+        }
+        return true;
+    };
     //Action lors de l'appui sur le bouton recherche
     PageCatComponent.prototype.OnClickRechercher = function () {
         var _this = this;
@@ -93,12 +120,24 @@ var PageCatComponent = (function () {
         RequeteId = RequeteId.substr(0, RequeteId.length - 1);
         this.traceService.getTraces(RequeteId).subscribe(function (trac) { return _this.AffichageTrace(trac); });
     };
+    PageCatComponent.prototype.onClickTelecharger = function (id) {
+        var _this = this;
+        this.infostelechargement = new Historique_1.HistoriqueDTO(id, this.historiqueService.IdUsager);
+        console.log(this.infostelechargement);
+        this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(function (Reponse) { return _this.historiqueService.ObtenirHistorique(); });
+    };
+    /************************************************************** */
+    PageCatComponent.prototype.ValidationUtil = function () {
+        return this.authentificationService.Admin();
+    };
     /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
     PageCatComponent.prototype.onClickDeleteTrace = function (id) {
         var _this = this;
         if (confirm("Voulez-vous vraiment supprimer définitivement le tracé #" + id + "?")) {
-            this.traceService.deleteTrace(id).subscribe(function (reponse) { return _this.AffichageRepDel(reponse); });
-            window.location.reload();
+            this.traceService.deleteTrace(id).subscribe(function (reponse) {
+                _this.AffichageRepDel(reponse);
+                _this.OnClickRechercher();
+            });
         }
         else {
             console.log("ABORT");

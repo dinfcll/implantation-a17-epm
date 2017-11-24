@@ -22,10 +22,14 @@
 							</tr>
 						</table>
 					</ul>
-					<input type="file" name="file" id="file" class="inputfile"  (change)="fileChange($event)"  accept=".pdf,.doc,.docx"/>
+					
+					<div class = "container">
+					<input type="file" name="file" id="file" class="inputfile"  (change)="fileChange($event)"  accept=".pdf,.doc,.docx,.jpg,.png"/>
                     <label for="file"><img src="app/images/download.png" alt=""/>  {{Message}}</label>
+						
+
 					<button id="btnAjouterTrace" (click)="onClickAddTrace()"><span><img src="app/images/add.png" alt=""/>Soumettre</span></button>
-								
+					</div>		
 				</td>
 			</tr>
 			<tr id="DeuxiemeLigne">

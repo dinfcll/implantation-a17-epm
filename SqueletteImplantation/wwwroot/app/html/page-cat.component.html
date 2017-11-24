@@ -35,14 +35,19 @@
 					<div *ngFor="let trace of m_TabTrace">
 						<section class="Trace">
 							Nom: {{trace.traceNom}}
-							&nbsp;
+							&nbsp;&nbsp;&nbsp;
+							
 							Logiciel à utiliser: {{trace.tracLogi}}
-							<button id="btnSupprimerTrace" (click)="onClickDeleteTrace(trace.tracId)"><img src="app/images/delete.gif" alt=""/>Tracé #{{trace.tracId}}</button> <!-- J'ai mit 0 par défaut (le premier)' -->
+							<button id="btnSupprimerTrace" *ngIf="ValidationUtil()" (click)="onClickDeleteTrace(trace.tracId)"><img src="app/images/delete.gif" alt=""/>Tracé #{{trace.tracId}}</button>
+							<div *ngIf="ValidationPage()" class="hover_img"> 
+     							<a>Voir l'aperçu<span><img src="{{trace.tracUrl}}" (click)="onClickImg(trace.tracUrl)" alt="Aucun aperçu" height="100" /></span></a>
+							</div>
 							<a id="lientelechargement" href="{{trace.tracUrl}}" download ><img src="app/images/download.gif" alt=""/>Télécharger</a>
 						</section>
 						
 			       </div>
 				</td>
 			</tr>			
+
 		</table>
 	</div>

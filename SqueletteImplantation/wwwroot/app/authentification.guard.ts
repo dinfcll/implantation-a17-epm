@@ -15,7 +15,6 @@ export class AuthentificationGuard implements CanActivate {
         if(this.authentificationService.Connecte()) {
             return true;
         }
-
         this.router.navigate(['index']);
     }
 }

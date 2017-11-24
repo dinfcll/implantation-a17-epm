@@ -16,5 +16,6 @@ namespace SqueletteImplantation.DbEntities.Models
         public string UtilEmail { get; set; }
         public int UtilType { get; set; }
 
+        public List<RelTracUsag> reltracusag { get; set; }
     }
 }

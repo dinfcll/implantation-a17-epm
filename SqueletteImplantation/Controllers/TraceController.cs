@@ -1,11 +1,9 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.Models;
-using Microsoft.EntityFrameworkCore;
 using SqueletteImplantation.DbEntities.DTOs;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
@@ -25,19 +23,19 @@ namespace SqueletteImplantation.Controllers
             _uploadService = uploadService;
         }
 
-        //obtenir la liste de tous les tracés
+       
         [HttpGet]
         [Route("api/Trace")]
-        public IEnumerable Trace()
+        public IEnumerable GetListeTrace()
         {
             return _maBd.Trace.ToList();
         }
 
-        //obtenir tracé selon son id
+        
 
         [HttpGet]
         [Route("api/Trace/{id}")]
-        public IActionResult GetTrace(int id)
+        public IActionResult GetTraceSelonId(int id)
         {
             var trace = _maBd.Trace.FirstOrDefault(t => t.TracId == id);
 
@@ -49,13 +47,13 @@ namespace SqueletteImplantation.Controllers
             return new OkObjectResult(trace);
         }
 
-        //Obtenir une liste de tracés correspondants selon une liste de critères reçue
+   
 
         [HttpGet]
         [Route("api/TraceListe")]
-        public IActionResult ListeTrace(int[] id)
+        public IActionResult GetTracesSelonListeCriteres(int[] id)
         {
-            var listeTrace = RechercheTraceSelonCriteres(id);
+            var listeTrace = RechercheTraceSelonListeCriteres(id);
 
             if (listeTrace == null)
             {
@@ -66,8 +64,7 @@ namespace SqueletteImplantation.Controllers
         }
 
 
-        //Méthode qui cherche la liste de tracés selon un tableau d'id de critères
-        private IQueryable<object> RechercheTraceSelonCriteres(int[] id)
+        private IQueryable<object> RechercheTraceSelonListeCriteres(int[] id)
         {
             return from tr in _maBd.Trace
                 join rl in _maBd.RelTracCrit on tr.TracId equals rl.TracId
@@ -80,10 +77,10 @@ namespace SqueletteImplantation.Controllers
         }
 
 
-        //Ajout de trace
+       
         [HttpPost]
         [Route("api/ajoutfichier")]
-        public IActionResult AjoutFichier(IList<IFormFile> traces)
+        public IActionResult UploadFichierSurServeur(IList<IFormFile> traces)
         {
             string NomTrace;
 
@@ -101,7 +98,7 @@ namespace SqueletteImplantation.Controllers
 
         [HttpPost]
         [Route("api/ajouttrace")]
-        public IActionResult AjoutTrace([FromBody] TraceDTO nouvtrace)
+        public IActionResult AjoutTraceDansBd([FromBody] TraceDTO nouvtrace)
         {
             if(nouvtrace.Id.Length > 0 && (nouvtrace.Nomfich != "" || nouvtrace.Nomfich != null) && (nouvtrace.chemin != null || nouvtrace.chemin != ""))
             {
@@ -124,10 +121,9 @@ namespace SqueletteImplantation.Controllers
         }
 
 
-        //supprimer un tracé selon son id
         [HttpDelete]
         [Route("api/TraceListe/{id}")]
-        public IActionResult DeleteTrace(int id)
+        public IActionResult DeleteTraceSelonId(int id)
         {
             var trace = _maBd.Trace.FirstOrDefault(t => t.TracId == id);
             string CheminApp = "/home/ubuntu/EPM/implantation-a17-epm/SqueletteImplantation/wwwroot/Upload/";

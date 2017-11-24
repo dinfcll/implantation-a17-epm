@@ -24,7 +24,7 @@ export class AuthentificationService {
         }
     }
 
-    login(user: string, motdepasse: string) {      
+    public login(user: string, motdepasse: string) {      
         let headers = new Headers();
 
         headers.append('Content-type', 'application/json');
@@ -34,13 +34,18 @@ export class AuthentificationService {
     public ValidationConnexion(Valide: any): any
     {
         console.log(Valide);
+        let tRetour : number[] = new Array();
+
+
         if (Valide.status === 200 && Valide._body != null)
         {
             this.estConnecte = true;
+            
+            tRetour = this.StringEnTableauNombre(Valide._body);
 
-            if (Valide._body != 0)
+            if (tRetour[0] != 0)
             {
-                this.estAdmin = false;                
+                this.estAdmin = false;
             }
             else
             {
@@ -52,13 +57,29 @@ export class AuthentificationService {
             this.estConnecte = false;
             this.estAdmin = false;
         }
-        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte, domaine: this.DomaineChoisi }));
+
+        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte, domaine: this.DomaineChoisi, IdUtil: tRetour[1] }));
     }
 
     public logout(): void {
         localStorage.removeItem('ConnectedUser');
         this.estConnecte = false;
         this.estAdmin = false;
+    }
+
+
+    private StringEnTableauNombre(ElementAConvertir: string) : number[]
+    {
+        let Chaine = ElementAConvertir.slice(1, ElementAConvertir.length - 1);
+        let tElementString = Chaine.split(",");
+        let tElementNombre : number[] = new Array(tElementString.length);
+
+        for(let Indice = 0; Indice < tElementString.length; Indice++)
+        {
+            tElementNombre[Indice] = Number(tElementString[Indice]);
+        }
+
+        return tElementNombre;
     }
 
     
@@ -73,17 +94,17 @@ export class AuthentificationService {
         this.DomaineChoisi = false;
     }
 
-    Domaine()
+    public Domaine()
     {
         return this.DomaineChoisi;
     }
 
-    Connecte()
+    public Connecte()
     {
         return this.estConnecte;
     }
 
-    Admin()
+    public Admin()
     {
         return this.estAdmin;
     }

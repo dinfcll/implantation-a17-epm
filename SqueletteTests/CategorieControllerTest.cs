@@ -6,7 +6,6 @@ using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.DTOs;
 using SqueletteImplantation.DbEntities.Models;
 using Xunit;
-using Microsoft.AspNetCore.Http;
 namespace SqueletteTests
 {
     public class CategorieControllerTest
@@ -32,7 +31,7 @@ namespace SqueletteTests
         [Fact]
         public void NoCritNotFound()
         {
-            var result = _CategorieController.GetCategorie(100000000);
+            var result = _CategorieController.GetCategorieSelonId(100000000);
 
             Assert.Equal(404, ((NotFoundResult)result).StatusCode);
         }
@@ -41,7 +40,7 @@ namespace SqueletteTests
         public void AjoutCategorieTest()
         {
             var created =_CategorieController.AddCategorie(new CategorieDTO { NomCat = CatNom, IdDom= DomId });
-            var resultat = _CategorieController.GetCategorie(((created as OkObjectResult).Value as Categorie).CatId);
+            var resultat = _CategorieController.GetCategorieSelonId(((created as OkObjectResult).Value as Categorie).CatId);
             Assert.Equal(CatNom, ((resultat as OkObjectResult).Value as Categorie).CatNom);
             Assert.Equal(DomId, ((resultat as OkObjectResult).Value as Categorie).DomId);
         }
@@ -51,11 +50,11 @@ namespace SqueletteTests
         {
             var created = _CategorieController.AddCategorie(new CategorieDTO { NomCat = CatNom, IdDom = DomId });
 
-            var resultat = _CategorieController.DeleteCategorie(((created as OkObjectResult).Value as Categorie).CatId);
+            var resultat = _CategorieController.DeleteCategorieSelonId(((created as OkObjectResult).Value as Categorie).CatId);
 
             Assert.Equal(200, (resultat as OkResult).StatusCode);
 
-            var entityNotFound = _CategorieController.GetCategorie(((created as OkObjectResult).Value as Categorie).CatId);
+            var entityNotFound = _CategorieController.GetCategorieSelonId(((created as OkObjectResult).Value as Categorie).CatId);
 
             Assert.Equal(404, ((NotFoundResult)entityNotFound).StatusCode);
         }

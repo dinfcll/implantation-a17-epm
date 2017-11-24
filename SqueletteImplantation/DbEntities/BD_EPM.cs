@@ -12,6 +12,7 @@ namespace SqueletteImplantation.DbEntities
         public virtual DbSet<Trace> Trace { get; set; }
         public virtual DbSet<RelTracCrit> RelTracCrit { get; set; }
 		public virtual DbSet<Utilisateur> Utilisateur { get; set; }
+        public virtual DbSet<RelTracUsag> RelTracUsager { get; set; }
 
         public BD_EPM(DbContextOptions options) : base(options)
         {
@@ -30,11 +31,13 @@ namespace SqueletteImplantation.DbEntities
             new TraceMap(modelBuilder.Entity<Trace>());
 
             new RelTracCritMap(modelBuilder.Entity<RelTracCrit>());
-			
-			new UtilisateurMap(modelBuilder.Entity<Utilisateur>());
+
+            new UtilisateurMap(modelBuilder.Entity<Utilisateur>());
+
+            new RelTracUsagMap(modelBuilder.Entity<RelTracUsag>());
 
             //Auto incréments et champs uniques
-			modelBuilder.Entity<Utilisateur>()
+            modelBuilder.Entity<Utilisateur>()
                 .Property(u => u.UtilId)
                 .ValueGeneratedOnAdd();
 
@@ -61,6 +64,7 @@ namespace SqueletteImplantation.DbEntities
             modelBuilder.Entity<Trace>()
                 .Property(t => t.TracId)
                 .ValueGeneratedOnAdd();
+
             
             //Foreign key de la table catégorie
             modelBuilder.Entity<Categorie>()
@@ -92,6 +96,23 @@ namespace SqueletteImplantation.DbEntities
                 .WithMany(t => t.reltraccrit)
                 .HasForeignKey(rtc => rtc.TracId)
                 .HasConstraintName("fk_Trace_relTracCrit");
+
+            //Clé primaire table de relation RelTracCrit
+            modelBuilder.Entity<RelTracUsag>()
+                .HasKey(rtu => new { rtu.TracId, rtu.UtilId });
+
+            //Foreign keys de la table de relation RelTracUsag
+            modelBuilder.Entity<RelTracUsag>()
+                .HasOne(rtu => rtu.trace)
+                .WithMany(t => t.reltracusag)
+                .HasForeignKey(rtc => rtc.TracId)
+                .HasConstraintName("fk_Trace_relTracUsag");
+
+            modelBuilder.Entity<RelTracUsag>()
+                .HasOne(rtu => rtu.utilisateur)
+                .WithMany(u => u.reltracusag)
+                .HasForeignKey(rtu => rtu.UtilId)
+                .HasConstraintName("fk_Utilisateur_relTracUsag");
         }
     }
 }

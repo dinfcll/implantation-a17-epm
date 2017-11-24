@@ -62,32 +62,49 @@ export class AjoutAdminComponent implements OnInit
         }
     }
 
-    private AffichageCat(param: any) {
+    private AffichageCat(param: any) 
+    {
         this.m_TabCat = (param.json() as Categorie[]);
-        console.log(this.m_TabCat);
 
         if(this.m_TabCat.length < 8)
         {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());  
+            if(this.m_TabCat.length > 1)
+            {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString()); 
+            }
+            else
+            {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
+            }
+             
         }
         else
         {
             document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");            
         }
+          
     }
 
-    private AffichageCrit(param: any) {
+     private AffichageCrit(param: any) {
         this.m_TabCrit = (param.json() as Critere[]);
-        console.log(this.m_TabCrit);
 
         if(this.m_TabCrit.length < 8)
         {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            if(this.m_TabCrit.length > 1)
+            {
+              document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            }
+            else
+            {
+                 document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
+            }
+        
         }
         else
         {
             document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
         }
+
     }
 
     private AffichageTrace(param: any) {
@@ -125,6 +142,7 @@ export class AjoutAdminComponent implements OnInit
     {
         this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit),1);
         this.m_TabCritID.splice(this.m_TabCritID.indexOf(crit.critId),1);
+        
         
         console.log(this.m_TabRecherche);
     }

@@ -1,4 +1,14 @@
+.hover_img a { float:left;}
+.hover_img a span { position:absolute; display:none; z-index:99; }
+.hover_img a:hover span { display:block; }
+.hover_img{float:right;width:10%;}
 
+img, a 
+{
+	cursor:pointer;
+	color:blue;
+	text-decoration:underline;
+}
 
 .TableEspacePrincipalCat{
 	width: 100%;
@@ -87,11 +97,13 @@
 
 
 #btnSupprimerTrace{
-background-color: rgba(125, 141, 163, 0.71);
+	background-color: rgba(125, 141, 163, 0.71);
 	border-radius: 5px;
 	color: white;
 	display: block;
-	float: right;
+	float:right;
+	width:10%;
+	cursor: pointer;
 
 }
 
@@ -108,6 +120,8 @@ background-color: rgba(125, 141, 163, 0.71);
 	padding: 10px;
 	color: white;
 	display: block;
+	display: inline-block; 
+	width:96%;
 }
 
 .Categorie{

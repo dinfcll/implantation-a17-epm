@@ -1,3 +1,7 @@
+* {
+	outline: 0;
+}
+
 .TableEspacePrincipalCat{
 	width: 100%;
     background-size:100%;
@@ -9,37 +13,28 @@
 	top: 0px;    
 }
 
+
 td{ box-shadow: 0px 5px 4px -2px #8c8c8c;}
 
 
-.Container{
-	width:34%; 
-	display:flex;
-	flex-direction:row;
-	margin-bottom: 20%;
-}
 
 
-.Container > div{
-	
-	text-align:right;
-	display: inline-block;
-    border: none;
-	margin:3%;
-}
 
-.Container img {
-    display: block;
-	margin-top: 8%;
-	margin-left: 4%;
-	
-}
-
-.DivSupp{
-border:none;
+.DivSupp
+{
 cursor:pointer;
-width: 30%; 
+display: inline-block;
+margin-bottom: -10px;
+
 }
+
+.DivSupp img 
+{
+display: block ;
+margin-left: auto ;
+margin-right: auto;
+}
+
 
 #ChoixCategorie{
 	height: 0vh;
@@ -182,7 +177,8 @@ background-color: rgba(125, 141, 163, 0.71);
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
 	background-position: right;
-	
+	display: inline-block;
+	text-align: center;
 }
 
 
@@ -193,8 +189,9 @@ background-color: rgba(125, 141, 163, 0.71);
 /*Liste deroulante Catégorie et Critère*/
 .ListeDeroulanteCategorie, .ListeDeroulanteCritere
 {
-	margin-left: 10%;
-    width: 70%;
+	display: inline-block;
+	text-align: center;
+	margin-right: 10px;
 }
 
 
@@ -218,13 +215,15 @@ background-color: rgba(125, 141, 163, 0.71);
 }
 
 #ElementListe:hover{
-	background-color: #f2f2f2;
+	background-color: rgba(125, 141, 163, 0.71);
 	cursor: pointer;
+	opacity: 0.8;
 }
 
 #ElementListe{
 	overflow: hidden;
 	white-space: nowrap;
+	transition: all 0.4s ease-out;
 	text-overflow: ellipsis;
 
 	
@@ -281,7 +280,8 @@ background-color: rgba(125, 141, 163, 0.71);
 
 .btn-primary {
 	border-radius: 5px;
-	width:22%;
+	display: inline-block;
+	text-align: center;
     color: #ffffff;
     background-color: #008cba;
 	border-color: #0079a1;

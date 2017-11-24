@@ -98,8 +98,8 @@ export class AjoutSuppComponent
         }
     }
 
-    private AffichageCrit(param: any)
-     {
+    private AffichageCrit(param: any) 
+    {
         this.m_TabCrit = (param.json() as Critere[]);
         this.ListeCrit = "";
 
@@ -107,16 +107,24 @@ export class AjoutSuppComponent
         {
             this.ListeCrit += "\n\r" + this.m_TabCrit[i].critNom + ", " ;
         }
-        
 
-        if(this.m_TabCrit.length < 8) //ICI
+        if(this.m_TabCrit.length < 8)
         {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            if(this.m_TabCrit.length > 1)
+            {
+              document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            }
+            else
+            {
+                 document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
+            }
+        
         }
         else
         {
             document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
         }
+
     }
 
     OnClickListeDeroulanteCritere()
@@ -206,16 +214,39 @@ export class AjoutSuppComponent
 
      OnClickAjoutCategorie()
      {
-        let catdto = new CategorieDTO(this.NomAjoutCat,this.TypeDom);
-        this.catService.addCategorie(catdto).subscribe(reponse => this.ActualisationListeSuppCat(reponse));
+        if(this.NomAjoutCat != "" && this.NomAjoutCat != null)
+        {
+            let catdto = new CategorieDTO(this.NomAjoutCat,this.TypeDom);
+            this.catService.addCategorie(catdto).subscribe(reponse => this.ActualisationListeAddCat(reponse));
+        }
+        else
+        {
+            new jBox('Notice', {
+                content: 'Veuiller donner un nom à la catégorie à ajouter',
+                color: 'red',
+                stack: true
+            });
+        }
      }
 
      OnClickAjoutCritere()
      {
          if(this.m_CatID != null)
          {
-            let critdto = new CritereDTO(this.NomAjoutCrit,this.m_CatID);
-            this.critService.addCritere(critdto).subscribe(reponse => this.ActualisationListeSuppCrit(reponse));
+             if(this.NomAjoutCrit != null && this.NomAjoutCrit != "")
+             {
+                let critdto = new CritereDTO(this.NomAjoutCrit,this.m_CatID);
+                this.critService.addCritere(critdto).subscribe(reponse => this.ActualisationListeAddCrit(reponse));
+             }
+             else
+             {
+                new jBox('Notice', {
+                    content: 'Veuillez donner un nom à la catégorie à ajouter',
+                    color: 'red',
+                    stack: true
+                }); 
+             }
+            
          }
          else
          {
@@ -227,15 +258,58 @@ export class AjoutSuppComponent
          }
      }
 
+     private ActualisationListeAddCat(param: any)
+     {
+        if(param.status == 200)
+        {
+            new jBox('Notice', {
+                content: 'Catégorie ajoutée avec succès',
+                color: 'green',
+                stack: true
+            });
+        }
+        this.catService.getCategories(this.TypeDom).subscribe(cat => this.AffichageCat(cat,1));
+        this.ActualisationListes();
+     }
 
      private ActualisationListeSuppCat(param: any)
      {
+        if(param.status == 200)
+        {
+            new jBox('Notice', {
+                content: 'Catégorie supprimée avec succès',
+                color: 'green',
+                stack: true
+            });
+        }
          this.catService.getCategories(this.TypeDom).subscribe(cat => this.AffichageCat(cat,1));
-         this.NomCateg = "Catégories";
-         this.NomCateg2 = "Catégories";
+         this.ActualisationListes();
      }
+
+     private ActualisationListeAddCrit(param: any)
+     {
+        if(param.status == 200)
+        {
+            new jBox('Notice', {
+                content: 'Critère ajouté avec succès',
+                color: 'green',
+                stack: true
+            });
+        }
+         this.critService.getCriteres(this.m_CatID).subscribe(rep => this.AffichageCrit(rep));
+         this.NomCrit = "Critères";
+     }
+
      private ActualisationListeSuppCrit(param: any)
      {
+        if(param.status == 200)
+        {
+            new jBox('Notice', {
+                content: 'Critère supprimé avec succès',
+                color: 'green',
+                stack: true
+            });
+        }
          this.critService.getCriteres(this.m_CatID).subscribe(rep => this.AffichageCrit(rep));
          this.NomCrit = "Critères";
      }

@@ -22,6 +22,9 @@ var authentification_guard_1 = require("./authentification.guard");
 var authentification_service_1 = require("./authentification.service");
 var ajout_cat_crit_component_1 = require("./ajout-cat-crit.component");
 var pagemdp_component_1 = require("./pagemdp.component");
+var page_modif_profil_component_1 = require("./page-modif-profil.component");
+var utilisateur_service_1 = require("./utilisateur.service");
+var Historique_service_1 = require("./Historique.service");
 var AppModule = (function () {
     function AppModule() {
     }

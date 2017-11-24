@@ -1,0 +1,46 @@
+<table class="TableEspacePrincipalCat">
+    <tr>
+        <fieldset id="RegroupementParametre">
+            <legend id="TitreParametre">Changement du nom d'utilisateur</legend>
+            <div id="SectionNouveauNomUtil">
+                <label>Nouveau nom d'utilisateur:</label>
+                <input [(ngModel)]="NomUtilNouv" (ngModelChange)="ComparaisonChangementNomUtil()" type="text" onpaste="return false;" id="NomUtilNouv">
+            </div>
+            <div id="SectionConfirmationNomUtil">
+                <label>Confirmation:</label>
+                <input [(ngModel)]="NomUtilConf" (ngModelChange)="ComparaisonChangementNomUtil()" type="text" onpaste="return false;" id="NomUtilConf">
+            </div>
+            <button (click)="SauvegarderNomUtilisateur()" id="SauvegarderNomUtil" disabled>Sauvegarder</button>
+        </fieldset>
+    </tr>
+    <tr>
+        <fieldset id="RegroupementParametre">
+            <legend id="TitreParametre">Changement de l'adresse email</legend>
+            <div id="SectionNouveauEmail">
+                <label>Nouvelle adresse email:</label>
+                <input [(ngModel)]="EmailNouv" (ngModelChange)="ComparaisonChangementEmail()" type="email" onpaste="return false;" id="EmailNouv">
+            </div>
+            <div id="SectionConfirmationEmail">
+                <label>Confirmation:</label>
+                <input [(ngModel)]="EmailConf" (ngModelChange)="ComparaisonChangementEmail()" type="email" onpaste="return false;" id="EmailConf">
+            </div>
+            <button (click)="SauvegarderEmail()" id="SauvegarderEmail" disabled>Sauvegarder</button>
+        </fieldset>
+    </tr>
+    <tr>
+        <fieldset id="RegroupementParametre">
+            <legend id="TitreParametre">Changement du mot de passe</legend>
+            <div id="SectionNouveauMdp">
+                <label>Nouveau mot de passe:</label>
+                <input [(ngModel)]="MdpNouv" (ngModelChange)="ComparaisonChangementMdp()" type="password" onpaste="return false;" id="MdpNouv">
+            </div>
+            <div id="SectionConfirmationMdp">
+                <label>Confirmation:</label>
+                <input [(ngModel)]="MdpConf" (ngModelChange)="ComparaisonChangementMdp()" type="password" onpaste="return false;" id="MdpConf">
+            </div>
+            <button (click)="SauvegarderMotDePasse()" id="SauvegarderMdp" disabled>Sauvegarder</button>
+        </fieldset>
+    </tr>
+</table>
+
+
