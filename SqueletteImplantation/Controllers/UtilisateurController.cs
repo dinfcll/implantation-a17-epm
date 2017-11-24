@@ -5,6 +5,9 @@ using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.Models;
 using System;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Text.RegularExpressions;
+using System.Collections;
+
 
 
 namespace SqueletteImplantation.Controllers
@@ -26,6 +29,28 @@ namespace SqueletteImplantation.Controllers
             return new string(Enumerable.Repeat(chars, length)
             .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+        public bool FormatEmailValide(string Email)
+        {
+            bool CharactereValide;
+            string[] tPartieEmail = null;
+
+            CharactereValide = Regex.IsMatch(Email,
+                            @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                            @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$",
+                            RegexOptions.IgnoreCase);
+
+            if(CharactereValide == true)
+                tPartieEmail = Email.Split('@');
+
+
+            if (CharactereValide == true && Email.Length < 255 && tPartieEmail[0].Length < 65)
+                return true;
+            else
+                return false;
+
+        }
+
         
         [HttpPost]
         [Route("api/utilisateur/login")]
@@ -77,9 +102,9 @@ namespace SqueletteImplantation.Controllers
             return new OkObjectResult(true);
         }
 
-        [HttpPatch]
-        [Route("api/utilisateur/modifiernom/")]
-        public IActionResult PatchNomUtilisateur([FromBody]Utilisateur Util )
+       [HttpPatch]
+        [Route("api/utilisateur/modifiernomutil/")]
+        public IActionResult PatchNomUtilisateur([FromBody]Utilisateur Util)
         {
             OkObjectResult ResultatOk;
             var UtilCorrespondantAuNomUtil = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilUserName == Util.UtilUserName);
@@ -93,20 +118,88 @@ namespace SqueletteImplantation.Controllers
                 if (UtilConnecte != null)
                 {
                     UtilConnecte.UtilUserName = Util.UtilUserName;
-                    _maBd.Utilisateur.Attach(UtilConnecte);
+                    _maBd.Attach(UtilConnecte);
                     Changement = _maBd.Entry(UtilConnecte);
                     Changement.Property(e => e.UtilUserName).IsModified = true;
                     _maBd.SaveChanges();
                     ResultatOk = new OkObjectResult("Fait");
                 }
                 else
-                    ResultatOk = new OkObjectResult("Erreur");
+                    ResultatOk = new OkObjectResult("Erreur d\'authentification");
             }
             else
-                ResultatOk = new OkObjectResult("Doublon");
+                ResultatOk = new OkObjectResult("Nom d\'utilisateur déjà utilisé");
 
             return ResultatOk;
         }
+
+        [HttpPatch]
+        [Route("api/utilisateur/modifieremail/")]
+        public IActionResult PatchEmail([FromBody]Utilisateur Util)
+        {
+            OkObjectResult ResultatOk;
+            var UtilCorrespondantAuEmail = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilEmail == Util.UtilEmail);
+            Utilisateur UtilConnecte;
+            EntityEntry<Utilisateur> Changement;
+
+            if (UtilCorrespondantAuEmail == null)
+            {
+                UtilConnecte = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilId == Util.UtilId);
+
+                if (UtilConnecte != null)
+                {
+
+                    if (FormatEmailValide(Util.UtilEmail) == true)
+                    {
+                        UtilConnecte.UtilEmail = Util.UtilEmail;
+                        _maBd.Utilisateur.Attach(UtilConnecte);
+                        Changement = _maBd.Entry(UtilConnecte);
+                        Changement.Property(e => e.UtilEmail).IsModified = true;
+                        _maBd.SaveChanges();
+                        ResultatOk = new OkObjectResult("Fait");
+                    }
+                    else
+                        ResultatOk = new OkObjectResult("Email invalide");
+                }
+                else
+                    ResultatOk = new OkObjectResult("Erreur d\'authentification");
+            }
+            else
+                ResultatOk = new OkObjectResult("Email déjà utilisé");
+
+            return ResultatOk;
+        }
+
+        [HttpPatch]
+        [Route("api/utilisateur/modifiermotdepasse/")]
+        public IActionResult PatchMotDePasse([FromBody]Utilisateur Util)
+        {
+            OkObjectResult ResultatOk;
+            Utilisateur UtilConnecte;
+            EntityEntry<Utilisateur> Changement;
+
+            UtilConnecte = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilId == Util.UtilId);
+
+            if (UtilConnecte != null)
+            {
+
+                UtilConnecte.UtilPWD = Hash.GetHash(Util.UtilPWD);
+                _maBd.Utilisateur.Attach(UtilConnecte);
+                Changement = _maBd.Entry(UtilConnecte);
+                Changement.Property(e => e.UtilPWD).IsModified = true;
+                _maBd.SaveChanges();
+                ResultatOk = new OkObjectResult("Fait");
+
+            }
+            else
+                ResultatOk = new OkObjectResult("Erreur d\'authentification");
+
+            return ResultatOk;
+        }
+    
+
+
+
 
         [HttpPost]
         [Route("api/utilisateur/CreationUtilisateur")]

@@ -21,6 +21,7 @@ export const router: Routes =
   { path: '', redirectTo: '/choix', pathMatch: 'full' },
   { path: 'MDP', component: mdpcomponent },
   { path: 'ModificationProfil', component: ModifProfilComponent, canActivate: [AuthentificationGuard] },
+  { path: 'ModificationProfilUtilisateurs', component: ModifProfilComponent, canActivate: [AuthentificationGuard] },
   { path: 'GestionUtilisateur', component: GestionUtilComponent, canActivate: [AuthentificationGuard]},
   { path: 'cardiologie', component: PageCatComponent, canActivate: [AuthentificationGuard]},
   { path: 'cardiologie/ajouttrace', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},

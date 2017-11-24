@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
 import { UtilisateurService } from './utilisateur.service';
+import { AuthentificationService } from "./authentification.service";
+import { Router } from '@angular/router';
 
+declare var jBox: any;
 
 @Component ({
     selector: 'mod-profil',
@@ -20,13 +23,14 @@ export class ModifProfilComponent
     private MdpNouv: string;
     private MdpConf: string;
     
-    constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService){
+    constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService, private authentificationservice: AuthentificationService, private router:Router){
         this.NomUtilNouv = "";
         this.NomUtilConf = "";
         this.EmailNouv = "";
         this.EmailConf = "";
         this.MdpNouv = "";
         this.MdpConf = "";
+        this.authentificationservice.InitDomaine();
     }
 
     private ngOnInit()
@@ -34,16 +38,6 @@ export class ModifProfilComponent
         document.getElementById("SauvegarderNomUtil").style.backgroundColor = "lightgray";
         document.getElementById("SauvegarderEmail").style.backgroundColor = "lightgray";
         document.getElementById("SauvegarderMdp").style.backgroundColor = "lightgray";
-    }
-
-    private RestrictionCharactere(event : any) : void
-    {
-        let Touche = event.keyCode;
-
-        if(!(Touche >= 65 && Touche <= 90 || Touche === 8 || Touche === 95 || Touche === 127 || Touche === 64))
-        {
-            event.preventDefault();
-        }
     }
 
     private ComparaisonChangementNomUtil() : void
@@ -63,6 +57,11 @@ export class ModifProfilComponent
                 {
                     (<HTMLInputElement>document.getElementById("SauvegarderNomUtil")).disabled = false;
                     document.getElementById("SauvegarderNomUtil").style.backgroundColor = "";
+                }
+                else
+                {
+                    (<HTMLInputElement>document.getElementById("SauvegarderNomUtil")).disabled = true;
+                    document.getElementById("SauvegarderNomUtil").style.backgroundColor = "lightgray";
                 }
 
                 return;
@@ -93,6 +92,11 @@ export class ModifProfilComponent
                     (<HTMLInputElement>document.getElementById("SauvegarderEmail")).disabled = false;
                     document.getElementById("SauvegarderEmail").style.backgroundColor = "";
                 }
+                else
+                {
+                    (<HTMLInputElement>document.getElementById("SauvegarderEmail")).disabled = true;
+                    document.getElementById("SauvegarderEmail").style.backgroundColor = "lightgray";
+                }
 
                 return;
             }
@@ -122,6 +126,11 @@ export class ModifProfilComponent
                     (<HTMLInputElement>document.getElementById("SauvegarderMdp")).disabled = false;
                     document.getElementById("SauvegarderMdp").style.backgroundColor = "";
                 }
+                else
+                {
+                    (<HTMLInputElement>document.getElementById("SauvegarderMdp")).disabled = true;
+                    document.getElementById("SauvegarderMdp").style.backgroundColor = "lightgray";
+                }
 
                 return;
             }
@@ -132,47 +141,120 @@ export class ModifProfilComponent
         document.getElementById("MdpConf").style.borderColor = "red";
     }
 
+    public ValidationPage() : boolean
+    {
+        let CheminLong: string = this.router.url.toString();
+        let Page: string[];
+       
+        
+        if(CheminLong == "/ModificationProfilUtilisateurs")
+        {
+            return false;
+        }
 
+   
+        return true;
+    }
 
     private SauvegarderNomUtilisateur()
     {
-        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv).subscribe(Resultat => {
+        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv, this.ValidationPage()).subscribe(Resultat => {
 
             if(Resultat.ok == true)
             {
                 if(Resultat.text() == "Fait")
                 {
-                    alert("Fait");
+                    new jBox( 'Notice', {
+                        content: 'Changement effectué',
+                        color: 'green',
+                        stack: false
+                    });
                 }
                 else
                 {
-                    if(Resultat.text() == "Doublon")
-                    {
-                        alert("Doublon");
-                    }
-                    else
-                    {
-                        alert("Erreur");
-                    }
+                    new jBox('Notice', {
+                        content: Resultat.text(),
+                        color: 'red',
+                        stack: false
+                    });
                 }
             }
             else
             {
-                alert("400");
+                new jBox('Notice', {
+                    content: 'Erreur de connexion avec le serveur',
+                    color: 'red',
+                    stack: false
+                });
             }
-
-        })
-
-
+        });
     }
     
     private SauvegarderEmail() : void
     {
-        this.utilisateurservice.ModifierEmail(this.EmailNouv);
+        this.utilisateurservice.ModifierEmail(this.EmailNouv,this.ValidationPage()).subscribe(Resultat => {
+
+            if(Resultat.ok == true)
+            {
+                if(Resultat.text() == "Fait")
+                {
+                    new jBox( 'Notice', {
+                        content: 'Changement effectué',
+                        color: 'green',
+                        stack: false
+                    });
+                }
+                else
+                {
+                    new jBox('Notice', {
+                        content: Resultat.text(),
+                        color: 'red',
+                        stack: false
+                    });
+                }
+            }
+            else
+            {
+                new jBox('Notice', {
+                    content: 'Erreur de connexion avec le serveur',
+                    color: 'red',
+                    stack: false
+                });
+            }
+        });
     }
 
     private SauvegarderMotDePasse() : void
     {
-        this.utilisateurservice.ModifierMotDePasse(this.MdpNouv);
+        this.utilisateurservice.ModifierMotDePasse(this.MdpNouv,this.ValidationPage()).subscribe(Resultat =>{
+
+            if(Resultat.ok == true)
+            {
+                if(Resultat.text() == "Fait")
+                {
+                    new jBox( 'Notice', {
+                        content: 'Changement effectué',
+                        color: 'green',
+                        stack: false
+                    });
+                }
+                else
+                {
+                    new jBox('Notice', {
+                        content: Resultat.text(),
+                        color: 'red',
+                        stack: false
+                    });
+                }
+            }
+            else
+            {
+                new jBox('Notice', {
+                    content: 'Erreur de connexion avec le serveur',
+                    color: 'red',
+                    stack: false
+                });
+            }
+        });
     }
 }

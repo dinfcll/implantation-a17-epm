@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Utilisateur } from "./utilisateur";
 import { UtilisateurService } from "./utilisateur.service";
+import {AuthentificationService} from "./authentification.service";
+import { Router } from '@angular/router';
 
 declare var jBox: any;
 
@@ -16,8 +18,9 @@ export class GestionUtilComponent
 {
     Affiche: boolean = true;
     m_TabUtil: Utilisateur[];
+    
 
-    constructor(private http: Http, private utilisateurService: UtilisateurService) 
+    constructor(private http: Http, private utilisateurService: UtilisateurService, private router: Router) 
     { 
         this.utilisateurService.getUtils().subscribe(retour => this.AfficheUtils(retour));
     }
@@ -47,7 +50,6 @@ export class GestionUtilComponent
 
     public AfficheUtils(param: any)
     {
-        console.log(param);
         this.m_TabUtil = (param.json() as Utilisateur[]);
     }
 
@@ -63,6 +65,12 @@ export class GestionUtilComponent
          }
          
 
+    }
+
+    public onClickModifUtil(utilId:number)
+    {
+        localStorage.setItem('ModifUser', JSON.stringify(utilId));
+        this.router.navigateByUrl('ModificationProfilUtilisateurs');
     }
 
 }
