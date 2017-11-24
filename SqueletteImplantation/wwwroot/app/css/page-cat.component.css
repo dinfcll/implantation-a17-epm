@@ -157,8 +157,10 @@ img, a
 
 
 #lientelechargement{
+	background-color: transparent;
 	float: right;
-	margin-right: 25px;
+	width: 10%;
+	padding: none;
 }
 
 .ShowElement{
