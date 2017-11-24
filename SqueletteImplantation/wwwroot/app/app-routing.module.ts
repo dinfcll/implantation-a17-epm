@@ -11,6 +11,7 @@ import { ModifProfilComponent } from './page-modif-profil.component';
 import { AjoutSuppComponent } from "./ajout-cat-crit.component";
 import { mdpcomponent } from './pagemdp.component';
 import { AuthentificationGuard } from './authentification.guard';
+import { GestionUtilComponent } from './gestionutil.component';
 
 
 
@@ -20,6 +21,7 @@ export const router: Routes =
   { path: '', redirectTo: '/choix', pathMatch: 'full' },
   { path: 'MDP', component: mdpcomponent },
   { path: 'ModificationProfil', component: ModifProfilComponent, canActivate: [AuthentificationGuard] },
+  { path: 'GestionUtilisateur', component: GestionUtilComponent, canActivate: [AuthentificationGuard]},
   { path: 'cardiologie', component: PageCatComponent, canActivate: [AuthentificationGuard]},
   { path: 'cardiologie/ajouttrace', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},
   { path: 'cardiologie/ajoutsupp', component: AjoutSuppComponent, canActivate: [AuthentificationGuard]},
@@ -31,7 +33,7 @@ export const router: Routes =
   { path: 'index', component: IndexComponent },
   { path: 'choix', component: ChoixComponent, canActivate: [AuthentificationGuard]},
   { path: 'ajout', component: AjoutAdminComponent, canActivate: [AuthentificationGuard]},
-  { path: '**', component: ChoixComponent}
+  { path: '**', component: ChoixComponent }  
 
 ];
  

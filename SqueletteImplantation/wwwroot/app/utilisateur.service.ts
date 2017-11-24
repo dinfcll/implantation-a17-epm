@@ -51,4 +51,14 @@ export class UtilisateurService {
 
         return this.http.patch(URL, JSON.stringify({"UtilId": CurrentUser.IdUtil, "UtilPWD": NouveauMotDePasse}), { headers });
     }
+
+    public CreationUtil(nouveauutilisateur: Utilisateur)
+    {
+        this.baseUrl = "api/utilisateur/creationutilisateur";
+        let headers = new Headers();
+        headers.append('Content-type', 'application/json');
+        
+        return this.http.post(this.baseUrl, JSON.stringify({ "utilpren": nouveauutilisateur.utilpren, "utilnom": nouveauutilisateur.utilnom,
+            "utilusername":nouveauutilisateur.utilusername, "utilemail":nouveauutilisateur.utilemail, "utiltype":nouveauutilisateur.utiltype }), { headers });
+    }
 }

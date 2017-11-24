@@ -80,7 +80,11 @@ export class AppComponent
                 {
                     this.router.navigateByUrl('ModificationProfil');
                 }
-
+                else
+                if(type === 4)
+                {
+                  this.router.navigateByUrl('GestionUtilisateur');
+                }
   }
 
 
@@ -114,7 +118,7 @@ export class AppComponent
     {
       if(this.IDVerification == null)
       {
-        this.IDVerification = window.setInterval(() => this.VerificationActivite(), 3000);
+        this.IDVerification = window.setInterval(() => this.VerificationActivite(), 30000);
       }
       else
       {

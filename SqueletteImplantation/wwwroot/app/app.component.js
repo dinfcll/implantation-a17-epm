@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var authentification_service_1 = require("./authentification.service");
@@ -59,6 +58,9 @@ var AppComponent = (function () {
         else if (type === 3) {
             this.router.navigateByUrl('ModificationProfil');
         }
+        else if (type === 4) {
+            this.router.navigateByUrl('GestionUtilisateur');
+        }
     };
     AppComponent.prototype.DetectionPage = function () {
         var CheminLong = this.router.url.toString();
@@ -79,7 +81,7 @@ var AppComponent = (function () {
         var _this = this;
         if (this.authentificationService.Connecte() === true) {
             if (this.IDVerification == null) {
-                this.IDVerification = window.setInterval(function () { return _this.VerificationActivite(); }, 3000);
+                this.IDVerification = window.setInterval(function () { return _this.VerificationActivite(); }, 30000);
             }
             else {
                 this.TempsDeVerifierActivite = true;
