@@ -56,12 +56,13 @@ namespace SqueletteImplantation.Controllers
                 String PWD = GetRandomString(8);
                 comptereset.UtilPWD = Hash.GetHash(PWD);
                 courriel.setDestination(email);
-                courriel.setSender("electrophysologiemedicale@gmail.com", "noreplyEPM");
+                courriel.setSender("electrophysiologiemedicale@gmail.com", "noreplyEPM");
                 courriel.SetHTMLMessage("<h1>Bonjour " + comptereset.UtilUserName + "</h1><br>Voici le nouveau mot de passe à utiliser lors de votre prochaine connexion : <b>" + 
                     PWD + 
                     "</b><br><p>Nous vous recommandons de le changer à l'aide de la page de modification du profil le plus tôt possible.<p><br><h2>Merci et bonne journée.");
                 courriel.setSubject("Réinitialisation du mot de passe.");
                 courriel.sendMessage();
+
 
                 _maBd.Utilisateur.Attach(comptereset);
 
@@ -119,18 +120,17 @@ namespace SqueletteImplantation.Controllers
                 nouveauutilisateur.UtilPWD = Hash.GetHash(PWD);
                 
                 courriel.setDestination(nouveauutilisateur.UtilEmail);
-                courriel.setSender("electrophysologiemedicale@gmail.com", "noreplyEPM");
+                courriel.setSender("electrophysiologiemedicale@gmail.com", "noreplyEPM");
                 courriel.SetHTMLMessage(
                     "<h1>Bonjour " + nouveauutilisateur.UtilUserName + "," +
-                    "</h1><br>Bienvenue sur le sitnouveauutilisateure d'électrophysiologie médicale<br>" + 
-                    "<br>Vous pouvez vous connectez à l'adresse suivante : <a href=epm.dinf.cll.qc.ca>epm.dinf.cll.qc.ca</a><br><br>" +
+                    "</h1><br>Bienvenue sur le site d'électrophysiologie médicale<br>" + 
+                    "<br>Vous pouvez vous connectez à l'adresse suivante : <a href='https://epm.dinf.cll.qc.ca'>epm.dinf.cll.qc.ca</a><br><br>" +
                     "Votre nom d'utilisateur est : <b>" + nouveauutilisateur.UtilUserName + "</b>" +
                     "<br>Votre mot de passe est : <b>" + PWD + 
                     "</b><br><p>Nous vous recommandons de le changer à l'aide de la page de modification du profil lors de votre première connexion.<p>" +
-                    "<br><h2>Merci et bonne journée.");
+                    "<br><h2>Merci et bonne journée.</h2>");
                 courriel.setSubject("Nouveau compte utilisateur");
-                courriel.sendMessage();
-
+                courriel.sendMessage();             
                 _maBd.Add(nouveauutilisateur);
                 _maBd.SaveChanges();
                 return new OkObjectResult(true);
