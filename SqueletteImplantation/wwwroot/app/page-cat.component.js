@@ -76,12 +76,13 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     };
-    PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
-        document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
-    };
     //Action lors de la sélection d'une catégorie
     PageCatComponent.prototype.OnClickCategorie = function (categ) {
         var _this = this;
+        for (var i = 0; i < this.m_TabCat.length; i++) {
+            document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
+        }
+        document.getElementById(categ.catId.toString()).style.background = "rgba(43, 47, 61, 0.71)";
         this.NomCateg = categ.catNom;
         this.NomCrit = "Critères";
         this.critService.getCriteres(categ.catId).subscribe(function (crit) { return _this.AffichageCrit(crit); });
@@ -164,8 +165,7 @@ PageCatComponent = __decorate([
     })
     //À compléter
     ,
-    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService,
-        router_1.Router, authentification_service_1.AuthentificationService, Historique_service_1.HistoriqueService])
+    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService, router_1.Router])
 ], PageCatComponent);
 exports.PageCatComponent = PageCatComponent;
 //# sourceMappingURL=page-cat.component.js.map

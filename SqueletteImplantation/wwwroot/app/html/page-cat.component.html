@@ -2,18 +2,22 @@
 	<div id="base">
 	   <table class="TableEspacePrincipalCat">
 			<tr id="PremiereLigne">
-				<td id="ChoixCategorie">  
-					<div class="ListeDeroulanteCategorie">
-						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> {{NomCateg}} </button>
-						<select class="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()">
-							 <option id="ElementListe" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ)" title="{{categ.catNom}}">
-								 {{categ.catNom}}
-								 
-							</option>
-						</select>
-					</div>
+				<td id="ChoixCategorie"> 
+					<section> 	
+						<div class="Categorie" *ngFor ="let categ of m_TabCat" id="{{categ.catId}}" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
+
+							 <div class="ListeCritere"> 	
+									<span class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
+										<img src="app/images/add.gif" alt="non" />
+										{{critere.critNom}}	
+									</span>
+							 </div>
+
+							{{categ.catNom}}					 
+						</div>	
+					</section>
                 </td>
-				<td id="EspaceCritereChoisi" rowspan="2">
+				<td id="EspaceCritereChoisi" rowspan="1">
 					<ul id="ListeCritereChoisi">
 						<table>
 							<tr>
@@ -24,19 +28,6 @@
 						</table>
 					</ul>
 					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/>Rechercher</span></button>				
-				</td>
-			</tr>
-			<tr id="DeuxiemeLigne">
-				<td id="ChoixCritere">
-					<div class="ListeDeroulanteCritere">
-						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> {{NomCrit}} </button>
-					  	<select class="ListeCritere" (click)="OnClickListeDeroulanteCritere()">
-							<option id="ElementListe" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
-								<img src="app/images/add.gif" alt="non" />
-								{{critere.critNom}}
-							</option>
-						</select>
-					</div>
 				</td>
 			</tr>
 			<tr id="TroisiemeLigne">
