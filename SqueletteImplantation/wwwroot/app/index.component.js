@@ -51,7 +51,7 @@ IndexComponent = __decorate([
         templateUrl: 'app/html/index.component.html',
         styleUrls: ['app/css/index.component.css']
     }),
-    __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService, app_component_1.AppComponent])
+    __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService, app_component_1.AppComponent, Historique_service_1.HistoriqueService])
 ], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map

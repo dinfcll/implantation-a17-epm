@@ -1,16 +1,20 @@
 <div id="base">
 	   <table class="TableEspacePrincipalCat">
 			<tr id="PremiereLigne">
-				<td id="ChoixCategorie">  
-					<div class="ListeDeroulanteCategorie">
-						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> Catégories </button>
-						<select class="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()">
-							 <option id="ElementListe" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ.catId)" title="{{categ.catNom}}">
-								 {{categ.catNom}}
-								 
-							</option>
-						</select>
-					</div>
+				<td id="ChoixCategorie"> 
+					<section> 	
+						<div class="Categorie" *ngFor ="let categ of m_TabCat" id="{{categ.catId}}" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
+
+							 <div class="ListeCritere"> 	
+									<span class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
+										<img src="app/images/add.gif" alt="non" />
+										{{critere.critNom}}	
+									</span>
+							 </div>
+
+							{{categ.catNom}}					 
+						</div>	
+					</section>
                 </td>
 				<td id="EspaceCritereChoisi" rowspan="2">
 					<ul id="ListeCritereChoisi">
@@ -26,28 +30,10 @@
 					<div class = "container">
 					<input type="file" name="file" id="file" class="inputfile"  (change)="fileChange($event)"  accept=".pdf,.doc,.docx,.jpg,.png"/>
                     <label for="file"><img src="app/images/download.png" alt=""/>  {{Message}}</label>
-						
-
 					<button id="btnAjouterTrace" (click)="onClickAddTrace()"><span><img src="app/images/add.png" alt=""/>Soumettre</span></button>
 					</div>		
 				</td>
 			</tr>
-			<tr id="DeuxiemeLigne">
-				<td id="ChoixCritere">
-					<div class="ListeDeroulanteCritere">
-						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> Critères </button>
-					  	<select class="ListeCritere" (click)="OnClickListeDeroulanteCritere()">
-							<option id="ElementListe" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
-								<img src="app/images/add.gif" alt="non" />
-								{{critere.critNom}}
-							</option>
-						</select>
-					</div>
-				</td>
-			</tr>
-			<tr id="TroisiemeLigne">
-				
-			
-			</tr>			
+					
 		</table>
 	</div>

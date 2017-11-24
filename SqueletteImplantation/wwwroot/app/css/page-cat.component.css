@@ -56,24 +56,6 @@ img, a
 	margin-right: 2px;
 }
 
-#btnAjouterTrace{
-	position: absolute;
-	transform: translate(-100%);
-	right: 10%;
-	bottom:10%;
-	border-radius: 5px;	
-	border: none;
-	background-color: var(--CouleurTheme);
-	cursor: pointer;
-	color: white;
-	padding: 8px;
-	padding-left: 0px;
-	font-size: 20px;
-    width: 140px;
-	background-size: 20px 20px;
-	background-repeat: no-repeat;
-	background-position: right;
-}
 
 
 #btnChercher{
@@ -108,7 +90,7 @@ img, a
 }
 
 
-#btnChercher:hover, #btnAjouterTrace:hover
+#btnChercher:hover:hover
 {
     background:linear-gradient(white 7%,var(--CouleurThemeHover));
 }

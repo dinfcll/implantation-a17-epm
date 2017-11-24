@@ -165,7 +165,8 @@ PageCatComponent = __decorate([
     })
     //À compléter
     ,
-    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService, router_1.Router])
+    __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService,
+        router_1.Router, authentification_service_1.AuthentificationService, Historique_service_1.HistoriqueService])
 ], PageCatComponent);
 exports.PageCatComponent = PageCatComponent;
 //# sourceMappingURL=page-cat.component.js.map
