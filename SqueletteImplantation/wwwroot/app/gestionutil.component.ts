@@ -24,15 +24,7 @@ export class GestionUtilComponent
     }
     public AfficheAjoutUtilisateur(): void
     {
-        
-        if (this.Affiche === false)
-        {
-            this.Affiche = true;
-        }
-        else
-        {
-            this.Affiche = false;
-        }
+        this.Affiche = !this.Affiche;
     }
     public AjoutUtilisateur(f: NgForm): void
     {
