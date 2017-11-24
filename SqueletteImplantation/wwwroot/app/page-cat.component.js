@@ -44,7 +44,12 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageCat = function (param) {
         this.m_TabCat = param.json();
         if (this.m_TabCat.length < 8) {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
+            if (this.m_TabCat.length > 1) {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
+            }
+            else {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
+            }
         }
         else {
             document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");
@@ -53,7 +58,12 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageCrit = function (param) {
         this.m_TabCrit = param.json();
         if (this.m_TabCrit.length < 8) {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            if (this.m_TabCrit.length > 1) {
+                document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            }
+            else {
+                document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
+            }
         }
         else {
             document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
@@ -65,12 +75,13 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     };
-    PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
-        document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
-    };
     //Action lors de la sélection d'une catégorie
     PageCatComponent.prototype.OnClickCategorie = function (categ) {
         var _this = this;
+        for (var i = 0; i < this.m_TabCat.length; i++) {
+            document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
+        }
+        document.getElementById(categ.catId.toString()).style.background = "rgba(43, 47, 61, 0.71)";
         this.NomCateg = categ.catNom;
         this.NomCrit = "Critères";
         this.critService.getCriteres(categ.catId).subscribe(function (crit) { return _this.AffichageCrit(crit); });

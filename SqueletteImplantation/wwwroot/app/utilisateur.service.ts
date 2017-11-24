@@ -22,7 +22,7 @@ export class UtilisateurService {
     public ModifierNomUtilisateur(NouveauNomUtilisateur : string)
     {
         let headers = new Headers();
-        let URL = "api/utilisateur/modifiernom/";
+        let URL = "api/utilisateur/modifiernomutil/";
         let CurrentUser = JSON.parse(localStorage.getItem("ConnectedUser"));
 
         headers.append('Content-type', 'application/json');
@@ -32,12 +32,24 @@ export class UtilisateurService {
 
     public ModifierEmail(NouveauEmail : string)
     {
+        let headers = new Headers();
+        let URL = "api/utilisateur/modifieremail/";
+        let CurrentUser = JSON.parse(localStorage.getItem("ConnectedUser"));
 
+        headers.append('Content-type', 'application/json');
+
+        return this.http.patch(URL, JSON.stringify({"UtilId": CurrentUser.IdUtil, "UtilEmail": NouveauEmail}), { headers });
     }
 
     public ModifierMotDePasse(NouveauMotDePasse : string)
     {
+        let headers = new Headers();
+        let URL = "api/utilisateur/modifiermotdepasse/";
+        let CurrentUser = JSON.parse(localStorage.getItem("ConnectedUser"));
 
+        headers.append('Content-type', 'application/json');
+
+        return this.http.patch(URL, JSON.stringify({"UtilId": CurrentUser.IdUtil, "UtilPWD": NouveauMotDePasse}), { headers });
     }
 
     public CreationUtil(nouveauutilisateur: Utilisateur)
