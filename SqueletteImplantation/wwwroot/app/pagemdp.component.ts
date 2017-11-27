@@ -31,11 +31,14 @@ export class mdpcomponent
             console.log(res);
             if(res.statusText == "OK"){
                 new jBox('Notice', {
-                    content: 'Le mot de passe a été réinitialisé. Vérifier aussi vos courriels indésirables.',
+                    content: 'Mot de passe réinitialisé. Vérifier vos courriels indésirables. Il peut y avoir un délais avant la réception du courriel.',
                     color: 'green',
                     stack: false,
                     autoclose: 2000
                 });
+                let timeoutId = setTimeout(() => {
+                    this.router.navigateByUrl("choix");
+                    }, 2000);
             }
             else
             {
