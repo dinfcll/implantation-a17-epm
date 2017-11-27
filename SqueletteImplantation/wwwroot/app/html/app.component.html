@@ -33,11 +33,11 @@
 							<li (click)="Reroutage(3)">Modification du profil utilisateur</li>
 						</ul>
 					</div>
-                    <div *ngIf="this.authentificationService.Admin() && this.authentificationService.Domaine()" id="divAdmin">
+                    <div *ngIf="this.authentificationService.Admin()" id="divAdmin">
         				<h3>Outils administrateur</h3>
 						<ul>
-							<li (click)="Reroutage(0)">Page d'ajout de tracés</li>
-							<li (click)="Reroutage(1)">Page d'ajout de catégories et de critères</li>
+							<li *ngIf="this.authentificationService.Domaine()" (click)="Reroutage(0)">Page d'ajout de tracés</li>
+							<li *ngIf="this.authentificationService.Domaine()" (click)="Reroutage(1)">Page d'ajout de catégories et de critères</li>
 							<li (click)="Reroutage(4)">Gestion des utilisateurs</li>
 						</ul> 
 					</div>
