@@ -6,7 +6,6 @@ using SqueletteImplantation.DbEntities.Models;
 using System;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Text.RegularExpressions;
-using System.Collections;
 
 
 
@@ -85,7 +84,8 @@ namespace SqueletteImplantation.Controllers
                 courriel.setSender("electrophysiologiemedicale@gmail.com", "noreplyEPM");
                 courriel.SetHTMLMessage("<h1>Bonjour " + comptereset.UtilUserName + "</h1><br>Voici le nouveau mot de passe à utiliser lors de votre prochaine connexion : <b>" + 
                     PWD + 
-                    "</b><br><p>Nous vous recommandons de le changer à l'aide de la page de modification du profil le plus tôt possible.<p><br><h2>Merci et bonne journée.");
+                    "</b><br>Vous pouvez vous connecter à l'adresse suivante : <b><a href='https://epm.dinf.cll.qc.ca'>epm.dinf.cll.qc.ca</a></b>" +
+                    "<br><p>Nous vous recommandons de le changer à l'aide de la page de modification du profil le plus tôt possible.<p><br><h2>Merci et bonne journée.");
                 courriel.setSubject("Réinitialisation du mot de passe.");
                 courriel.sendMessage();
 
