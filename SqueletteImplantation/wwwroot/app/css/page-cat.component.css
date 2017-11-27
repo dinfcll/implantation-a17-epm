@@ -90,7 +90,7 @@ img, a
 }
 
 
-#btnChercher:hover:hover
+#btnChercher:hover
 {
     background:linear-gradient(white 7%,var(--CouleurThemeHover));
 }
@@ -117,23 +117,22 @@ img, a
 }
 
 .ListeCritere{
-	background-color:var(--CouleurTheme);
-	border-radius: 5px;
 	display: none;
 	position: absolute;
 	left: 27vh;
 	top: 0vh;
 	z-index: 1;
-	width:100vh;
+	width: fit-content;
+	box-sizing: border-box;
 }
 
 .Critere{
-	border-radius: 2px;
-	padding: 2px;
-	margin: 5px;
+	background-color:var(--CouleurTheme);
+	border-radius: 5px;
+	padding: 5px;
+	margin: 2px;
 	color: white;
 	display: inline-block;
-	
 }
 
 #ChoixCategorie{
@@ -164,6 +163,6 @@ img, a
 }
 
 .ShowElement{
-	display: block;
+	display: inline-block;
 }
 
