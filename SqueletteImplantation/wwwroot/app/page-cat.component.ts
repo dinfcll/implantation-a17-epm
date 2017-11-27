@@ -72,7 +72,15 @@ export class PageCatComponent implements OnInit
 
         if(this.m_TabCat.length < 8)
         {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());  
+            if(this.m_TabCat.length > 1)
+            {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString()); 
+            }
+            else
+            {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
+            }
+             
         }
         else
         {
@@ -86,7 +94,15 @@ export class PageCatComponent implements OnInit
 
         if(this.m_TabCrit.length < 8)
         {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            if(this.m_TabCrit.length > 1)
+            {
+              document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            }
+            else
+            {
+                 document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
+            }
+        
         }
         else
         {
@@ -105,14 +121,22 @@ export class PageCatComponent implements OnInit
 	    document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     }
 	
-    OnClickListeDeroulanteCategorie()
-    {
-	    document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
-    }
     
     //Action lors de la sélection d'une catégorie
     OnClickCategorie(categ: Categorie)
     {
+     
+        for(var i=0; i<this.m_TabCat.length;i++)
+            {
+                document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
+            }
+      
+    
+         document.getElementById(categ.catId.toString()).style.background="rgba(43, 47, 61, 0.71)";
+
+         var offs = document.getElementById(categ.catId.toString()).offsetTop;
+         document.getElementById("ListeCrit").style.top = (offs - 10) +"px";
+
          this.NomCateg = categ.catNom;
          this.NomCrit = "Critères";
          this.critService.getCriteres(categ.catId).subscribe(crit => this.AffichageCrit(crit));
@@ -132,7 +156,7 @@ export class PageCatComponent implements OnInit
       
     }
     
-    onClickImg(url: string)
+     onClickImg(url: string)
     {
         window.open(url);
     }
@@ -150,6 +174,7 @@ export class PageCatComponent implements OnInit
       }
       return true;
     }
+
     //Action lors de l'appui sur le bouton recherche
     OnClickRechercher()
     {
@@ -173,8 +198,6 @@ export class PageCatComponent implements OnInit
         console.log(this.infostelechargement);
 
         this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(Reponse=> this.historiqueService.ObtenirHistorique());
-        
-
     }
 
 

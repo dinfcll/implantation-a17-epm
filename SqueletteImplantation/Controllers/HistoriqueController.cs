@@ -46,10 +46,18 @@ namespace SqueletteImplantation.Controllers
             {
                 _maBd.Add(EntreeHistorique);
                 _maBd.SaveChanges();
+                SupprEntreesUserSiPlusDe5(EntreeHistorique.UtilId);
             }
             else
             {
-                _maBd.Update(EntreeHistorique);
+                var Entree = (from hist in _maBd.RelTracUsager
+                               where EntreeHistorique.UtilId == hist.UtilId &&
+                               EntreeHistorique.TracId == hist.TracId
+                               select hist).ToList();
+
+                _maBd.Entry(Entree[0]).CurrentValues.SetValues(EntreeHistorique);
+                _maBd.SaveChanges();
+                SupprEntreesUserSiPlusDe5(EntreeHistorique.UtilId);
             }
 
 
@@ -74,20 +82,18 @@ namespace SqueletteImplantation.Controllers
         private void SupprEntreesUserSiPlusDe5(int IdUser)
         {
             var Entrees = from hist in _maBd.RelTracUsager
-                              where IdUser == hist.UtilId
-                              select hist;
+                             where IdUser == hist.UtilId
+                             orderby hist.DateTelechargement
+                             select hist;
 
             if(Entrees.Count()>5)
             {
-                var ListeTelechargementUser = (from hist in _maBd.RelTracUsager
-                                              orderby hist.DateTelechargement
-                                              select hist).GetEnumerator();
+                var ListeTelechargementUser = Entrees.ToList();
 
-
-                for (int i= 0;i<Entrees.Count()-5;i--)
+                for (int i= 0;i<Entrees.Count()-5;i++)
                 {
-                    _maBd.Remove(ListeTelechargementUser.Current);
-                    ListeTelechargementUser.MoveNext();
+                    _maBd.Remove(ListeTelechargementUser[i]);
+                    _maBd.SaveChanges();
                 }
             }
 

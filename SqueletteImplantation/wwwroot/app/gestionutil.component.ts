@@ -35,7 +35,7 @@ export class GestionUtilComponent
         console.log(f.value);
         var Util: Utilisateur = new Utilisateur(null, f.value.prenom as string, f.value.nom as string, null, f.value.utilisateur as string, f.value.courriel as string, null);
         
-        var droitutil: number;
+        var droitutil: number; 
         if(f.value.admin === true)
         {
             Util.utiltype = 0;
@@ -45,7 +45,8 @@ export class GestionUtilComponent
             Util.utiltype = 1;
         }
         this.utilisateurService.CreationUtil(Util).subscribe(Reponse => {
-            console.log("XYZ" + Reponse)});
+            console.log("XYZ" + Reponse)
+        });
     }
 
     public AfficheUtils(param: any)

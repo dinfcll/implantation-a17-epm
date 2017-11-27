@@ -2,18 +2,22 @@
 	<div id="base">
 	   <table class="TableEspacePrincipalCat">
 			<tr id="PremiereLigne">
-				<td id="ChoixCategorie">  
-					<div class="ListeDeroulanteCategorie">
-						<button (click)="OnClickListeDeroulanteCategorie()" class="btnCategorie"> {{NomCateg}} </button>
-						<select class="ListeCategorie" (click)="OnClickListeDeroulanteCategorie()">
-							 <option id="ElementListe" *ngFor ="let categ of m_TabCat" (click)="OnClickCategorie(categ)" title="{{categ.catNom}}">
-								 {{categ.catNom}}
-								 
-							</option>
-						</select>
-					</div>
+				<td id="ChoixCategorie"> 
+					<section> 	
+						<div class="Categorie" *ngFor ="let categ of m_TabCat" id="{{categ.catId}}" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
+
+							 <div id="ListeCrit" class="ListeCritere"> 	
+									<span class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
+										<img src="app/images/add.gif" alt="non" />
+										{{critere.critNom}}	
+									</span>
+							 </div>
+
+							{{categ.catNom}}					 
+						</div>	
+					</section>
                 </td>
-				<td id="EspaceCritereChoisi" rowspan="2">
+				<td id="EspaceCritereChoisi" rowspan="1">
 					<ul id="ListeCritereChoisi">
 						<table>
 							<tr>
@@ -26,19 +30,6 @@
 					<button id="btnChercher" (click)="OnClickRechercher()"><span><img src="app/images/lens.gif" alt=""/>Rechercher</span></button>				
 				</td>
 			</tr>
-			<tr id="DeuxiemeLigne">
-				<td id="ChoixCritere">
-					<div class="ListeDeroulanteCritere">
-						<button (click)="OnClickListeDeroulanteCritere()" class="btnCritere"> {{NomCrit}} </button>
-					  	<select class="ListeCritere" (click)="OnClickListeDeroulanteCritere()">
-							<option id="ElementListe" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
-								<img src="app/images/add.gif" alt="non" />
-								{{critere.critNom}}
-							</option>
-						</select>
-					</div>
-				</td>
-			</tr>
 			<tr id="TroisiemeLigne">
 				<td colspan="2">
 					<div *ngFor="let trace of m_TabTrace">
@@ -48,12 +39,14 @@
 							
 							Logiciel à utiliser: {{trace.tracLogi}}
 							<button id="btnSupprimerTrace" *ngIf="ValidationUtil()" (click)="onClickDeleteTrace(trace.tracId)"><img src="app/images/delete.gif" alt=""/>Tracé #{{trace.tracId}}</button>
-							<a href="{{trace.tracUrl}}" title="{{trace.traceNom}}" data-jbox-image="gallery1"><img src="{{trace.tracUrl}}" alt=""></a> 
-							<a id="lientelechargement" href="{{trace.tracUrl}}" (click)="onClickTelecharger(trace.tracId)" download><img src="app/images/download.gif" alt=""/>Télécharger</a>
-						</section>
-						
+							<div *ngIf="ValidationPage()" class="hover_img"> 
+     							<a>Voir l'aperçu<span><img src="{{trace.tracUrl}}" (click)="onClickImg(trace.tracUrl)" alt="Aucun aperçu" height="100" /></span></a>
+							</div>
+							<a id="lientelechargement" (click)="onClickTelecharger(trace.tracId)" href="{{trace.tracUrl}}" download ><img src="app/images/download.gif" alt=""/>Télécharger</a>
+						</section>		
 			       </div>
 				</td>
-			</tr>			
+			</tr>		
+
 		</table>
 	</div>

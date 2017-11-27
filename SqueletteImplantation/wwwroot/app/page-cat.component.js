@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var Historique_1 = require("./Historique");
@@ -45,7 +44,12 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageCat = function (param) {
         this.m_TabCat = param.json();
         if (this.m_TabCat.length < 8) {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
+            if (this.m_TabCat.length > 1) {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());
+            }
+            else {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
+            }
         }
         else {
             document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");
@@ -54,7 +58,12 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.AffichageCrit = function (param) {
         this.m_TabCrit = param.json();
         if (this.m_TabCrit.length < 8) {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            if (this.m_TabCrit.length > 1) {
+                document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            }
+            else {
+                document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
+            }
         }
         else {
             document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
@@ -66,12 +75,15 @@ var PageCatComponent = (function () {
     PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
         document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     };
-    PageCatComponent.prototype.OnClickListeDeroulanteCategorie = function () {
-        document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
-    };
     //Action lors de la sélection d'une catégorie
     PageCatComponent.prototype.OnClickCategorie = function (categ) {
         var _this = this;
+        for (var i = 0; i < this.m_TabCat.length; i++) {
+            document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
+        }
+        document.getElementById(categ.catId.toString()).style.background = "rgba(43, 47, 61, 0.71)";
+        var offs = document.getElementById(categ.catId.toString()).offsetTop;
+        document.getElementById("ListeCrit").style.top = (offs - 10) + "px";
         this.NomCateg = categ.catNom;
         this.NomCrit = "Critères";
         this.critService.getCriteres(categ.catId).subscribe(function (crit) { return _this.AffichageCrit(crit); });
@@ -151,9 +163,7 @@ PageCatComponent = __decorate([
         templateUrl: 'app/html/page-cat.component.html',
         styleUrls: ['app/css/page-cat.component.css'],
         providers: [trace_service_1.TraceService, critere_service_1.CritereService, categorie_service_1.CategorieService]
-    })
-    //À compléter
-    ,
+    }),
     __metadata("design:paramtypes", [trace_service_1.TraceService, categorie_service_1.CategorieService, critere_service_1.CritereService,
         router_1.Router, authentification_service_1.AuthentificationService, Historique_service_1.HistoriqueService])
 ], PageCatComponent);

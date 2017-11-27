@@ -62,32 +62,49 @@ export class AjoutAdminComponent implements OnInit
         }
     }
 
-    private AffichageCat(param: any) {
+    private AffichageCat(param: any) 
+    {
         this.m_TabCat = (param.json() as Categorie[]);
-        console.log(this.m_TabCat);
 
         if(this.m_TabCat.length < 8)
         {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString());  
+            if(this.m_TabCat.length > 1)
+            {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString()); 
+            }
+            else
+            {
+                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
+            }
+             
         }
         else
         {
             document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");            
         }
+          
     }
 
-    private AffichageCrit(param: any) {
+     private AffichageCrit(param: any) {
         this.m_TabCrit = (param.json() as Critere[]);
-        console.log(this.m_TabCrit);
 
         if(this.m_TabCrit.length < 8)
         {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            if(this.m_TabCrit.length > 1)
+            {
+              document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
+            }
+            else
+            {
+                 document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
+            }
+        
         }
         else
         {
             document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
         }
+
     }
 
     private AffichageTrace(param: any) {
@@ -100,15 +117,23 @@ export class AjoutAdminComponent implements OnInit
 	    document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
     }
 	
-    OnClickListeDeroulanteCategorie()
-    {
-	    document.getElementsByClassName("ListeCategorie")[0].classList.toggle("ShowElement");
-    }
+    
     
     //Action lors de la sélection d'une catégorie
-    OnClickCategorie(id: number)
+    OnClickCategorie(categ: Categorie)
     {
-        this.critService.getCriteres(id).subscribe(crit => this.AffichageCrit(crit));
+        for(var i=0; i<this.m_TabCat.length;i++)
+            {
+                document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
+            }
+      
+    
+         document.getElementById(categ.catId.toString()).style.background="rgba(43, 47, 61, 0.71)";
+         var offs = document.getElementById(categ.catId.toString()).offsetTop;
+         document.getElementById("ListeCrit").style.top = (offs - 10) +"px";
+
+         
+         this.critService.getCriteres(categ.catId).subscribe(crit => this.AffichageCrit(crit));
         
     } 
 

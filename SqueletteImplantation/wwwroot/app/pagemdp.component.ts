@@ -25,23 +25,26 @@ export class mdpcomponent
     {
         this.router.navigateByUrl('choix');
     }
-    public ResetMDP() {        
+    public ResetMDP() {
+        console.log(this.courriel);
         this.utilisateurService.reset(this.courriel).subscribe(res => {
-            if(res){
-                new jBox('notice',{
+            console.log(res);
+            if(res.statusText == "OK"){
+                new jBox('Notice', {
                     content: 'Le mot de passe a été réinitialisé. Vérifier aussi vos courriels indésirables.',
                     color: 'green',
+                    stack: false,
                     autoclose: 2000
                 });
             }
             else
             {
-                new jBox('notice',{
-                    content: 'Échec de la réinitialisation du mot de passe.',
+                new jBox('Notice',{
+                    content: 'Aucun compte trouvé à cette adresse courriel',
                     color: 'red',
+                    stack: false,
                     autoclose: 2000
                 });
-                this.router.navigateByUrl('choix');
             }
         })
     }

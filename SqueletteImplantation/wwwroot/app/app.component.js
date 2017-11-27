@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var authentification_service_1 = require("./authentification.service");
 var Historique_service_1 = require("./Historique.service");
+var Historique_1 = require("./Historique");
 var AppComponent = (function () {
     function AppComponent(router, authentificationService, historiqueService) {
         this.router = router;
@@ -101,6 +101,12 @@ var AppComponent = (function () {
             this.TempsDeVerifierActivite = false;
             this.DetectionActivite();
         }
+    };
+    AppComponent.prototype.onClickTelecharger = function (id) {
+        var _this = this;
+        this.infostelechargement = new Historique_1.HistoriqueDTO(id, this.historiqueService.IdUsager);
+        console.log(this.infostelechargement);
+        this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(function (Reponse) { return _this.historiqueService.ObtenirHistorique(); });
     };
     return AppComponent;
 }());
