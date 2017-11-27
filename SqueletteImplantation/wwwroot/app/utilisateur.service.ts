@@ -84,6 +84,32 @@ export class UtilisateurService {
         return this.http.patch(URL, JSON.stringify({"UtilId": CurrentUser.IdUtil, "UtilPWD": NouveauMotDePasse}), { headers });
     }
 
+    public ModifierDroitUser(NouveauDroit : boolean, isUtilModif :boolean)
+    {
+        let headers = new Headers();
+        headers.append('Content-type', 'application/json');
+
+        let URL = "api/utilisateur/modifierdroituser/";
+        let CurrentUser;
+        let NumDroit;
+
+        if(NouveauDroit === true)
+        {
+            NumDroit = 0;
+        }
+        else
+        {
+            NumDroit = 1;
+        }
+
+        if(isUtilModif != true)
+        {
+           CurrentUser = JSON.parse(localStorage.getItem("ModifUser"));
+
+           return this.http.patch(URL, JSON.stringify({"UtilId": CurrentUser, "UtilType": NumDroit}), { headers });
+        }
+    }
+
 
    
     public getUtils()

@@ -41,6 +41,16 @@
             <button (click)="SauvegarderMotDePasse()" id="SauvegarderMdp" disabled>Sauvegarder</button>
         </fieldset>
     </tr>
+    <tr *ngIf="!this.ValidationPage()">
+        <fieldset id="RegroupementParametre">
+            <legend id="TitreParametre">Changement des droits utilisateurs</legend>
+            <div id="SectionNouveauDroit">
+                <label>Sélectionner pour donner les droits d'administrateur</label>
+                <input type="checkbox" [(ngModel)]="DroitNouv" name="DroitNouv" id="DroitNouv"/>
+            </div>
+            <button (click)="SauvegarderDroitUser()" id="SauvegarderDroitUser">Sauvegarder</button>
+        </fieldset>
+    </tr>
 </table>
 
 

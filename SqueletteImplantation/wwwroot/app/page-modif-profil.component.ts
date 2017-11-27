@@ -22,6 +22,7 @@ export class ModifProfilComponent
     private EmailConf: string;
     private MdpNouv: string;
     private MdpConf: string;
+    private DroitNouv: boolean;
     
     constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService, private authentificationservice: AuthentificationService, private router:Router){
         this.NomUtilNouv = "";
@@ -31,6 +32,7 @@ export class ModifProfilComponent
         this.MdpNouv = "";
         this.MdpConf = "";
         this.authentificationservice.InitDomaine();
+        this.DroitNouv = null;
     }
 
     private ngOnInit()
@@ -158,6 +160,7 @@ export class ModifProfilComponent
 
     private SauvegarderNomUtilisateur()
     {
+        if(this.utilisateurservice.)
         this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv, this.ValidationPage()).subscribe(Resultat => {
 
             if(Resultat.ok == true)
@@ -228,6 +231,39 @@ export class ModifProfilComponent
     {
         this.utilisateurservice.ModifierMotDePasse(this.MdpNouv,this.ValidationPage()).subscribe(Resultat =>{
 
+            if(Resultat.ok == true)
+            {
+                if(Resultat.text() == "Fait")
+                {
+                    new jBox( 'Notice', {
+                        content: 'Changement effectué',
+                        color: 'green',
+                        stack: false
+                    });
+                }
+                else
+                {
+                    new jBox('Notice', {
+                        content: Resultat.text(),
+                        color: 'red',
+                        stack: false
+                    });
+                }
+            }
+            else
+            {
+                new jBox('Notice', {
+                    content: 'Erreur de connexion avec le serveur',
+                    color: 'red',
+                    stack: false
+                });
+            }
+        });
+    }
+
+    private SauvegarderDroitUser() :void
+    {
+        this.utilisateurservice.ModifierDroitUser(this.DroitNouv, this.ValidationPage()).subscribe(Resultat =>{
             if(Resultat.ok == true)
             {
                 if(Resultat.text() == "Fait")
