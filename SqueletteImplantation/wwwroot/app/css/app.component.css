@@ -176,6 +176,10 @@ body{
     padding: 0px;
 }
 
+#EspaceLogo img:hover{
+    cursor: pointer;
+}
+
 #EspacePrincipal{
     position: relative;
     overflow-y: auto;
