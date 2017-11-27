@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Utilisateur } from "./utilisateur";
 import { UtilisateurService } from "./utilisateur.service";
-import {AuthentificationService} from "./authentification.service";
+import { AuthentificationService } from "./authentification.service";
 import { Router } from '@angular/router';
 
 declare var jBox: any;
@@ -20,9 +20,10 @@ export class GestionUtilComponent
     m_TabUtil: Utilisateur[];
     
 
-    constructor(private http: Http, private utilisateurService: UtilisateurService, private router: Router) 
+    constructor(private http: Http, private utilisateurService: UtilisateurService, private router: Router, private authentificationservice: AuthentificationService) 
     { 
         this.utilisateurService.getUtils().subscribe(retour => this.AfficheUtils(retour));
+        this.authentificationservice.InitDomaine();
     }
 
     public InfoCreationUtil(): boolean
