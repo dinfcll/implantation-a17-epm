@@ -13,6 +13,7 @@ exports.router = [
     { path: '', redirectTo: '/choix', pathMatch: 'full' },
     { path: 'MDP', component: pagemdp_component_1.mdpcomponent },
     { path: 'ModificationProfil', component: page_modif_profil_component_1.ModifProfilComponent, canActivate: [authentification_guard_1.AuthentificationGuard] },
+    { path: 'ModificationProfilUtilisateurs', component: page_modif_profil_component_1.ModifProfilComponent, canActivate: [authentification_guard_1.AuthentificationGuard] },
     { path: 'GestionUtilisateur', component: gestionutil_component_1.GestionUtilComponent, canActivate: [authentification_guard_1.AuthentificationGuard] },
     { path: 'cardiologie', component: page_cat_component_1.PageCatComponent, canActivate: [authentification_guard_1.AuthentificationGuard] },
     { path: 'cardiologie/ajouttrace', component: page_ajout_admin_component_1.AjoutAdminComponent, canActivate: [authentification_guard_1.AuthentificationGuard] },

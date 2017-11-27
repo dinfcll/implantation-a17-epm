@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Utilisateur } from "./utilisateur";
 import { UtilisateurService } from "./utilisateur.service";
+import {AuthentificationService} from "./authentification.service";
+import { Router } from '@angular/router';
 
 declare var jBox: any;
 
@@ -14,18 +16,20 @@ declare var jBox: any;
 
 export class GestionUtilComponent 
 {
-    Affiche: boolean = false;
+    Affiche: boolean = true;
+    m_TabUtil: Utilisateur[];
+    
 
-    constructor(private http: Http, private utilisateurService: UtilisateurService) { }
+    constructor(private http: Http, private utilisateurService: UtilisateurService, private router: Router) 
+    { 
+        this.utilisateurService.getUtils().subscribe(retour => this.AfficheUtils(retour));
+    }
 
     public InfoCreationUtil(): boolean
     {
         return this.Affiche;
     }
-    public AfficheAjoutUtilisateur(): void
-    {
-        this.Affiche = !this.Affiche;
-    }
+   
     public AjoutUtilisateur(f: NgForm): void
     {
         console.log(f.value);
@@ -44,4 +48,30 @@ export class GestionUtilComponent
             console.log("XYZ" + Reponse)
         });
     }
+
+    public AfficheUtils(param: any)
+    {
+        this.m_TabUtil = (param.json() as Utilisateur[]);
+    }
+
+    public onClickDeleteUtil(id: number)
+    {
+        if(confirm("Voulez-vous vraiment supprimer définitivement l'utilisateur' #" + id  + "?"))
+         {
+            this.utilisateurService.deleteUtil(id).subscribe(reponse => 
+                {
+                    this.utilisateurService.getUtils().subscribe(retour => this.AfficheUtils(retour));
+                });
+            
+         }
+         
+
+    }
+
+    public onClickModifUtil(utilId:number)
+    {
+        localStorage.setItem('ModifUser', JSON.stringify(utilId));
+        this.router.navigateByUrl('ModificationProfilUtilisateurs');
+    }
+
 }

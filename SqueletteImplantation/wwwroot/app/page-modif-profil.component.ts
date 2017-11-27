@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
 import { UtilisateurService } from './utilisateur.service';
 import { AuthentificationService } from "./authentification.service";
+import { Router } from '@angular/router';
 
 declare var jBox: any;
 
@@ -22,7 +23,7 @@ export class ModifProfilComponent
     private MdpNouv: string;
     private MdpConf: string;
     
-    constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService, private authentificationservice: AuthentificationService){
+    constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService, private authentificationservice: AuthentificationService, private router:Router){
         this.NomUtilNouv = "";
         this.NomUtilConf = "";
         this.EmailNouv = "";
@@ -140,11 +141,24 @@ export class ModifProfilComponent
         document.getElementById("MdpConf").style.borderColor = "red";
     }
 
+    public ValidationPage() : boolean
+    {
+        let CheminLong: string = this.router.url.toString();
+        let Page: string[];
+       
+        
+        if(CheminLong == "/ModificationProfilUtilisateurs")
+        {
+            return false;
+        }
 
+   
+        return true;
+    }
 
     private SauvegarderNomUtilisateur()
     {
-        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv).subscribe(Resultat => {
+        this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv, this.ValidationPage()).subscribe(Resultat => {
 
             if(Resultat.ok == true)
             {
@@ -178,7 +192,7 @@ export class ModifProfilComponent
     
     private SauvegarderEmail() : void
     {
-        this.utilisateurservice.ModifierEmail(this.EmailNouv).subscribe(Resultat => {
+        this.utilisateurservice.ModifierEmail(this.EmailNouv,this.ValidationPage()).subscribe(Resultat => {
 
             if(Resultat.ok == true)
             {
@@ -212,7 +226,7 @@ export class ModifProfilComponent
 
     private SauvegarderMotDePasse() : void
     {
-        this.utilisateurservice.ModifierMotDePasse(this.MdpNouv).subscribe(Resultat =>{
+        this.utilisateurservice.ModifierMotDePasse(this.MdpNouv,this.ValidationPage()).subscribe(Resultat =>{
 
             if(Resultat.ok == true)
             {

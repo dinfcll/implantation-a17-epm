@@ -1,10 +1,14 @@
 using System.Linq;
+using System.Collections;
 using Microsoft.AspNetCore.Mvc;
 using SqueletteImplantation.DbEntities;
 using SqueletteImplantation.DbEntities.Models;
 using System;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Text.RegularExpressions;
+using System.Collections;
+
+
 
 namespace SqueletteImplantation.Controllers
 {
@@ -46,6 +50,7 @@ namespace SqueletteImplantation.Controllers
                 return false;
 
         }
+
         
         [HttpPost]
         [Route("api/utilisateur/login")]
@@ -98,7 +103,7 @@ namespace SqueletteImplantation.Controllers
             return new OkObjectResult(true);
         }
 
-        [HttpPatch]
+       [HttpPatch]
         [Route("api/utilisateur/modifiernomutil/")]
         public IActionResult PatchNomUtilisateur([FromBody]Utilisateur Util)
         {
@@ -114,7 +119,7 @@ namespace SqueletteImplantation.Controllers
                 if (UtilConnecte != null)
                 {
                     UtilConnecte.UtilUserName = Util.UtilUserName;
-                    _maBd.Utilisateur.Attach(UtilConnecte);
+                    _maBd.Attach(UtilConnecte);
                     Changement = _maBd.Entry(UtilConnecte);
                     Changement.Property(e => e.UtilUserName).IsModified = true;
                     _maBd.SaveChanges();
@@ -192,6 +197,10 @@ namespace SqueletteImplantation.Controllers
 
             return ResultatOk;
         }
+    
+
+
+
 
         [HttpPost]
         [Route("api/utilisateur/CreationUtilisateur")]
@@ -222,5 +231,33 @@ namespace SqueletteImplantation.Controllers
             }
             return new OkObjectResult(false);
         }
+
+
+        [HttpGet]
+        [Route("api/utilisateur/liste")]
+        public IEnumerable GetListeUtilisateur()
+        {
+            return _maBd.Utilisateur.ToList();
+        }
+
+
+        
+        [HttpDelete]
+        [Route("api/delutil/{id}")]
+        public IActionResult DeleteUtilSelonId(int id)
+        {
+            var utilisateur = _maBd.Utilisateur.FirstOrDefault(ca => ca.UtilId== id);
+
+            if (utilisateur == null)
+            {
+                return NotFound();
+            }
+
+            _maBd.Remove(utilisateur);
+            _maBd.SaveChanges();
+
+            return new OkResult();
+        }
+
     }
 }
