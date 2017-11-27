@@ -235,10 +235,6 @@ body{
 	text-align: left;	
 }
 
-#logocegep:hover{
-    cursor: pointer;
-}
-
 .loader {
     border: 20px solid #f3f3f3;
     border-top: 20px solid #8c8c8c;
