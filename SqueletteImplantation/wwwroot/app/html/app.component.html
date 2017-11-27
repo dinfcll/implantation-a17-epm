@@ -9,9 +9,7 @@
 		<table class="TableComplete">
             <tr>
 				<td id="EspaceLogo" rowspan="2">
-					<a (click)="Reroutage(2)" id="logocegep">						
-						<img src="app/images/LogoCegep.png" alt="Logo Cegep">					
-					</a>
+					<img src="app/images/LogoCegep.png" alt="Logo Cegep" (click)="Reroutage(2)">
 				</td>
                 <td id="Navigation" colspan="2">
 					<div id="divAccueil" *ngIf="this.authentificationService.Connecte()">
@@ -35,17 +33,18 @@
 							<li (click)="Reroutage(3)">Modification du profil utilisateur</li>
 						</ul>
 					</div>
-                    <div *ngIf="this.authentificationService.Admin() && this.authentificationService.Domaine()" id="divAdmin">
+                    <div *ngIf="this.authentificationService.Admin()" id="divAdmin">
         				<h3>Outils administrateur</h3>
 						<ul>
-							<li (click)="Reroutage(0)">Page d'ajout de tracés</li>
-							<li (click)="Reroutage(1)">Page d'ajout de catégories et de critères</li>
+							<li *ngIf="this.authentificationService.Domaine()" (click)="Reroutage(0)">Page d'ajout de tracés</li>
+							<li *ngIf="this.authentificationService.Domaine()" (click)="Reroutage(1)">Page d'ajout de catégories et de critères</li>
 							<li (click)="Reroutage(4)">Gestion des utilisateurs</li>
 						</ul> 
 					</div>
 					<hr *ngIf="this.authentificationService.Connecte()">
 					<div *ngIf="this.authentificationService.Connecte()" id="divHistorique">
                         <h3>Historique</h3>
+						<br>
 						<ul>
 							<a *ngFor="let trace of this.historiqueService.tabHistoriqueTrace" id="lientelechargement"  href="{{trace.tracUrl}}" (click)="onClickTelecharger(trace.tracId)" download ><img src="app/images/download.gif" alt=""/>{{ trace.traceNom}}</a>
 						</ul>

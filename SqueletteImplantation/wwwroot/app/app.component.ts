@@ -81,10 +81,10 @@ export class AppComponent
                     this.router.navigateByUrl('ModificationProfil');
                 }
                 else
-                if(type === 4)
-                {
-                  this.router.navigateByUrl('GestionUtilisateur');
-                }
+                  if(type === 4)
+                  {
+                    this.router.navigateByUrl('GestionUtilisateur');
+                  }
   }
 
 
