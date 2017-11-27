@@ -203,7 +203,7 @@ namespace SqueletteImplantation.Controllers
 
 
         [HttpPost]
-        [Route("api/utilisateur/CreationUtilisateur")]
+        [Route("api/utilisateur/creationutilisateur")]
         public IActionResult CreationNouvelUtilisateur([FromBody]Utilisateur nouveauutilisateur)
         {
             Utilisateur VerificationUtilExistant = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilUserName == nouveauutilisateur.UtilUserName);

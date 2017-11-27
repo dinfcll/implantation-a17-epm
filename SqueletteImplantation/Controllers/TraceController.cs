@@ -8,6 +8,7 @@ using SqueletteImplantation.DbEntities.DTOs;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
 namespace SqueletteImplantation.Controllers
 {
@@ -83,10 +84,11 @@ namespace SqueletteImplantation.Controllers
         public IActionResult UploadFichierSurServeur(IList<IFormFile> traces)
         {
             string NomTrace;
+            string Date = DateTime.Now.ToString("h_mm_ss_");
 
             if(traces.Count==1 && traces[0] != null)
             {
-                NomTrace = traces[0].FileName;
+                NomTrace =  Date  + traces[0].FileName ;
 
                 if (_uploadService.upload(traces[0], RealUpload.Chemin + NomTrace))
                 {
