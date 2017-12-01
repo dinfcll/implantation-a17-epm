@@ -198,9 +198,30 @@ namespace SqueletteImplantation.Controllers
             return ResultatOk;
         }
     
+        [HttpPatch]
+        [Route("api/utilisateur/modifierdroituser/")]
+        public IActionResult PostDroitUser([FromBody]Utilisateur util)
+        {
+            OkObjectResult ResultatOk;
+            Utilisateur UtilConnecte;
+            EntityEntry<Utilisateur> Changement;
 
+            UtilConnecte = _maBd.Utilisateur.SingleOrDefault(Retour => Retour.UtilId == util.UtilId);
 
-
+            if (UtilConnecte != null)
+            {
+                UtilConnecte.UtilType = util.UtilType;
+                _maBd.Utilisateur.Attach(UtilConnecte);
+                Changement = _maBd.Entry(UtilConnecte);
+                Changement.Property(e => e.UtilType).IsModified = true;
+                _maBd.SaveChanges();
+                ResultatOk = new OkObjectResult("Fait");
+            }
+            else
+                ResultatOk = new OkObjectResult("Erreur d\'authentification");
+            
+            return ResultatOk;
+        }
 
         [HttpPost]
         [Route("api/utilisateur/creationutilisateur")]
