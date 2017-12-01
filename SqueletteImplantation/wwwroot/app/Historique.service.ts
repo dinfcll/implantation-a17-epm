@@ -13,8 +13,9 @@ export class HistoriqueService
     private AjoutHistoriqueURL='api/AjoutRechercheRecente'; 
     private headers = new Headers({ 'Content-Type': 'application/json' }); 
 
-    constructor(private http: Http) { }
+    constructor(private http: Http){}
 
+   
     getHistorique(id: number) 
     {
         return this.http.get(this.HistoriqueURL + id);
