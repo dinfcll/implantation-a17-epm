@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { HistoriqueService } from "./Historique.service";
+
+
 
 @Injectable()
 export class AuthentificationService {
@@ -8,21 +11,30 @@ export class AuthentificationService {
     private DomaineChoisi: boolean;
     private UtilisateurURL = 'api/utilisateur/login';
 
-    constructor(private http: Http){
-        if(localStorage.getItem("ConnectedUser"))
+    constructor(
+        private http: Http,
+        private historiqueService:HistoriqueService)
         {
-            let currentUser = JSON.parse(localStorage.getItem("ConnectedUser"));
-            this.estConnecte = currentUser.connect;
-            this.estAdmin = currentUser.type;
-            this.DomaineChoisi = currentUser.Domaine;
+            if(localStorage.getItem("ConnectedUser"))
+            {
+                let currentUser = JSON.parse(localStorage.getItem("ConnectedUser"));
+                this.estConnecte = currentUser.connect;
+                this.estAdmin = currentUser.type;
+                this.historiqueService.SetUsager();
+                this.historiqueService.ObtenirHistorique();
+                let DomChoix = JSON.parse(localStorage.getItem('DomaineChoisi'))
+                this.DomaineChoisi = DomChoix.domaine;
+            }
+            else
+            {
+                this.estAdmin = false;
+                this.estConnecte = false;
+                this.DomaineChoisi = false;
+            }
         }
-        else
-        {
-            this.estAdmin = false;
-            this.estConnecte = false;
-            this.DomaineChoisi = false;
-        }
-    }
+
+        
+
 
     public login(user: string, motdepasse: string) {      
         let headers = new Headers();
@@ -58,7 +70,8 @@ export class AuthentificationService {
             this.estAdmin = false;
         }
 
-        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte, domaine: this.DomaineChoisi, IdUtil: tRetour[1] }));
+        localStorage.setItem('ConnectedUser', JSON.stringify({ type: this.estAdmin, connect: this.estConnecte, IdUtil: tRetour[1] }));
+        localStorage.setItem('DomaineChoisi',JSON.stringify({domaine: this.DomaineChoisi}));
     }
 
     public logout(): void {
@@ -66,6 +79,8 @@ export class AuthentificationService {
         this.estConnecte = false;
         this.estAdmin = false;
         localStorage.removeItem('ModifType');
+        localStorage.removeItem('DomaineChoisi');
+        localStorage.removeItem('Username');
     }
 
 
@@ -88,11 +103,13 @@ export class AuthentificationService {
     public DomaineChange(): void
     {
         this.DomaineChoisi = true;
+        localStorage.setItem('DomaineChoisi',JSON.stringify({domaine: this.DomaineChoisi}));
     }
 
     public InitDomaine(): void
     {
         this.DomaineChoisi = false;
+        localStorage.setItem('DomaineChoisi',JSON.stringify({domaine: this.DomaineChoisi}));
     }
 
     public Domaine()
@@ -102,6 +119,7 @@ export class AuthentificationService {
 
     public Connecte()
     {
+        
         return this.estConnecte;
     }
 

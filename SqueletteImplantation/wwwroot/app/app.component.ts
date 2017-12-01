@@ -39,7 +39,7 @@ export class AppComponent
     this.authentificationService.DomaineChange();
   }
 
-
+  
 
   Deconnexion(Raison : Number){
     this.authentificationService.logout();
