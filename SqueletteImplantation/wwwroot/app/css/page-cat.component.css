@@ -117,22 +117,24 @@ img, a
 }
 
 .ListeCritere{
+	background-color:var(--CouleurTheme);
+	border-radius: 5px;
 	display: none;
-	position: absolute;
-	left: 27vh;
-	top: 0vh;
 	z-index: 1;
-	width: fit-content;
+	position: absolute;
+	left: 13.5vw;
 	box-sizing: border-box;
+	width: fit-content;
+	max-width: 76vw;
 }
 
 .Critere{
-	background-color:var(--CouleurTheme);
 	border-radius: 5px;
 	padding: 5px;
 	margin: 2px;
 	color: white;
 	display: inline-block;
+
 }
 
 #ChoixCategorie{
@@ -165,4 +167,3 @@ img, a
 .ShowElement{
 	display: inline-block;
 }
-

@@ -84,7 +84,7 @@ var PageCatComponent = (function () {
         }
         document.getElementById(categ.catId.toString()).style.background = "rgba(43, 47, 61, 0.71)";
         var offs = document.getElementById(categ.catId.toString()).offsetTop;
-        document.getElementById("ListeCrit").style.top = (offs) + "px";
+        document.getElementById("ListeCrit").style.top = offs + "px";
         this.NomCateg = categ.catNom;
         this.NomCrit = "Critères";
         this.critService.getCriteres(categ.catId).subscribe(function (crit) { return _this.AffichageCrit(crit); });
