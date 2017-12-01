@@ -16,24 +16,16 @@ declare var jBox: any;
 
 export class GestionUtilComponent 
 {
-    Affiche: boolean = true;
     m_TabUtil: Utilisateur[];
-    
 
     constructor(private http: Http, private utilisateurService: UtilisateurService, private router: Router, private authentificationservice: AuthentificationService) 
     { 
         this.utilisateurService.getUtils().subscribe(retour => this.AfficheUtils(retour));
         this.authentificationservice.InitDomaine();
     }
-
-    public InfoCreationUtil(): boolean
-    {
-        return this.Affiche;
-    }
    
     public AjoutUtilisateur(f: NgForm): void
     {
-        console.log(f.value);
         var Util: Utilisateur = new Utilisateur(null, f.value.prenom as string, f.value.nom as string, null, f.value.utilisateur as string, f.value.courriel as string, null);
         
         var droitutil: number; 
@@ -46,7 +38,12 @@ export class GestionUtilComponent
             Util.utiltype = 1;
         }
         this.utilisateurService.CreationUtil(Util).subscribe(Reponse => {
-            console.log("XYZ" + Reponse)
+            new jBox('Notice', {
+                content: 'Utilisateur créé avec succès.',
+                color: 'green',
+                autoclose: 2000,
+                stack: false
+            });
         });
     }
 
@@ -63,16 +60,14 @@ export class GestionUtilComponent
                 {
                     this.utilisateurService.getUtils().subscribe(retour => this.AfficheUtils(retour));
                 });
-            
          }
-         
-
     }
 
-    public onClickModifUtil(utilId:number)
+    public onClickModifUtil(utilId:number, utiltype:number, utilUsername:string)
     {
         localStorage.setItem('ModifUser', JSON.stringify(utilId));
+        localStorage.setItem('Username', JSON.stringify(utilUsername));
+        localStorage.setItem('ModifType', JSON.stringify(utiltype));
         this.router.navigateByUrl('ModificationProfilUtilisateurs');
     }
-
 }

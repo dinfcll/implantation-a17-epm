@@ -9,13 +9,15 @@
   display: inline-block; 
   width: 90%;
   
-  }
+}
+
 .ListeUtil
 {
     overflow-y: auto;
     display: inline-block;
     margin-left:10%;
-   
+    min-width: 300px;
+    text-align: left;
 }
 
 p {

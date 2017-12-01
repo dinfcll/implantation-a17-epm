@@ -22,6 +22,8 @@ export class ModifProfilComponent
     private EmailConf: string;
     private MdpNouv: string;
     private MdpConf: string;
+    private DroitNouv: boolean;
+    private NomUtil :string;
     
     constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService, private authentificationservice: AuthentificationService, private router:Router){
         this.NomUtilNouv = "";
@@ -31,6 +33,8 @@ export class ModifProfilComponent
         this.MdpNouv = "";
         this.MdpConf = "";
         this.authentificationservice.InitDomaine();
+        this.NomUtil = "";
+        this.DroitNouv = null;
     }
 
     private ngOnInit()
@@ -38,6 +42,16 @@ export class ModifProfilComponent
         document.getElementById("SauvegarderNomUtil").style.backgroundColor = "lightgray";
         document.getElementById("SauvegarderEmail").style.backgroundColor = "lightgray";
         document.getElementById("SauvegarderMdp").style.backgroundColor = "lightgray";
+
+        if(JSON.parse(localStorage.getItem("ModifType")) === 0)
+        {
+            this.DroitNouv = true;
+        }
+        else
+            this.DroitNouv = false;
+
+        this.NomUtil = JSON.parse(localStorage.getItem("Username"));
+
     }
 
     private ComparaisonChangementNomUtil() : void
@@ -257,4 +271,39 @@ export class ModifProfilComponent
             }
         });
     }
+
+    private SauvegarderDroitUser() :void
+    {
+        this.utilisateurservice.ModifierDroitUser(this.DroitNouv, this.ValidationPage()).subscribe(Resultat =>{
+            if(Resultat.ok == true)
+            {
+                if(Resultat.text() == "Fait")
+                {
+                    new jBox( 'Notice', {
+                        content: 'Changement effectué',
+                        color: 'green',
+                        stack: false
+                    });
+                }
+                else
+                {
+                    new jBox('Notice', {
+                        content: Resultat.text(),
+                        color: 'red',
+                        stack: false
+                    });
+                }
+            }
+            else
+            {
+                new jBox('Notice', {
+                    content: 'Erreur de connexion avec le serveur',
+                    color: 'red',
+                    stack: false
+                });
+            }
+        });
+    }
+    
+    
 }

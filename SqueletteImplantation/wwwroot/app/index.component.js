@@ -35,7 +35,8 @@ var IndexComponent = (function () {
                 new jBox('Notice', {
                     content: 'Utilisateur ou mot de passe invalide',
                     color: 'red',
-                    stack: false
+                    stack: false,
+                    autoclose: 2000
                 });
             }
         });

@@ -65,6 +65,7 @@ export class AuthentificationService {
         localStorage.removeItem('ConnectedUser');
         this.estConnecte = false;
         this.estAdmin = false;
+        localStorage.removeItem('ModifType');
     }
 
 
