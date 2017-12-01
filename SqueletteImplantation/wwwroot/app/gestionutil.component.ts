@@ -21,6 +21,7 @@ export class GestionUtilComponent
     constructor(private http: Http, private utilisateurService: UtilisateurService, private router: Router, private authentificationservice: AuthentificationService) 
     { 
         this.utilisateurService.getUtils().subscribe(retour => this.AfficheUtils(retour));
+        this.authentificationservice.InitDomaine();
     }
    
     public AjoutUtilisateur(f: NgForm): void
