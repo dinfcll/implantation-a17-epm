@@ -1,39 +1,35 @@
 <div id="base">
-	   <table class="TableEspacePrincipalCat">
-			<tr id="PremiereLigne">
-				<td id="ChoixCategorie"> 
-					<section> 	
-						<div class="Categorie" *ngFor ="let categ of m_TabCat" id="{{categ.catId}}" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
-
-							 <div id="ListeCrit" class="ListeCritere"> 	
-									<span class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
-										<img src="app/images/add.gif" alt="non" />
-										{{critere.critNom}}	
-									</span>
-							 </div>
-
-							{{categ.catNom}}					 
-						</div>	
-					</section>
-                </td>
-				<td id="EspaceCritereChoisi" rowspan="2">
-					<ul id="ListeCritereChoisi">
-						<table>
-							<tr>
-								<td *ngFor="let choix of m_TabRecherche"  id="CritereChoisi">
-									<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)" style="cursor:pointer;"/> {{choix.critNom}}</span>
-								</td>
-							</tr>
-						</table>
-					</ul>
-					
-					<div class = "container">
+	<table class="TableEspacePrincipalCat">
+		<tr id="PremiereLigne">
+			<td id="ChoixCategorie"> 
+				<section> 	
+					<div class="Categorie" *ngFor ="let categ of m_TabCat" id="{{categ.catId}}" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
+						{{categ.catNom}}					 
+					</div>
+					<div id="ListeCrit" class="ListeCritere"> 	
+						<span class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
+							<img src="app/images/add.gif" alt="non"/>
+							{{critere.critNom}}	
+						</span>
+					</div>
+				</section>
+            </td>
+			<td id="EspaceCritereChoisi">
+				<ul id="ListeCritereChoisi">
+					<table>
+						<tr>
+							<td *ngFor="let choix of m_TabRecherche"  id="CritereChoisi">
+								<span><img src="app/images/delete.gif" alt="" (click)="OnClickSupprimer(choix)" style="cursor:pointer;"/> {{choix.critNom}}</span>
+							</td>
+						</tr>
+					</table>
+				</ul>
+				<div class = "container">
 					<input type="file" name="file" id="file" class="inputfile"  (change)="fileChange($event)"  accept=".pdf,.doc,.docx,.jpg,.png"/>
-                    <label for="file"><img src="app/images/download.png" alt=""/>  {{Message}}</label>
+                	<label for="file"><img src="app/images/download.png" alt=""/>  {{Message}}</label>
 					<button id="btnAjouterTrace" (click)="onClickAddTrace()"><span><img src="app/images/add.png" alt=""/>Soumettre</span></button>
-					</div>		
-				</td>
-			</tr>
-					
-		</table>
-	</div>
+				</div>		
+			</td>
+		</tr>			
+	</table>
+</div>

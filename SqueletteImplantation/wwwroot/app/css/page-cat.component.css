@@ -86,7 +86,6 @@ img, a
 	float:right;
 	width:10%;
 	cursor: pointer;
-
 }
 
 
@@ -103,7 +102,7 @@ img, a
 	color: white;
 	display: block;
 	display: inline-block; 
-	width:96%;
+	width: 96%;
 }
 
 .Categorie{
@@ -113,7 +112,7 @@ img, a
 	padding: 5px;
 	color: white;
 	display: block;
-	position:relative;
+	position: relative;
 }
 
 .ListeCritere{
@@ -122,10 +121,8 @@ img, a
 	display: none;
 	z-index: 1;
 	position: absolute;
-	left: 13.5vw;
 	box-sizing: border-box;
 	width: fit-content;
-	max-width: 76vw;
 }
 
 .Critere{
@@ -142,7 +139,6 @@ img, a
 	border-bottom-style: solid;
     border-bottom-color: var(--CouleurTheme);
     box-shadow: 0px 5px 4px -2px #8c8c8c;
-
 }
 
 .Categorie:hover{
@@ -154,7 +150,6 @@ img, a
 	cursor: pointer;
 	background-color:  rgba(125, 141, 163, 0.71);
 }
-
 
 
 #lientelechargement{

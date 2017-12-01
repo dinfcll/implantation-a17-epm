@@ -83,8 +83,12 @@ var PageCatComponent = (function () {
             document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
         }
         document.getElementById(categ.catId.toString()).style.background = "rgba(43, 47, 61, 0.71)";
-        var offs = document.getElementById(categ.catId.toString()).offsetTop;
-        document.getElementById("ListeCrit").style.top = offs + "px";
+        var offsTop = document.getElementById(categ.catId.toString()).offsetTop;
+        document.getElementById("ListeCrit").style.top = offsTop + "px";
+        var offsLargeur = document.getElementById("EspaceCritereChoisi").offsetWidth;
+        document.getElementById("ListeCrit").style.maxWidth = offsLargeur + "px";
+        var offsDroite = document.getElementById("ChoixCategorie").offsetWidth;
+        document.getElementById("ListeCrit").style.left = offsDroite - 5 + "px";
         this.NomCateg = categ.catNom;
         this.NomCrit = "Critères";
         this.critService.getCriteres(categ.catId).subscribe(function (crit) { return _this.AffichageCrit(crit); });
