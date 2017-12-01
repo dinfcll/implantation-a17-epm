@@ -79,6 +79,8 @@ export class AuthentificationService {
         this.estConnecte = false;
         this.estAdmin = false;
         localStorage.removeItem('ModifType');
+        localStorage.removeItem('DomaineChoisi');
+        localStorage.removeItem('Username');
     }
 
 
