@@ -14,7 +14,6 @@
 	height: 0.1px;
 	opacity: 0;
 	z-index: -1;
-	
 }
 .inputfile + label {
 	display: inline-block;
@@ -116,63 +115,20 @@
 }
 
 
-
-/*-------------------------Début css pour liste déroulantes---------------------------*/
- .btnCritere{
-	border: none;
-	border-radius:5px;
-	background-color:var(--CouleurTheme);
-	cursor: pointer;
-	color: white;
-	padding: 8px;
-	padding-left: 12px;
-	padding-right: 22px;
-	font-size: 20px;
-    width: 170px;
-	background-image: url("app/images/FlecheEnBas.png");
-	background-size: 20px 20px;
-	background-repeat: no-repeat;
-	background-position: right;
-	
-}
-
-
-.btnCategorie:hover, .btnCategorie:focus, .btnCritere:hover, .btnCritere:focus{
-	background-color: var(--CouleurThemeHover);
-}
-
-/*Liste deroulante Catégorie et Critère*/
-.ListeDeroulanteCategorie, .ListeDeroulanteCritere{
-	margin-left: 50px;
-	margin-top: 40px;
-    margin-bottom: 40px;
-    width: 221px;
-}
-
-.ListeCategorie{
-	display: none;
-	position: absolute;
-	width: 170px;
-	z-index: 1;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-
 .ListeCritere{
 	background-color:var(--CouleurTheme);
 	border-radius: 5px;
 	display: none;
-	position: absolute;
-	left: 27vh;
-	top: 0vh;
 	z-index: 1;
-	width:100vh;
+	position: absolute;
+	box-sizing: border-box;
+	width: fit-content;
 }
 
 .Critere{
-	border-radius: 2px;
-	padding: 2px;
-	margin: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 2px;
 	color: white;
 	display: inline-block;
 	
@@ -185,7 +141,7 @@
 	padding: 5px;
 	color: white;
 	display: block;
-	position:relative;
+	position: relative;
 }
 
 .Critere:hover{
@@ -200,10 +156,5 @@
 
 
 .ShowElement{
-	display: block;
+	display: inline-block;
 }
-
-
-
-
-/*-------------------------Fin css pour liste déroulantes---------------------------*/
