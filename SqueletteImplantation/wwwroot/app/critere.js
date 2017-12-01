@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Critere = (function () {
     function Critere(critId, critNom, catId) {
         this.critId = critId;

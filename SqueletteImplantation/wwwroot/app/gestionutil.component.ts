@@ -63,9 +63,11 @@ export class GestionUtilComponent
          }
     }
 
-    public onClickModifUtil(utilId:number)
+    public onClickModifUtil(utilId:number, utiltype:number, utilUsername:string)
     {
         localStorage.setItem('ModifUser', JSON.stringify(utilId));
+        localStorage.setItem('Username', JSON.stringify(utilUsername));
+        localStorage.setItem('ModifType', JSON.stringify(utiltype));
         this.router.navigateByUrl('ModificationProfilUtilisateurs');
     }
 }

@@ -23,6 +23,7 @@ export class ModifProfilComponent
     private MdpNouv: string;
     private MdpConf: string;
     private DroitNouv: boolean;
+    private NomUtil :string;
     
     constructor(private appcomponent: AppComponent, private utilisateurservice: UtilisateurService, private authentificationservice: AuthentificationService, private router:Router){
         this.NomUtilNouv = "";
@@ -32,6 +33,7 @@ export class ModifProfilComponent
         this.MdpNouv = "";
         this.MdpConf = "";
         this.authentificationservice.InitDomaine();
+        this.NomUtil = "";
         this.DroitNouv = null;
     }
 
@@ -40,6 +42,16 @@ export class ModifProfilComponent
         document.getElementById("SauvegarderNomUtil").style.backgroundColor = "lightgray";
         document.getElementById("SauvegarderEmail").style.backgroundColor = "lightgray";
         document.getElementById("SauvegarderMdp").style.backgroundColor = "lightgray";
+
+        if(JSON.parse(localStorage.getItem("ModifType")) === 0)
+        {
+            this.DroitNouv = true;
+        }
+        else
+            this.DroitNouv = false;
+
+        this.NomUtil = JSON.parse(localStorage.getItem("Username"));
+
     }
 
     private ComparaisonChangementNomUtil() : void
@@ -160,7 +172,6 @@ export class ModifProfilComponent
 
     private SauvegarderNomUtilisateur()
     {
-        if(this.utilisateurservice.)
         this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv, this.ValidationPage()).subscribe(Resultat => {
 
             if(Resultat.ok == true)
@@ -293,4 +304,6 @@ export class ModifProfilComponent
             }
         });
     }
+    
+    
 }

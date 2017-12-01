@@ -198,7 +198,7 @@ namespace SqueletteImplantation.Controllers
             return ResultatOk;
         }
     
-        [HttpPost]
+        [HttpPatch]
         [Route("api/utilisateur/modifierdroituser/")]
         public IActionResult PostDroitUser([FromBody]Utilisateur util)
         {
