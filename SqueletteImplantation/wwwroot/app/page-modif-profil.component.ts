@@ -49,9 +49,10 @@ export class ModifProfilComponent
         }
         else
             this.DroitNouv = false;
-
-        this.NomUtil = JSON.parse(localStorage.getItem("Username"));
-
+        
+        this.NomUtil = JSON.parse(localStorage.getItem("ConnectedUser"));
+        
+        
     }
 
     private ComparaisonChangementNomUtil() : void
@@ -163,15 +164,19 @@ export class ModifProfilComponent
         
         if(CheminLong == "/ModificationProfilUtilisateurs")
         {
+            this.NomUtil = JSON.parse(localStorage.getItem("Username"));
             return false;
         }
 
-   
+       
+        this.NomUtil = "votre profil"
         return true;
     }
 
     private SauvegarderNomUtilisateur()
     {
+        console.log(this.NomUtilNouv,this.ValidationPage()); // À retirer
+
         this.utilisateurservice.ModifierNomUtilisateur(this.NomUtilNouv, this.ValidationPage()).subscribe(Resultat => {
 
             if(Resultat.ok == true)
