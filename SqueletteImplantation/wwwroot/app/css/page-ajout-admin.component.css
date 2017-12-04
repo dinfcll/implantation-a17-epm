@@ -6,11 +6,12 @@
 
 #container{
 	width: fit-content;
-	position: relative;
 	float: right;
 	margin-right: 4%;
-	height: 100%;
-	bottom: 20%;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	margin-bottom: 4%;
 }
 
 .inputfile {
@@ -30,7 +31,10 @@ label {
 	padding: 8px;
 	font-size: 20px;
     width: 200px;
+	
 }
+
+
 
 
 label:hover {
