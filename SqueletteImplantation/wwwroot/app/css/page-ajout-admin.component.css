@@ -4,9 +4,14 @@
 	outline: 0;
 }
 
-.container{
-	margin-left: 65%;
-	margin-top:12%;
+#container{
+	width: fit-content;
+	float: right;
+	margin-right: 4%;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	margin-bottom: 4%;
 }
 
 .inputfile {
@@ -14,26 +19,27 @@
 	height: 0.1px;
 	opacity: 0;
 	z-index: -1;
+	display: none;
 }
-.inputfile + label {
+
+label {
 	display: inline-block;
 	border-radius:5px;	
 	border: none;
 	background-color: var(--CouleurTheme);
-	cursor: pointer;
 	color: white;
 	padding: 8px;
 	font-size: 20px;
     width: 200px;
+	
 }
 
 
-.inputfile + label:hover {
+
+
+label:hover {
     background:linear-gradient(white 7%,var(--CouleurThemeHover));
-}
-
-.inputfile + label {
-	cursor: pointer; 
+	cursor: pointer;
 }
 
 /********************InputFile****************************************/
@@ -85,33 +91,29 @@
 }
 
 #btnAjouterTrace{
-	
-	margin-left: 5%;
+	margin-left: 10px;;
 	border-radius: 5px;	
 	border: none;
 	background-color: var(--CouleurTheme);
-	cursor: pointer;
 	color: white;
 	padding: 8px;
-	margin-top:10px;
+	margin-top: 10px;
 	font-size: 20px;
     width: 140px;
 	display: inline-block;
 }
 
-
+ #btnAjouterTrace:hover
+{
+    background:linear-gradient(white 7%,var(--CouleurThemeHover));
+	cursor: pointer;
+}
 
 #ChoixCategorie{
 	width: 41vh;
 	border-bottom-style: solid;
     border-bottom-color: var(--CouleurTheme);
     box-shadow: 0px 5px 4px -2px #8c8c8c;
-}
-
-
- #btnAjouterTrace:hover
-{
-    background:linear-gradient(white 7%,var(--CouleurThemeHover));
 }
 
 
