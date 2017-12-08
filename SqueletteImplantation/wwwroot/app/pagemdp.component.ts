@@ -34,6 +34,7 @@ export class mdpcomponent
                     content: 'Mot de passe réinitialisé. Vérifier vos courriels indésirables. Il peut y avoir un délais avant la réception du courriel.',
                     color: 'green',
                     stack: false,
+                    offset:{y: 50},
                     autoclose: 2000
                 });
                 let timeoutId = setTimeout(() => {
@@ -46,6 +47,7 @@ export class mdpcomponent
                     content: 'Aucun compte trouvé à cette adresse courriel',
                     color: 'red',
                     stack: false,
+                    offset:{y: 50},
                     autoclose: 2000
                 });
             }
