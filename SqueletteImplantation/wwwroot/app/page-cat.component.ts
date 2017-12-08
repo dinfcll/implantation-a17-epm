@@ -40,6 +40,7 @@ export class PageCatComponent implements OnInit
     m_EnvoieTrace: TraceDTO = null;
     NomCateg: String;
     NomCrit: String;
+    CategorieSelectionne: String;
     infostelechargement: HistoriqueDTO;
 
 
@@ -56,69 +57,34 @@ export class PageCatComponent implements OnInit
         //Remplit les objets avec les données de la BD
         if(this.router.url.toString() == '/neurologie')
         {
-        this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
+            this.catService.getCategories(2).subscribe(cat => this.m_TabCat = cat.json() as Categorie[]);
         }
        else
        {
-        this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
+            this.catService.getCategories(1).subscribe(cat => this.m_TabCat = cat.json() as Categorie[]);
        }
 
     }
 
 
-    private AffichageCat(param: any) 
-    {
-        this.m_TabCat = (param.json() as Categorie[]);
-
-        if(this.m_TabCat.length < 8)
-        {
-            if(this.m_TabCat.length > 1)
-            {
-                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString()); 
-            }
-            else
-            {
-                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
-            }
-             
-        }
-        else
-        {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");            
-        }
-          
-    }
-
-    private AffichageCrit(param: any) {
-        this.m_TabCrit = (param.json() as Critere[]);
-
-        if(this.m_TabCrit.length < 8)
-        {
-            if(this.m_TabCrit.length > 1)
-            {
-              document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
-            }
-            else
-            {
-                 document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
-            }
-        
-        }
-        else
-        {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
-        }
-
-    }
 
     private AffichageTrace(param: any) 
     {
         this.m_TabTrace = (param.json() as Trace[]);
     }
 
-    OnClickListeDeroulanteCritere()
+    OnClickListeDeroulanteCritere(param: any)
     {
-	    document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
+        console.log(document.getElementById("ListeCritere").style.display);
+        if(document.getElementById("ListeCritere").style.display === "" || document.getElementById("ListeCritere").style.display === "none" || param !== this.CategorieSelectionne)
+        {
+            document.getElementById("ListeCritere").style.display = "inline-block";
+            this.CategorieSelectionne = param;
+        }
+        else
+        {
+            document.getElementById("ListeCritere").style.display = "none";
+        } 
     }
 	
     
@@ -126,27 +92,31 @@ export class PageCatComponent implements OnInit
     OnClickCategorie(categ: Categorie)
     {
      
-        for(var i=0; i<this.m_TabCat.length;i++)
+        /*for(var i=0; i<this.m_TabCat.length;i++)
         {
-            document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
-        }
+            document.getElementById(this.m_TabCat[i].catId.toString()).style.backgroundColor = "rgba(125, 141, 163, 0.71)";
+        }*/
+
+        let CategorieRemettreCouleur = document.evaluate('//*[text()="' + categ.catNom + '"]', document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem(0);
+        let ElementHtml = CategorieRemettreCouleur.parentElement.children;
+        (ElementHtml as HTMLCollectionOf<HTMLElement>)[0].style.backgroundColor = "rgba(125, 141, 163, 0.71)";
       
     
-         document.getElementById(categ.catId.toString()).style.background="rgba(43, 47, 61, 0.71)";
+        document.getElementById(categ.catId.toString()).style.backgroundColor="rgba(43, 47, 61, 0.71)";
 
-         var offsTop = document.getElementById(categ.catId.toString()).offsetTop;
-         document.getElementById("ListeCrit").style.top = offsTop +"px";
+        var offsTop = document.getElementById(categ.catId.toString()).offsetTop;
+        document.getElementById("ListeCritere").style.top = offsTop +"px";
 
-         var offsLargeur = document.getElementById("EspaceCritereChoisi").offsetWidth;
-         document.getElementById("ListeCrit").style.maxWidth = offsLargeur + "px";
+        var offsLargeur = document.getElementById("EspaceCritereChoisi").offsetWidth;
+        document.getElementById("ListeCritere").style.maxWidth = offsLargeur + "px";
 
-         var offsDroite = document.getElementById("ChoixCategorie").offsetWidth;
-         document.getElementById("ListeCrit").style.left = offsDroite - 5 + "px";
+        var offsDroite = document.getElementById("ChoixCategorie").offsetWidth;
+        document.getElementById("ListeCritere").style.left = offsDroite - 5 + "px";
          
 
-         this.NomCateg = categ.catNom;
-         this.NomCrit = "Critères";
-         this.critService.getCriteres(categ.catId).subscribe(crit => this.AffichageCrit(crit));
+        this.NomCateg = categ.catNom;
+        this.NomCrit = "Critères";
+        this.critService.getCriteres(categ.catId).subscribe(crit => this.m_TabCrit = crit.json() as Critere[]);
     } 
 
     //Action lors de la sélection d'un critère
