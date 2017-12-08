@@ -69,45 +69,12 @@ export class PageCatComponent implements OnInit
     private AffichageCat(param: any) 
     {
         this.m_TabCat = (param.json() as Categorie[]);
-
-        if(this.m_TabCat.length < 8)
-        {
-            if(this.m_TabCat.length > 1)
-            {
-                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString()); 
-            }
-            else
-            {
-                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
-            }
-             
-        }
-        else
-        {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");            
-        }
           
     }
 
     private AffichageCrit(param: any) {
         this.m_TabCrit = (param.json() as Critere[]);
 
-        if(this.m_TabCrit.length < 8)
-        {
-            if(this.m_TabCrit.length > 1)
-            {
-              document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
-            }
-            else
-            {
-                 document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
-            }
-        
-        }
-        else
-        {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
-        }
 
     }
 
