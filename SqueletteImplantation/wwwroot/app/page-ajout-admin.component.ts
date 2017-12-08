@@ -65,46 +65,11 @@ export class AjoutAdminComponent implements OnInit
     private AffichageCat(param: any) 
     {
         this.m_TabCat = (param.json() as Categorie[]);
-
-        if(this.m_TabCat.length < 8)
-        {
-            if(this.m_TabCat.length > 1)
-            {
-                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", this.m_TabCat.length.toString()); 
-            }
-            else
-            {
-                document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "2");
-            }
-             
-        }
-        else
-        {
-            document.getElementsByClassName("ListeCategorie")[0].setAttribute("size", "8");            
-        }
           
     }
 
      private AffichageCrit(param: any) {
         this.m_TabCrit = (param.json() as Critere[]);
-
-        if(this.m_TabCrit.length < 8)
-        {
-            if(this.m_TabCrit.length > 1)
-            {
-              document.getElementsByClassName("ListeCritere")[0].setAttribute("size", this.m_TabCrit.length.toString());
-            }
-            else
-            {
-                 document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "2");
-            }
-        
-        }
-        else
-        {
-            document.getElementsByClassName("ListeCritere")[0].setAttribute("size", "8");
-        }
-
     }
 
     private AffichageTrace(param: any) {
@@ -170,7 +135,8 @@ export class AjoutAdminComponent implements OnInit
     public onClickAddTrace()
     {
         
-            this.http.post('api/ajoutfichier' , this.m_Form).subscribe(reponse => this.FichierValide(reponse));
+            this.http.post('api/ajoutfichier' , this.m_Form).subscribe(reponse => this.FichierValide(reponse),error => this.LeverErreur());
+            
         
     }
 
@@ -197,8 +163,10 @@ public fileChange(event:any)
 
 public FichierValide(retour :any) 
 {
-    if(retour.status === 200)
+    
+    if(retour.status ===200)
     {
+        
         if(retour._body != null)
         {
             console.log("Fichier envoyé avec succès !");
@@ -211,9 +179,25 @@ public FichierValide(retour :any)
                 offset:{y: 50},
                 stack: true
             });
-
+            this.Message = "Insérer le tracé ...";
+            this.m_Form = new FormData();
+            this.m_TabRecherche=[]; 
         }
     }
+      
+}
+
+private LeverErreur()
+{
+    console.log("erreur");
+    new jBox('Notice', {
+        content: 'une erreur est survenue',
+        color: 'red',
+        stack: true
+    });
+    this.Message = "Insérer le tracé ...";
+    this.m_Form = new FormData();
+    this.m_TabRecherche=[]; 
 }
    
 
