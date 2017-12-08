@@ -41,9 +41,11 @@ export class GestionUtilComponent
             new jBox('Notice', {
                 content: 'Utilisateur créé avec succès.',
                 color: 'green',
+                offset:{y: 50},
                 autoclose: 2000,
                 stack: false
             });
+            this.utilisateurService.getUtils().subscribe(retour => this.AfficheUtils(retour));
         });
     }
 

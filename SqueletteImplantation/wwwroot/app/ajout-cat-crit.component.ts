@@ -187,6 +187,7 @@ export class AjoutSuppComponent
             new jBox('Notice', {
                 content: 'Veuillez choisir une catégorie afin de pouvoir la supprimer',
                 color: 'red',
+                offset:{y: 50},
                 stack: true
             });
        }
@@ -207,6 +208,7 @@ export class AjoutSuppComponent
             new jBox('Notice', {
                 content: 'Veuillez choisir un critère afin de pouvoir le supprimer',
                 color: 'red',
+                offset:{y: 50},
                 stack: true
             });
         }
@@ -224,6 +226,7 @@ export class AjoutSuppComponent
             new jBox('Notice', {
                 content: 'Veuiller donner un nom à la catégorie à ajouter',
                 color: 'red',
+                offset:{y: 50},
                 stack: true
             });
         }
@@ -243,6 +246,7 @@ export class AjoutSuppComponent
                 new jBox('Notice', {
                     content: 'Veuillez donner un nom à la catégorie à ajouter',
                     color: 'red',
+                    offset:{y: 50},
                     stack: true
                 }); 
              }
@@ -253,6 +257,7 @@ export class AjoutSuppComponent
             new jBox('Notice', {
                 content: 'Veuillez choisir une catégorie afin de pouvoir ajouter un critère à celle-ci',
                 color: 'red',
+                offset:{y: 50},
                 stack: true
             });
          }
@@ -265,6 +270,7 @@ export class AjoutSuppComponent
             new jBox('Notice', {
                 content: 'Catégorie ajoutée avec succès',
                 color: 'green',
+                offset:{y: 50},
                 stack: true
             });
         }
@@ -279,6 +285,7 @@ export class AjoutSuppComponent
             new jBox('Notice', {
                 content: 'Catégorie supprimée avec succès',
                 color: 'green',
+                offset:{y: 50},
                 stack: true
             });
         }
@@ -293,6 +300,7 @@ export class AjoutSuppComponent
             new jBox('Notice', {
                 content: 'Critère ajouté avec succès',
                 color: 'green',
+                offset:{y: 50},
                 stack: true
             });
         }
@@ -307,6 +315,7 @@ export class AjoutSuppComponent
             new jBox('Notice', {
                 content: 'Critère supprimé avec succès',
                 color: 'green',
+                offset:{y: 50},
                 stack: true
             });
         }

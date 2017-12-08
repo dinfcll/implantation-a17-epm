@@ -208,6 +208,7 @@ public FichierValide(retour :any)
             new jBox('Notice', {
                 content: 'Fichier envoyé avec succès',
                 color: 'green',
+                offset:{y: 50},
                 stack: true
             });
 
