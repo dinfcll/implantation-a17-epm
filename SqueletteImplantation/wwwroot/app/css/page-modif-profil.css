@@ -18,7 +18,6 @@
 }
 
 #TitreParametre{
-    font: 80%/1 sans-serif;
     font-size: 16px;
     font-weight: bold;
 }
@@ -34,7 +33,6 @@
     margin-top:-20px;
     position: absolute;
 	display: block;
-	font:80%/1 sans-serif;
 	font-weight:bold;
 	font-size: 16px;
     -webkit-padding-start: 2px;
