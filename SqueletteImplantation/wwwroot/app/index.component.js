@@ -36,6 +36,7 @@ var IndexComponent = /** @class */ (function () {
                     content: 'Utilisateur ou mot de passe invalide',
                     color: 'red',
                     stack: false,
+                    offset: { y: 50 },
                     autoclose: 2000
                 });
             }

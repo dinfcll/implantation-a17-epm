@@ -186,7 +186,9 @@ export class ModifProfilComponent
                     new jBox( 'Notice', {
                         content: 'Changement effectué',
                         color: 'green',
-                        stack: false
+                        offset:{y: 50},
+                        stack: false,
+                        autoclose: 2000
                     });
                 }
                 else
@@ -194,7 +196,9 @@ export class ModifProfilComponent
                     new jBox('Notice', {
                         content: Resultat.text(),
                         color: 'red',
-                        stack: false
+                        offset:{y: 50},
+                        stack: false,
+                        autoclose: 2000
                     });
                 }
             }
@@ -202,6 +206,7 @@ export class ModifProfilComponent
             {
                 new jBox('Notice', {
                     content: 'Erreur de connexion avec le serveur',
+                    offset:{y: 50},
                     color: 'red',
                     stack: false
                 });
@@ -219,6 +224,7 @@ export class ModifProfilComponent
                 {
                     new jBox( 'Notice', {
                         content: 'Changement effectué',
+                        offset:{y: 50},
                         color: 'green',
                         stack: false
                     });
@@ -227,6 +233,7 @@ export class ModifProfilComponent
                 {
                     new jBox('Notice', {
                         content: Resultat.text(),
+                        offset:{y: 50},
                         color: 'red',
                         stack: false
                     });
@@ -236,6 +243,7 @@ export class ModifProfilComponent
             {
                 new jBox('Notice', {
                     content: 'Erreur de connexion avec le serveur',
+                    offset:{y: 50},
                     color: 'red',
                     stack: false
                 });
@@ -254,6 +262,7 @@ export class ModifProfilComponent
                     new jBox( 'Notice', {
                         content: 'Changement effectué',
                         color: 'green',
+                        offset:{y: 50},
                         stack: false
                     });
                 }
@@ -262,6 +271,7 @@ export class ModifProfilComponent
                     new jBox('Notice', {
                         content: Resultat.text(),
                         color: 'red',
+                        offset:{y: 50},
                         stack: false
                     });
                 }
@@ -271,6 +281,7 @@ export class ModifProfilComponent
                 new jBox('Notice', {
                     content: 'Erreur de connexion avec le serveur',
                     color: 'red',
+                    offset:{y: 50},
                     stack: false
                 });
             }
@@ -287,6 +298,7 @@ export class ModifProfilComponent
                     new jBox( 'Notice', {
                         content: 'Changement effectué',
                         color: 'green',
+                        offset:{y: 50},
                         stack: false
                     });
                 }
@@ -295,6 +307,7 @@ export class ModifProfilComponent
                     new jBox('Notice', {
                         content: Resultat.text(),
                         color: 'red',
+                        offset:{y: 50},
                         stack: false
                     });
                 }
@@ -304,6 +317,7 @@ export class ModifProfilComponent
                 new jBox('Notice', {
                     content: 'Erreur de connexion avec le serveur',
                     color: 'red',
+                    offset:{y: 50},
                     stack: false
                 });
             }
