@@ -18,7 +18,7 @@ var categorie_service_1 = require("./categorie.service");
 var critere_service_1 = require("./critere.service");
 var authentification_service_1 = require("./authentification.service");
 var Historique_service_1 = require("./Historique.service");
-var PageCatComponent = (function () {
+var PageCatComponent = /** @class */ (function () {
     function PageCatComponent(traceService, catService, critService, router, authentificationService, historiqueService) {
         this.traceService = traceService;
         this.catService = catService;
@@ -36,40 +36,45 @@ var PageCatComponent = (function () {
         var _this = this;
         //Remplit les objets avec les données de la BD
         if (this.router.url.toString() == '/neurologie') {
-            this.catService.getCategories(2).subscribe(function (cat) { return _this.AffichageCat(cat); });
+            this.catService.getCategories(2).subscribe(function (cat) { return _this.m_TabCat = cat.json(); });
         }
         else {
-            this.catService.getCategories(1).subscribe(function (cat) { return _this.AffichageCat(cat); });
+            this.catService.getCategories(1).subscribe(function (cat) { return _this.m_TabCat = cat.json(); });
         }
-    };
-    PageCatComponent.prototype.AffichageCat = function (param) {
-        this.m_TabCat = param.json();
-    };
-    PageCatComponent.prototype.AffichageCrit = function (param) {
-        this.m_TabCrit = param.json();
     };
     PageCatComponent.prototype.AffichageTrace = function (param) {
         this.m_TabTrace = param.json();
     };
-    PageCatComponent.prototype.OnClickListeDeroulanteCritere = function () {
-        document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
+    PageCatComponent.prototype.OnClickListeDeroulanteCritere = function (param) {
+        console.log(document.getElementById("ListeCritere").style.display);
+        if (document.getElementById("ListeCritere").style.display === "" || document.getElementById("ListeCritere").style.display === "none" || param !== this.CategorieSelectionne) {
+            document.getElementById("ListeCritere").style.display = "inline-block";
+            this.CategorieSelectionne = param;
+        }
+        else {
+            document.getElementById("ListeCritere").style.display = "none";
+        }
     };
     //Action lors de la sélection d'une catégorie
     PageCatComponent.prototype.OnClickCategorie = function (categ) {
+        /*for(var i=0; i<this.m_TabCat.length;i++)
+        {
+            document.getElementById(this.m_TabCat[i].catId.toString()).style.backgroundColor = "rgba(125, 141, 163, 0.71)";
+        }*/
         var _this = this;
-        for (var i = 0; i < this.m_TabCat.length; i++) {
-            document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
-        }
-        document.getElementById(categ.catId.toString()).style.background = "rgba(43, 47, 61, 0.71)";
+        var CategorieRemettreCouleur = document.evaluate('//*[text()="' + categ.catNom + '"]', document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem(0);
+        var ElementHtml = CategorieRemettreCouleur.parentElement.children;
+        ElementHtml[0].style.backgroundColor = "rgba(125, 141, 163, 0.71)";
+        document.getElementById(categ.catId.toString()).style.backgroundColor = "rgba(43, 47, 61, 0.71)";
         var offsTop = document.getElementById(categ.catId.toString()).offsetTop;
-        document.getElementById("ListeCrit").style.top = offsTop + "px";
+        document.getElementById("ListeCritere").style.top = offsTop + "px";
         var offsLargeur = document.getElementById("EspaceCritereChoisi").offsetWidth;
-        document.getElementById("ListeCrit").style.maxWidth = offsLargeur + "px";
+        document.getElementById("ListeCritere").style.maxWidth = offsLargeur + "px";
         var offsDroite = document.getElementById("ChoixCategorie").offsetWidth;
-        document.getElementById("ListeCrit").style.left = offsDroite - 5 + "px";
+        document.getElementById("ListeCritere").style.left = offsDroite - 5 + "px";
         this.NomCateg = categ.catNom;
         this.NomCrit = "Critères";
-        this.critService.getCriteres(categ.catId).subscribe(function (crit) { return _this.AffichageCrit(crit); });
+        this.critService.getCriteres(categ.catId).subscribe(function (crit) { return _this.m_TabCrit = crit.json(); });
     };
     //Action lors de la sélection d'un critère
     PageCatComponent.prototype.OnClickCritere = function (crit) {

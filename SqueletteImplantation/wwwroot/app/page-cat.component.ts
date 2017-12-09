@@ -1,19 +1,19 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 
-//Importation des classes
+// Importation des classes
 import { Trace } from './trace';
 import { Categorie } from './categorie';
 import { Critere } from './critere';
 import { TraceDTO } from './tracedto';
 import {HistoriqueDTO} from './Historique';
 
-//Importation des services 
+// Importation des services 
 import { TraceService } from './trace.service';
 import { CategorieService } from './categorie.service';
 import { CritereService } from './critere.service';
-import { AuthentificationService } from "./authentification.service";
-import { HistoriqueService } from "./Historique.service";
+import { AuthentificationService } from './authentification.service';
+import { HistoriqueService } from './Historique.service';
 
 
 declare var jBox:any;
@@ -21,12 +21,11 @@ declare var jBox:any;
 
 @Component({
   selector: 'page-cat',
-  templateUrl: 'app/html/page-cat.component.html',  //Template de Étienne doit aller ici !
+  templateUrl: 'app/html/page-cat.component.html',
   styleUrls: [ 'app/css/page-cat.component.css' ],
-  providers: [TraceService,CritereService,CategorieService]
+  providers: [TraceService, CritereService, CategorieService]
 })
 
-//À compléter
 export class PageCatComponent implements OnInit
 {
 /*  Define a traces array property.
@@ -40,145 +39,142 @@ export class PageCatComponent implements OnInit
     m_EnvoieTrace: TraceDTO = null;
     NomCateg: String;
     NomCrit: String;
+    CategorieSelectionne: String;
     infostelechargement: HistoriqueDTO;
 
 
-    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService, 
-    private router:Router,private authentificationService: AuthentificationService, private historiqueService: HistoriqueService)
+    constructor(private traceService: TraceService, private catService: CategorieService, private critService: CritereService,
+    private router: Router, private authentificationService: AuthentificationService, private historiqueService: HistoriqueService)
     {
-        this.NomCateg = "Catégories";
-        this.NomCrit = "Critères";
+        this.NomCateg = 'Catégories';
+        this.NomCrit = 'Critères';
     }
 
-    //ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
-    ngOnInit(): void 
+    // ngOnInit est une méthode du "Framework"" Angular qui est appelée après le constructeur dudit composant.
+    ngOnInit(): void
     {
-        //Remplit les objets avec les données de la BD
-        if(this.router.url.toString() == '/neurologie')
+        // Remplit les objets avec les données de la BD
+        if(this.router.url.toString() === '/neurologie')
         {
-        this.catService.getCategories(2).subscribe(cat => this.AffichageCat(cat));
+            this.catService.getCategories(2).subscribe(cat => this.m_TabCat = cat.json() as Categorie[]);
         }
-       else
-       {
-        this.catService.getCategories(1).subscribe(cat => this.AffichageCat(cat));
-       }
-
+        else
+        {
+            this.catService.getCategories(1).subscribe(cat => this.m_TabCat = cat.json() as Categorie[]);
+        }
     }
 
 
-    private AffichageCat(param: any) 
-    {
-        this.m_TabCat = (param.json() as Categorie[]);
-          
-    }
 
-    private AffichageCrit(param: any) {
-        this.m_TabCrit = (param.json() as Critere[]);
-
-
-    }
-
-    private AffichageTrace(param: any) 
+    private AffichageTrace(param: any)
     {
         this.m_TabTrace = (param.json() as Trace[]);
     }
 
-    OnClickListeDeroulanteCritere()
+    OnClickListeDeroulanteCritere(param: any)
     {
-	    document.getElementsByClassName("ListeCritere")[0].classList.toggle("ShowElement");
+        
+        if(document.getElementById("ListeCritere").style.display === "" || document.getElementById("ListeCritere").style.display === "none" || param !== this.CategorieSelectionne)
+        {
+            document.getElementById("ListeCritere").style.display = "inline-block";
+            this.CategorieSelectionne = param;
+        }
+        else
+        {
+            document.getElementById("ListeCritere").style.display = "none";
+        }
     }
 	
     
-    //Action lors de la sélection d'une catégorie
+    // Action lors de la sélection d'une catégorie
     OnClickCategorie(categ: Categorie)
     {
-     
-        for(var i=0; i<this.m_TabCat.length;i++)
+        
+        for(var i=0; i<this.m_TabCat.length; i++)
         {
-            document.getElementById(this.m_TabCat[i].catId.toString()).style.background = "rgba(125, 141, 163, 0.71)";
+            document.getElementById(this.m_TabCat[i].catId.toString()).style.backgroundColor = "rgba(125, 141, 163, 0.71)";
         }
-      
-    
-         document.getElementById(categ.catId.toString()).style.background="rgba(43, 47, 61, 0.71)";
+        
+        
+        document.getElementById(categ.catId.toString()).style.backgroundColor="rgba(43, 47, 61, 0.71)";
 
-         var offsTop = document.getElementById(categ.catId.toString()).offsetTop;
-         document.getElementById("ListeCrit").style.top = offsTop +"px";
+        let offsTop = document.getElementById(categ.catId.toString()).offsetTop;
+        document.getElementById("ListeCritere").style.top = offsTop +"px";
 
-         var offsLargeur = document.getElementById("EspaceCritereChoisi").offsetWidth;
-         document.getElementById("ListeCrit").style.maxWidth = offsLargeur + "px";
+        let offsLargeur = document.getElementById("EspaceCritereChoisi").offsetWidth;
+        document.getElementById("ListeCritere").style.maxWidth = offsLargeur + "px";
 
-         var offsDroite = document.getElementById("ChoixCategorie").offsetWidth;
-         document.getElementById("ListeCrit").style.left = offsDroite - 5 + "px";
-         
+        let offsDroite = document.getElementById("ChoixCategorie").offsetWidth;
+        document.getElementById("ListeCritere").style.left = offsDroite - 5 + "px";
+        
 
-         this.NomCateg = categ.catNom;
-         this.NomCrit = "Critères";
-         this.critService.getCriteres(categ.catId).subscribe(crit => this.AffichageCrit(crit));
-    } 
+        this.NomCateg = categ.catNom;
+        this.NomCrit = "Critères";
+        this.critService.getCriteres(categ.catId).subscribe(crit => this.m_TabCrit = crit.json() as Critere[]);
+    }
 
-    //Action lors de la sélection d'un critère
+    // Action lors de la sélection d'un critère
     OnClickCritere(crit: Critere)
     {
         this.NomCrit = crit.critNom;
         this.m_TabRecherche.push(crit);
     }
 
-    //Action lors du clic sur supprimer
+    // Action lors du clic sur supprimer
     OnClickSupprimer(crit: Critere)
     {
-        this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit),1);
-      
+        this.m_TabRecherche.splice(this.m_TabRecherche.indexOf(crit), 1);
     }
     
-     onClickImg(url: string)
+    onClickImg(url: string)
     {
         window.open(url);
     }
 
-    ValidationPage() : boolean
+    ValidationPage(): boolean
     {
       let CheminLong: string = this.router.url.toString();
       let Page: string[];
 
       Page = CheminLong.split('/', 2);
      
-      if(Page[1] == 'neurologie')
+      if(Page[1] === 'neurologie')
       {
         return false;
       }
       return true;
     }
 
-    //Action lors de l'appui sur le bouton recherche
+    // Action lors de l'appui sur le bouton recherche
     OnClickRechercher()
     {
         let RequeteId: string;
         
-        RequeteId = "?"
+        RequeteId = "?";
 
         for (let crit of this.m_TabRecherche)
         {
             RequeteId += "Id=" + crit.critId + "&";
         }
-        RequeteId = RequeteId.substr(0,RequeteId.length - 1);
+        RequeteId = RequeteId.substr(0, RequeteId.length - 1);
 
         this.traceService.getTraces(RequeteId).subscribe(trac => this.AffichageTrace(trac));
     }
 
     onClickTelecharger(id: number)
-    {       
-        this.infostelechargement=new HistoriqueDTO(id,this.historiqueService.IdUsager);
-        
+    {
+        this.infostelechargement = new HistoriqueDTO(id, this.historiqueService.IdUsager);
+
         console.log(this.infostelechargement);
 
         this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(Reponse=> this.historiqueService.ObtenirHistorique());
     }
 
 
-    /************************************************************** */
-    ValidationUtil() : boolean
+    /***************************************************************/
+    ValidationUtil(): boolean
     {
-        return this.authentificationService.Admin()
+        return this.authentificationService.Admin();
     }
 
     /**********AJOUT ET SUPPRESSION DE TRACÉS*********************/
@@ -202,7 +198,7 @@ export class PageCatComponent implements OnInit
 
     public onClickAddTrace()
     {
-        if(this.router.url.toString() == '/neurologie')
+        if(this.router.url.toString() === '/neurologie')
         {
             this.router.navigateByUrl('/neurologie/ajouttrace');
         }

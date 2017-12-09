@@ -3,15 +3,15 @@
 		<tr id="PremiereLigne">
 			<td id="ChoixCategorie"> 
 				<section> 	
-					<div class="Categorie" *ngFor ="let categ of m_TabCat" id="{{categ.catId}}" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere()" title="{{categ.catNom}}">
-						{{categ.catNom}}					 
+					<div class="Categorie" *ngFor ="let categ of m_TabCat" id="{{categ.catId}}" (click)="OnClickCategorie(categ)" (click)="OnClickListeDeroulanteCritere(categ.catNom)" title="{{categ.catNom}}">
+						{{categ.catNom}}
 					</div>
-					<div id="ListeCrit" class="ListeCritere"> 	
+					<div id="ListeCritere">
 						<span class="Critere" *ngFor ="let critere of m_TabCrit" (click)="OnClickCritere(critere)" title="{{critere.critNom}}">
-							<img src="app/images/add.gif" alt="non"/>
-							{{critere.critNom}}	
+							<img src="app/images/add.gif" alt="non" />
+							{{critere.critNom}}
 						</span>
-					</div>
+					</div>	
 				</section>
             </td>
 			<td id="EspaceCritereChoisi">

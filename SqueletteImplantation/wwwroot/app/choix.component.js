@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
 var authentification_service_1 = require("./authentification.service");
-var ChoixComponent = (function () {
+var ChoixComponent = /** @class */ (function () {
     function ChoixComponent(router, appcomponent, authentificationservice) {
         this.router = router;
         this.appcomponent = appcomponent;

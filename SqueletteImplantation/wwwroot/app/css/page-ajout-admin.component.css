@@ -117,7 +117,7 @@ label:hover {
 }
 
 
-.ListeCritere{
+#ListeCritere{
 	background-color:var(--CouleurTheme);
 	border-radius: 5px;
 	display: none;

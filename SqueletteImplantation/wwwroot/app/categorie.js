@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Categorie = (function () {
+var Categorie = /** @class */ (function () {
     function Categorie(catId, catNom, domId, domaine, criteres) {
         this.catId = catId;
         this.catNom = catNom;
@@ -11,7 +11,7 @@ var Categorie = (function () {
     return Categorie;
 }());
 exports.Categorie = Categorie;
-var CategorieDTO = (function () {
+var CategorieDTO = /** @class */ (function () {
     function CategorieDTO(NomCat, IdDom) {
         this.NomCat = NomCat;
         this.IdDom = IdDom;

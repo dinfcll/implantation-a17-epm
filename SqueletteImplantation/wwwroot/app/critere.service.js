@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/toPromise"); // Pour accéder à la méthode .toPromise()
-var CritereService = (function () {
+var CritereService = /** @class */ (function () {
     function CritereService(http) {
         this.http = http;
         this.CriteresURL = 'api/criterecat/'; // URL de l'API

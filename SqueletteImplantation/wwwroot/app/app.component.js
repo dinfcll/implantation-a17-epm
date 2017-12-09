@@ -14,7 +14,7 @@ var router_1 = require("@angular/router");
 var authentification_service_1 = require("./authentification.service");
 var Historique_service_1 = require("./Historique.service");
 var Historique_1 = require("./Historique");
-var AppComponent = (function () {
+var AppComponent = /** @class */ (function () {
     function AppComponent(router, authentificationService, historiqueService) {
         this.router = router;
         this.authentificationService = authentificationService;

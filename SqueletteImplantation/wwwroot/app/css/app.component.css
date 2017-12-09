@@ -5,6 +5,13 @@
 }
 
 
+
+*{
+    font-family: 'Kanit', sans-serif !important;
+    outline: none !important;
+}
+
+
 a {text-decoration:none;}
 
 html{

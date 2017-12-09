@@ -26,7 +26,7 @@ var page_modif_profil_component_1 = require("./page-modif-profil.component");
 var utilisateur_service_1 = require("./utilisateur.service");
 var gestionutil_component_1 = require("./gestionutil.component");
 var Historique_service_1 = require("./Historique.service");
-var AppModule = (function () {
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([

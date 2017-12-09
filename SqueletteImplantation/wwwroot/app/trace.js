@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 //Selon la BD
-var Trace = (function () {
+var Trace = /** @class */ (function () {
     function Trace(tracId, traceNom, tracUrl, tracLogi, reltraccrit) {
         this.tracId = tracId;
         this.traceNom = traceNom;
