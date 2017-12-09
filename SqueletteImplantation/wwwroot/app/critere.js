@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Critere = (function () {
+var Critere = /** @class */ (function () {
     function Critere(critId, critNom, catId) {
         this.critId = critId;
         this.critNom = critNom;
@@ -9,7 +9,7 @@ var Critere = (function () {
     return Critere;
 }());
 exports.Critere = Critere;
-var CritereDTO = (function () {
+var CritereDTO = /** @class */ (function () {
     function CritereDTO(NomCrit, IdCat) {
         this.NomCrit = NomCrit;
         this.IdCat = IdCat;

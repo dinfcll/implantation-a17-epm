@@ -68,14 +68,14 @@ export class PageCatComponent implements OnInit
 
 
 
-    private AffichageTrace(param: any) 
+    private AffichageTrace(param: any)
     {
         this.m_TabTrace = (param.json() as Trace[]);
     }
 
     OnClickListeDeroulanteCritere(param: any)
     {
-        console.log(document.getElementById("ListeCritere").style.display);
+        
         if(document.getElementById("ListeCritere").style.display === "" || document.getElementById("ListeCritere").style.display === "none" || param !== this.CategorieSelectionne)
         {
             document.getElementById("ListeCritere").style.display = "inline-block";
@@ -92,14 +92,10 @@ export class PageCatComponent implements OnInit
     OnClickCategorie(categ: Categorie)
     {
      
-        /*for(var i=0; i<this.m_TabCat.length;i++)
+        for(var i=0; i<this.m_TabCat.length;i++)
         {
             document.getElementById(this.m_TabCat[i].catId.toString()).style.backgroundColor = "rgba(125, 141, 163, 0.71)";
-        }*/
-
-        let CategorieRemettreCouleur = document.evaluate('//*[text()="' + categ.catNom + '"]', document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem(0);
-        let ElementHtml = CategorieRemettreCouleur.parentElement.children;
-        (ElementHtml as HTMLCollectionOf<HTMLElement>)[0].style.backgroundColor = "rgba(125, 141, 163, 0.71)";
+        }
       
     
         document.getElementById(categ.catId.toString()).style.backgroundColor="rgba(43, 47, 61, 0.71)";

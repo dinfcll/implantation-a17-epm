@@ -14,7 +14,7 @@ var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
 var authentification_service_1 = require("./authentification.service");
 var Historique_service_1 = require("./Historique.service");
-var IndexComponent = (function () {
+var IndexComponent = /** @class */ (function () {
     function IndexComponent(router, authServ, appcomponent, historiqueService) {
         this.router = router;
         this.authServ = authServ;
@@ -44,15 +44,15 @@ var IndexComponent = (function () {
     IndexComponent.prototype.MotDePasseOublie = function () {
         this.router.navigate(['MDP']);
     };
+    IndexComponent = __decorate([
+        core_1.Component({
+            selector: 'my-index',
+            templateUrl: 'app/html/index.component.html',
+            styleUrls: ['app/css/index.component.css']
+        }),
+        __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService, app_component_1.AppComponent, Historique_service_1.HistoriqueService])
+    ], IndexComponent);
     return IndexComponent;
 }());
-IndexComponent = __decorate([
-    core_1.Component({
-        selector: 'my-index',
-        templateUrl: 'app/html/index.component.html',
-        styleUrls: ['app/css/index.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router, authentification_service_1.AuthentificationService, app_component_1.AppComponent, Historique_service_1.HistoriqueService])
-], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map

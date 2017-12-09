@@ -14,7 +14,7 @@ var router_1 = require("@angular/router");
 var authentification_service_1 = require("./authentification.service");
 var Historique_service_1 = require("./Historique.service");
 var Historique_1 = require("./Historique");
-var AppComponent = (function () {
+var AppComponent = /** @class */ (function () {
     function AppComponent(router, authentificationService, historiqueService) {
         this.router = router;
         this.authentificationService = authentificationService;
@@ -109,17 +109,17 @@ var AppComponent = (function () {
         console.log(this.infostelechargement);
         this.historiqueService.addRechercheRecente(this.infostelechargement).subscribe(function (Reponse) { return _this.historiqueService.ObtenirHistorique(); });
     };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'app-root',
+            templateUrl: 'app/html/app.component.html',
+            styleUrls: ['app/css/app.component.css']
+        }),
+        __metadata("design:paramtypes", [router_1.Router,
+            authentification_service_1.AuthentificationService,
+            Historique_service_1.HistoriqueService])
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'app-root',
-        templateUrl: 'app/html/app.component.html',
-        styleUrls: ['app/css/app.component.css']
-    }),
-    __metadata("design:paramtypes", [router_1.Router,
-        authentification_service_1.AuthentificationService,
-        Historique_service_1.HistoriqueService])
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
